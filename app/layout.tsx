@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Steps - Daily Step Counter & Workouts",
+  title: "Steps: Workout & Pedometer",
   description: "Track your daily steps, workouts, and health data with Steps - the ultimate fitness companion for your Apple device.",
+  openGraph: {
+    images: ['/meta.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/meta.png'],
+  },
 };
 
 export default function RootLayout({
