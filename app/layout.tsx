@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,6 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          data-website-id="dfid_GHemojUg7quBdpkgDlIXS"
+          data-domain="getsteps.app"
+          src="https://datafa.st/js/script.js"
+          strategy="afterInteractive"
+        />
+      </head>
       <body
         className="antialiased"
         style={{ fontFamily: 'SF Pro Rounded, -apple-system, BlinkMacSystemFont, system-ui, sans-serif' }}
