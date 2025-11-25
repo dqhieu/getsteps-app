@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "Steps: Workout & Pedometer",
@@ -34,6 +35,7 @@ export default function RootLayout({
         style={{ fontFamily: 'SF Pro Rounded, -apple-system, BlinkMacSystemFont, system-ui, sans-serif' }}
       >
         {children}
+        <Analytics/
       </body>
     </html>
   );
