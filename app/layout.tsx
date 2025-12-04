@@ -35,7 +35,7 @@ export default function RootLayout({
         style={{ fontFamily: 'SF Pro Rounded, -apple-system, BlinkMacSystemFont, system-ui, sans-serif' }}
       >
         {children}
-        <Analytics/>
+        <Analytics />
       </body>
     </html>
   );
