@@ -42,6 +42,7 @@ export default function Home() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-105 active:scale-95 mb-16 inline-block"
           aria-label="Download on the App Store"
+          data-fast-goal="open-app-store"
         >
           <Image
             src="/badge_light_mode.svg"
