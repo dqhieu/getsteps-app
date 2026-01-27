@@ -2,11 +2,9 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { SITE_CONFIG } from "@/lib/constants";
 
-const baseUrl = "https://getsteps.app";
-const appName = "Steps: Workout & Pedometer";
-const appDescription =
-  "Track your daily steps, workouts, and health data with Steps - the ultimate fitness companion for your Apple device.";
+const { baseUrl, name: appName, description: appDescription, appStoreUrl } = SITE_CONFIG;
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -117,8 +115,7 @@ export default function RootLayout({
               },
               image: `${baseUrl}/meta.png`,
               screenshot: `${baseUrl}/screenshots/screenshot1.png`,
-              downloadUrl:
-                "https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378",
+              downloadUrl: appStoreUrl,
               aggregateRating: {
                 "@type": "AggregateRating",
                 ratingValue: "5",

@@ -21,7 +21,7 @@ export default function TermsPage() {
 
           <div className="prose prose-gray max-w-none">
             <p className="text-gray-700 mb-8 leading-relaxed">
-              This End User License Agreement ("Agreement") is between you and [Your Company Name] ("Company") regarding your use of the Steps application ("App").
+              This End User License Agreement ("Agreement") is between you and GetSteps ("Company") regarding your use of the Steps application ("App").
             </p>
 
             <section className="mb-8">
