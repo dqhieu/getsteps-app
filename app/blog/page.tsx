@@ -5,6 +5,9 @@ import { BlogPagination } from "@/components/blog-pagination";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 
+// Force static generation - fs operations only work at build time
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Blog",
   description:
