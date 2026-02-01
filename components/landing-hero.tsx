@@ -17,7 +17,7 @@ export function LandingHero() {
         </div>
 
         {/* Headline */}
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
+        <h1 className="text-4xl md:text-6xl font-medium tracking-tight mb-4 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
           {SITE_CONFIG.name}
         </h1>
 

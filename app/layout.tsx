@@ -1,8 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_CONFIG } from "@/lib/constants";
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-bricolage",
+});
 
 const { baseUrl, name: appName, description: appDescription, appStoreUrl } = SITE_CONFIG;
 
@@ -125,10 +132,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className="antialiased"
-        style={{ fontFamily: 'SF Pro Rounded, -apple-system, BlinkMacSystemFont, system-ui, sans-serif' }}
-      >
+      <body className={`${bricolage.className} antialiased`}>
         {children}
         <Analytics />
       </body>
