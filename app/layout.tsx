@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const bricolage = Bricolage_Grotesque({
@@ -107,6 +106,11 @@ export default function RootLayout({
           src="https://datafa.st/js/script.js"
           strategy="afterInteractive"
         />
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="db1Nki7eHGI10Xnrqus+LA"
+          strategy="afterInteractive"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -137,7 +141,6 @@ export default function RootLayout({
       </head>
       <body className={`${bricolage.className} antialiased`}>
         {children}
-        <Analytics />
       </body>
     </html>
   );
