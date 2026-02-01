@@ -1,11 +1,6 @@
 name = "getsteps-app"
-main = ".open-next/worker.js"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
-# Static assets from Next.js build
-assets = { directory = ".open-next/assets", binding = "ASSETS" }
-
-# Optional: Environment variables
-# [vars]
-# MY_VAR = "value"
+[pages]
+build_output_dir = ".open-next/assets"
