@@ -6,9 +6,12 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 
 export const metadata: Metadata = {
-  title: "Blog - Steps: Workout & Pedometer",
+  title: "Blog",
   description:
     "Tips, guides, and updates from Steps App - your fitness companion.",
+  alternates: {
+    canonical: "https://getsteps.app/blog",
+  },
 };
 
 interface Props {

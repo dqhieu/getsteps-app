@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { LandingNavbar, LandingFooter } from "@/components";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Steps: Workout & Pedometer",
+  title: "Privacy Policy",
   description: "Privacy Policy for Steps: Workout & Pedometer. Learn how we collect, use, and protect your data.",
+  alternates: {
+    canonical: "https://getsteps.app/privacy",
+  },
 };
 
 export default function PrivacyPage() {

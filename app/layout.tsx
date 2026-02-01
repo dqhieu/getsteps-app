@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   },
   description: appDescription,
   applicationName: appName,
+  alternates: {
+    canonical: baseUrl,
+  },
   keywords: [
     "step counter",
     "pedometer",

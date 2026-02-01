@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { LandingNavbar, LandingFooter } from "@/components";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Steps: Workout & Pedometer",
+  title: "Terms of Service",
   description: "End User License Agreement (EULA) for Steps - Daily Step Counter & Workouts",
+  alternates: {
+    canonical: "https://getsteps.app/terms",
+  },
 };
 
 export default function TermsPage() {
