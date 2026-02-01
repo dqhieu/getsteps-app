@@ -17,14 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
-interface Props {
-  searchParams: Promise<{ page?: string }>;
-}
-
-export default async function BlogPage({ searchParams }: Props) {
-  const params = await searchParams;
-  const page = Number(params.page) || 1;
-  const { posts, totalPages, currentPage } = getPaginatedPosts(page);
+export default async function BlogPage() {
+  const { posts, totalPages, currentPage } = getPaginatedPosts(1);
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
