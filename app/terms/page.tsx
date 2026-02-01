@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Steps App",
+  title: "Terms of Service - Steps: Workout & Pedometer",
   description: "End User License Agreement (EULA) for Steps - Daily Step Counter & Workouts",
 };
 
@@ -15,7 +15,7 @@ export default function TermsPage() {
               END USER LICENSE AGREEMENT (EULA)
             </h1>
             <h2 className="text-xl md:text-2xl text-gray-600 font-medium">
-              Steps - Daily Step Counter & Workouts
+              Steps: Workout & Pedometer
             </h2>
           </header>
 

@@ -82,4 +82,5 @@ export const SCREENSHOTS = [
   "/screenshots/screenshot5.png",
   "/screenshots/screenshot6.png",
   "/screenshots/screenshot7.png",
+  "/screenshots/screenshot8.png",
 ] as const;

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Steps App",
-  description: "Privacy Policy for Steps - Daily Step Counter & Workouts. Learn how we collect, use, and protect your data.",
+  title: "Privacy Policy - Steps: Workout & Pedometer",
+  description: "Privacy Policy for Steps: Workout & Pedometer. Learn how we collect, use, and protect your data.",
 };
 
 export default function PrivacyPage() {
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
               PRIVACY POLICY
             </h1>
             <h2 className="text-xl md:text-2xl text-gray-600 font-medium mb-2">
-              Steps - Daily Step Counter & Workouts
+              Steps: Workout & Pedometer
             </h2>
             <p className="text-gray-500">
               Effective Date: {new Date().toLocaleDateString()}
