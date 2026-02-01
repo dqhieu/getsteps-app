@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Bricolage_Grotesque } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -141,6 +142,7 @@ export default function RootLayout({
       </head>
       <body className={`${bricolage.className} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
