@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LandingNavbar, LandingFooter } from "@/components";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - Steps: Workout & Pedometer",
@@ -7,149 +8,152 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="bg-white rounded-4xl shadow-sm border border-gray-200 p-8 md:p-12">
-          <header className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              PRIVACY POLICY
-            </h1>
-            <h2 className="text-xl md:text-2xl text-gray-600 font-medium mb-2">
-              Steps: Workout & Pedometer
-            </h2>
-            <p className="text-gray-500">
-              Effective Date: {new Date().toLocaleDateString()}
-            </p>
-          </header>
-
-          <div className="prose prose-gray max-w-none">
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">INFORMATION WE COLLECT</h3>
-              
-              <div className="mb-6">
-                <h4 className="text-lg font-medium text-gray-800 mb-3">Health Data (with your permission):</h4>
-                <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                  <li>Step counts, walking/running distance, flights climbed</li>
-                  <li>Workout data</li>
-                  <li>Data accessed through Apple HealthKit</li>
-                </ul>
-              </div>
-
-              <div className="mb-6">
-                <h4 className="text-lg font-medium text-gray-800 mb-3">Usage Analytics:</h4>
-                <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                  <li>App usage patterns and feature interactions</li>
-                  <li>Device information and app performance data</li>
-                  <li>Crash reports and diagnostic information</li>
-                </ul>
-              </div>
-
-              <div className="mb-6">
-                <h4 className="text-lg font-medium text-gray-800 mb-3">Account Information:</h4>
-                <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                  <li>Subscription status and purchase history</li>
-                  <li>App preferences and settings</li>
-                </ul>
-              </div>
-            </section>
-
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">HOW WE USE INFORMATION</h3>
-              <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                <li>Display your health and fitness data within the app</li>
-                <li>Provide personalized insights and trends</li>
-                <li>Improve app functionality and user experience</li>
-                <li>Process subscription purchases and provide customer support</li>
-                <li>Send relevant notifications about your progress</li>
-              </ul>
-            </section>
-
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">DATA SHARING</h3>
-              
-              <div className="mb-6">
-                <h4 className="text-lg font-medium text-gray-800 mb-3">Third-Party Services:</h4>
-                <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                  <li><strong>RevenueCat:</strong> Subscription management and purchase processing</li>
-                  <li><strong>PostHog:</strong> Anonymous usage analytics and app improvement</li>
-                  <li><strong>Supabase:</strong> Backend services for app functionality</li>
-                </ul>
-              </div>
-
-              <p className="text-gray-700 leading-relaxed font-medium">
-                We do not sell personal information to third parties.
+    <>
+      <LandingNavbar />
+      <main className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white selection:bg-orange-500/30">
+        <div className="pt-24 pb-16 md:pt-32 md:pb-20">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <header className="mb-12">
+              <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
+                Privacy Policy
+              </h1>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Steps: Workout & Pedometer
               </p>
-            </section>
+            </header>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">HEALTH DATA PROTECTION</h3>
-              <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                <li><strong>Your health data is never uploaded to our servers</strong> - all health data remains on your device</li>
-                <li>Health data is stored locally on your device and in Apple's secure HealthKit</li>
-                <li>Health data is encrypted and protected by Apple's security measures</li>
-                <li>You control what health data the app can access through iOS permissions</li>
-                <li>Health data is not shared without your explicit consent</li>
-              </ul>
-            </section>
+            <div className="space-y-10">
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Information We Collect</h2>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">DATA RETENTION</h3>
-              <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                <li><strong>Health data:</strong> Retained as long as the app is installed</li>
-                <li><strong>Analytics data:</strong> Retained for up to 2 years</li>
-                <li><strong>Account data:</strong> Retained during active subscription period</li>
-              </ul>
-            </section>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-base font-medium text-neutral-800 dark:text-neutral-200 mb-2">Health Data (with your permission)</h3>
+                    <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                      <li>Step counts, walking/running distance, flights climbed</li>
+                      <li>Workout data</li>
+                      <li>Data accessed through Apple HealthKit</li>
+                    </ul>
+                  </div>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">YOUR RIGHTS</h3>
-              <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                <li>Request access to your personal data</li>
-                <li>Request correction of inaccurate data</li>
-                <li>Request deletion of your data</li>
-                <li>Withdraw consent for data processing</li>
-                <li>Opt-out of analytics data collection</li>
-              </ul>
-            </section>
+                  <div>
+                    <h3 className="text-base font-medium text-neutral-800 dark:text-neutral-200 mb-2">Usage Analytics</h3>
+                    <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                      <li>App usage patterns and feature interactions</li>
+                      <li>Device information and app performance data</li>
+                      <li>Crash reports and diagnostic information</li>
+                    </ul>
+                  </div>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">DATA SECURITY</h3>
-              <p className="text-gray-700 leading-relaxed">
-                We implement appropriate technical and organizational measures to protect your data, including encryption, secure data transmission, and access controls.
-              </p>
-            </section>
+                  <div>
+                    <h3 className="text-base font-medium text-neutral-800 dark:text-neutral-200 mb-2">Account Information</h3>
+                    <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                      <li>Subscription status and purchase history</li>
+                      <li>App preferences and settings</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">CHILDREN'S PRIVACY</h3>
-              <p className="text-gray-700 leading-relaxed">
-                The App is not intended for children under 13. We do not knowingly collect personal information from children under 13.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">How We Use Information</h2>
+                <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                  <li>Display your health and fitness data within the app</li>
+                  <li>Provide personalized insights and trends</li>
+                  <li>Improve app functionality and user experience</li>
+                  <li>Process subscription purchases and provide customer support</li>
+                  <li>Send relevant notifications about your progress</li>
+                </ul>
+              </section>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">CHANGES TO POLICY</h3>
-              <p className="text-gray-700 leading-relaxed">
-                We may update this Privacy Policy. Continued use of the App constitutes acceptance of any changes.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Data Sharing</h2>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">CONTACT US</h3>
-              <div className="space-y-2">
-                <p className="text-gray-700 leading-relaxed">
-                  support@getsteps.app
+                <div className="mb-4">
+                  <h3 className="text-base font-medium text-neutral-800 dark:text-neutral-200 mb-2">Third-Party Services</h3>
+                  <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                    <li><span className="text-neutral-800 dark:text-neutral-200">RevenueCat:</span> Subscription management and purchase processing</li>
+                    <li><span className="text-neutral-800 dark:text-neutral-200">PostHog:</span> Anonymous usage analytics and app improvement</li>
+                    <li><span className="text-neutral-800 dark:text-neutral-200">Supabase:</span> Backend services for app functionality</li>
+                  </ul>
+                </div>
+
+                <p className="text-neutral-600 dark:text-neutral-400 font-medium">
+                  We do not sell personal information to third parties.
                 </p>
-              </div>
-            </section>
-          </div>
+              </section>
 
-          <footer className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-sm text-gray-500 text-center">
-              Last updated: {new Date().toLocaleDateString()}
-            </p>
-          </footer>
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Health Data Protection</h2>
+                <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                  <li><span className="text-neutral-800 dark:text-neutral-200">Your health data is never uploaded to our servers</span> - all health data remains on your device</li>
+                  <li>Health data is stored locally on your device and in Apple's secure HealthKit</li>
+                  <li>Health data is encrypted and protected by Apple's security measures</li>
+                  <li>You control what health data the app can access through iOS permissions</li>
+                  <li>Health data is not shared without your explicit consent</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Data Retention</h2>
+                <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                  <li><span className="text-neutral-800 dark:text-neutral-200">Health data:</span> Retained as long as the app is installed</li>
+                  <li><span className="text-neutral-800 dark:text-neutral-200">Analytics data:</span> Retained for up to 2 years</li>
+                  <li><span className="text-neutral-800 dark:text-neutral-200">Account data:</span> Retained during active subscription period</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Your Rights</h2>
+                <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                  <li>Request access to your personal data</li>
+                  <li>Request correction of inaccurate data</li>
+                  <li>Request deletion of your data</li>
+                  <li>Withdraw consent for data processing</li>
+                  <li>Opt-out of analytics data collection</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Data Security</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  We implement appropriate technical and organizational measures to protect your data, including encryption, secure data transmission, and access controls.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Children's Privacy</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  The App is not intended for children under 13. We do not knowingly collect personal information from children under 13.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Changes to Policy</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  We may update this Privacy Policy. Continued use of the App constitutes acceptance of any changes.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Contact Us</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  <a href="mailto:support@getsteps.app" className="text-neutral-900 dark:text-white hover:underline">
+                    support@getsteps.app
+                  </a>
+                </p>
+              </section>
+            </div>
+
+            <footer className="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800">
+              <p className="text-sm text-neutral-500 dark:text-neutral-500">
+                Last updated: {new Date().toLocaleDateString()}
+              </p>
+            </footer>
+          </div>
         </div>
-      </div>
-    </div>
+      </main>
+      <LandingFooter />
+    </>
   );
 }

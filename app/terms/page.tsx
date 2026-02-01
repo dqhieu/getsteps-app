@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LandingNavbar, LandingFooter } from "@/components";
 
 export const metadata: Metadata = {
   title: "Terms of Service - Steps: Workout & Pedometer",
@@ -7,89 +8,93 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="bg-white rounded-4xl shadow-sm border border-gray-200 p-8 md:p-12">
-          <header className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              END USER LICENSE AGREEMENT (EULA)
-            </h1>
-            <h2 className="text-xl md:text-2xl text-gray-600 font-medium">
-              Steps: Workout & Pedometer
-            </h2>
-          </header>
+    <>
+      <LandingNavbar />
+      <main className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white selection:bg-orange-500/30">
+        <div className="pt-24 pb-16 md:pt-32 md:pb-20">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <header className="mb-12">
+              <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
+                Terms of Service
+              </h1>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Steps: Workout & Pedometer
+              </p>
+            </header>
 
-          <div className="prose prose-gray max-w-none">
-            <p className="text-gray-700 mb-8 leading-relaxed">
-              This End User License Agreement ("Agreement") is between you and GetSteps ("Company") regarding your use of the Steps application ("App").
+            <p className="text-neutral-600 dark:text-neutral-400 mb-10">
+              This End User License Agreement ("Agreement") is between you and Steps ("Company") regarding your use of the Steps application ("App").
             </p>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">1. LICENSE GRANT</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Subject to your compliance with this Agreement, Company grants you a limited, non-exclusive, non-transferable license to download, install, and use the App on Apple devices that you own or control.
-              </p>
-            </section>
+            <div className="space-y-10">
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">1. License Grant</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  Subject to your compliance with this Agreement, Company grants you a limited, non-exclusive, non-transferable license to download, install, and use the App on Apple devices that you own or control.
+                </p>
+              </section>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">2. RESTRICTIONS</h3>
-              <p className="text-gray-700 leading-relaxed mb-3">
-                You may not:
-              </p>
-              <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                <li>reverse engineer, decompile, or disassemble the App</li>
-                <li>modify, adapt, or create derivative works</li>
-                <li>distribute, rent, lease, or sublicense the App</li>
-                <li>remove or alter any proprietary notices</li>
-              </ul>
-            </section>
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">2. Restrictions</h2>
+                <p className="text-neutral-600 dark:text-neutral-400 mb-3">
+                  You may not:
+                </p>
+                <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                  <li>Reverse engineer, decompile, or disassemble the App</li>
+                  <li>Modify, adapt, or create derivative works</li>
+                  <li>Distribute, rent, lease, or sublicense the App</li>
+                  <li>Remove or alter any proprietary notices</li>
+                </ul>
+              </section>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">3. HEALTH DATA</h3>
-              <p className="text-gray-700 leading-relaxed">
-                The App integrates with Apple HealthKit. You are responsible for the accuracy of health data. The App is not a medical device and should not replace professional medical advice.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">3. Health Data</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  The App integrates with Apple HealthKit. You are responsible for the accuracy of health data. The App is not a medical device and should not replace professional medical advice.
+                </p>
+              </section>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">4. SUBSCRIPTIONS</h3>
-              <ul className="list-disc list-inside text-gray-700 leading-relaxed space-y-2 ml-4">
-                <li>Subscriptions auto-renew unless cancelled 24 hours before current period ends</li>
-                <li>Payment charged to iTunes Account at confirmation of purchase</li>
-                <li>Manage subscriptions in App Store Account Settings</li>
-                <li>No refunds for unused portions of subscription terms</li>
-              </ul>
-            </section>
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">4. Subscriptions</h2>
+                <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                  <li>Subscriptions auto-renew unless cancelled 24 hours before current period ends</li>
+                  <li>Payment charged to iTunes Account at confirmation of purchase</li>
+                  <li>Manage subscriptions in App Store Account Settings</li>
+                  <li>No refunds for unused portions of subscription terms</li>
+                </ul>
+              </section>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">5. DISCLAIMER</h3>
-              <p className="text-gray-700 leading-relaxed">
-                THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES. COMPANY DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">5. Disclaimer</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  The App is provided "as is" without warranties. Company disclaims all warranties, express or implied, including merchantability and fitness for a particular purpose.
+                </p>
+              </section>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">6. LIMITATION OF LIABILITY</h3>
-              <p className="text-gray-700 leading-relaxed">
-                COMPANY SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM USE OF THE APP.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">6. Limitation of Liability</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  Company shall not be liable for any indirect, incidental, special, or consequential damages arising from use of the App.
+                </p>
+              </section>
 
-            <section className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">7. TERMINATION</h3>
-              <p className="text-gray-700 leading-relaxed">
-                This license terminates if you breach this Agreement. Upon termination, you must delete the App.
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">7. Termination</h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  This license terminates if you breach this Agreement. Upon termination, you must delete the App.
+                </p>
+              </section>
+            </div>
+
+            <footer className="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800">
+              <p className="text-sm text-neutral-500 dark:text-neutral-500">
+                Last updated: {new Date().toLocaleDateString()}
               </p>
-            </section>
+            </footer>
           </div>
-
-          <footer className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-sm text-gray-500 text-center">
-              Last updated: {new Date().toLocaleDateString()}
-            </p>
-          </footer>
         </div>
-      </div>
-    </div>
+      </main>
+      <LandingFooter />
+    </>
   );
 }
