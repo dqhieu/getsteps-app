@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { StepDistanceCalculatorClient } from "./client";
@@ -172,9 +173,23 @@ export default function StepDistanceCalculatorPage() {
             href={SITE_CONFIG.appStoreUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#ED772F] text-white font-medium hover:bg-[#d96a2a] transition-colors"
+            className="transition-transform hover:scale-105 active:scale-95 inline-block"
+            aria-label="Download on the App Store"
           >
-            Download Steps App
+            <Image
+              src="/badge_light_mode.svg"
+              alt="Download on the App Store"
+              width={120}
+              height={40}
+              className="h-12 w-auto dark:hidden"
+            />
+            <Image
+              src="/badge_dark_mode.svg"
+              alt="Download on the App Store"
+              width={120}
+              height={40}
+              className="h-12 w-auto hidden dark:block"
+            />
           </a>
 
           <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">

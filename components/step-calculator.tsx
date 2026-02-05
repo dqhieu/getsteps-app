@@ -127,16 +127,22 @@ export function StepCalculator() {
             </label>
             <div className="relative">
               <input
-                type="number"
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 value={age}
-                onChange={(e) =>
-                  setAge(Math.max(1, Math.min(120, Number(e.target.value) || 1)))
-                }
-                min={1}
-                max={120}
-                className="w-full py-2 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                onChange={(e) => {
+                  const val = e.target.value.replace(/[^0-9]/g, "");
+                  if (val === "") return;
+                  setAge(Math.max(1, Math.min(120, Number(val))));
+                }}
+                onBlur={(e) => {
+                  const val = Number(e.target.value) || 1;
+                  setAge(Math.max(1, Math.min(120, val)));
+                }}
+                className="w-full py-2 px-4 pr-14 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm">
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
                 years
               </span>
             </div>
@@ -151,18 +157,22 @@ export function StepCalculator() {
               {heightUnit === "cm" ? (
                 <div className="relative flex-1">
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     value={heightCm}
-                    onChange={(e) =>
-                      setHeightCm(
-                        Math.max(100, Math.min(250, Number(e.target.value) || 100))
-                      )
-                    }
-                    min={100}
-                    max={250}
-                    className="w-full py-2 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9]/g, "");
+                      if (val === "") return;
+                      setHeightCm(Math.max(50, Math.min(250, Number(val))));
+                    }}
+                    onBlur={(e) => {
+                      const val = Number(e.target.value) || 170;
+                      setHeightCm(Math.max(50, Math.min(250, val)));
+                    }}
+                    className="w-full py-2 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm">
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
                     cm
                   </span>
                 </div>
@@ -170,35 +180,43 @@ export function StepCalculator() {
                 <div className="flex-1 flex gap-2">
                   <div className="relative flex-1">
                     <input
-                      type="number"
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       value={heightFeet}
-                      onChange={(e) =>
-                        setHeightFeet(
-                          Math.max(3, Math.min(8, Number(e.target.value) || 3))
-                        )
-                      }
-                      min={3}
-                      max={8}
-                      className="w-full py-2 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9]/g, "");
+                        if (val === "") return;
+                        setHeightFeet(Math.max(1, Math.min(8, Number(val))));
+                      }}
+                      onBlur={(e) => {
+                        const val = Number(e.target.value) || 5;
+                        setHeightFeet(Math.max(1, Math.min(8, val)));
+                      }}
+                      className="w-full py-2 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm">
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
                       ft
                     </span>
                   </div>
                   <div className="relative flex-1">
                     <input
-                      type="number"
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       value={heightInches}
-                      onChange={(e) =>
-                        setHeightInches(
-                          Math.max(0, Math.min(11, Number(e.target.value) || 0))
-                        )
-                      }
-                      min={0}
-                      max={11}
-                      className="w-full py-2 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9]/g, "");
+                        if (val === "") return;
+                        setHeightInches(Math.max(0, Math.min(11, Number(val))));
+                      }}
+                      onBlur={(e) => {
+                        const val = Number(e.target.value) || 0;
+                        setHeightInches(Math.max(0, Math.min(11, val)));
+                      }}
+                      className="w-full py-2 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm">
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
                       in
                     </span>
                   </div>
