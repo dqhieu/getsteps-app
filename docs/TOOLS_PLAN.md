@@ -5,13 +5,14 @@
 | # | Tool | Route | Priority | Status |
 |---|------|-------|----------|--------|
 | 1 | Step Distance Calculator | `/tools/step-distance-calculator` | High | Done |
-| 2 | Steps to Calories Calculator | `/tools/steps-to-calories-calculator` | High | Planned |
-| 3 | Walking Calories Burned Calculator | `/tools/walking-calories-calculator` | High | Planned |
-| 4 | Daily Step Goal Calculator | `/tools/daily-step-goal-calculator` | Medium | Planned |
-| 5 | Steps Per Mile Calculator | `/tools/steps-per-mile-calculator` | Medium | Planned |
-| 6 | Walking Time Calculator | `/tools/walking-time-calculator` | Medium | Planned |
-| 7 | Weight Loss Walking Calculator | `/tools/weight-loss-walking-calculator` | High | Planned |
-| 8 | BMI Calculator | `/tools/bmi-calculator` | Medium | Planned |
+| 2 | Steps to Calories Calculator | `/tools/steps-to-calories-calculator` | High | Done |
+| 3 | Walking Calories Burned Calculator | `/tools/walking-calories-calculator` | High | Done |
+| 4 | Daily Step Goal Calculator | `/tools/daily-step-goal-calculator` | Medium | Done |
+| 5 | Steps Per Mile Calculator | `/tools/steps-per-mile-calculator` | Medium | Done |
+| 6 | Walking Time Calculator | `/tools/walking-time-calculator` | Medium | Done |
+| 7 | Weight Loss Walking Calculator | `/tools/weight-loss-walking-calculator` | High | Done |
+| 8 | BMI Calculator | `/tools/bmi-calculator` | Medium | Done |
+| - | Tools Landing Page | `/tools` | High | Done |
 
 ---
 
