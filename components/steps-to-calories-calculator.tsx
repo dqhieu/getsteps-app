@@ -13,6 +13,18 @@ import { lbsToKg, kgToLbs, formatNumber, formatTime } from "@/lib/unit-converter
 
 type WeightUnit = "kg" | "lbs";
 
+// Emoji mapping for food equivalents
+const FOOD_EMOJIS: Record<string, string> = {
+  "Banana": "🍌",
+  "Apple": "🍎",
+  "Slice of bread": "🍞",
+  "Egg": "🥚",
+  "Cup of rice": "🍚",
+  "Chocolate bar": "🍫",
+  "Slice of pizza": "🍕",
+  "Cheeseburger": "🍔",
+};
+
 const DEFAULT_VALUES = {
   steps: 10000,
   weightKg: 70,
@@ -244,6 +256,7 @@ export function StepsToCaloriesCalculator() {
                   key={item.food}
                   className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center"
                 >
+                  <p className="text-2xl mb-1">{FOOD_EMOJIS[item.food] || "🍽️"}</p>
                   <p className="text-lg font-semibold text-neutral-900 dark:text-white">
                     {item.amount}
                   </p>
