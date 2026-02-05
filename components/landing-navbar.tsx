@@ -25,6 +25,12 @@ export function LandingNavbar() {
         {/* Nav Links */}
         <div className="flex items-center gap-4 sm:gap-6">
           <Link
+            href="/tools/step-distance-calculator"
+            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
+            Tools
+          </Link>
+          <Link
             href="/blog"
             className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
           >
@@ -32,13 +38,13 @@ export function LandingNavbar() {
           </Link>
           <Link
             href="/privacy"
-            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors hidden sm:inline"
           >
             Privacy
           </Link>
           <Link
             href="/terms"
-            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors hidden sm:inline"
           >
             Terms
           </Link>
