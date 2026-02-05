@@ -164,11 +164,11 @@ export function StepCalculator() {
                     onChange={(e) => {
                       const val = e.target.value.replace(/[^0-9]/g, "");
                       if (val === "") return;
-                      setHeightCm(Math.max(50, Math.min(250, Number(val))));
+                      setHeightCm(Math.min(250, Number(val)));
                     }}
                     onBlur={(e) => {
                       const val = Number(e.target.value) || 170;
-                      setHeightCm(Math.max(50, Math.min(250, val)));
+                      setHeightCm(Math.min(250, val));
                     }}
                     className="w-full py-2 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                   />
@@ -187,11 +187,11 @@ export function StepCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/[^0-9]/g, "");
                         if (val === "") return;
-                        setHeightFeet(Math.max(1, Math.min(8, Number(val))));
+                        setHeightFeet(Math.min(8, Number(val)));
                       }}
                       onBlur={(e) => {
                         const val = Number(e.target.value) || 5;
-                        setHeightFeet(Math.max(1, Math.min(8, val)));
+                        setHeightFeet(Math.min(8, val));
                       }}
                       className="w-full py-2 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                     />
