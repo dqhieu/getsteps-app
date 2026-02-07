@@ -58,6 +58,20 @@ export function LandingHero() {
             className="h-12 w-auto hidden dark:block"
           />
         </a>
+
+        {/* Uneed Badge */}
+        <a
+          href="https://www.uneed.best/tool/steps"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 transition-transform hover:scale-105 active:scale-95 inline-block"
+        >
+          <img
+            src="https://www.uneed.best/EMBED3.png"
+            alt="Uneed Embed Badge"
+            className="h-12 w-auto"
+          />
+        </a>
       </div>
     </section>
   );
