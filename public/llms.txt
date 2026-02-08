@@ -1,0 +1,32 @@
+# Steps: Workout & Pedometer
+
+> Steps is an iOS fitness app for iPhone and Apple Watch that tracks daily steps, workouts, calories, distance, and health data. The website at getsteps.app is the landing page and hosts free fitness calculators and a blog.
+
+## App Features
+- Step counting with automatic tracking via iPhone and Apple Watch
+- 23+ workout types: running, walking, cycling, hiking, swimming, strength, yoga, pickleball, and more
+- Beautiful charts with hourly, weekly, and monthly views
+- Goals and streaks for daily motivation
+- 8 personal records: fastest pace, most calories, earliest start, most elevation, longest duration, farthest distance, latest night, max heart rate
+- 8 home screen widgets
+- Yearly insights and fitness recaps
+- Privacy-focused: data stays on device
+
+## Free Fitness Calculators
+- [Step Distance Calculator](https://getsteps.app/tools/step-distance-calculator): Convert steps to distance or distance to steps based on height
+- [Steps to Calories Calculator](https://getsteps.app/tools/steps-to-calories-calculator): Calculate calories burned from daily steps
+- [Walking Calories Calculator](https://getsteps.app/tools/walking-calories-calculator): Calculate calories burned based on walking distance or time
+- [Steps Per Mile Calculator](https://getsteps.app/tools/steps-per-mile-calculator): Find how many steps are in a mile or kilometer
+- [Walking Time Calculator](https://getsteps.app/tools/walking-time-calculator): Estimate how long it takes to walk any distance
+- [Daily Step Goal Calculator](https://getsteps.app/tools/daily-step-goal-calculator): Get personalized daily step goal recommendations
+- [Weight Loss Walking Calculator](https://getsteps.app/tools/weight-loss-walking-calculator): Calculate walking requirements for weight loss goals
+- [BMI Calculator](https://getsteps.app/tools/bmi-calculator): Calculate Body Mass Index with health insights
+
+## Blog
+- [Blog Home](https://getsteps.app/blog): Fitness tips, walking guides, and app updates
+
+## Links
+- [Homepage](https://getsteps.app)
+- [App Store](https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378)
+- [Privacy Policy](https://getsteps.app/privacy)
+- [Terms of Service](https://getsteps.app/terms)
