@@ -67,8 +67,8 @@ export function LandingHero() {
           className="mt-4 transition-transform hover:scale-105 active:scale-95 inline-block"
         >
           <img
-            src="https://www.uneed.best/EMBED3.png"
-            alt="Uneed Embed Badge"
+            src="https://www.uneed.best/EMBED1.png"
+            alt="Featured on Uneed"
             className="h-12 w-auto"
           />
         </a>
