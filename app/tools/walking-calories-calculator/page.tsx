@@ -6,23 +6,26 @@ import { WalkingCaloriesCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Walking Calories Calculator - Calories Burned Walking",
+  title:
+    "Walking Calories Calculator & MET Values for Walking Speeds | Steps",
   description:
-    "Calculate calories burned from walking based on distance, time, and speed. Find out how many calories you burn walking 1 mile, 30 minutes, or any distance.",
+    "Calculate calories burned walking with MET values for every walking speed. MET value walking 5 km/h is 3.5, brisk walking 6.4 km/h is 4.5. Free calculator with full MET reference table.",
   keywords: [
+    "MET value walking",
+    "MET walking 5 km/h",
+    "MET value for walking 3.1 mph",
+    "MET value brisk walking",
     "walking calories calculator",
     "calories burned walking",
-    "how many calories walking 1 mile",
-    "calories burned walking 30 minutes",
-    "walking calorie burn",
-    "calories per mile walking",
-    "walk calorie calculator",
-    "MET walking",
+    "calories burned walking per km",
+    "MET value walking 4 km/h",
+    "MET value walking 6 km/h",
+    "walking calorie burn calculator",
   ],
   openGraph: {
-    title: "Walking Calories Calculator",
+    title: "Walking Calories Calculator & MET Values for Walking Speeds",
     description:
-      "Calculate calories burned from walking based on distance, time, and speed.",
+      "Calculate calories burned walking with MET values for every speed. Full MET reference table included.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/walking-calories-calculator`,
   },
@@ -40,11 +43,12 @@ export default function WalkingCaloriesCalculatorPage() {
       <section className="pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
-            Walking Calories Calculator
+            Walking Calories Calculator &amp; MET Values
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Calculate how many calories you burn walking based on distance, time,
-            and walking speed. Get accurate estimates using MET values.
+            Calculate calories burned walking using MET (Metabolic Equivalent)
+            values for every walking speed — from slow strolls at 2 km/h to power
+            walking at 7+ km/h. Includes a complete MET reference table.
           </p>
         </div>
       </section>
@@ -158,6 +162,97 @@ export default function WalkingCaloriesCalculatorPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Comprehensive MET Values Reference Table */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+              Complete MET Values for Walking Speeds
+            </h2>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+              MET (Metabolic Equivalent of Task) measures energy expenditure. A
+              MET of 1.0 equals your resting metabolic rate. Use the table below
+              to find the exact MET value for your walking speed. Values are
+              based on the Compendium of Physical Activities.
+            </p>
+
+            <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
+              <table className="w-full min-w-[500px]">
+                <thead>
+                  <tr className="border-b-2 border-neutral-200 dark:border-neutral-700">
+                    <th className="text-left py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Walking Activity
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Speed (km/h)
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Speed (mph)
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      MET Value
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Cal/hr (70 kg)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { activity: "Very slow walk", kmh: "2.0", mph: "1.2", met: "2.0", cal: "140" },
+                    { activity: "Slow stroll", kmh: "2.7", mph: "1.7", met: "2.3", cal: "161" },
+                    { activity: "Leisurely walk", kmh: "3.2", mph: "2.0", met: "2.5", cal: "175" },
+                    { activity: "Comfortable pace", kmh: "3.5", mph: "2.2", met: "2.8", cal: "196" },
+                    { activity: "Moderate walk", kmh: "4.0", mph: "2.5", met: "3.0", cal: "210" },
+                    { activity: "Steady pace", kmh: "4.5", mph: "2.8", met: "3.3", cal: "231" },
+                    { activity: "Normal walking", kmh: "5.0", mph: "3.1", met: "3.5", cal: "245", highlight: true },
+                    { activity: "Purposeful walk", kmh: "5.6", mph: "3.5", met: "4.3", cal: "301" },
+                    { activity: "Brisk walking", kmh: "6.0", mph: "3.7", met: "4.5", cal: "315", highlight: true },
+                    { activity: "Fast walking", kmh: "6.4", mph: "4.0", met: "5.0", cal: "350", highlight: true },
+                    { activity: "Very fast walk", kmh: "7.2", mph: "4.5", met: "5.0", cal: "350" },
+                    { activity: "Race walking", kmh: "8.0", mph: "5.0", met: "6.3", cal: "441" },
+                    { activity: "Walking uphill (3% grade)", kmh: "5.6", mph: "3.5", met: "5.3", cal: "371" },
+                    { activity: "Walking uphill (6% grade)", kmh: "5.6", mph: "3.5", met: "8.0", cal: "560" },
+                  ].map((row) => (
+                    <tr
+                      key={row.activity}
+                      className={`border-b border-neutral-100 dark:border-neutral-700/50 ${
+                        row.highlight
+                          ? "bg-[#ED772F]/5 dark:bg-[#ED772F]/10"
+                          : ""
+                      }`}
+                    >
+                      <td className="py-3 px-2 text-sm font-medium text-neutral-900 dark:text-white">
+                        {row.activity}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                        {row.kmh}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                        {row.mph}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center font-semibold text-[#ED772F]">
+                        {row.met}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                        {row.cal}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">
+              Calories per hour calculated for a 70 kg (154 lbs) person. Your
+              actual calorie burn depends on your weight — use the calculator
+              above for a personalized estimate. Highlighted rows show the most
+              common walking paces. Source: Compendium of Physical Activities.
+            </p>
           </div>
         </div>
       </section>
