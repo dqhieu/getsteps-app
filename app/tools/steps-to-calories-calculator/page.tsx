@@ -25,6 +25,14 @@ export const metadata: Metadata = {
       "Calculate how many calories you burn from walking steps. Find out how many calories 10,000 steps burns.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/steps-to-calories-calculator`,
+    images: [
+      {
+        url: "/og/steps-to-calories-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "Steps to Calories Calculator",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools/steps-to-calories-calculator`,

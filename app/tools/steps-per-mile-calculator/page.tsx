@@ -25,6 +25,14 @@ export const metadata: Metadata = {
       "Find out how many steps are in a mile or kilometer based on your height.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/steps-per-mile-calculator`,
+    images: [
+      {
+        url: "/og/steps-per-mile-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "Steps Per Mile Calculator",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools/steps-per-mile-calculator`,

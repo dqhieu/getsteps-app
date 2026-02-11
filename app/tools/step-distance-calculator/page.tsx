@@ -27,6 +27,14 @@ export const metadata: Metadata = {
       "Calculate how far you can walk with a certain number of steps, or find out how many steps you need to reach your distance goal.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/step-distance-calculator`,
+    images: [
+      {
+        url: "/og/step-distance-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "Step Distance Calculator",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools/step-distance-calculator`,

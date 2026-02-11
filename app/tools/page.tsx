@@ -25,6 +25,14 @@ export const metadata: Metadata = {
       "Free online fitness calculators for steps, calories, BMI, walking time, and weight loss.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools`,
+    images: [
+      {
+        url: "/og/tools.png",
+        width: 1200,
+        height: 630,
+        alt: "Free Fitness Calculators",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools`,

@@ -28,6 +28,14 @@ export const metadata: Metadata = {
       "Calculate calories burned walking with MET values for every speed. Full MET reference table included.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/walking-calories-calculator`,
+    images: [
+      {
+        url: "/og/walking-calories-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "Walking Calories Calculator",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools/walking-calories-calculator`,

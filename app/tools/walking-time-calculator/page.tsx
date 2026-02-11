@@ -25,6 +25,14 @@ export const metadata: Metadata = {
       "Calculate how long it takes to walk any distance at different speeds.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/walking-time-calculator`,
+    images: [
+      {
+        url: "/og/walking-time-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "Walking Time Calculator",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools/walking-time-calculator`,

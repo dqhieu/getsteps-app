@@ -25,6 +25,14 @@ export const metadata: Metadata = {
       "Get a personalized daily step goal based on your age, activity level, and health goals.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/daily-step-goal-calculator`,
+    images: [
+      {
+        url: "/og/daily-step-goal-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "Daily Step Goal Calculator",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools/daily-step-goal-calculator`,

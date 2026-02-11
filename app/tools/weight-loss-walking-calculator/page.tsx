@@ -25,6 +25,14 @@ export const metadata: Metadata = {
       "Calculate how much walking you need to do to reach your weight loss goals.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/weight-loss-walking-calculator`,
+    images: [
+      {
+        url: "/og/weight-loss-walking-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "Weight Loss Walking Calculator",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools/weight-loss-walking-calculator`,

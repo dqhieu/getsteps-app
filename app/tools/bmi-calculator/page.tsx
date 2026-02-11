@@ -25,6 +25,14 @@ export const metadata: Metadata = {
       "Calculate your Body Mass Index (BMI) and find out if you're in a healthy weight range.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/bmi-calculator`,
+    images: [
+      {
+        url: "/og/bmi-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "BMI Calculator",
+      },
+    ],
   },
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/tools/bmi-calculator`,
