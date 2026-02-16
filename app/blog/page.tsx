@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { getPaginatedPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 import { BlogPostCard } from "@/components/blog-post-card";
-import { BlogPagination } from "@/components/blog-pagination";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const { posts, totalPages, currentPage } = getPaginatedPosts(1);
+  const posts = getAllPosts();
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
@@ -41,7 +40,6 @@ export default async function BlogPage() {
                 <BlogPostCard key={post.slug} post={post} />
               ))}
             </div>
-            <BlogPagination currentPage={currentPage} totalPages={totalPages} />
           </>
         ) : (
           <div className="text-center py-16">
