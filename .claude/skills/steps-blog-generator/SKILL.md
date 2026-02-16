@@ -55,15 +55,11 @@ curl -L -o public/blog/{slug}.jpg \
   "https://images.unsplash.com/photo-{PHOTO_ID}?w=1200&h=630&fit=crop"
 ```
 
-**Recommended Unsplash photo IDs by topic:**
-| Topic | Photo ID | Description |
-|-------|----------|-------------|
-| Hiking/Trail | 1551632811-561732d1e306 | Hiking trail mountain |
-| Running | 1571008887-3b1b12e0d9a6 | Runner on path |
-| Walking | 1476480862126-209bfaa8edc8 | Person walking nature |
-| Fitness | 1571019613454-1cb57f89a8fa | Fitness activity |
-| Apple Watch | 1434493789847-2a75b0eb6144 | Smartwatch wrist |
-| Steps/Pedometer | 1571019614242-c5c5dee9f50c | Walking feet |
+**Finding the right Unsplash photo:**
+1. Use `WebSearch` with query: `site:unsplash.com {blog topic} photo`
+2. Extract the photo ID from the Unsplash URL (the part after `/photo-`)
+3. Download at 1200x630 for OG image size
+4. Pick a photo that matches the blog topic — avoid generic stock photos
 
 ### 4. File Output
 
@@ -142,8 +138,8 @@ CTA section with app download link.
 
 | File | Purpose |
 |------|---------|
-| `references/blog-template.md` | Full blog post template |
-| `references/keyword-clusters.md` | Steps app keyword clusters |
+| `references/steps-blog-post-template.md` | Full blog post template |
+| `references/steps-app-keyword-clusters.md` | Steps app keyword clusters |
 
 ## Blog Architecture
 

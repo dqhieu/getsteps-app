@@ -22,7 +22,7 @@ Generate an SEO-optimized blog post for getsteps.app based on a keyword.
 
 ### 1. Analyze Keyword
 - Identify search intent (informational vs transactional)
-- Check `.claude/skills/steps-blog-generator/references/steps-app-keyword-clusters-and-unsplash-images.md` for related keywords
+- Check `.claude/skills/steps-blog-generator/references/steps-app-keyword-clusters.md` for related keywords
 - Determine best Unsplash image for topic
 
 ### 2. Generate Blog Post
@@ -107,4 +107,4 @@ npm run build
 
 ## References
 - Template: `.claude/skills/steps-blog-generator/references/steps-blog-post-template.md`
-- Keywords: `.claude/skills/steps-blog-generator/references/steps-app-keyword-clusters-and-unsplash-images.md`
+- Keywords: `.claude/skills/steps-blog-generator/references/steps-app-keyword-clusters.md`
