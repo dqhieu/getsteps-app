@@ -19,19 +19,20 @@ allowed-tools:
 
 Weekly SEO automation for getsteps.app — GSC monitoring, keyword expansion, and content briefs.
 
-## When to Use
+## Default Behavior
 
-- Weekly SEO performance check
-- Finding quick-win keywords close to page 1
-- Discovering new keyword opportunities (Keywords Everywhere)
-- Generating content briefs for blog posts or new tool pages
+**When invoked without a subcommand (`/steps-seo-weekly`), run the full auto pipeline.**
+Follow the instructions in `commands/auto.md` — GSC analysis → keyword expansion → pick top 7 → write & publish all 7 blog posts.
 
-## Quick Start
+## Subcommands
 
 ```
-/steps-seo:weekly                          # Full weekly report
-/steps-seo:quick-wins                      # Just quick wins
-/steps-seo:brief "steps to calories"       # Content brief for keyword
+/steps-seo-weekly              # Full auto pipeline (default)
+/steps-seo-weekly:weekly       # GSC report only (no blog writing)
+/steps-seo-weekly:quick-wins   # Just quick wins
+/steps-seo-weekly:brief "kw"   # Content brief for keyword
+/steps-seo-weekly:publish "kw" # Research + write + publish single post
+/steps-seo-weekly:auto         # Same as default — full pipeline
 ```
 
 ## Setup
