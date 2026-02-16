@@ -17,6 +17,7 @@ export interface BlogPost {
   date: string;
   author: Author;
   image?: string;
+  keyword?: string;
   content: string;
 }
 
@@ -43,6 +44,7 @@ function parsePostFile(filename: string): BlogPost | null {
         avatar: data.author?.avatar,
       },
       image: data.image,
+      keyword: data.keyword,
       content,
     };
   } catch {
@@ -96,6 +98,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
         avatar: data.author?.avatar,
       },
       image: data.image,
+      keyword: data.keyword,
       content,
     };
   } catch {

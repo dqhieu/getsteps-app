@@ -10,6 +10,12 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { SITE_CONFIG } from "@/lib/constants";
 
+const SITE_KEYWORDS = [
+  "step counter", "pedometer", "workout tracker", "fitness app",
+  "Apple Watch", "health tracking", "daily steps", "exercise tracker",
+  "walking tracker", "activity tracker",
+];
+
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
@@ -28,9 +34,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const keywords = post.keyword
+    ? [post.keyword, ...SITE_KEYWORDS]
+    : SITE_KEYWORDS;
+
   return {
     title: `${post.title} - Steps Blog`,
     description: post.description,
+    keywords,
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/blog/${slug}`,
     },
@@ -41,6 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: post.date,
       authors: [post.author.name],
+      tags: keywords,
     },
     twitter: {
       card: "summary_large_image",
@@ -82,6 +94,7 @@ export default async function BlogPostPage({ params }: Props) {
       "@type": "WebPage",
       "@id": `${SITE_CONFIG.baseUrl}/blog/${slug}`,
     },
+    ...(post.keyword && { keywords: [post.keyword, ...SITE_KEYWORDS] }),
   };
 
   return (
