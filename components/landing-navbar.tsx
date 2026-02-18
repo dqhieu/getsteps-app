@@ -18,7 +18,7 @@ export function LandingNavbar() {
             className="rounded-lg"
           />
           <span className="font-semibold text-neutral-900 dark:text-white hidden sm:inline">
-            Steps
+            Steps: Workout & Pedometer
           </span>
         </Link>
 
