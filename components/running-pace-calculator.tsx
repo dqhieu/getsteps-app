@@ -10,6 +10,7 @@ import {
   type PaceResult,
 } from "@/lib/pace-calculator";
 import { milesToKm, kmToMiles } from "@/lib/unit-converter";
+import { ShareResultCard } from "@/components/share-result-card";
 
 type InputMode = "pace" | "speed" | "time-distance";
 type DistanceUnit = "km" | "mile";
@@ -198,6 +199,24 @@ export function RunningPaceCalculator() {
           </div>
         )}
       </div>
+
+      {/* Share Card */}
+      {!invalid && (() => {
+        const secPerKm = result.paceSecPerKm;
+        const tier =
+          secPerKm < 240 ? "Sub-4 Runner" :
+          secPerKm < 300 ? "Sub-5 Runner" :
+          secPerKm < 360 ? "Sub-6 Runner" :
+          secPerKm < 420 ? "Sub-7 Runner" : "Endurance Runner";
+        const shareText = `⏱️ My running pace is ${result.paceKmFormatted}/km – ${tier}.`;
+        return (
+          <ShareResultCard
+            badge={{ emoji: "⏱️", label: tier, colorClass: "bg-[#ED772F]/10 text-[#ED772F]" }}
+            shareText={shareText}
+            shareUrl="https://getsteps.app/tools/running-pace-calculator"
+          />
+        );
+      })()}
 
       {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

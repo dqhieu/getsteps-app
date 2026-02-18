@@ -8,6 +8,7 @@ import {
   type MacroGoal,
   type MacroResult,
 } from "@/lib/macro-calculator";
+import { ShareResultCard } from "@/components/share-result-card";
 
 const ACTIVITY_LABELS: Record<ActivityLevel, string> = {
   sedentary: "Sedentary",
@@ -126,6 +127,14 @@ export function MacroCalculator() {
           Calculate Macros
         </button>
       </div>
+
+      {result && (
+        <ShareResultCard
+          badge={{ emoji: "💪", label: `${result.targetCalories.toLocaleString()} cal/day`, colorClass: "bg-[#ED772F]/10 text-[#ED772F]" }}
+          shareText={`💪 My macros: ${result.protein.grams}g protein · ${result.carbs.grams}g carbs · ${result.fat.grams}g fat · ${result.targetCalories.toLocaleString()} cal/day.`}
+          shareUrl="https://getsteps.app/tools/macro-calculator"
+        />
+      )}
 
       {result && (
         <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50 space-y-6">

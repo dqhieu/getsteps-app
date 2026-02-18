@@ -6,6 +6,8 @@ import {
   type VO2Method,
   type Gender,
 } from "@/lib/vo2-max-calculator";
+import { ShareResultCard } from "@/components/share-result-card";
+import { getVO2MaxPercentile } from "@/lib/population-norms";
 
 const COLOR_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
   green:  { bg: "bg-green-100 dark:bg-green-900/30",  text: "text-green-700 dark:text-green-400",  border: "border-green-300 dark:border-green-700" },
@@ -171,6 +173,20 @@ export function Vo2MaxCalculator() {
           Calculate VO2 Max
         </button>
       </div>
+
+      {/* Share Card */}
+      {result && colors && (() => {
+        const norm = getVO2MaxPercentile(age, gender, result.category);
+        const shareText = `🫁 My VO2 Max is ${result.vo2max} ml/kg/min – ${result.category} Aerobic Fitness!${norm ? ` ${norm.descriptor}.` : ""}`;
+        return (
+          <ShareResultCard
+            badge={{ emoji: "🫁", label: result.category, colorClass: `${colors.bg} ${colors.text}` }}
+            comparison={norm?.descriptor}
+            shareText={shareText}
+            shareUrl="https://getsteps.app/tools/vo2-max-calculator"
+          />
+        );
+      })()}
 
       {/* Results */}
       {result && colors && (

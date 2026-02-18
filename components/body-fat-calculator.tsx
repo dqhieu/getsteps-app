@@ -16,6 +16,8 @@ import {
   inchesToCm,
   formatNumber,
 } from "@/lib/unit-converter";
+import { ShareResultCard } from "@/components/share-result-card";
+import { getBodyFatPercentile } from "@/lib/population-norms";
 
 type WeightUnit = "kg" | "lbs";
 type HeightUnit = "cm" | "ft";
@@ -352,6 +354,20 @@ export function BodyFatCalculator() {
           All measurements should be taken at the narrowest point.
         </p>
       </div>
+
+      {/* Share Card */}
+      {result.isValid && (() => {
+        const norm = getBodyFatPercentile(result.categoryLabel);
+        const shareText = `📐 My body fat is ${result.bodyFatPercent.toFixed(1)}% – ${result.categoryLabel}.${norm ? ` ${norm.descriptor}.` : ""}`;
+        return (
+          <ShareResultCard
+            badge={{ emoji: "📐", label: result.categoryLabel, colorClass: "bg-[#ED772F]/10 text-[#ED772F]" }}
+            comparison={norm?.descriptor}
+            shareText={shareText}
+            shareUrl="https://getsteps.app/tools/body-fat-calculator"
+          />
+        );
+      })()}
 
       {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

@@ -5,6 +5,7 @@ import {
   calculateHeartRateZones,
   ZONE_DEFINITIONS,
 } from "@/lib/heart-rate-calculator";
+import { ShareResultCard } from "@/components/share-result-card";
 
 export function HeartRateZonesCalculator() {
   const [age, setAge] = useState<number>(30);
@@ -160,6 +161,20 @@ export function HeartRateZonesCalculator() {
           </div>
         </div>
       </div>
+
+      {/* Share Card */}
+      {(() => {
+        const zone2 = result.zones.find((z) => z.zone === 2);
+        if (!zone2) return null;
+        const shareText = `❤️ My Zone 2 fat-burn zone is ${zone2.minBpm}–${zone2.maxBpm} bpm (Max HR: ${result.maxHR} bpm).`;
+        return (
+          <ShareResultCard
+            badge={{ emoji: "❤️", label: `Zone 2: ${zone2.minBpm}–${zone2.maxBpm} bpm`, colorClass: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400" }}
+            shareText={shareText}
+            shareUrl="https://getsteps.app/tools/heart-rate-zones-calculator"
+          />
+        );
+      })()}
 
       {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

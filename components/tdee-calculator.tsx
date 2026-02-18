@@ -7,6 +7,7 @@ import {
   type Gender,
   type ActivityLevel,
 } from "@/lib/tdee-calculator";
+import { ShareResultCard } from "@/components/share-result-card";
 
 const ACTIVITY_LEVELS: ActivityLevel[] = ["sedentary", "light", "moderate", "active", "very_active"];
 
@@ -150,6 +151,15 @@ export function TDEECalculator() {
           </button>
         </div>
       </div>
+
+      {/* Share Card */}
+      {calculated && (
+        <ShareResultCard
+          badge={{ emoji: "🔥", label: `${result.tdee} cal/day`, colorClass: "bg-[#ED772F]/10 text-[#ED772F]" }}
+          shareText={`🔥 My TDEE is ${result.tdee} calories/day (BMR: ${result.bmr} cal).`}
+          shareUrl="https://getsteps.app/tools/tdee-calculator"
+        />
+      )}
 
       {/* Results */}
       {calculated && (
