@@ -96,6 +96,48 @@ const TOOLS = [
     icon: "📊",
     popular: false,
   },
+  {
+    title: "Heart Rate Zones Calculator",
+    description: "Find your 5 training zones to optimize fat burn and endurance",
+    href: "/tools/heart-rate-zones-calculator",
+    icon: "❤️",
+    popular: true,
+  },
+  {
+    title: "Running Pace Calculator",
+    description: "Convert pace, speed, and predict race finish times for any distance",
+    href: "/tools/running-pace-calculator",
+    icon: "⏱️",
+    popular: true,
+  },
+  {
+    title: "Body Fat Percentage Calculator",
+    description: "Calculate body fat % using the accurate U.S. Navy method",
+    href: "/tools/body-fat-calculator",
+    icon: "📐",
+    popular: true,
+  },
+  {
+    title: "Water Intake Calculator",
+    description: "Find out how much water you should drink daily based on weight and activity",
+    href: "/tools/water-intake-calculator",
+    icon: "💧",
+    popular: false,
+  },
+  {
+    title: "Activity to Steps Converter",
+    description: "Convert cycling, swimming, yoga, and more into equivalent steps",
+    href: "/tools/activity-to-steps-converter",
+    icon: "🚴",
+    popular: false,
+  },
+  {
+    title: "Calorie Deficit Calculator",
+    description: "Calculate how many calories to eat per day to reach your goal weight",
+    href: "/tools/calorie-deficit-calculator",
+    icon: "🥗",
+    popular: false,
+  },
 ];
 
 const popularTools = TOOLS.filter((tool) => tool.popular);
