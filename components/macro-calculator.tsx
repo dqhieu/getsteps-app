@@ -48,7 +48,8 @@ export function MacroCalculator() {
 
   const handleCalculate = () => {
     const weightKg = weightUnit === "kg" ? weight : lbsToKg(weight);
-    setResult(calculateMacros(gender, weightKg, heightCm, age, activityLevel, goal));
+    const macroResult = calculateMacros(gender, weightKg, heightCm, age, activityLevel, goal);
+    setResult(macroResult);
   };
 
   const btnBase = "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors";

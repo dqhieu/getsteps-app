@@ -1,7 +1,22 @@
+"use client";
+
 import Image from "next/image";
+import posthog from "posthog-js";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export function LandingHero() {
+  const handleAppStoreClick = () => {
+    posthog.capture("app_store_link_clicked", {
+      location: "hero",
+    });
+  };
+
+  const handleUneedBadgeClick = () => {
+    posthog.capture("uneed_badge_clicked", {
+      location: "hero",
+    });
+  };
+
   return (
     <section className="pt-24 pb-12 md:pt-32 md:pb-16">
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
@@ -42,6 +57,7 @@ export function LandingHero() {
           className="transition-transform hover:scale-105 active:scale-95 inline-block"
           aria-label="Download on the App Store"
           data-fast-goal="open-app-store"
+          onClick={handleAppStoreClick}
         >
           <Image
             src="/badge_light_mode.svg"
@@ -65,6 +81,7 @@ export function LandingHero() {
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 transition-transform hover:scale-105 active:scale-95 inline-block"
+          onClick={handleUneedBadgeClick}
         >
           <img
             src="https://www.uneed.best/EMBED1.png"
