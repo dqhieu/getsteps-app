@@ -30,8 +30,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader || authHeader !== `Bearer ${REVENUECAT_WEBHOOK_SECRET}`) {
+    const authHeader = request.headers.get("authorization") ?? "";
+    const token = authHeader.startsWith("Bearer ")
+      ? authHeader.slice(7)
+      : authHeader;
+    if (!token || token !== REVENUECAT_WEBHOOK_SECRET) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
