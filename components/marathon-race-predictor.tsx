@@ -74,8 +74,6 @@ export function MarathonRacePredictor() {
             <div className="relative max-w-[160px]">
               <input
                 type="number"
-                min={1}
-                max={200}
                 step={0.1}
                 value={customKm}
                 onChange={(e) => setCustomKm(Number(e.target.value))}
@@ -92,17 +90,17 @@ export function MarathonRacePredictor() {
           <div className="flex items-end gap-2">
             <div className="flex-1">
               <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mb-1">H</p>
-              <input type="number" min={0} max={23} value={hours} onChange={(e) => setHours(Math.min(23, Math.max(0, Number(e.target.value))))} className={inputCls} />
+              <input type="number" value={hours} onChange={(e) => setHours(Number(e.target.value))} className={inputCls} />
             </div>
             <span className="pb-3 text-neutral-400 font-semibold text-lg">:</span>
             <div className="flex-1">
               <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mb-1">M</p>
-              <input type="number" min={0} max={59} value={minutes} onChange={(e) => setMinutes(Math.min(59, Math.max(0, Number(e.target.value))))} className={inputCls} />
+              <input type="number" value={minutes} onChange={(e) => setMinutes(Number(e.target.value))} className={inputCls} />
             </div>
             <span className="pb-3 text-neutral-400 font-semibold text-lg">:</span>
             <div className="flex-1">
               <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mb-1">S</p>
-              <input type="number" min={0} max={59} value={seconds} onChange={(e) => setSeconds(Math.min(59, Math.max(0, Number(e.target.value))))} className={inputCls} />
+              <input type="number" value={seconds} onChange={(e) => setSeconds(Number(e.target.value))} className={inputCls} />
             </div>
           </div>
         </div>

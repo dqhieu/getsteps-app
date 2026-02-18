@@ -69,7 +69,6 @@ export function DistanceEquivalentCalculator() {
           <input
             type="number"
             value={value}
-            min={0.001}
             step={0.001}
             placeholder="5"
             className={inputCls}

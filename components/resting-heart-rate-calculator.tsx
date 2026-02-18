@@ -58,9 +58,7 @@ export function RestingHeartRateCalculator() {
               <input
                 type="number"
                 value={age}
-                onChange={(e) => setAge(Math.min(90, Math.max(15, Number(e.target.value) || 15)))}
-                min={15}
-                max={90}
+                onChange={(e) => setAge(Number(e.target.value))}
                 className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">years</span>
@@ -76,9 +74,7 @@ export function RestingHeartRateCalculator() {
               <input
                 type="number"
                 value={rhr}
-                onChange={(e) => setRhr(Math.min(120, Math.max(30, Number(e.target.value) || 30)))}
-                min={30}
-                max={120}
+                onChange={(e) => setRhr(Number(e.target.value))}
                 className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">bpm</span>

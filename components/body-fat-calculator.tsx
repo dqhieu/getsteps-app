@@ -16,8 +16,6 @@ import {
   inchesToCm,
   formatNumber,
 } from "@/lib/unit-converter";
-import { ShareResultCard } from "@/components/share-result-card";
-import { getBodyFatPercentile } from "@/lib/population-norms";
 
 type WeightUnit = "kg" | "lbs";
 type HeightUnit = "cm" | "ft";
@@ -84,7 +82,7 @@ export function BodyFatCalculator() {
 
   // Scale position: map 0–50% BF to 0–100%
   const scalePosition = useMemo(() => {
-    const clamped = Math.max(0, Math.min(50, result.bodyFatPercent));
+    const clamped = Math.max(0, Math.min(1, result.bodyFatPercent));
     return (clamped / 50) * 100;
   }, [result.bodyFatPercent]);
 
@@ -182,11 +180,15 @@ export function BodyFatCalculator() {
               {heightUnit === "cm" ? (
                 <div className="relative flex-1">
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     value={heightCm}
-                    onChange={(e) =>
-                      setHeightCm(Math.min(250, Math.max(100, Number(e.target.value) || 100)))
-                    }
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9]/g, "");
+                      if (val === "") return;
+                      setHeightCm(Number(val));
+                    }}
                     className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                   />
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -197,11 +199,15 @@ export function BodyFatCalculator() {
                 <div className="flex-1 flex gap-2">
                   <div className="relative flex-1">
                     <input
-                      type="number"
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       value={heightFeet}
-                      onChange={(e) =>
-                        setHeightFeet(Math.min(8, Math.max(1, Number(e.target.value) || 1)))
-                      }
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9]/g, "");
+                        if (val === "") return;
+                        setHeightFeet(Number(val));
+                      }}
                       className="w-full py-3 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -210,11 +216,15 @@ export function BodyFatCalculator() {
                   </div>
                   <div className="relative flex-1">
                     <input
-                      type="number"
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       value={heightInches}
-                      onChange={(e) =>
-                        setHeightInches(Math.max(0, Math.min(11, Number(e.target.value) || 0)))
-                      }
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9]/g, "");
+                        if (val === "") return;
+                        setHeightInches(Number(val));
+                      }}
                       className="w-full py-3 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -242,9 +252,7 @@ export function BodyFatCalculator() {
                 <input
                   type="number"
                   value={weight}
-                  onChange={(e) =>
-                    setWeight(Math.max(1, Number(e.target.value) || 1))
-                  }
+                  onChange={(e) => setWeight(Number(e.target.value))}
                   className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -354,20 +362,6 @@ export function BodyFatCalculator() {
           All measurements should be taken at the narrowest point.
         </p>
       </div>
-
-      {/* Share Card */}
-      {result.isValid && (() => {
-        const norm = getBodyFatPercentile(result.categoryLabel);
-        const shareText = `📐 My body fat is ${result.bodyFatPercent.toFixed(1)}% – ${result.categoryLabel}.${norm ? ` ${norm.descriptor}.` : ""}`;
-        return (
-          <ShareResultCard
-            badge={{ emoji: "📐", label: result.categoryLabel, colorClass: "bg-[#ED772F]/10 text-[#ED772F]" }}
-            comparison={norm?.descriptor}
-            shareText={shareText}
-            shareUrl="https://getsteps.app/tools/body-fat-calculator"
-          />
-        );
-      })()}
 
       {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

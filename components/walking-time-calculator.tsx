@@ -107,8 +107,7 @@ export function WalkingTimeCalculator() {
               <input
                 type="number"
                 value={distance}
-                onChange={(e) => setDistance(Math.max(0, Number(e.target.value) || 0))}
-                min={0}
+                onChange={(e) => setDistance(Number(e.target.value))}
                 step={0.1}
                 className="flex-1 py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
               />

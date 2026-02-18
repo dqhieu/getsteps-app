@@ -67,10 +67,8 @@ export function TrainingPaceZonesCalculator() {
               <input
                 type="number"
                 value={customKm}
-                min={1}
-                max={200}
                 step={0.1}
-                onChange={(e) => setCustomKm(Math.max(0.1, Number(e.target.value) || 0.1))}
+                onChange={(e) => setCustomKm(Number(e.target.value))}
                 className="w-full py-3 px-4 pr-12 rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-neutral-500 dark:text-neutral-400 pointer-events-none">km</span>
@@ -86,9 +84,7 @@ export function TrainingPaceZonesCalculator() {
               <input
                 type="number"
                 value={hours}
-                min={0}
-                max={9}
-                onChange={(e) => setHours(Math.min(9, Math.max(0, Number(e.target.value) || 0)))}
+                onChange={(e) => setHours(Number(e.target.value))}
                 className="w-full py-3 px-3 text-center rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                 placeholder="0"
               />
@@ -99,9 +95,7 @@ export function TrainingPaceZonesCalculator() {
               <input
                 type="number"
                 value={minutes}
-                min={0}
-                max={59}
-                onChange={(e) => setMinutes(Math.min(59, Math.max(0, Number(e.target.value) || 0)))}
+                onChange={(e) => setMinutes(Number(e.target.value))}
                 className="w-full py-3 px-3 text-center rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                 placeholder="25"
               />
@@ -112,9 +106,7 @@ export function TrainingPaceZonesCalculator() {
               <input
                 type="number"
                 value={seconds}
-                min={0}
-                max={59}
-                onChange={(e) => setSeconds(Math.min(59, Math.max(0, Number(e.target.value) || 0)))}
+                onChange={(e) => setSeconds(Number(e.target.value))}
                 className="w-full py-3 px-3 text-center rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                 placeholder="00"
               />

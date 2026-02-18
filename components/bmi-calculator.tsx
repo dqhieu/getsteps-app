@@ -113,8 +113,7 @@ export function BMICalculator() {
                 <input
                   type="number"
                   value={weight}
-                  onChange={(e) => setWeight(Math.max(1, Number(e.target.value) || 1))}
-                  min={1}
+                  onChange={(e) => setWeight(Number(e.target.value))}
                   className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -146,7 +145,7 @@ export function BMICalculator() {
                     onChange={(e) => {
                       const val = e.target.value.replace(/[^0-9]/g, "");
                       if (val === "") return;
-                      setHeightCm(Math.min(250, Number(val)));
+                      setHeightCm(Number(val));
                     }}
                     className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                   />
@@ -165,7 +164,7 @@ export function BMICalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/[^0-9]/g, "");
                         if (val === "") return;
-                        setHeightFeet(Math.min(8, Number(val)));
+                        setHeightFeet(Number(val));
                       }}
                       className="w-full py-3 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                     />
@@ -182,7 +181,7 @@ export function BMICalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/[^0-9]/g, "");
                         if (val === "") return;
-                        setHeightInches(Math.max(0, Math.min(11, Number(val))));
+                        setHeightInches(Number(val));
                       }}
                       className="w-full py-3 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                     />

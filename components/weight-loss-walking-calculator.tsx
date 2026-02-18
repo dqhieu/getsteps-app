@@ -96,10 +96,7 @@ export function WeightLossWalkingCalculator() {
                 <input
                   type="number"
                   value={currentWeight}
-                  onChange={(e) =>
-                    setCurrentWeight(Math.max(1, Number(e.target.value) || 1))
-                  }
-                  min={1}
+                  onChange={(e) => setCurrentWeight(Number(e.target.value))}
                   className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -117,10 +114,7 @@ export function WeightLossWalkingCalculator() {
                 <input
                   type="number"
                   value={targetWeight}
-                  onChange={(e) =>
-                    setTargetWeight(Math.max(1, Number(e.target.value) || 1))
-                  }
-                  min={1}
+                  onChange={(e) => setTargetWeight(Number(e.target.value))}
                   className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">

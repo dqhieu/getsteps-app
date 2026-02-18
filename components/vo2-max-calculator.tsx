@@ -6,8 +6,6 @@ import {
   type VO2Method,
   type Gender,
 } from "@/lib/vo2-max-calculator";
-import { ShareResultCard } from "@/components/share-result-card";
-import { getVO2MaxPercentile } from "@/lib/population-norms";
 
 const COLOR_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
   green:  { bg: "bg-green-100 dark:bg-green-900/30",  text: "text-green-700 dark:text-green-400",  border: "border-green-300 dark:border-green-700" },
@@ -98,9 +96,7 @@ export function Vo2MaxCalculator() {
                 <input
                   type="number"
                   value={age}
-                  min={15}
-                  max={90}
-                  onChange={(e) => setAge(Math.min(90, Math.max(15, Number(e.target.value) || 15)))}
+                  onChange={(e) => setAge(Number(e.target.value))}
                   className="w-full py-3 px-4 pr-16 rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-neutral-500 dark:text-neutral-400 pointer-events-none">years</span>
@@ -115,9 +111,7 @@ export function Vo2MaxCalculator() {
                 <input
                   type="number"
                   value={rhr}
-                  min={30}
-                  max={120}
-                  onChange={(e) => setRhr(Math.min(120, Math.max(30, Number(e.target.value) || 30)))}
+                  onChange={(e) => setRhr(Number(e.target.value))}
                   className="w-full py-3 px-4 pr-16 rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-neutral-500 dark:text-neutral-400 pointer-events-none">bpm</span>
@@ -138,9 +132,7 @@ export function Vo2MaxCalculator() {
                   type="number"
                   value={distanceKm}
                   step={0.1}
-                  min={0.1}
-                  max={99}
-                  onChange={(e) => setDistanceKm(Math.max(0.1, Number(e.target.value) || 0.1))}
+                  onChange={(e) => setDistanceKm(Number(e.target.value))}
                   className="w-full py-3 px-4 rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                 />
               </div>
@@ -173,20 +165,6 @@ export function Vo2MaxCalculator() {
           Calculate VO2 Max
         </button>
       </div>
-
-      {/* Share Card */}
-      {result && colors && (() => {
-        const norm = getVO2MaxPercentile(age, gender, result.category);
-        const shareText = `🫁 My VO2 Max is ${result.vo2max} ml/kg/min – ${result.category} Aerobic Fitness!${norm ? ` ${norm.descriptor}.` : ""}`;
-        return (
-          <ShareResultCard
-            badge={{ emoji: "🫁", label: result.category, colorClass: `${colors.bg} ${colors.text}` }}
-            comparison={norm?.descriptor}
-            shareText={shareText}
-            shareUrl="https://getsteps.app/tools/vo2-max-calculator"
-          />
-        );
-      })()}
 
       {/* Results */}
       {result && colors && (

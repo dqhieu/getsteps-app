@@ -76,7 +76,6 @@ export function RaceTimePredictor() {
             <input
               type="number"
               value={customKm}
-              min={0.1}
               step={0.1}
               placeholder="Distance in km"
               className={`${inputCls} mt-3`}

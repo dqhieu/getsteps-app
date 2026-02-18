@@ -5,7 +5,6 @@ import {
   calculateHeartRateZones,
   ZONE_DEFINITIONS,
 } from "@/lib/heart-rate-calculator";
-import { ShareResultCard } from "@/components/share-result-card";
 
 export function HeartRateZonesCalculator() {
   const [age, setAge] = useState<number>(30);
@@ -42,11 +41,7 @@ export function HeartRateZonesCalculator() {
               <input
                 type="number"
                 value={age}
-                onChange={(e) =>
-                  setAge(Math.min(90, Math.max(15, Number(e.target.value) || 15)))
-                }
-                min={15}
-                max={90}
+                onChange={(e) => setAge(Number(e.target.value))}
                 className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -92,11 +87,7 @@ export function HeartRateZonesCalculator() {
                       <input
                         type="number"
                         value={restingHR}
-                        onChange={(e) =>
-                          setRestingHR(Math.min(120, Math.max(30, Number(e.target.value) || 30)))
-                        }
-                        min={30}
-                        max={120}
+                        onChange={(e) => setRestingHR(Number(e.target.value))}
                         className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -140,11 +131,7 @@ export function HeartRateZonesCalculator() {
                       <input
                         type="number"
                         value={customMaxHR}
-                        onChange={(e) =>
-                          setCustomMaxHR(Math.min(250, Math.max(100, Number(e.target.value) || 100)))
-                        }
-                        min={100}
-                        max={250}
+                        onChange={(e) => setCustomMaxHR(Number(e.target.value))}
                         className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -161,20 +148,6 @@ export function HeartRateZonesCalculator() {
           </div>
         </div>
       </div>
-
-      {/* Share Card */}
-      {(() => {
-        const zone2 = result.zones.find((z) => z.zone === 2);
-        if (!zone2) return null;
-        const shareText = `❤️ My Zone 2 fat-burn zone is ${zone2.minBpm}–${zone2.maxBpm} bpm (Max HR: ${result.maxHR} bpm).`;
-        return (
-          <ShareResultCard
-            badge={{ emoji: "❤️", label: `Zone 2: ${zone2.minBpm}–${zone2.maxBpm} bpm`, colorClass: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400" }}
-            shareText={shareText}
-            shareUrl="https://getsteps.app/tools/heart-rate-zones-calculator"
-          />
-        );
-      })()}
 
       {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

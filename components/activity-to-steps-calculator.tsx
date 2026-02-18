@@ -100,9 +100,7 @@ export function ActivityToStepsCalculator() {
           <input
             type="number"
             value={duration}
-            min={1}
-            max={480}
-            onChange={(e) => setDuration(Math.max(1, Math.min(480, Number(e.target.value) || 1)))}
+            onChange={(e) => setDuration(Number(e.target.value))}
             className="w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
           />
         </div>
@@ -148,9 +146,7 @@ export function ActivityToStepsCalculator() {
                 <input
                   type="number"
                   value={weight}
-                  min={20}
-                  max={300}
-                  onChange={(e) => setWeight(Math.max(20, Math.min(300, Number(e.target.value) || 20)))}
+                  onChange={(e) => setWeight(Number(e.target.value))}
                   className="flex-1 py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                 />
                 <button

@@ -100,7 +100,6 @@ export function PaceSpeedConverter() {
               type="number"
               value={speedKmh}
               placeholder="10.9"
-              min={0.1}
               step={0.1}
               className={inputCls}
               onChange={(e) => { setActive("speedKmh"); setSpeedKmh(e.target.value); }}
@@ -114,7 +113,6 @@ export function PaceSpeedConverter() {
               type="number"
               value={speedMph}
               placeholder="6.8"
-              min={0.1}
               step={0.1}
               className={inputCls}
               onChange={(e) => { setActive("speedMph"); setSpeedMph(e.target.value); }}

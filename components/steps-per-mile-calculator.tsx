@@ -113,7 +113,7 @@ export function StepsPerMileCalculator() {
                     onChange={(e) => {
                       const val = e.target.value.replace(/[^0-9]/g, "");
                       if (val === "") return;
-                      setHeightCm(Math.min(250, Number(val)));
+                      setHeightCm(Number(val));
                     }}
                     className="w-full py-2 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                   />
@@ -132,7 +132,7 @@ export function StepsPerMileCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/[^0-9]/g, "");
                         if (val === "") return;
-                        setHeightFeet(Math.min(8, Number(val)));
+                        setHeightFeet(Number(val));
                       }}
                       className="w-full py-2 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                     />
@@ -149,7 +149,7 @@ export function StepsPerMileCalculator() {
                       onChange={(e) => {
                         const val = e.target.value.replace(/[^0-9]/g, "");
                         if (val === "") return;
-                        setHeightInches(Math.max(0, Math.min(11, Number(val))));
+                        setHeightInches(Number(val));
                       }}
                       className="w-full py-2 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                     />

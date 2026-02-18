@@ -7,7 +7,6 @@ import {
   type Gender,
   type ActivityLevel,
 } from "@/lib/tdee-calculator";
-import { ShareResultCard } from "@/components/share-result-card";
 
 const ACTIVITY_LEVELS: ActivityLevel[] = ["sedentary", "light", "moderate", "active", "very_active"];
 
@@ -66,8 +65,7 @@ export function TDEECalculator() {
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Age</label>
             <div className="relative max-w-xs">
               <input type="number" value={age}
-                onChange={(e) => setAge(Math.min(100, Math.max(15, Number(e.target.value) || 15)))}
-                min={15} max={100}
+                onChange={(e) => setAge(Number(e.target.value))}
                 className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg" />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">years</span>
             </div>
@@ -109,22 +107,51 @@ export function TDEECalculator() {
             </div>
             {heightUnit === "cm" ? (
               <div className="relative max-w-xs">
-                <input type="number" value={heightCm}
-                  onChange={(e) => handleHeightCmChange(Number(e.target.value) || 0)}
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={heightCm}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^0-9]/g, "");
+                    if (val === "") return;
+                    handleHeightCmChange(Number(val));
+                  }}
+                  onBlur={(e) => handleHeightCmChange(Number(e.target.value) || 170)}
                   className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg" />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">cm</span>
               </div>
             ) : (
               <div className="flex gap-2 max-w-xs">
                 <div className="relative flex-1">
-                  <input type="number" value={displayFt}
-                    onChange={(e) => { setFtVal(Number(e.target.value) || 0); setHeightCm(ftInToCm(Number(e.target.value) || 0, inVal)); }}
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={displayFt}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9]/g, "");
+                      if (val === "") return;
+                      const ft = Number(val);
+                      setFtVal(ft);
+                      setHeightCm(ftInToCm(ft, inVal));
+                    }}
                     className="w-full py-3 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg" />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">ft</span>
                 </div>
                 <div className="relative flex-1">
-                  <input type="number" value={displayIn}
-                    onChange={(e) => { setInVal(Number(e.target.value) || 0); setHeightCm(ftInToCm(ftVal, Number(e.target.value) || 0)); }}
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={displayIn}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9]/g, "");
+                      if (val === "") return;
+                      const inch = Number(val);
+                      setInVal(inch);
+                      setHeightCm(ftInToCm(ftVal, inch));
+                    }}
                     className="w-full py-3 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg" />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">in</span>
                 </div>
@@ -151,15 +178,6 @@ export function TDEECalculator() {
           </button>
         </div>
       </div>
-
-      {/* Share Card */}
-      {calculated && (
-        <ShareResultCard
-          badge={{ emoji: "🔥", label: `${result.tdee} cal/day`, colorClass: "bg-[#ED772F]/10 text-[#ED772F]" }}
-          shareText={`🔥 My TDEE is ${result.tdee} calories/day (BMR: ${result.bmr} cal).`}
-          shareUrl="https://getsteps.app/tools/tdee-calculator"
-        />
-      )}
 
       {/* Results */}
       {calculated && (

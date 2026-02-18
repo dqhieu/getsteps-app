@@ -8,7 +8,6 @@ import {
   type MacroGoal,
   type MacroResult,
 } from "@/lib/macro-calculator";
-import { ShareResultCard } from "@/components/share-result-card";
 
 const ACTIVITY_LABELS: Record<ActivityLevel, string> = {
   sedentary: "Sedentary",
@@ -73,7 +72,7 @@ export function MacroCalculator() {
         {/* Age */}
         <div>
           <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Age</label>
-          <input type="number" min={15} max={100} value={age} onChange={(e) => setAge(Number(e.target.value))} className={inputCls} />
+          <input type="number" value={age} onChange={(e) => setAge(Number(e.target.value))} className={inputCls} />
         </div>
 
         {/* Weight */}
@@ -81,7 +80,11 @@ export function MacroCalculator() {
           <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Weight</label>
           <div className="flex gap-2">
             <div className="relative flex-1">
-              <input type="number" min={1} value={weight} onChange={(e) => setWeight(Number(e.target.value))} className={`${inputCls} pr-12`} />
+              <input type="number" value={weight} onChange={(e) => {
+                    const val = e.target.value.replace(/[^0-9.]/g, "");
+                    if (val === "") return;
+                    setWeight(Number(val));
+                  }} className={`${inputCls} pr-12`} />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-sm pointer-events-none">{weightUnit}</span>
             </div>
             <button onClick={handleWeightUnitToggle} className="py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors">
@@ -94,7 +97,17 @@ export function MacroCalculator() {
         <div>
           <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Height (cm)</label>
           <div className="relative">
-            <input type="number" min={100} max={250} value={heightCm} onChange={(e) => setHeightCm(Number(e.target.value))} className={`${inputCls} pr-12`} />
+            <input
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              value={heightCm}
+              onChange={(e) => {
+                const val = e.target.value.replace(/[^0-9]/g, "");
+                if (val === "") return;
+                setHeightCm(Number(val));
+              }}
+              className={`${inputCls} pr-12`} />
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-sm pointer-events-none">cm</span>
           </div>
         </div>
@@ -127,14 +140,6 @@ export function MacroCalculator() {
           Calculate Macros
         </button>
       </div>
-
-      {result && (
-        <ShareResultCard
-          badge={{ emoji: "💪", label: `${result.targetCalories.toLocaleString()} cal/day`, colorClass: "bg-[#ED772F]/10 text-[#ED772F]" }}
-          shareText={`💪 My macros: ${result.protein.grams}g protein · ${result.carbs.grams}g carbs · ${result.fat.grams}g fat · ${result.targetCalories.toLocaleString()} cal/day.`}
-          shareUrl="https://getsteps.app/tools/macro-calculator"
-        />
-      )}
 
       {result && (
         <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50 space-y-6">
