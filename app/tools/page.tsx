@@ -166,6 +166,41 @@ const TOOLS = [
     icon: "🏅",
     popular: false,
   },
+  {
+    title: "VO2 Max Calculator",
+    description: "Estimate your aerobic fitness level using heart rate or Cooper test",
+    href: "/tools/vo2-max-calculator",
+    icon: "🫁",
+    popular: false,
+  },
+  {
+    title: "Training Pace Zones",
+    description: "Get your 5 personalized running training pace zones from any race result",
+    href: "/tools/training-pace-zones",
+    icon: "🎯",
+    popular: false,
+  },
+  {
+    title: "Pace to Speed Converter",
+    description: "Convert min/km, min/mile, km/h, and mph instantly",
+    href: "/tools/pace-to-speed-converter",
+    icon: "↔️",
+    popular: false,
+  },
+  {
+    title: "Race Time Predictor",
+    description: "Calculate finish time from pace or find the pace needed for your goal time",
+    href: "/tools/race-time-predictor",
+    icon: "⏱️",
+    popular: false,
+  },
+  {
+    title: "Distance Equivalent Calculator",
+    description: "Convert km, miles, meters, yards — with steps, time, and calories",
+    href: "/tools/distance-equivalent-calculator",
+    icon: "📏",
+    popular: false,
+  },
 ];
 
 const popularTools = TOOLS.filter((tool) => tool.popular);

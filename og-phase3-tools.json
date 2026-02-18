@@ -1,0 +1,37 @@
+{
+  "brand_text": "Steps · getsteps.app",
+  "accent_color": "#ED772F",
+  "bg_color": "#111111",
+  "items": [
+    {
+      "filename": "vo2-max-calculator.png",
+      "title": "VO2 Max Calculator",
+      "emoji": "🫁",
+      "description": "Estimate your aerobic fitness level"
+    },
+    {
+      "filename": "training-pace-zones.png",
+      "title": "Training Pace Zones",
+      "emoji": "🎯",
+      "description": "5 personalized running training zones"
+    },
+    {
+      "filename": "pace-to-speed-converter.png",
+      "title": "Pace to Speed Converter",
+      "emoji": "↔️",
+      "description": "Convert min/km, min/mile, km/h & mph"
+    },
+    {
+      "filename": "race-time-predictor.png",
+      "title": "Race Time Predictor",
+      "emoji": "⏱️",
+      "description": "Calculate finish time from pace or goal"
+    },
+    {
+      "filename": "distance-equivalent-calculator.png",
+      "title": "Distance Equivalent Calculator",
+      "emoji": "📏",
+      "description": "Convert km, miles, meters, yards & steps"
+    }
+  ]
+}
