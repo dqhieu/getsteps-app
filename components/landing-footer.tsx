@@ -2,15 +2,33 @@ import Image from "next/image";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 
-const CALCULATOR_LINKS = [
+const STEP_WALKING_LINKS = [
   { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
   { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
-  { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
   { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
   { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
   { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
   { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
+  { title: "Distance Equivalent Calculator", href: "/tools/distance-equivalent-calculator" },
+];
+
+const RUNNING_FITNESS_LINKS = [
+  { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
+  { title: "Marathon Pace Predictor", href: "/tools/marathon-pace-predictor" },
+  { title: "Race Time Predictor", href: "/tools/race-time-predictor" },
+  { title: "Training Pace Zones", href: "/tools/training-pace-zones" },
+  { title: "Pace to Speed Converter", href: "/tools/pace-to-speed-converter" },
+  { title: "VO2 Max Calculator", href: "/tools/vo2-max-calculator" },
+  { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+  { title: "Resting Heart Rate Calculator", href: "/tools/resting-heart-rate-calculator" },
   { title: "BMI Calculator", href: "/tools/bmi-calculator" },
+  { title: "Body Fat Calculator", href: "/tools/body-fat-calculator" },
+  { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+  { title: "Macro Calculator", href: "/tools/macro-calculator" },
+  { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
+  { title: "Water Intake Calculator", href: "/tools/water-intake-calculator" },
 ];
 
 export function LandingFooter() {
@@ -19,7 +37,7 @@ export function LandingFooter() {
   return (
     <footer className="py-12 border-t border-neutral-200 dark:border-neutral-800">
       <div className="container mx-auto px-4 max-w-5xl">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-8 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto_auto] gap-8 md:gap-12">
           {/* Brand column */}
           <div>
             <div className="flex items-center gap-3 mb-3">
@@ -42,13 +60,32 @@ export function LandingFooter() {
             </p>
           </div>
 
-          {/* Calculators column */}
+          {/* Step & Walking Tools column */}
           <div>
             <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
-              Fitness Calculators
+              Step & Walking Tools
             </h3>
             <ul className="space-y-2">
-              {CALCULATOR_LINKS.map((link) => (
+              {STEP_WALKING_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Running & Fitness Tools column */}
+          <div>
+            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
+              Running & Fitness Tools
+            </h3>
+            <ul className="space-y-2">
+              {RUNNING_FITNESS_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
