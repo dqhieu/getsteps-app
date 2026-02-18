@@ -1,0 +1,43 @@
+{
+  "brand_text": "Steps · getsteps.app",
+  "accent_color": "#ED772F",
+  "bg_color": "#111111",
+  "items": [
+    {
+      "filename": "water-intake-calculator.png",
+      "title": "Water Intake Calculator",
+      "emoji": "💧",
+      "description": "How much water should you drink per day?"
+    },
+    {
+      "filename": "heart-rate-zones-calculator.png",
+      "title": "Heart Rate Zone Calculator",
+      "emoji": "❤️",
+      "description": "Find your 5 personalized training zones"
+    },
+    {
+      "filename": "activity-to-steps-converter.png",
+      "title": "Activity to Steps Converter",
+      "emoji": "🚴",
+      "description": "Convert any exercise into equivalent steps"
+    },
+    {
+      "filename": "running-pace-calculator.png",
+      "title": "Running Pace Calculator",
+      "emoji": "⏱️",
+      "description": "Convert pace, speed & predict race finish times"
+    },
+    {
+      "filename": "body-fat-calculator.png",
+      "title": "Body Fat % Calculator",
+      "emoji": "📐",
+      "description": "Calculate body fat using the U.S. Navy method"
+    },
+    {
+      "filename": "calorie-deficit-calculator.png",
+      "title": "Calorie Deficit Calculator",
+      "emoji": "🔥",
+      "description": "How many calories to eat to reach your goal weight"
+    }
+  ]
+}

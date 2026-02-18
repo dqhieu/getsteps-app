@@ -1,0 +1,31 @@
+{
+  "brand_text": "Steps · getsteps.app",
+  "accent_color": "#ED772F",
+  "bg_color": "#111111",
+  "items": [
+    {
+      "filename": "resting-heart-rate-calculator.png",
+      "title": "Resting Heart Rate Calculator",
+      "emoji": "💓",
+      "description": "Check your fitness level & Karvonen training zones"
+    },
+    {
+      "filename": "tdee-calculator.png",
+      "title": "TDEE Calculator",
+      "emoji": "⚡",
+      "description": "Calculate your Total Daily Energy Expenditure"
+    },
+    {
+      "filename": "macro-calculator.png",
+      "title": "Macro Calculator",
+      "emoji": "🥩",
+      "description": "Daily protein, carbs & fat for your fitness goals"
+    },
+    {
+      "filename": "marathon-pace-predictor.png",
+      "title": "Marathon Race Predictor",
+      "emoji": "🏅",
+      "description": "Predict your finish time for any race distance"
+    }
+  ]
+}

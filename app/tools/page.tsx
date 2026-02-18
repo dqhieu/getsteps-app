@@ -138,6 +138,34 @@ const TOOLS = [
     icon: "🥗",
     popular: false,
   },
+  {
+    title: "Resting Heart Rate Calculator",
+    description: "Check your cardiovascular fitness level and Karvonen heart rate zones",
+    href: "/tools/resting-heart-rate-calculator",
+    icon: "💓",
+    popular: false,
+  },
+  {
+    title: "TDEE Calculator",
+    description: "Calculate your Total Daily Energy Expenditure and daily calorie needs",
+    href: "/tools/tdee-calculator",
+    icon: "⚡",
+    popular: true,
+  },
+  {
+    title: "Macro Calculator",
+    description: "Calculate your daily protein, carbs, and fat targets for your fitness goal",
+    href: "/tools/macro-calculator",
+    icon: "🥩",
+    popular: true,
+  },
+  {
+    title: "Marathon Race Predictor",
+    description: "Predict your marathon, half marathon, 10K, and 5K finish times",
+    href: "/tools/marathon-pace-predictor",
+    icon: "🏅",
+    popular: false,
+  },
 ];
 
 const popularTools = TOOLS.filter((tool) => tool.popular);
