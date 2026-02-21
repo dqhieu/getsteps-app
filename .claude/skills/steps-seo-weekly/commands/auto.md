@@ -181,7 +181,16 @@ curl -L -o public/blog/{slug}.jpg \
   "https://images.unsplash.com/photo-{PHOTO_ID}?w=1200&h=630&fit=crop"
 ```
 
-### 5c. Build and verify (once after all 7 posts)
+### 5c. Update internal links registry
+
+Add all 7 new posts to `lib/internal-links.ts`:
+
+1. **`BLOG_RELATED_POSTS`** — add an entry for each new blog slug with 3 related posts (mix of new + existing)
+2. **`BLOG_RELATED_TOOLS`** — add an entry for each new blog slug with 2 related tool pages
+
+**DO NOT** modify `TOOL_RELATED_BLOGS` — existing tool pages should keep linking to established posts that already have search authority. The new posts get internal links through their own `BLOG_RELATED_*` entries and inline content links.
+
+### 5d. Build and verify (once after all 7 posts)
 ```bash
 npm run build
 ```

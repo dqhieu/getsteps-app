@@ -11,11 +11,6 @@ export function LandingHero() {
     });
   };
 
-  const handleUneedBadgeClick = () => {
-    posthog.capture("uneed_badge_clicked", {
-      location: "hero",
-    });
-  };
 
   return (
     <section className="pt-24 pb-12 md:pt-32 md:pb-16">
@@ -72,21 +67,6 @@ export function LandingHero() {
             width={120}
             height={40}
             className="h-12 w-auto hidden dark:block"
-          />
-        </a>
-
-        {/* Uneed Badge */}
-        <a
-          href="https://www.uneed.best/tool/steps"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 transition-transform hover:scale-105 active:scale-95 inline-block"
-          onClick={handleUneedBadgeClick}
-        >
-          <img
-            src="https://www.uneed.best/EMBED1.png"
-            alt="Featured on Uneed"
-            className="h-12 w-auto"
           />
         </a>
       </div>
