@@ -27,7 +27,7 @@ walking workout, 10000 steps, walking benefits, step tracking, fitness walking
 
 ## Internal Linking Targets
 
-- App download: https://apps.apple.com/app/steps-workout-pedometer/id6720646621
+- App download: https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378
 - Tools hub: /tools
 - Blog: /blog
 - Each tool page can link to related tools (e.g., calories → weight loss → BMI)

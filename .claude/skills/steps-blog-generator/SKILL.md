@@ -117,7 +117,7 @@ FAQ section for featured snippets:
 CTA section with app download link.
 
 ---
-**Ready to [benefit]?** [Download Steps](https://apps.apple.com/app/steps-workout-pedometer/id6720646621)
+**Ready to [benefit]?** [Download Steps](https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378)
 ```
 
 ## SEO Checklist

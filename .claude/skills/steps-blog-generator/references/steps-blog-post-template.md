@@ -115,7 +115,7 @@ No complicated setup, no subscription required for {feature}.
 
 ---
 
-**Ready to {benefit}?** [Download Steps](https://apps.apple.com/app/steps-workout-pedometer/id6720646621) and start {action} today.
+**Ready to {benefit}?** [Download Steps](https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378) and start {action} today.
 ```
 
 ## Word Count Targets
