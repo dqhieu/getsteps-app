@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
+import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { WeightLossWalkingCalculatorClient } from "./client";
+import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -166,6 +168,17 @@ export default function WeightLossWalkingCalculatorPage() {
                 </div>
               </div>
             </div>
+
+            <div className="mt-6">
+              <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">Related Calculators</p>
+              <div className="flex flex-wrap gap-2">
+                {TOOL_RELATED_TOOLS["weight-loss-walking-calculator"]?.map((tool) => (
+                  <a key={tool.href} href={tool.href} className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">{tool.title}</a>
+                ))}
+              </div>
+            </div>
+
+            <RelatedBlogPosts items={TOOL_RELATED_BLOGS["weight-loss-walking-calculator"] || []} />
           </div>
         </div>
       </section>

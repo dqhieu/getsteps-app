@@ -4,6 +4,8 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { MarathonRacePredictorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
+import { RelatedBlogPosts } from "@/components/related-blog-posts";
+import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Marathon Race Predictor - Predict Your Finish Time from Any Distance",
@@ -134,6 +136,7 @@ export default function MarathonPacePredictorPage() {
               ))}
             </div>
           </div>
+          <RelatedBlogPosts items={TOOL_RELATED_BLOGS["marathon-pace-predictor"] || []} />
         </div>
       </section>
 

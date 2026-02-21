@@ -4,6 +4,8 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { MacroCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
+import { RelatedBlogPosts } from "@/components/related-blog-posts";
+import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Macro Calculator - Daily Protein, Carbs & Fat for Your Goals",
@@ -134,6 +136,7 @@ export default function MacroCalculatorPage() {
               ))}
             </div>
           </div>
+          <RelatedBlogPosts items={TOOL_RELATED_BLOGS["macro-calculator"] || []} />
         </div>
       </section>
 

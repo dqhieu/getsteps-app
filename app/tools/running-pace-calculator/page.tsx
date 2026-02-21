@@ -4,6 +4,8 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RunningPaceCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
+import { RelatedBlogPosts } from "@/components/related-blog-posts";
+import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Running Pace Calculator - Convert Pace, Speed & Race Times",
@@ -160,6 +162,7 @@ export default function RunningPaceCalculatorPage() {
               <a href="/tools/walking-calories-calculator" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">Walking Calories Calculator</a>
             </div>
           </div>
+          <RelatedBlogPosts items={TOOL_RELATED_BLOGS["running-pace-calculator"] || []} />
         </div>
       </section>
 

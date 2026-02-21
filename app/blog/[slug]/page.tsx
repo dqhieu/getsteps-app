@@ -8,6 +8,8 @@ import remarkGfm from "remark-gfm";
 import { getPostBySlug, getAllSlugs } from "@/lib/blog";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
+import { RelatedContentSection } from "@/components/related-content-section";
+import { BLOG_RELATED_POSTS, BLOG_RELATED_TOOLS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const SITE_KEYWORDS = [
@@ -159,6 +161,11 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
           <MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </div>
+
+        <RelatedContentSection
+          relatedPosts={BLOG_RELATED_POSTS[slug] || []}
+          relatedTools={BLOG_RELATED_TOOLS[slug] || []}
+        />
 
         <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
           <Link

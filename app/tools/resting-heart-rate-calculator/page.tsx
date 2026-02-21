@@ -4,6 +4,8 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RestingHeartRateCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
+import { RelatedBlogPosts } from "@/components/related-blog-posts";
+import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Resting Heart Rate Calculator - Fitness Level & Karvonen Zones",
@@ -136,6 +138,7 @@ export default function RestingHeartRateCalculatorPage() {
               </div>
             </div>
           </div>
+          <RelatedBlogPosts items={TOOL_RELATED_BLOGS["resting-heart-rate-calculator"] || []} />
         </div>
       </section>
 
