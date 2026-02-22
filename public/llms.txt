@@ -7,23 +7,92 @@
 - 23+ workout types: running, walking, cycling, hiking, swimming, strength, yoga, pickleball, and more
 - Beautiful charts with hourly, weekly, and monthly views
 - Goals and streaks for daily motivation
+- App Lock: block distracting apps until you hit your step goal
+- GPX export for walking, running, and hiking routes
 - 8 personal records: fastest pace, most calories, earliest start, most elevation, longest duration, farthest distance, latest night, max heart rate
 - 8 home screen widgets
-- Yearly insights and fitness recaps
+- Yearly insights and fitness recaps (Fitness Wrapped)
 - Privacy-focused: data stays on device
 
-## Free Fitness Calculators
+## Free Fitness Tools
 - [Step Distance Calculator](https://getsteps.app/tools/step-distance-calculator): Convert steps to distance or distance to steps based on height
 - [Steps to Calories Calculator](https://getsteps.app/tools/steps-to-calories-calculator): Calculate calories burned from daily steps
-- [Walking Calories Calculator](https://getsteps.app/tools/walking-calories-calculator): Calculate calories burned based on walking distance or time
+- [Walking Calories Calculator](https://getsteps.app/tools/walking-calories-calculator): Calculate calories burned based on walking distance or time with MET values
 - [Steps Per Mile Calculator](https://getsteps.app/tools/steps-per-mile-calculator): Find how many steps are in a mile or kilometer
 - [Walking Time Calculator](https://getsteps.app/tools/walking-time-calculator): Estimate how long it takes to walk any distance
 - [Daily Step Goal Calculator](https://getsteps.app/tools/daily-step-goal-calculator): Get personalized daily step goal recommendations
 - [Weight Loss Walking Calculator](https://getsteps.app/tools/weight-loss-walking-calculator): Calculate walking requirements for weight loss goals
 - [BMI Calculator](https://getsteps.app/tools/bmi-calculator): Calculate Body Mass Index with health insights
+- [Body Fat Calculator](https://getsteps.app/tools/body-fat-calculator): Estimate body fat percentage using the Navy method (no equipment needed)
+- [Calorie Deficit Calculator](https://getsteps.app/tools/calorie-deficit-calculator): Calculate how much to eat to lose weight
+- [TDEE Calculator](https://getsteps.app/tools/tdee-calculator): Calculate Total Daily Energy Expenditure and calorie needs
+- [Macro Calculator](https://getsteps.app/tools/macro-calculator): Calculate daily protein, carbs, and fat targets for your goals
+- [Water Intake Calculator](https://getsteps.app/tools/water-intake-calculator): Calculate how much water you should drink per day
+- [Activity to Steps Converter](https://getsteps.app/tools/activity-to-steps-converter): Convert any exercise to equivalent steps
+- [Distance Equivalent Calculator](https://getsteps.app/tools/distance-equivalent-calculator): Convert between km, miles, meters, and steps
+- [Running Pace Calculator](https://getsteps.app/tools/running-pace-calculator): Convert pace, speed, and race times
+- [Pace to Speed Converter](https://getsteps.app/tools/pace-to-speed-converter): Convert between min/km, min/mile, km/h, and mph
+- [Training Pace Zones](https://getsteps.app/tools/training-pace-zones): Calculate running pace zones for your fitness level
+- [Race Time Predictor](https://getsteps.app/tools/race-time-predictor): Calculate finish time from your pace
+- [Marathon Pace Predictor](https://getsteps.app/tools/marathon-pace-predictor): Predict your marathon finish time from any race distance
+- [Heart Rate Zones Calculator](https://getsteps.app/tools/heart-rate-zones-calculator): Find your 5 training heart rate zones
+- [Resting Heart Rate Calculator](https://getsteps.app/tools/resting-heart-rate-calculator): Assess fitness level with Karvonen zones
+- [VO2 Max Calculator](https://getsteps.app/tools/vo2-max-calculator): Estimate your aerobic fitness level
 
 ## Blog
 - [Blog Home](https://getsteps.app/blog): Fitness tips, walking guides, and app updates
+- [10,000 Steps a Day Benefits](https://getsteps.app/blog/10000-steps-a-day-benefits): What science says about walking 10K steps daily
+- [How Many Calories Does 10,000 Steps Burn?](https://getsteps.app/blog/10000-steps-calories-burned): Calorie burn by body weight for 10K steps
+- [Has Anyone Lost Weight Walking 10,000 Steps a Day?](https://getsteps.app/blog/10000-steps-weight-loss-results): Real weight loss results from walking 10K steps
+- [15,000 Steps a Day Benefits](https://getsteps.app/blog/15000-steps-a-day-benefits): What happens when you go beyond 10K steps
+- [How Many Miles Is 10,000 Steps?](https://getsteps.app/blog/how-many-miles-is-10000-steps): Distance calculator guide for 10K steps
+- [How Many Steps in a Mile?](https://getsteps.app/blog/how-many-steps-in-a-mile): Steps per mile chart by height and pace
+- [How Many Steps in a Mile Running?](https://getsteps.app/blog/how-many-steps-in-a-mile-running): Steps per mile running chart by pace
+- [Recommended Steps Per Day by Age](https://getsteps.app/blog/recommended-steps-per-day-by-age): Step goals for children, adults, and seniors
+- [Walking for Weight Loss: How Many Steps?](https://getsteps.app/blog/walking-for-weight-loss-how-many-steps): Science-backed step targets for weight loss
+- [How Many Miles to Walk a Day to Lose Weight?](https://getsteps.app/blog/how-many-miles-to-walk-a-day-to-lose-weight): Ideal daily walking distance for weight loss
+- [Walking to Lose Weight Chart](https://getsteps.app/blog/walking-to-lose-weight-chart): Calorie burn by speed, weight, and duration
+- [Walking vs Running for Weight Loss](https://getsteps.app/blog/walking-vs-running-for-weight-loss): Comparison by calorie burn, injury risk, and fat loss
+- [Benefits of Walking Everyday](https://getsteps.app/blog/benefits-of-walking-everyday): 10 science-backed benefits of daily walking
+- [Calories Burned Walking by Time and Distance](https://getsteps.app/blog/calories-burned-walking-by-time-and-distance): Exact calorie numbers for 30 min, 1 hour, and 10K steps
+- [Calories Burned Hiking](https://getsteps.app/blog/calories-burned-hiking): Calorie estimates by weight, distance, and elevation
+- [Calories Burned on Treadmill](https://getsteps.app/blog/calories-burned-on-treadmill): Estimates by speed, incline, and body weight
+- [Running Pace Calculator Guide](https://getsteps.app/blog/running-pace-calculator-guide): min/km vs min/mile explained with pace zones
+- [Heart Rate Zones Explained](https://getsteps.app/blog/heart-rate-zones-explained): How to calculate and train in each zone
+- [How to Calculate Body Fat Percentage](https://getsteps.app/blog/how-to-calculate-body-fat-percentage): Navy method and ACE categories without equipment
+- [Macro Calculator Guide](https://getsteps.app/blog/macro-calculator-guide): Protein, carbs, and fat targets by goal
+- [What Is TDEE?](https://getsteps.app/blog/what-is-tdee): Total Daily Energy Expenditure explained for weight loss
+- [Fitness Wrapped: Yearly Recap](https://getsteps.app/blog/fitness-wrapped-yearly-recap-steps-insights): How to get your yearly fitness insights
+- [App Lock: Block Apps Until Step Goal](https://getsteps.app/blog/app-lock-block-apps-until-step-goal): Block distracting apps until you hit your step goal
+- [How to Export GPX from Apple Watch](https://getsteps.app/blog/how-to-export-gpx-from-apple-watch-workouts): Save and share workout GPS data
+- [Best Step Counter App for Apple Watch 2026](https://getsteps.app/blog/best-step-counter-app-apple-watch-2026): Feature comparison of top pedometer apps
+- [Best Step Counter Widgets for iPhone 2026](https://getsteps.app/blog/best-step-counter-widgets-iphone-home-screen-2026): Widget types, sizes, and features compared
+- [Steps vs Apple Fitness](https://getsteps.app/blog/steps-vs-apple-fitness-comparison): Step tracking, widgets, and workouts compared
+- [Steps vs Strava](https://getsteps.app/blog/steps-vs-strava-comparison): Step tracking, GPX export, and social features compared
+- [Steps vs Pedometer++](https://getsteps.app/blog/steps-vs-pedometer-plus-plus-comparison): Widgets, Apple Watch, and workout tracking compared
+- [Steps vs Nike Run Club](https://getsteps.app/blog/steps-vs-nike-run-club-comparison): Step tracking, workouts, and Apple Watch compared
+
+## Documentation
+- [Docs Home](https://getsteps.app/docs): App documentation and guides
+- [Getting Started](https://getsteps.app/docs/features/getting-started): Setup and onboarding
+- [Steps Pro](https://getsteps.app/docs/features/steps-pro): Premium features
+- [Home Dashboard](https://getsteps.app/docs/features/home-dashboard): Daily tracking command center
+- [Streaks](https://getsteps.app/docs/features/streaks): Consecutive day tracking
+- [Workout Session](https://getsteps.app/docs/features/workout-session): Workout tracking with GPS
+- [Activity List](https://getsteps.app/docs/features/activity-list): Workout history
+- [Activity Detail](https://getsteps.app/docs/features/activity-detail): Workout stats and export
+- [History](https://getsteps.app/docs/features/history): Historical data
+- [Insights](https://getsteps.app/docs/features/insights-overview): Analytics and personal records
+- [Daily Goal](https://getsteps.app/docs/features/daily-goal): Goal configuration
+- [App Lock](https://getsteps.app/docs/features/app-lock): Block apps until step goal is met
+- [Notifications](https://getsteps.app/docs/features/notifications): Alert settings
+- [Color Themes](https://getsteps.app/docs/features/color-themes): Theme selection
+- [App Icon](https://getsteps.app/docs/features/app-icon-selector): Custom app icons
+- [Settings](https://getsteps.app/docs/features/settings-overview): App configuration
+- [Widgets](https://getsteps.app/docs/features/widgets): Home and Lock Screen widgets
+- [Apple Watch](https://getsteps.app/docs/features/watch-app): watchOS companion app
+- [Siri Shortcuts](https://getsteps.app/docs/features/siri-shortcuts): Voice commands
+- [Sharing](https://getsteps.app/docs/features/sharing): Share activity and data
 
 ## Links
 - [Homepage](https://getsteps.app)
