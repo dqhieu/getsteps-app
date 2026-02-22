@@ -1,4 +1,12 @@
 {
+  "headers": [
+    {
+      "source": "/docs/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "s-maxage=60, stale-while-revalidate=30" }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/_mintlify/:path*",
