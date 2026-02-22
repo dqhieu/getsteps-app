@@ -17,10 +17,6 @@
       "destination": "https://steps-9a9e4b74.mintlify.app/_mintlify/api/request"
     },
     {
-      "source": "/docs",
-      "destination": "https://steps-9a9e4b74.mintlify.app/docs"
-    },
-    {
       "source": "/docs/llms.txt",
       "destination": "https://steps-9a9e4b74.mintlify.app/llms.txt"
     },
@@ -41,8 +37,12 @@
       "destination": "https://steps-9a9e4b74.mintlify.app/mcp"
     },
     {
+      "source": "/docs",
+      "destination": "https://steps-9a9e4b74.mintlify.app/"
+    },
+    {
       "source": "/docs/:path*",
-      "destination": "https://steps-9a9e4b74.mintlify.app/docs/:path*"
+      "destination": "https://steps-9a9e4b74.mintlify.app/:path*"
     },
     {
       "source": "/mintlify-assets/:path+",
