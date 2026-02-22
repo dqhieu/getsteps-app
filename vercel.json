@@ -38,7 +38,7 @@
     },
     {
       "source": "/docs",
-      "destination": "https://steps-9a9e4b74.mintlify.app/"
+      "destination": "https://steps-9a9e4b74.mintlify.app/docs"
     },
     {
       "source": "/docs/:path*",
