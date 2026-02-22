@@ -42,7 +42,7 @@
     },
     {
       "source": "/docs/:path*",
-      "destination": "https://steps-9a9e4b74.mintlify.app/:path*"
+      "destination": "https://steps-9a9e4b74.mintlify.app/docs/:path*"
     },
     {
       "source": "/mintlify-assets/:path+",
