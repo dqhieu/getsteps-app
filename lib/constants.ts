@@ -75,6 +75,7 @@ export const WORKOUT_TYPES = [
 ] as const;
 
 export const SCREENSHOTS = [
+  "/screenshots/screenshot9.png",
   "/screenshots/screenshot1.png",
   "/screenshots/screenshot2.png",
   "/screenshots/screenshot3.png",
