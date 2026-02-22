@@ -114,6 +114,14 @@ export function LandingFooter() {
               </li>
               <li>
                 <Link
+                  href="/docs"
+                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
+                >
+                  Docs
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/privacy"
                   className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
                 >

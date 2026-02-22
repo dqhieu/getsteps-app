@@ -37,6 +37,12 @@ export function LandingNavbar() {
             Blog
           </Link>
           <Link
+            href="/docs"
+            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
+            Docs
+          </Link>
+          <Link
             href="/privacy"
             className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors hidden sm:inline"
           >
