@@ -50,6 +50,21 @@ export const FEATURES = [
     title: "Home Widgets",
     description: "8 widgets for your home screen",
   },
+  {
+    icon: "🔒",
+    title: "App Lock",
+    description: "Block apps until you hit your goal",
+  },
+  {
+    icon: "📍",
+    title: "GPX Export",
+    description: "Export & share your workout routes",
+  },
+  {
+    icon: "✨",
+    title: "Yearly Insights",
+    description: "Spotify Wrapped for your fitness",
+  },
 ] as const;
 
 export const PERSONAL_RECORDS = [
