@@ -33,7 +33,7 @@ export function LandingHero() {
 
         {/* Tagline */}
         <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mb-6 leading-relaxed">
-          Track every step. Celebrate every milestone.
+          Every step counts. Every milestone shows.
         </p>
 
         {/* Rating */}
