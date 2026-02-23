@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FEATURES } from "@/lib/constants";
 
 export function LandingFeatures() {
@@ -8,9 +9,18 @@ export function LandingFeatures() {
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-neutral-900 dark:text-white">
           Everything you need to stay active
         </h2>
-        <p className="text-center text-neutral-600 dark:text-neutral-400 mb-12 max-w-xl mx-auto">
+        <p className="text-center text-neutral-600 dark:text-neutral-400 mb-4 max-w-xl mx-auto">
           Powered by Apple HealthKit for accurate, automatic tracking
         </p>
+        <div className="flex justify-center mb-12">
+          <Image
+            src="/Apple_Health_badge.svg"
+            alt="Works with Apple Health"
+            width={123}
+            height={34}
+            className="h-12 w-auto"
+          />
+        </div>
 
         {/* Features grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">

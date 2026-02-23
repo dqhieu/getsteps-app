@@ -169,6 +169,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...["zh", "fr", "de", "it", "pt-BR", "es"].map((lang) => ({
+      url: `${baseUrl}/docs/${lang}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     ...[
       "getting-started",
       "steps-pro",
@@ -189,12 +195,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "watch-app",
       "siri-shortcuts",
       "sharing",
-    ].map((page) => ({
-      url: `${baseUrl}/docs/features/${page}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
+    ].flatMap((page) => {
+      const languages = ["", "zh/", "fr/", "de/", "it/", "pt-BR/", "es/"];
+      return languages.map((lang) => ({
+        url: `${baseUrl}/docs/${lang}features/${page}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: lang === "" ? 0.6 : 0.5,
+      }));
+    }),
     {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
