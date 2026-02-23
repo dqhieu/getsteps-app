@@ -97,5 +97,6 @@
 ## Links
 - [Homepage](https://getsteps.app)
 - [App Store](https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378)
+- [Press](https://getsteps.app/press)
 - [Privacy Policy](https://getsteps.app/privacy)
 - [Terms of Service](https://getsteps.app/terms)
