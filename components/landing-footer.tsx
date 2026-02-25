@@ -122,6 +122,14 @@ export function LandingFooter() {
               </li>
               <li>
                 <Link
+                  href="/feedback"
+                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
+                >
+                  Feedback
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/docs"
                   className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
                 >
