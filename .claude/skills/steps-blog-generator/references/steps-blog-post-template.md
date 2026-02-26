@@ -33,7 +33,7 @@ This guide shows you {what reader will learn/achieve}.
 - **Benefit 2** — Explanation
 - **Benefit 3** — Explanation
 
-## How to {Action} with Steps App
+## How to {Action} with Steps: Workout & Pedometer
 
 Steps makes it easy to {primary benefit}.
 

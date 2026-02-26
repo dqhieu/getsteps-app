@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Tips, guides, and updates from Steps App - your fitness companion.",
+    "Tips, guides, and updates from Steps: Workout & Pedometer - your fitness companion.",
   alternates: {
     canonical: "https://getsteps.app/blog",
   },

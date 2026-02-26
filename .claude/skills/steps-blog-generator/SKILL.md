@@ -95,7 +95,7 @@ Intro paragraph with keyword in first 100 words.
 ## H2: What is [Topic]?
 Definition/explanation section.
 
-## H2: How to [Action] with Steps App
+## H2: How to [Action] with Steps: Workout & Pedometer
 Main tutorial/guide section with:
 - Numbered steps
 - Screenshots (optional)

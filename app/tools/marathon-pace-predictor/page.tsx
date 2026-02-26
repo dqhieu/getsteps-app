@@ -143,10 +143,10 @@ export default function MarathonPacePredictorPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 text-neutral-900 dark:text-white">
-            Train Smarter With the Steps App
+            Train Smarter With the Steps: Workout & Pedometer
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
-            Train smarter by tracking your daily steps and activity in the Steps app.
+            Train smarter by tracking your daily steps and activity in the Steps: Workout & Pedometer app.
           </p>
           <a
             href={SITE_CONFIG.appStoreUrl}

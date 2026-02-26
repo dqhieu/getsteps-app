@@ -54,7 +54,7 @@ Based on `/assets/seo/keywords/260201-steps-pedometer-fitness-keywords.md`:
 ### H2 Sections:
 1. What is GPX and Why Does It Matter?
 2. The Challenge with Apple Watch GPX Export
-3. How to Export GPX with Steps App (main CTA section)
+3. How to Export GPX with Steps: Workout & Pedometer (main CTA section)
 4. Tips for Better GPS Routes
 5. Common GPX Export Questions (FAQ schema opportunity)
 6. Why GPS Tracking Matters for Fitness
