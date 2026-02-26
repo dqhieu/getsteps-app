@@ -42,18 +42,6 @@ export function LandingNavbar() {
           >
             Docs
           </Link>
-          <Link
-            href="/privacy"
-            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors hidden sm:inline"
-          >
-            Privacy
-          </Link>
-          <Link
-            href="/terms"
-            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors hidden sm:inline"
-          >
-            Terms
-          </Link>
           <a
             href={SITE_CONFIG.appStoreUrl}
             target="_blank"
