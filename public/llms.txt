@@ -94,6 +94,9 @@
 - [Siri Shortcuts](https://getsteps.app/docs/features/siri-shortcuts): Voice commands
 - [Sharing](https://getsteps.app/docs/features/sharing): Share activity and data
 
+## About
+- [About Steps](https://getsteps.app/about): The origin story — built by runners who walk 10K steps daily and run 10KM weekly
+
 ## Links
 - [Homepage](https://getsteps.app)
 - [App Store](https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378)
