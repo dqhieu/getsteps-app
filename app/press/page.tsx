@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const PRESS_ARTICLES = [
   {
     outlet: "iPhoneBlog.de",
-    url: "https://www.iphoneblog.de/2026/02/21/steps-visualisiert-das-taegliche-schrittziel/",
+    url: "https://www.iphoneblog.de/2026/02/21/steps-visualisiert-das-tagliche-schrittziel/",
     title: "Steps visualisiert das tägliche Schrittziel",
     summary:
       "A look at how Steps visualizes your daily step goal with beautiful charts, widgets, and personal records.",
@@ -23,7 +23,7 @@ const PRESS_ARTICLES = [
   },
   {
     outlet: "iphone-ticker.de",
-    url: "https://www.iphone-ticker.de/schrittzaehler-mit-mehrwert-compresto-entwickler-startet-steps-249553/",
+    url: "https://www.iphone-ticker.de/schrittzaehler-mit-mehrwert-compresto-entwickler-startet-steps-273418/",
     title:
       'Schrittzähler mit Mehrwert: Compresto-Entwickler startet „Steps"',
     summary:
