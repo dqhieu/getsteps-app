@@ -292,6 +292,16 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Calories Burned on Treadmill", href: "/blog/calories-burned-on-treadmill" },
     { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
   ],
+  "best-step-counter-app-iphone-2026": [
+    { title: "Best Step Counter App for Apple Watch", href: "/blog/best-step-counter-app-apple-watch-2026" },
+    { title: "Best Step Counter Widgets for iPhone", href: "/blog/best-step-counter-widgets-iphone-home-screen-2026" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+  ],
+  "best-pedometer-app-iphone-2026": [
+    { title: "Steps vs Pedometer++", href: "/blog/steps-vs-pedometer-plus-plus-comparison" },
+    { title: "Best Step Counter App for Apple Watch", href: "/blog/best-step-counter-app-apple-watch-2026" },
+    { title: "Benefits of Walking Every Day", href: "/blog/benefits-of-walking-everyday" },
+  ],
 };
 
 // Blog slug → related tool links
@@ -415,5 +425,13 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "calories-burned-hiking": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "best-step-counter-app-iphone-2026": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
+  ],
+  "best-pedometer-app-iphone-2026": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
   ],
 };
