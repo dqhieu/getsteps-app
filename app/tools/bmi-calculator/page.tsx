@@ -220,6 +220,58 @@ export default function BMICalculatorPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is a healthy BMI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A BMI between 18.5 and 24.9 is considered healthy for most adults. However, BMI doesn't account for muscle mass, bone density, or fat distribution, so it's just one factor in assessing overall health."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is BMI accurate for everyone?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "BMI may not be accurate for athletes with high muscle mass, elderly individuals, or people with certain body types. It's a useful screening tool but should be considered alongside other health indicators."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I improve my BMI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "If your BMI is outside the healthy range, focus on sustainable lifestyle changes: regular physical activity (like daily walking), balanced nutrition, and adequate sleep. Consult a healthcare professional for personalized advice."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps should I walk based on my BMI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For maintaining a healthy BMI, aim for 10,000 steps daily. If you're looking to lose weight, consider 12,000+ steps. Start with your current level and gradually increase by 1,000 steps per week."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is BMI different for children?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, BMI for children and teens is calculated differently and compared to age and sex-specific percentiles. This calculator is designed for adults 18 and older. For children, consult a pediatrician."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <LandingFooter />
     </div>
   );

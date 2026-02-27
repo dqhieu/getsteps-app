@@ -219,6 +219,50 @@ export default function StepDistanceCalculatorPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How many steps are in a mile?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "On average, there are approximately 2,000 to 2,500 steps in a mile, depending on your step length. A person with a longer stride will take fewer steps to cover the same distance."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps are in a kilometer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "On average, there are approximately 1,250 to 1,550 steps in a kilometer. Use the calculator above to get a personalized estimate based on your profile."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is 10,000 steps a day enough?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "10,000 steps per day is a popular goal and equals roughly 5 miles (8 km) of walking. Research suggests that even 7,000-8,000 steps per day can provide significant health benefits. The best goal is one that challenges you while remaining achievable."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How accurate is this calculator?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "This calculator provides a reasonable estimate based on your physical characteristics. For the most accurate results, you can measure your actual step length by walking a known distance and counting your steps."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <LandingFooter />
     </div>
   );

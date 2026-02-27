@@ -223,6 +223,58 @@ export default function WeightLossWalkingCalculatorPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How many steps do I need to lose weight?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For weight loss, most people need 12,000-15,000 steps daily, combined with a healthy diet. The exact number depends on your current weight, goal, and timeframe. Use our calculator for a personalized recommendation."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I lose weight by walking alone?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, but it's most effective when combined with a balanced diet. Walking creates a calorie deficit, but managing food intake accelerates results. Walking 10,000 steps burns about 400-500 calories."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does it take to see results?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "With consistent walking and proper diet, you may notice changes in 2-3 weeks. Significant weight loss typically becomes visible after 4-6 weeks. Remember, sustainable weight loss is gradual."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should I walk every day?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Walking 5-6 days per week with 1-2 rest days is ideal for most people. Rest days help prevent burnout and allow your body to recover. You can still do light activity on rest days."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is brisk walking better for weight loss?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, brisk walking (about 6 km/h) burns more calories per minute than leisurely walking. However, the total distance matters more than speed. Walk at a pace you can maintain consistently."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <LandingFooter />
     </div>
   );

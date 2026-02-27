@@ -210,6 +210,50 @@ export default function DailyStepGoalCalculatorPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Is 10,000 steps a day necessary?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No, 10,000 steps isn't a magic number. Recent studies show significant health benefits start at around 7,000-8,000 steps per day. The key is to be more active than you currently are."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps for weight loss?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For weight loss, aim for 12,000+ steps daily combined with a balanced diet. This can burn an extra 400-600 calories per day. Remember, consistency matters more than hitting a perfect number every day."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I increase my daily steps?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Start by adding 1,000 steps per week to your current average. Take walking meetings, park farther away, use stairs instead of elevators, and schedule short walking breaks throughout the day."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What if I can't reach my goal?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Any increase in activity is beneficial. If your goal feels too ambitious, adjust it to something more achievable. The best goal is one you can maintain consistently. Focus on progress, not perfection."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <LandingFooter />
     </div>
   );

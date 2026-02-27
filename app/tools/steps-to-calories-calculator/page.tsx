@@ -218,6 +218,50 @@ export default function StepsToCaloriesCalculatorPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How many calories does 10,000 steps burn?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For an average adult weighing 70kg (154 lbs), 10,000 steps burns approximately 400-500 calories. This varies based on your weight, walking speed, and terrain."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps do I need to burn 500 calories?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For a 70kg person, you'd need approximately 12,500 steps to burn 500 calories. Use the calculator above with your specific weight for a more accurate estimate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does walking speed affect calories burned?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, walking faster burns more calories per minute. However, for the same number of steps, the difference is minimal. Brisk walking (about 6 km/h) can burn 10-20% more calories than a leisurely stroll."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is counting calories from steps accurate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Step-based calorie calculations provide a reasonable estimate but aren't perfectly accurate. Factors like terrain, incline, and individual metabolism can affect actual calorie burn. Use these numbers as a general guide."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <LandingFooter />
     </div>
   );

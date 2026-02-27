@@ -318,6 +318,58 @@ export default function WalkingCaloriesCalculatorPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How many calories does walking 1 mile burn?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Walking 1 mile burns approximately 80-100 calories for most people. The exact amount depends on your weight and walking speed. Heavier individuals burn more calories per mile."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many calories does 30 minutes of walking burn?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A 30-minute walk at normal pace burns roughly 100-150 calories for most adults. Walking briskly can increase this to 150-200 calories. Use the calculator above for a personalized estimate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does walking speed affect calorie burn?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, significantly. Walking faster increases your MET value and burns more calories per minute. Brisk walking (6.4 km/h) burns about 30% more calories than a leisurely stroll (3.2 km/h)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is MET and why does it matter?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "MET (Metabolic Equivalent of Task) is a scientific measure of energy expenditure. A MET of 1 represents your resting metabolic rate. Walking at normal pace has a MET of 3.5, meaning you burn 3.5 times more calories than at rest."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much fat can I burn from walking?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "One kilogram of body fat contains approximately 7,700 calories. Walking 10,000 steps daily (about 400 calories) would burn roughly 1 kg of fat every 19 days, assuming no change in diet. Combine walking with a healthy diet for best results."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <LandingFooter />
     </div>
   );

@@ -212,6 +212,50 @@ export default function WalkingTimeCalculatorPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How long does it take to walk 5 km?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "At a normal pace (5 km/h), it takes about 60 minutes to walk 5 km. At a brisk pace (6.4 km/h), you can complete it in about 47 minutes."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does it take to walk 1 mile?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A mile takes approximately 15-20 minutes at a normal walking pace. Brisk walkers can complete it in 12-15 minutes."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does it take to walk 10,000 steps?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "10,000 steps equals roughly 7-8 km (4-5 miles). At a normal pace, this takes about 1 hour and 20-40 minutes. You don't need to do this all at once – spread it throughout the day."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should I include breaks in my walking time?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For walks longer than 30 minutes, short breaks can help maintain energy and prevent fatigue. Our calculator can add 5-minute breaks for every 30 minutes of walking if you enable this option."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <LandingFooter />
     </div>
   );

@@ -230,6 +230,50 @@ export default function StepsPerMileCalculatorPage() {
         </div>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How many steps are in a mile?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "On average, there are about 2,000-2,500 steps in a mile. The exact number depends on your height and stride length. Shorter people take more steps, while taller people take fewer."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps are in a kilometer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "On average, there are about 1,250-1,550 steps in a kilometer. This is roughly 62% of the steps in a mile, since a kilometer is about 0.62 miles."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does walking speed affect steps per mile?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, slightly. When you walk faster or run, your stride lengthens, so you take fewer steps per mile. However, for most walking speeds, the difference is relatively small."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I measure my actual step length?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Walk a known distance (like 100 feet) at your normal pace and count your steps. Divide the distance by the number of steps to get your average step length. You can also mark a starting point, take 10 steps, and measure the distance covered."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <LandingFooter />
     </div>
   );
