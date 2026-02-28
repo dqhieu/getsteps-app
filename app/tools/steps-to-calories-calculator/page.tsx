@@ -8,23 +8,25 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Steps to Calories Calculator - How Many Calories in 10,000 Steps?",
+  title: "Steps to Calories Calculator: Convert Steps to Calories Burned",
   description:
-    "Calculate how many calories you burn from walking steps. Find out how many calories 10,000 steps burns based on your weight, gender, and age.",
+    "Free steps to calories calculator. 10,000 steps burns ~400 cal (70 kg) or ~350 cal (60 kg). Enter your steps, weight, and age for a personalized calorie estimate.",
   keywords: [
     "steps to calories",
+    "steps to calories calculator",
     "calories burned walking",
     "how many calories in 10000 steps",
+    "calories burned 10000 steps 70 kg",
+    "calories burned per 1000 steps",
     "calories per step",
     "step calorie calculator",
     "walking calorie burn",
     "steps calorie converter",
-    "calories burned per step",
   ],
   openGraph: {
-    title: "Steps to Calories Calculator",
+    title: "Steps to Calories Calculator: Convert Steps to Calories Burned",
     description:
-      "Calculate how many calories you burn from walking steps. Find out how many calories 10,000 steps burns.",
+      "Free steps to calories calculator. 10,000 steps burns ~400 cal (70 kg). Enter your steps and weight for a personalized estimate.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/steps-to-calories-calculator`,
     images: [
@@ -53,8 +55,9 @@ export default function StepsToCaloriesCalculatorPage() {
             Steps to Calories Calculator
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Calculate how many calories you burn from your daily steps. Get
-            personalized estimates based on your weight and activity level.
+            Convert your daily steps to calories burned. Enter your steps,
+            weight, and age for a personalized estimate — or use our reference
+            tables below for quick lookups by body weight.
           </p>
         </div>
       </section>
@@ -160,6 +163,29 @@ export default function StepsToCaloriesCalculatorPage() {
                       actual calorie burn. Use these numbers as a general guide.
                     </p>
                   </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many calories does 10,000 steps burn at 70 kg?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      A 70 kg (154 lbs) person burns approximately 400 calories
+                      walking 10,000 steps at a normal pace. This is based on
+                      roughly 0.04 calories per step, scaled by body weight.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many calories do 1,000 steps burn?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      For a 70 kg person, 1,000 steps burns about 40 calories.
+                      For a 60 kg person it&apos;s ~34 cal, and for an 80 kg person
+                      it&apos;s ~46 cal. The heavier you are, the more calories each
+                      step burns.
+                    </p>
+                  </details>
                 </div>
               </div>
             </div>
@@ -174,6 +200,88 @@ export default function StepsToCaloriesCalculatorPage() {
             </div>
 
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["steps-to-calories-calculator"] || []} />
+          </div>
+        </div>
+      </section>
+
+      {/* Multi-Weight Reference Table */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+              Steps to Calories by Body Weight
+            </h2>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+              Quick reference table showing calories burned at different step
+              counts for common body weights. Based on average walking pace.
+            </p>
+
+            <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
+              <table className="w-full min-w-[500px]">
+                <thead>
+                  <tr className="border-b-2 border-neutral-200 dark:border-neutral-700">
+                    <th className="text-left py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Steps
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      55 kg
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      70 kg
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      85 kg
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      100 kg
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { steps: "1,000", w55: "31", w70: "40", w85: "49", w100: "57" },
+                    { steps: "3,000", w55: "94", w70: "120", w85: "146", w100: "171" },
+                    { steps: "5,000", w55: "157", w70: "200", w85: "243", w100: "286" },
+                    { steps: "7,500", w55: "236", w70: "300", w85: "364", w100: "429" },
+                    { steps: "10,000", w55: "314", w70: "400", w85: "486", w100: "571", highlight: true },
+                    { steps: "12,500", w55: "393", w70: "500", w85: "607", w100: "714" },
+                    { steps: "15,000", w55: "471", w70: "600", w85: "729", w100: "857" },
+                    { steps: "20,000", w55: "629", w70: "800", w85: "971", w100: "1,143" },
+                  ].map((row) => (
+                    <tr
+                      key={row.steps}
+                      className={`border-b border-neutral-100 dark:border-neutral-700/50 ${
+                        row.highlight
+                          ? "bg-[#ED772F]/5 dark:bg-[#ED772F]/10"
+                          : ""
+                      }`}
+                    >
+                      <td className="py-3 px-2 text-sm font-medium text-neutral-900 dark:text-white">
+                        {row.steps}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                        {row.w55} cal
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center font-semibold text-[#ED772F]">
+                        {row.w70} cal
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                        {row.w85} cal
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                        {row.w100} cal
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">
+              Calorie values based on average walking pace (~5 km/h). Actual burn
+              varies with walking speed, terrain, and individual metabolism. Use
+              the calculator above for a personalized estimate.
+            </p>
           </div>
         </div>
       </section>
@@ -255,6 +363,22 @@ export default function StepsToCaloriesCalculatorPage() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "Step-based calorie calculations provide a reasonable estimate but aren't perfectly accurate. Factors like terrain, incline, and individual metabolism can affect actual calorie burn. Use these numbers as a general guide."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many calories does 10,000 steps burn at 70 kg?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A 70 kg (154 lbs) person burns approximately 400 calories walking 10,000 steps at a normal pace. This is based on roughly 0.04 calories per step, scaled by body weight."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many calories do 1,000 steps burn?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For a 70 kg person, 1,000 steps burns about 40 calories. For a 60 kg person it's ~34 cal, and for an 80 kg person it's ~46 cal. The heavier you are, the more calories each step burns."
                 }
               }
             ]

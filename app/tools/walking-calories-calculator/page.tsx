@@ -159,6 +159,42 @@ export default function WalkingCaloriesCalculatorPage() {
 
                   <details className="group">
                     <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      What is the MET value for walking at 5 km/h (3.1 mph)?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      The MET value for walking at 5 km/h (3.1 mph) is 3.5. This
+                      is considered a normal walking pace. A 70 kg person walking at
+                      this speed burns approximately 245 calories per hour (3.5 ×
+                      70 = 245 kcal/hr).
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      What is the MET value for walking at 4.5 km/h (2.8 mph)?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      The MET value for walking at 4.5 km/h (2.8 mph) is 3.3. This
+                      is a steady, comfortable walking pace. For a 70 kg person,
+                      this burns about 231 calories per hour (3.3 × 70 = 231
+                      kcal/hr).
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      What is the MET value for brisk walking at 6 km/h?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      Brisk walking at 6.0 km/h (3.7 mph) has a MET value of 4.5.
+                      This is about 30% more energy-intensive than normal walking
+                      (MET 3.5). A 70 kg person burns roughly 315 calories per hour
+                      at this pace.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
                       How much fat can I burn from walking?
                     </summary>
                     <p className="mt-2 text-sm">
@@ -355,6 +391,30 @@ export default function WalkingCaloriesCalculatorPage() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "MET (Metabolic Equivalent of Task) is a scientific measure of energy expenditure. A MET of 1 represents your resting metabolic rate. Walking at normal pace has a MET of 3.5, meaning you burn 3.5 times more calories than at rest."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the MET value for walking at 5 km/h (3.1 mph)?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The MET value for walking at 5 km/h (3.1 mph) is 3.5. This is considered a normal walking pace. A 70 kg person walking at this speed burns approximately 245 calories per hour (3.5 × 70 = 245 kcal/hr)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the MET value for walking at 4.5 km/h (2.8 mph)?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The MET value for walking at 4.5 km/h (2.8 mph) is 3.3. This is a steady, comfortable walking pace. For a 70 kg person, this burns about 231 calories per hour (3.3 × 70 = 231 kcal/hr)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the MET value for brisk walking at 6 km/h?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Brisk walking at 6.0 km/h (3.7 mph) has a MET value of 4.5. This is about 30% more energy-intensive than normal walking (MET 3.5). A 70 kg person burns roughly 315 calories per hour at this pace."
                 }
               },
               {
