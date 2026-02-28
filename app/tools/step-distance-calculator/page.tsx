@@ -8,25 +8,25 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Step Distance Calculator - Convert Steps to Distance",
+  title: "Step Distance Calculator: Convert Km to Steps & Steps to Km",
   description:
-    "Calculate how far you can walk with a certain number of steps, or find out how many steps you need to reach your distance goal. Personalized calculations based on your height, gender, and age.",
+    "Convert km to steps or steps to distance. 1 km ≈ 1,300 steps, 1 mile ≈ 2,100 steps. Personalized by your height, gender, and stride length.",
   keywords: [
-    "step calculator",
+    "km in steps",
+    "steps to km",
+    "step distance calculator",
+    "stride length calculator",
     "steps to distance",
     "distance to steps",
     "walking distance calculator",
     "step length calculator",
-    "pedometer calculator",
-    "how many steps per mile",
     "how many steps per km",
-    "steps to km",
     "steps to miles",
   ],
   openGraph: {
-    title: "Step Distance Calculator",
+    title: "Step Distance Calculator: Convert Km to Steps & Steps to Km",
     description:
-      "Calculate how far you can walk with a certain number of steps, or find out how many steps you need to reach your distance goal.",
+      "Convert km to steps or steps to distance. 1 km ≈ 1,300 steps. Personalized by height, gender, and stride length.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/step-distance-calculator`,
     images: [
@@ -55,8 +55,8 @@ export default function StepDistanceCalculatorPage() {
             Step Distance Calculator
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Calculate how far you can walk with a certain number of steps, or
-            find out how many steps you need to reach your distance goal.
+            Convert steps to distance or distance to steps. Get personalized
+            results based on your height, gender, and stride length.
           </p>
         </div>
       </section>
@@ -152,6 +152,28 @@ export default function StepDistanceCalculatorPage() {
 
                   <details className="group">
                     <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many steps is 1.8 km?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      1.8 km is approximately 2,340 steps for an average adult
+                      (stride length ~77 cm). Use the calculator above with your
+                      height for a more precise estimate.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many steps is 3.5 km?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      3.5 km is approximately 4,550 steps for an average adult.
+                      Taller people take fewer steps (longer stride), while
+                      shorter people take more.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
                       How accurate is this calculator?
                     </summary>
                     <p className="mt-2 text-sm">
@@ -175,6 +197,77 @@ export default function StepDistanceCalculatorPage() {
             </div>
 
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["step-distance-calculator"] || []} />
+          </div>
+        </div>
+      </section>
+
+      {/* Km to Steps Reference Table */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+              Km to Steps Quick Reference
+            </h2>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+              Approximate step counts for common distances, based on an average
+              stride length of 0.75 m (average adult).
+            </p>
+
+            <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
+              <table className="w-full min-w-[400px]">
+                <thead>
+                  <tr className="border-b-2 border-neutral-200 dark:border-neutral-700">
+                    <th className="text-left py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Distance
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Steps (approx.)
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Walking Time
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { distance: "0.5 km", steps: "650", time: "~6 min" },
+                    { distance: "1 km", steps: "1,300", time: "~12 min" },
+                    { distance: "1.8 km", steps: "2,340", time: "~22 min" },
+                    { distance: "2 km", steps: "2,600", time: "~24 min" },
+                    { distance: "3 km", steps: "3,900", time: "~36 min" },
+                    { distance: "3.5 km", steps: "4,550", time: "~42 min" },
+                    { distance: "5 km (1 mile = ~1.6 km)", steps: "6,500", time: "~60 min", highlight: true },
+                    { distance: "8 km (5 miles)", steps: "10,400", time: "~96 min" },
+                    { distance: "10 km", steps: "13,000", time: "~2 hr" },
+                  ].map((row) => (
+                    <tr
+                      key={row.distance}
+                      className={`border-b border-neutral-100 dark:border-neutral-700/50 ${
+                        row.highlight
+                          ? "bg-[#ED772F]/5 dark:bg-[#ED772F]/10"
+                          : ""
+                      }`}
+                    >
+                      <td className="py-3 px-2 text-sm font-medium text-neutral-900 dark:text-white">
+                        {row.distance}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center font-semibold text-[#ED772F]">
+                        {row.steps}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                        {row.time}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">
+              Based on average stride length (~0.75 m) and normal walking pace
+              (~5 km/h). Use the calculator above for results personalized to
+              your height and gender.
+            </p>
           </div>
         </div>
       </section>
@@ -248,6 +341,22 @@ export default function StepDistanceCalculatorPage() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "10,000 steps per day is a popular goal and equals roughly 5 miles (8 km) of walking. Research suggests that even 7,000-8,000 steps per day can provide significant health benefits. The best goal is one that challenges you while remaining achievable."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps is 1.8 km?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "1.8 km is approximately 2,340 steps for an average adult (stride length ~77 cm). Use the calculator for a more precise estimate based on your height."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps is 3.5 km?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "3.5 km is approximately 4,550 steps for an average adult. Taller people take fewer steps (longer stride), while shorter people take more."
                 }
               },
               {

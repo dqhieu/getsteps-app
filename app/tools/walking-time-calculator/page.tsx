@@ -8,23 +8,24 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Walking Time Calculator - How Long to Walk Any Distance",
+  title: "Walking Time Calculator: How Long to Walk 1 km, 5 km, or Any Distance",
   description:
-    "Calculate how long it takes to walk any distance at different speeds. Find out walking time for 1 mile, 5 km, or any distance you choose.",
+    "How long does it take to walk 5 km? About 60 min at normal pace. Calculate walking time for any distance — 1 km (12 min), 1 mile (18 min), 8 km (96 min), and more.",
   keywords: [
+    "walking time",
     "walking time calculator",
     "how long to walk 5 km",
+    "8km walk time",
+    "how long to walk a mile",
     "walking distance time",
-    "time to walk a mile",
     "walking pace calculator",
     "how long to walk 10000 steps",
     "walk duration calculator",
-    "walking speed time",
   ],
   openGraph: {
-    title: "Walking Time Calculator",
+    title: "Walking Time Calculator: How Long to Walk Any Distance",
     description:
-      "Calculate how long it takes to walk any distance at different speeds.",
+      "Calculate walking time for any distance. 5 km ≈ 60 min, 1 mile ≈ 18 min at normal pace.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/walking-time-calculator`,
     images: [
@@ -53,8 +54,9 @@ export default function WalkingTimeCalculatorPage() {
             Walking Time Calculator
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Find out how long it will take you to walk any distance. Plan your
-            walks with accurate time estimates for different paces.
+            How long does it take to walk 5 km, 8 km, or 28 miles? Enter any
+            distance and get walking time estimates for slow, normal, brisk,
+            and fast paces.
           </p>
         </div>
       </section>
