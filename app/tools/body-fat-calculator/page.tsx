@@ -5,7 +5,8 @@ import { LandingFooter } from "@/components/landing-footer";
 import { BodyFatCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
-import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
+import { PersonaLinks } from "@/components/persona-links";
+import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Body Fat Percentage Calculator - Navy Method (No Equipment Needed)",
@@ -177,6 +178,7 @@ export default function BodyFatCalculatorPage() {
             </div>
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["body-fat-calculator"] || []} />
+          <PersonaLinks items={TOOL_RELATED_PERSONAS["body-fat-calculator"] || []} />
         </div>
       </section>
 

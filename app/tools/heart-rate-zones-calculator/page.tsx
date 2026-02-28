@@ -5,7 +5,8 @@ import { LandingFooter } from "@/components/landing-footer";
 import { HeartRateZonesCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
-import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
+import { PersonaLinks } from "@/components/persona-links";
+import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Heart Rate Zone Calculator - Find Your 5 Training Zones",
@@ -178,6 +179,7 @@ export default function HeartRateZonesCalculatorPage() {
               </div>
             </div>
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["heart-rate-zones-calculator"] || []} />
+            <PersonaLinks items={TOOL_RELATED_PERSONAS["heart-rate-zones-calculator"] || []} />
           </div>
         </div>
       </section>

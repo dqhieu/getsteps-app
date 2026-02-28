@@ -3,8 +3,9 @@ import Image from "next/image";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
+import { PersonaLinks } from "@/components/persona-links";
 import { StepDistanceCalculatorClient } from "./client";
-import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS } from "@/lib/internal-links";
+import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -197,6 +198,7 @@ export default function StepDistanceCalculatorPage() {
             </div>
 
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["step-distance-calculator"] || []} />
+            <PersonaLinks items={TOOL_RELATED_PERSONAS["step-distance-calculator"] || []} />
           </div>
         </div>
       </section>

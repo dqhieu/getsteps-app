@@ -9,7 +9,8 @@ import { getPostBySlug, getAllSlugs } from "@/lib/blog";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RelatedContentSection } from "@/components/related-content-section";
-import { BLOG_RELATED_POSTS, BLOG_RELATED_TOOLS } from "@/lib/internal-links";
+import { PersonaLinks } from "@/components/persona-links";
+import { BLOG_RELATED_POSTS, BLOG_RELATED_TOOLS, BLOG_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const SITE_KEYWORDS = [
@@ -166,6 +167,7 @@ export default async function BlogPostPage({ params }: Props) {
           relatedPosts={BLOG_RELATED_POSTS[slug] || []}
           relatedTools={BLOG_RELATED_TOOLS[slug] || []}
         />
+        <PersonaLinks items={BLOG_RELATED_PERSONAS[slug] || []} />
 
         <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
           <Link

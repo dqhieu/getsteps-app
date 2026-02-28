@@ -339,6 +339,141 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   ],
 };
 
+// Tool slug → related persona page links (reverse of persona.relatedTools)
+export interface PersonaLink {
+  title: string;
+  slug: string;
+}
+
+export const TOOL_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
+  "daily-step-goal-calculator": [
+    { title: "Seniors", slug: "seniors" },
+    { title: "Beginners", slug: "beginners" },
+    { title: "Kids", slug: "kids" },
+    { title: "Pregnancy", slug: "pregnancy" },
+    { title: "Office Workers", slug: "office-workers" },
+    { title: "Heart Health", slug: "heart-health" },
+  ],
+  "walking-time-calculator": [
+    { title: "Seniors", slug: "seniors" },
+    { title: "Beginners", slug: "beginners" },
+    { title: "Pregnancy", slug: "pregnancy" },
+    { title: "Office Workers", slug: "office-workers" },
+    { title: "Heart Health", slug: "heart-health" },
+  ],
+  "walking-calories-calculator": [
+    { title: "Seniors", slug: "seniors" },
+    { title: "Weight Loss", slug: "weight-loss" },
+    { title: "Women", slug: "women" },
+    { title: "Pregnancy", slug: "pregnancy" },
+    { title: "Nurses", slug: "nurses" },
+  ],
+  "weight-loss-walking-calculator": [
+    { title: "Weight Loss", slug: "weight-loss" },
+  ],
+  "steps-to-calories-calculator": [
+    { title: "Weight Loss", slug: "weight-loss" },
+    { title: "Office Workers", slug: "office-workers" },
+  ],
+  "step-distance-calculator": [
+    { title: "Beginners", slug: "beginners" },
+    { title: "Kids", slug: "kids" },
+    { title: "Nurses", slug: "nurses" },
+  ],
+  "activity-to-steps-converter": [
+    { title: "Kids", slug: "kids" },
+  ],
+  "running-pace-calculator": [
+    { title: "Runners", slug: "runners" },
+  ],
+  "marathon-pace-predictor": [
+    { title: "Runners", slug: "runners" },
+  ],
+  "vo2-max-calculator": [
+    { title: "Runners", slug: "runners" },
+  ],
+  "heart-rate-zones-calculator": [
+    { title: "Runners", slug: "runners" },
+    { title: "Heart Health", slug: "heart-health" },
+  ],
+  "tdee-calculator": [
+    { title: "Women", slug: "women" },
+  ],
+  "body-fat-calculator": [
+    { title: "Women", slug: "women" },
+  ],
+  "steps-per-mile-calculator": [
+    { title: "Nurses", slug: "nurses" },
+  ],
+};
+
+// Blog slug → related persona page links (reverse of persona.relatedPosts)
+export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
+  "recommended-steps-per-day-by-age": [
+    { title: "Seniors", slug: "seniors" },
+    { title: "Beginners", slug: "beginners" },
+    { title: "Pregnancy", slug: "pregnancy" },
+    { title: "Heart Health", slug: "heart-health" },
+  ],
+  "benefits-of-walking-everyday": [
+    { title: "Seniors", slug: "seniors" },
+    { title: "Kids", slug: "kids" },
+    { title: "Pregnancy", slug: "pregnancy" },
+    { title: "Heart Health", slug: "heart-health" },
+  ],
+  "morning-walk-benefits": [
+    { title: "Seniors", slug: "seniors" },
+    { title: "Pregnancy", slug: "pregnancy" },
+    { title: "Office Workers", slug: "office-workers" },
+    { title: "Heart Health", slug: "heart-health" },
+  ],
+  "walking-for-weight-loss-how-many-steps": [
+    { title: "Weight Loss", slug: "weight-loss" },
+  ],
+  "walking-to-lose-weight-chart": [
+    { title: "Weight Loss", slug: "weight-loss" },
+  ],
+  "10000-steps-weight-loss-results": [
+    { title: "Weight Loss", slug: "weight-loss" },
+  ],
+  "10000-steps-a-day-benefits": [
+    { title: "Beginners", slug: "beginners" },
+    { title: "Kids", slug: "kids" },
+    { title: "Office Workers", slug: "office-workers" },
+  ],
+  "how-many-steps-in-30-minutes-walking": [
+    { title: "Beginners", slug: "beginners" },
+  ],
+  "running-pace-calculator-guide": [
+    { title: "Runners", slug: "runners" },
+  ],
+  "how-many-steps-in-a-mile-running": [
+    { title: "Runners", slug: "runners" },
+  ],
+  "calories-burned-hiking": [
+    { title: "Runners", slug: "runners" },
+  ],
+  "calories-burned-walking-by-time-and-distance": [
+    { title: "Women", slug: "women" },
+    { title: "Nurses", slug: "nurses" },
+  ],
+  "heart-rate-zones-explained": [
+    { title: "Women", slug: "women" },
+  ],
+  "what-is-tdee": [
+    { title: "Women", slug: "women" },
+  ],
+  "walking-after-eating-benefits": [
+    { title: "Office Workers", slug: "office-workers" },
+  ],
+  "how-many-steps-in-a-mile": [
+    { title: "Nurses", slug: "nurses" },
+  ],
+  "how-many-miles-is-10000-steps": [
+    { title: "Nurses", slug: "nurses" },
+  ],
+};
+
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "10000-steps-a-day-benefits": [

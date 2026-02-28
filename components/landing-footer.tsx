@@ -37,7 +37,7 @@ export function LandingFooter() {
   return (
     <footer className="py-12 border-t border-neutral-200 dark:border-neutral-800">
       <div className="container mx-auto px-4 max-w-5xl">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto_auto] gap-8 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1fr_auto_auto_auto_auto] gap-8 md:gap-12">
           {/* Brand column */}
           <div>
             <div className="flex items-center gap-3 mb-3">
@@ -86,6 +86,31 @@ export function LandingFooter() {
             </h3>
             <ul className="space-y-2">
               {RUNNING_FITNESS_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Steps For column */}
+          <div>
+            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
+              Steps For
+            </h3>
+            <ul className="space-y-2">
+              {[
+                { title: "Seniors", href: "/for/seniors" },
+                { title: "Weight Loss", href: "/for/weight-loss" },
+                { title: "Beginners", href: "/for/beginners" },
+                { title: "Runners", href: "/for/runners" },
+                { title: "View All →", href: "/for" },
+              ].map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

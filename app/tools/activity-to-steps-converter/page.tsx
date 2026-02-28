@@ -5,7 +5,8 @@ import { LandingFooter } from "@/components/landing-footer";
 import { ActivityToStepsCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
-import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
+import { PersonaLinks } from "@/components/persona-links";
+import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Activity to Steps Converter - Convert Any Exercise to Steps",
@@ -149,6 +150,7 @@ export default function ActivityToStepsConverterPage() {
               </div>
             </div>
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["activity-to-steps-converter"] || []} />
+            <PersonaLinks items={TOOL_RELATED_PERSONAS["activity-to-steps-converter"] || []} />
           </div>
         </div>
       </section>

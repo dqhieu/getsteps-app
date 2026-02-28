@@ -5,7 +5,8 @@ import { LandingFooter } from "@/components/landing-footer";
 import { WaterIntakeCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
-import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
+import { PersonaLinks } from "@/components/persona-links";
+import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Water Intake Calculator - How Much Water Should I Drink Per Day?",
@@ -156,6 +157,7 @@ export default function WaterIntakeCalculatorPage() {
               </div>
             </div>
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["water-intake-calculator"] || []} />
+            <PersonaLinks items={TOOL_RELATED_PERSONAS["water-intake-calculator"] || []} />
           </div>
         </div>
       </section>

@@ -4,7 +4,8 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
-import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
+import { PersonaLinks } from "@/components/persona-links";
+import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { DistanceEquivalentCalculatorClient } from "./client";
 
 export const metadata: Metadata = {
@@ -123,6 +124,7 @@ export default function DistanceEquivalentCalculatorPage() {
             </div>
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["distance-equivalent-calculator"] || []} />
+          <PersonaLinks items={TOOL_RELATED_PERSONAS["distance-equivalent-calculator"] || []} />
         </div>
       </section>
 

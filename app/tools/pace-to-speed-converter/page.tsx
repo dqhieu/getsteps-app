@@ -4,7 +4,8 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
-import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
+import { PersonaLinks } from "@/components/persona-links";
+import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { PaceSpeedConverterClient } from "./client";
 
 export const metadata: Metadata = {
@@ -123,6 +124,7 @@ export default function PaceToSpeedConverterPage() {
             </div>
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["pace-to-speed-converter"] || []} />
+          <PersonaLinks items={TOOL_RELATED_PERSONAS["pace-to-speed-converter"] || []} />
         </div>
       </section>
 

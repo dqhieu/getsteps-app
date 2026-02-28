@@ -5,7 +5,8 @@ import { LandingFooter } from "@/components/landing-footer";
 import { CalorieDeficitCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
-import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
+import { PersonaLinks } from "@/components/persona-links";
+import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Calorie Deficit Calculator - How Much to Eat to Lose Weight",
@@ -182,6 +183,7 @@ export default function CalorieDeficitCalculatorPage() {
             </div>
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["calorie-deficit-calculator"] || []} />
+          <PersonaLinks items={TOOL_RELATED_PERSONAS["calorie-deficit-calculator"] || []} />
         </div>
       </section>
 
