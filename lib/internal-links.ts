@@ -302,6 +302,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Best Step Counter App for Apple Watch", href: "/blog/best-step-counter-app-apple-watch-2026" },
     { title: "Benefits of Walking Every Day", href: "/blog/benefits-of-walking-everyday" },
   ],
+  "how-long-to-walk-10000-steps": [
+    { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
+    { title: "How Many Steps in 30 Minutes of Walking?", href: "/blog/how-many-steps-in-30-minutes-walking" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+  ],
+  "how-many-steps-burn-500-calories": [
+    { title: "How Many Steps to Lose a Pound?", href: "/blog/how-many-steps-to-lose-a-pound" },
+    { title: "How Many Calories Does 10,000 Steps Burn?", href: "/blog/10000-steps-calories-burned" },
+    { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
+  ],
+  "how-many-steps-in-30-minutes-walking": [
+    { title: "How Long Does It Take to Walk 10,000 Steps?", href: "/blog/how-long-to-walk-10000-steps" },
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+    { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+  ],
+  "how-many-steps-to-lose-a-pound": [
+    { title: "How Many Steps Burn 500 Calories?", href: "/blog/how-many-steps-burn-500-calories" },
+    { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },
+    { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+  ],
+  "does-walking-reduce-belly-fat": [
+    { title: "How Many Steps to Lose a Pound?", href: "/blog/how-many-steps-to-lose-a-pound" },
+    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
+    { title: "10,000 Steps Weight Loss Results", href: "/blog/10000-steps-weight-loss-results" },
+  ],
+  "morning-walk-benefits": [
+    { title: "Benefits of Walking Every Day", href: "/blog/benefits-of-walking-everyday" },
+    { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },
+    { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
+  ],
+  "walking-after-eating-benefits": [
+    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
+    { title: "How Many Steps in 30 Minutes of Walking?", href: "/blog/how-many-steps-in-30-minutes-walking" },
+    { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },
+  ],
 };
 
 // Blog slug → related tool links
@@ -433,5 +468,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "best-pedometer-app-iphone-2026": [
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "how-long-to-walk-10000-steps": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-many-steps-burn-500-calories": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-many-steps-in-30-minutes-walking": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-steps-to-lose-a-pound": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "does-walking-reduce-belly-fat": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "morning-walk-benefits": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "walking-after-eating-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
   ],
 };
