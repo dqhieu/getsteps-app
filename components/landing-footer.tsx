@@ -108,8 +108,13 @@ export function LandingFooter() {
                 { title: "Seniors", href: "/for/seniors" },
                 { title: "Weight Loss", href: "/for/weight-loss" },
                 { title: "Beginners", href: "/for/beginners" },
+                { title: "Kids", href: "/for/kids" },
                 { title: "Runners", href: "/for/runners" },
-                { title: "View All →", href: "/for" },
+                { title: "Women", href: "/for/women" },
+                { title: "Pregnancy", href: "/for/pregnancy" },
+                { title: "Nurses", href: "/for/nurses" },
+                { title: "Office Workers", href: "/for/office-workers" },
+                { title: "Heart Health", href: "/for/heart-health" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
