@@ -69,6 +69,24 @@ export function LandingHero() {
             className="h-12 w-auto hidden dark:block"
           />
         </a>
+
+        {/* Product Hunt Badge */}
+        <a
+          href="https://www.producthunt.com/products/steps-workout-pedometer?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-steps-workout-pedometer"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 transition-transform hover:scale-105 active:scale-95 inline-block"
+          aria-label="View Steps on Product Hunt"
+        >
+          <img
+            alt="Steps: Workout & Pedometer - Track steps, not you. | Product Hunt"
+            width="250"
+            height="54"
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1086228&theme=light&t=1772458137908"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
       </div>
     </section>
   );
