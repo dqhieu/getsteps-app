@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ContactLink } from "@/components/contact-link";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const STEP_WALKING_LINKS = [
@@ -191,12 +192,12 @@ export function LandingFooter() {
                 </Link>
               </li>
               <li>
-                <a
-                  href={`mailto:${SITE_CONFIG.supportEmail}`}
+                <ContactLink
+                  email={SITE_CONFIG.supportEmail}
                   className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
                 >
                   Contact
-                </a>
+                </ContactLink>
               </li>
             </ul>
 
