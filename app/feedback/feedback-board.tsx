@@ -135,7 +135,7 @@ function AppStoreDialog({ mode, onClose }: { mode: DialogMode; onClose: () => vo
 
 export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
   const [filter, setFilter] = useState<FilterTab>("all");
-  const [sort, setSort] = useState<SortOption>("votes");
+  const [sort, setSort] = useState<SortOption>("newest");
   const [dialogMode, setDialogMode] = useState<DialogMode>(null);
   const closeDialog = useCallback(() => setDialogMode(null), []);
 
