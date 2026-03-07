@@ -141,32 +141,36 @@ For each of the 7 keywords, use `WebSearch` to analyze top results:
 
 ## Phase 5: Write 7 Blog Posts
 
-For each of the 7 keywords, follow `steps-blog-generator` SKILL.md workflow:
+### 5a. Determine publish dates
 
-### 5a. Create MDX file at `content/blog/{slug}.mdx`
+Before writing, scan `content/blog/*.mdx` frontmatter to find the latest existing `date` value. Assign each of the 7 new posts a sequential date starting from the day after that latest date (one post per day). This ensures consistent chronological ordering and avoids date collisions.
 
-Frontmatter:
-```yaml
----
-title: "SEO Title with Keyword (<60 chars)"
-description: "Meta description with keyword (<160 chars)"
-date: "YYYY-MM-DD"
-author:
-  name: "Steps Team"
-  avatar: "/app_icon.png"
-image: "/blog/{slug}.jpg"
----
-```
+Example: if latest existing post is `2026-03-05`, assign dates `2026-03-06` through `2026-03-12`.
 
-Content must include:
-- Keyword in H1, first paragraph, 2-3 H2s
-- FAQ section for featured snippets
-- Internal links to relevant tool pages (from site-context-and-tool-pages.md)
-- **Cross-links between the 7 new posts** where relevant
-- CTA with Steps app download link
-- 2-3% keyword density
+### 5b. Write blog posts via content-creator agent
 
-### 5b. Download Unsplash thumbnails
+For each of the 7 keywords, delegate to `content-creator` agent with this prompt:
+
+> Write an SEO-optimized blog post for getsteps.app.
+>
+> **Keyword:** {keyword}
+> **Volume:** {volume}/mo
+> **Publish date:** {assigned date from 5a, YYYY-MM-DD}
+> **SERP insights:** {summary from Phase 4}
+>
+> **Follow these rules exactly:**
+> - Read `.claude/skills/steps-blog-generator/SKILL.md` for content structure, frontmatter format, and SEO checklist
+> - Read `.claude/skills/steps-seo-weekly/references/site-context-and-tool-pages.md` for internal linking targets
+> - Output: `content/blog/{slug}.mdx`
+> - Use the provided publish date in frontmatter `date` field
+> - Include FAQ section for featured snippets
+> - Cross-link to these related new posts: {list other 6 slugs}
+> - CTA with Steps app download link
+> - 2-3% keyword density
+
+**Efficiency tip:** Spawn multiple `content-creator` agents in parallel for independent posts. Ensure each agent receives the full list of 7 slugs for cross-linking.
+
+### 5c. Download Unsplash thumbnails
 
 For each post, search for a fresh, relevant photo:
 
@@ -181,7 +185,7 @@ curl -L -o public/blog/{slug}.jpg \
   "https://images.unsplash.com/photo-{PHOTO_ID}?w=1200&h=630&fit=crop"
 ```
 
-### 5c. Update internal links registry
+### 5d. Update internal links registry
 
 Add all 7 new posts to `lib/internal-links.ts`:
 
@@ -190,7 +194,7 @@ Add all 7 new posts to `lib/internal-links.ts`:
 
 **DO NOT** modify `TOOL_RELATED_BLOGS` — existing tool pages should keep linking to established posts that already have search authority. The new posts get internal links through their own `BLOG_RELATED_*` entries and inline content links.
 
-### 5d. Build and verify (once after all 7 posts)
+### 5e. Build and verify (once after all 7 posts)
 ```bash
 npm run build
 ```

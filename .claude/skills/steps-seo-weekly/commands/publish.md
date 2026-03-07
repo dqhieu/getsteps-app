@@ -76,32 +76,31 @@ From the research, determine:
 
 ### Phase 3: Blog Post Creation
 
-Follow the `steps-blog-generator` skill workflow exactly:
+#### 3a. Determine publish date
 
-#### 3a. Generate Blog Post MDX
-Create file at `content/blog/{slug}.mdx` with frontmatter:
+Scan `content/blog/*.mdx` frontmatter to find the latest existing `date` value. Assign this new post the day after that latest date. This ensures chronological ordering and avoids date collisions with existing posts.
 
-```yaml
----
-title: "SEO Title with Keyword"
-description: "Meta description under 160 chars with keyword."
-date: "YYYY-MM-DD"
-author:
-  name: "Steps Team"
-  avatar: "/app_icon.png"
-image: "/blog/{slug}.jpg"
----
-```
+#### 3b. Write blog post via content-creator agent
 
-Content structure:
-- H1 with keyword
-- Keyword in first 100 words
-- H2 sections from the brief outline
-- FAQ section for featured snippets
-- CTA with app download link
-- Internal links to relevant tool pages
+Delegate to `content-creator` agent with this prompt:
 
-#### 3b. Download Thumbnail from Unsplash
+> Write an SEO-optimized blog post for getsteps.app.
+>
+> **Keyword:** $ARGUMENTS
+> **Publish date:** {date from 3a, YYYY-MM-DD}
+> **SERP insights:** {summary from Phase 1c}
+> **Content brief:** {outline from Phase 2}
+>
+> **Follow these rules exactly:**
+> - Read `.claude/skills/steps-blog-generator/SKILL.md` for content structure, frontmatter format, and SEO checklist
+> - Read `.claude/skills/steps-seo-weekly/references/site-context-and-tool-pages.md` for internal linking targets
+> - Output: `content/blog/{slug}.mdx`
+> - Use the provided publish date in frontmatter `date` field
+> - Include FAQ section for featured snippets
+> - CTA with Steps app download link
+> - 2-3% keyword density
+
+#### 3c. Download Thumbnail from Unsplash
 ```bash
 mkdir -p public/blog
 curl -L -o public/blog/{slug}.jpg \
@@ -110,7 +109,7 @@ curl -L -o public/blog/{slug}.jpg \
 
 Pick photo ID based on topic from the reference table in steps-blog-generator SKILL.md.
 
-#### 3c. Build and Verify
+#### 3d. Build and Verify
 ```bash
 npm run build
 ```
