@@ -337,6 +337,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Steps in 30 Minutes of Walking?", href: "/blog/how-many-steps-in-30-minutes-walking" },
     { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },
   ],
+  "how-far-is-5000-steps": [
+    { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "Average Steps Per Day for Women", href: "/blog/average-steps-per-day-for-women" },
+  ],
+  "20000-steps-calories-burned": [
+    { title: "How Many Calories Does 10,000 Steps Burn?", href: "/blog/10000-steps-calories-burned" },
+    { title: "How Many Steps Burn 500 Calories?", href: "/blog/how-many-steps-burn-500-calories" },
+    { title: "How Many Steps to Burn 100 Calories?", href: "/blog/how-many-steps-to-burn-100-calories" },
+  ],
+  "calories-burned-walking-one-mile": [
+    { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+    { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+  ],
+  "benefits-of-walking-30-minutes-a-day": [
+    { title: "Walking 30 Minutes a Day for a Month Results", href: "/blog/walking-30-minutes-a-day-results" },
+    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
+    { title: "Benefits of Walking Every Day", href: "/blog/benefits-of-walking-everyday" },
+  ],
+  "how-many-steps-to-burn-100-calories": [
+    { title: "How Many Steps Burn 500 Calories?", href: "/blog/how-many-steps-burn-500-calories" },
+    { title: "20,000 Steps Calories Burned", href: "/blog/20000-steps-calories-burned" },
+    { title: "Calories Burned Walking 1 Mile", href: "/blog/calories-burned-walking-one-mile" },
+  ],
+  "walking-30-minutes-a-day-results": [
+    { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
+    { title: "10,000 Steps Weight Loss Results", href: "/blog/10000-steps-weight-loss-results" },
+    { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+  ],
+  "average-steps-per-day-for-women": [
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -631,5 +666,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "walking-after-eating-benefits": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-far-is-5000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "20000-steps-calories-burned": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "calories-burned-walking-one-mile": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "benefits-of-walking-30-minutes-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-steps-to-burn-100-calories": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "walking-30-minutes-a-day-results": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "average-steps-per-day-for-women": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
   ],
 };
