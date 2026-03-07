@@ -81,6 +81,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   category: "Health & Fitness",
+  other: {
+    "apple-itunes-app": "app-id=6746096378",
+  },
 };
 
 export const viewport: Viewport = {
