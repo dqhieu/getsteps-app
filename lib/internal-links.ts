@@ -97,6 +97,10 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
   ],
+  "gpx-viewer": [
+    { title: "How to Export GPX from Apple Watch Workouts", href: "/blog/how-to-export-gpx-from-apple-watch-workouts" },
+    { title: "Steps vs Strava", href: "/blog/steps-vs-strava-comparison" },
+  ],
 };
 
 // Tool slug → related tool links (for the 8 pages missing Related Calculators)
@@ -140,6 +144,11 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
     { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "BMI Calculator", href: "/tools/bmi-calculator" },
+  ],
+  "gpx-viewer": [
+    { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
+    { title: "Distance Equivalent Calculator", href: "/tools/distance-equivalent-calculator" },
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
   ],
 };
 
@@ -596,6 +605,7 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
     { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
   ],
   "how-to-export-gpx-from-apple-watch-workouts": [
+    { title: "GPX Viewer", href: "/tools/gpx-viewer" },
     { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
     { title: "Distance Equivalent Calculator", href: "/tools/distance-equivalent-calculator" },
   ],

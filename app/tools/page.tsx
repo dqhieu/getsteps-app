@@ -200,6 +200,13 @@ const TOOLS = [
     icon: "📏",
     popular: false,
   },
+  {
+    title: "GPX Viewer",
+    description: "Upload and view GPX files on an interactive map with stats",
+    href: "/tools/gpx-viewer",
+    icon: "🗺️",
+    popular: false,
+  },
 ];
 
 const popularTools = TOOLS.filter((tool) => tool.popular);
