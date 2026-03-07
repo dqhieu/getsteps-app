@@ -9,9 +9,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Steps to Calories Calculator: Convert Steps to Calories Burned",
+  title: "Steps to Calories Calculator — Convert Your Steps to Calories Burned",
   description:
-    "Free steps to calories calculator. 10,000 steps burns ~400 cal (70 kg) or ~350 cal (60 kg). Enter your steps, weight, and age for a personalized calorie estimate.",
+    "Free steps to calories calculator. See how many calories 1,000 to 20,000 steps burn for your weight. 10,000 steps ≈ 400 cal (70 kg). Instant results with reference table.",
   keywords: [
     "steps to calories",
     "steps to calories calculator",
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     "steps calorie converter",
   ],
   openGraph: {
-    title: "Steps to Calories Calculator: Convert Steps to Calories Burned",
+    title: "Steps to Calories Calculator — Convert Your Steps to Calories Burned",
     description:
-      "Free steps to calories calculator. 10,000 steps burns ~400 cal (70 kg). Enter your steps and weight for a personalized estimate.",
+      "Free steps to calories calculator. See how many calories 1,000 to 20,000 steps burn for your weight. Instant results.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/steps-to-calories-calculator`,
     images: [

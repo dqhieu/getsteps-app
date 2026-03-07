@@ -225,6 +225,51 @@ export default function WalkingCaloriesCalculatorPage() {
         </div>
       </section>
 
+      {/* MET Explainer Section */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
+              Understanding MET Values for Walking
+            </h2>
+
+            <div className="space-y-4 text-neutral-600 dark:text-neutral-400">
+              <p>
+                <strong className="text-neutral-900 dark:text-white">MET (Metabolic Equivalent of Task)</strong> is the
+                standard scientific measure of exercise intensity. One MET equals your body&apos;s energy expenditure at
+                complete rest — about 1 calorie per kilogram of body weight per hour. When an activity has a MET value of
+                3.5, it means you&apos;re burning 3.5 times more energy than sitting still.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
+                  <p className="text-2xl font-bold text-[#ED772F] mb-1">2.0–3.0</p>
+                  <p className="text-sm font-medium text-neutral-900 dark:text-white">Light Walking</p>
+                  <p className="text-xs mt-1">Slow stroll, window shopping pace (2–4 km/h)</p>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
+                  <p className="text-2xl font-bold text-[#ED772F] mb-1">3.0–4.5</p>
+                  <p className="text-sm font-medium text-neutral-900 dark:text-white">Moderate Walking</p>
+                  <p className="text-xs mt-1">Normal to brisk pace, most common (4–6 km/h)</p>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
+                  <p className="text-2xl font-bold text-[#ED772F] mb-1">5.0–6.3</p>
+                  <p className="text-sm font-medium text-neutral-900 dark:text-white">Vigorous Walking</p>
+                  <p className="text-xs mt-1">Power walking, race walking, or uphill (6+ km/h)</p>
+                </div>
+              </div>
+
+              <p className="text-sm">
+                The MET values in our calculator come from the <em>Compendium of Physical Activities</em>, the
+                gold-standard reference used by exercise scientists worldwide. Walking at 5 km/h (3.1 mph) — the most
+                commonly searched speed — has a MET value of 3.5, meaning a 70 kg person burns 245 calories per hour at
+                that pace.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Comprehensive MET Values Reference Table */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">

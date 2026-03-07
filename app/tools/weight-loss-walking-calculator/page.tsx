@@ -9,23 +9,26 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Weight Loss Walking Calculator - Steps to Lose Weight",
+  title: "Weight Loss Walking Calculator — How Many Steps to Lose Weight",
   description:
-    "Calculate how much walking you need to do to reach your weight loss goals. Get a personalized daily step goal for weight loss.",
+    "Free steps to lose weight calculator. Find how many steps a day you need to reach your goal weight. Get a personalized daily step target, calorie deficit plan, and timeline.",
   keywords: [
+    "how many steps to lose weight calculator",
+    "how many steps to lose weight",
+    "steps to lose weight calculator",
     "walking for weight loss",
     "how much walking to lose weight",
     "steps to lose weight",
     "walking weight loss calculator",
     "weight loss step goal",
     "walking calorie deficit",
-    "lose weight walking",
-    "walking plan for weight loss",
+    "daily step goal for weight loss",
+    "how many steps per day to lose weight",
   ],
   openGraph: {
-    title: "Weight Loss Walking Calculator",
+    title: "Weight Loss Walking Calculator — How Many Steps to Lose Weight",
     description:
-      "Calculate how much walking you need to do to reach your weight loss goals.",
+      "Free steps to lose weight calculator. Find your personalized daily step target and calorie deficit plan.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/weight-loss-walking-calculator`,
     images: [
@@ -166,6 +169,30 @@ export default function WeightLossWalkingCalculatorPage() {
                       consistently.
                     </p>
                   </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many steps a day to lose 1 pound a week?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      To lose 1 pound (0.45 kg) per week, you need a 500 calorie
+                      daily deficit. Walking about 12,500 extra steps (beyond your
+                      baseline) burns roughly 500 calories for a 70 kg person. Combined
+                      with diet, fewer additional steps may be needed.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many steps to lose 2 pounds a week?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      Losing 2 pounds per week requires a 1,000 calorie daily deficit.
+                      Walking alone would require 25,000+ extra steps daily, which
+                      isn&apos;t realistic. Instead, combine 10,000-15,000 daily steps
+                      with a 500-calorie dietary reduction for sustainable results.
+                    </p>
+                  </details>
                 </div>
               </div>
             </div>
@@ -270,6 +297,22 @@ export default function WeightLossWalkingCalculatorPage() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "Yes, brisk walking (about 6 km/h) burns more calories per minute than leisurely walking. However, the total distance matters more than speed. Walk at a pace you can maintain consistently."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps a day to lose 1 pound a week?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "To lose 1 pound (0.45 kg) per week, you need a 500 calorie daily deficit. Walking about 12,500 extra steps burns roughly 500 calories for a 70 kg person. Combined with diet, fewer additional steps may be needed."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps to lose 2 pounds a week?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Losing 2 pounds per week requires a 1,000 calorie daily deficit. Walking alone would require 25,000+ extra steps daily, which isn't realistic. Instead, combine 10,000-15,000 daily steps with a 500-calorie dietary reduction for sustainable results."
                 }
               }
             ]
