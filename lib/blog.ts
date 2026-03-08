@@ -120,6 +120,52 @@ export function getPaginatedPosts(page: number): PaginatedPosts {
   };
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+/** Extract FAQ Q&A pairs from markdown content (### headings under ## FAQ or ## Common Questions) */
+export function extractFaqFromContent(content: string): FaqItem[] {
+  // Find FAQ section start
+  const faqHeaderPattern = /^## (?:FAQ|Common Questions|Frequently Asked Questions)\s*$/m;
+  const headerMatch = faqHeaderPattern.exec(content);
+  if (!headerMatch) return [];
+
+  const afterHeader = content.substring(headerMatch.index + headerMatch[0].length);
+
+  // Find where FAQ section ends (next ## heading or --- separator)
+  const endMatch = afterHeader.match(/\n## [^#]|\n---\s*\n/);
+  const faqSection = endMatch
+    ? afterHeader.substring(0, endMatch.index)
+    : afterHeader;
+
+  const faqs: FaqItem[] = [];
+
+  // Split by ### headings to get Q&A pairs
+  const parts = faqSection.split(/^### /m).filter(Boolean);
+  for (const part of parts) {
+    const lines = part.trim().split("\n");
+    const question = lines[0]?.trim();
+    if (!question) continue;
+
+    // Rest is the answer — strip markdown formatting for schema
+    const answerLines = lines.slice(1).filter((l) => l.trim());
+    const answer = answerLines
+      .map((l) => l.replace(/\*\*([^*]+)\*\*/g, "$1")) // strip bold
+      .map((l) => l.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")) // strip links
+      .map((l) => l.replace(/^- /, "• ")) // bullets
+      .join(" ")
+      .trim();
+
+    if (answer) {
+      faqs.push({ question, answer });
+    }
+  }
+
+  return faqs;
+}
+
 export function getAllSlugs(): string[] {
   try {
     if (!fs.existsSync(POSTS_DIR)) {
