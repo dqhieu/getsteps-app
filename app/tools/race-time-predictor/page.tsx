@@ -9,9 +9,9 @@ import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links"
 import { RaceTimePredictorClient } from "./client";
 
 export const metadata: Metadata = {
-  title: "Race Time Predictor - Calculate Finish Time from Pace",
+  title: "Race Time Predictor: Calculate Your 5K, 10K, Half & Full Marathon Time",
   description:
-    "Calculate your race finish time from your pace, or find the pace needed to hit your goal time. Works for 5K, 10K, half marathon, and marathon.",
+    "Free race time predictor — enter your pace to get your finish time, or set a goal time to find the pace you need. Instant results for 5K, 10K, half marathon, and marathon.",
   keywords: [
     "race time predictor",
     "race finish time calculator",
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     "running goal time calculator",
   ],
   openGraph: {
-    title: "Race Time Predictor - Calculate Finish Time from Pace",
+    title: "Race Time Predictor: Calculate Your 5K, 10K, Half & Full Marathon Time",
     description:
-      "Calculate your race finish time from your pace, or find the pace needed to hit your goal time. Works for 5K, 10K, half marathon, and marathon.",
+      "Free race time predictor — enter your pace to get your finish time, or set a goal time to find the pace you need. Instant results for 5K, 10K, half marathon, and marathon.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/race-time-predictor`,
     images: [{ url: "/og/race-time-predictor.png", width: 1200, height: 630, alt: "Race Time Predictor" }],
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/tools/race-time-predictor` },
   twitter: {
     card: "summary_large_image",
-    title: "Race Time Predictor - Calculate Finish Time from Pace",
-    description: "Calculate your race finish time from your pace, or find the pace needed to hit your goal time. Works for 5K, 10K, half marathon, and marathon.",
+    title: "Race Time Predictor: Calculate Your 5K, 10K, Half & Full Marathon Time",
+    description: "Free race time predictor — enter your pace to get your finish time, or set a goal time to find the pace you need.",
     images: ["/og/race-time-predictor.png"],
   },
 };

@@ -7,6 +7,11 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: [
+        "/_next/static/",
+        "/docs/_next/",
+        "/docs/_mintlify/",
+      ],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };

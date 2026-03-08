@@ -12,6 +12,7 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
   "steps-to-calories-calculator": [
     { title: "How Many Calories Does 10,000 Steps Burn?", href: "/blog/10000-steps-calories-burned" },
     { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+    { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
   ],
   "steps-per-mile-calculator": [
     { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
@@ -28,6 +29,7 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
   "daily-step-goal-calculator": [
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+    { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
   ],
   "weight-loss-walking-calculator": [
     { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
@@ -36,10 +38,12 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
   "bmi-calculator": [
     { title: "How to Calculate Body Fat Percentage", href: "/blog/how-to-calculate-body-fat-percentage" },
     { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+    { title: "What Is TDEE? A Walker's Guide", href: "/blog/what-is-tdee" },
   ],
   "heart-rate-zones-calculator": [
-    { title: "Heart Rate Zones Explained", href: "/blog/heart-rate-zones-explained" },
+    { title: "Heart Rate Zones for Walkers", href: "/blog/heart-rate-zones-explained" },
     { title: "Running Pace Calculator Guide", href: "/blog/running-pace-calculator-guide" },
+    { title: "What Is TDEE? A Walker's Guide", href: "/blog/what-is-tdee" },
   ],
   "running-pace-calculator": [
     { title: "Running Pace Calculator Guide", href: "/blog/running-pace-calculator-guide" },
@@ -47,15 +51,17 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
   ],
   "body-fat-calculator": [
     { title: "How to Calculate Body Fat Percentage", href: "/blog/how-to-calculate-body-fat-percentage" },
-    { title: "What Is TDEE?", href: "/blog/what-is-tdee" },
+    { title: "What Is TDEE? A Walker's Guide", href: "/blog/what-is-tdee" },
+    { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
   ],
   "water-intake-calculator": [
     { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
     { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
   ],
   "tdee-calculator": [
-    { title: "What Is TDEE?", href: "/blog/what-is-tdee" },
+    { title: "What Is TDEE? A Walker's Guide", href: "/blog/what-is-tdee" },
     { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+    { title: "How to Calculate Body Fat Percentage", href: "/blog/how-to-calculate-body-fat-percentage" },
   ],
   "macro-calculator": [
     { title: "Macro Calculator Guide", href: "/blog/macro-calculator-guide" },
@@ -64,6 +70,7 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
   "calorie-deficit-calculator": [
     { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
     { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+    { title: "What Is TDEE? A Walker's Guide", href: "/blog/what-is-tdee" },
   ],
   "resting-heart-rate-calculator": [
     { title: "Heart Rate Zones Explained", href: "/blog/heart-rate-zones-explained" },
@@ -71,7 +78,8 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
   ],
   "marathon-pace-predictor": [
     { title: "Running Pace Calculator Guide", href: "/blog/running-pace-calculator-guide" },
-    { title: "Heart Rate Zones Explained", href: "/blog/heart-rate-zones-explained" },
+    { title: "Heart Rate Zones for Walkers", href: "/blog/heart-rate-zones-explained" },
+    { title: "Steps vs Strava", href: "/blog/steps-vs-strava-comparison" },
   ],
   "vo2-max-calculator": [
     { title: "Running Pace Calculator Guide", href: "/blog/running-pace-calculator-guide" },
@@ -87,7 +95,8 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
   ],
   "race-time-predictor": [
     { title: "Running Pace Calculator Guide", href: "/blog/running-pace-calculator-guide" },
-    { title: "Heart Rate Zones Explained", href: "/blog/heart-rate-zones-explained" },
+    { title: "Heart Rate Zones for Walkers", href: "/blog/heart-rate-zones-explained" },
+    { title: "Steps vs Strava", href: "/blog/steps-vs-strava-comparison" },
   ],
   "distance-equivalent-calculator": [
     { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },

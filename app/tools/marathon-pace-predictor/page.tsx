@@ -9,9 +9,9 @@ import { PersonaLinks } from "@/components/persona-links";
 import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
-  title: "Marathon Race Predictor - Predict Your Finish Time from Any Distance",
+  title: "Marathon Time Predictor: Predict Your Finish Time from Any Race Result",
   description:
-    "Predict your marathon, half marathon, 10K, and 5K finish times from any recent race result using the Riegel formula. Free and instant race time predictor.",
+    "Ran a 5K or 10K? Predict your marathon and half marathon finish time instantly using the Riegel formula. Free calculator with pace tables and training tips.",
   keywords: [
     "marathon race predictor",
     "race time predictor",
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     "5k to marathon time converter",
   ],
   openGraph: {
-    title: "Marathon Race Predictor - Predict Your Finish Time from Any Distance",
+    title: "Marathon Time Predictor: Predict Your Finish Time from Any Race Result",
     description:
-      "Predict your marathon, half marathon, 10K, and 5K finish times from any recent race result using the Riegel formula.",
+      "Ran a 5K or 10K? Predict your marathon and half marathon finish time instantly using the Riegel formula.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/marathon-pace-predictor`,
     images: [{ url: "/og/marathon-pace-predictor.png", width: 1200, height: 630, alt: "Marathon Race Predictor" }],
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/tools/marathon-pace-predictor` },
   twitter: {
     card: "summary_large_image",
-    title: "Marathon Race Predictor - Predict Your Finish Time from Any Distance",
-    description: "Free race time predictor using the Riegel formula. Enter any race result, get predictions for 5K, 10K, half marathon, and marathon.",
+    title: "Marathon Time Predictor: Predict Your Finish Time from Any Race Result",
+    description: "Ran a 5K or 10K? Predict your marathon finish time instantly using the Riegel formula.",
     images: ["/og/marathon-pace-predictor.png"],
   },
 };
