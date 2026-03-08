@@ -44,6 +44,12 @@
       ]
     }
   ],
+  "crons": [
+    {
+      "path": "/api/indexnow/cron",
+      "schedule": "0 6 * * *"
+    }
+  ],
   "rewrites": [
     {
       "source": "/_mintlify/:path*",
