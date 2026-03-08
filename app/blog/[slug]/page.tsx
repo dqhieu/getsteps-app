@@ -191,6 +191,15 @@ export default async function BlogPostPage({ params }: Props) {
         />
         <PersonaLinks items={BLOG_RELATED_PERSONAS[slug] || []} />
 
+        <div className="mt-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            Steps is built by runners who wanted a step counter that felt right.{" "}
+            <Link href="/about" className="text-orange-500 hover:underline">
+              Read our story
+            </Link>
+          </p>
+        </div>
+
         <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
           <Link
             href="/blog"

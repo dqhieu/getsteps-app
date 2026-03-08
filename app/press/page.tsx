@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LandingNavbar, LandingFooter } from "@/components";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -8,6 +9,19 @@ export const metadata: Metadata = {
     "Steps has been featured in leading tech publications. Read press coverage and download our press kit.",
   alternates: {
     canonical: "https://getsteps.app/press",
+  },
+  openGraph: {
+    title: "In the Press",
+    description: "Steps has been featured in leading tech publications. Read press coverage and download our press kit.",
+    url: "https://getsteps.app/press",
+    images: [{ url: "/meta.png", width: 1200, height: 630, alt: "Steps Press Coverage" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "In the Press",
+    description: "Steps has been featured in leading tech publications. Read press coverage and download our press kit.",
+    images: ["/meta.png"],
   },
 };
 
@@ -101,6 +115,39 @@ export default function PressPage() {
                 >
                   Download Press Kit
                 </a>
+              </div>
+            </section>
+
+            {/* Learn More */}
+            <section className="mb-16">
+              <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-6">
+                Learn More
+              </h2>
+              <div className="grid sm:grid-cols-3 gap-4">
+                <Link
+                  href="/about"
+                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                >
+                  <p className="font-medium text-neutral-900 dark:text-white">
+                    About Steps
+                  </p>
+                </Link>
+                <Link
+                  href="/blog"
+                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                >
+                  <p className="font-medium text-neutral-900 dark:text-white">
+                    Steps Blog
+                  </p>
+                </Link>
+                <Link
+                  href="/tools"
+                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                >
+                  <p className="font-medium text-neutral-900 dark:text-white">
+                    Free Fitness Tools
+                  </p>
+                </Link>
               </div>
             </section>
 

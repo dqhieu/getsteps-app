@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { LandingNavbar, LandingFooter } from "@/components";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -9,6 +10,19 @@ export const metadata: Metadata = {
     "My wife and I started running last year. Walking 10K steps and running 10KM weekly cleared our minds — so we built Steps.",
   alternates: {
     canonical: "https://getsteps.app/about",
+  },
+  openGraph: {
+    title: "About Steps",
+    description: "My wife and I started running last year. Walking 10K steps and running 10KM weekly cleared our minds — so we built Steps.",
+    url: "https://getsteps.app/about",
+    images: [{ url: "/meta.png", width: 1200, height: 630, alt: "About Steps" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Steps",
+    description: "My wife and I started running last year. Walking 10K steps and running 10KM weekly cleared our minds — so we built Steps.",
+    images: ["/meta.png"],
   },
 };
 
@@ -104,6 +118,39 @@ export default function AboutPage() {
                     </div>
                   ))}
                 </div>
+              </div>
+            </section>
+
+            {/* Related Reading */}
+            <section className="mb-16">
+              <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-6">
+                Related Reading
+              </h2>
+              <div className="grid sm:grid-cols-3 gap-4">
+                <Link
+                  href="/blog/benefits-of-walking-everyday"
+                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                >
+                  <p className="font-medium text-neutral-900 dark:text-white">
+                    Benefits of Walking Every Day
+                  </p>
+                </Link>
+                <Link
+                  href="/blog/10000-steps-a-day-benefits"
+                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                >
+                  <p className="font-medium text-neutral-900 dark:text-white">
+                    10,000 Steps a Day Benefits
+                  </p>
+                </Link>
+                <Link
+                  href="/press"
+                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                >
+                  <p className="font-medium text-neutral-900 dark:text-white">
+                    In the Press
+                  </p>
+                </Link>
               </div>
             </section>
 
