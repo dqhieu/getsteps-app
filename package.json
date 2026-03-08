@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "indexnow": "curl -s -X GET -H \"Authorization: Bearer $INDEXNOW_SECRET\" https://getsteps.app/api/indexnow"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
