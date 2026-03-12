@@ -9,23 +9,27 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Steps to Calories Calculator — Convert Your Steps to Calories Burned",
+  title: "Steps to Calories Calculator — How Many Calories Do Your Steps Burn?",
   description:
-    "Free steps to calories calculator. See how many calories 1,000 to 20,000 steps burn for your weight. 10,000 steps ≈ 400 cal (70 kg). Instant results with reference table.",
+    "Free steps to calories calculator. Enter your steps to see calories burned instantly. 10,000 steps ≈ 400 cal (70 kg). How many steps to burn 500 calories? ~12,500. Reference table included.",
   keywords: [
     "steps to calories",
     "steps to calories calculator",
+    "step calorie calculator",
+    "steps calories calculator",
+    "steps calorie calculator",
+    "steps to calories converter",
     "calories burned walking",
     "how many calories in 10000 steps",
+    "how many steps to burn 500 calories",
+    "how many steps to burn 100 calories",
     "calories burned 10000 steps 70 kg",
     "calories burned per 1000 steps",
     "calories per step",
-    "step calorie calculator",
-    "walking calorie burn",
-    "steps calorie converter",
+    "calories burned per step",
   ],
   openGraph: {
-    title: "Steps to Calories Calculator — Convert Your Steps to Calories Burned",
+    title: "Steps to Calories Calculator — How Many Calories Do Your Steps Burn?",
     description:
       "Free steps to calories calculator. See how many calories 1,000 to 20,000 steps burn for your weight. Instant results.",
     type: "website",
@@ -132,12 +136,38 @@ export default function StepsToCaloriesCalculatorPage() {
 
                   <details className="group">
                     <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
-                      How many steps do I need to burn 500 calories?
+                      How many steps to burn 500 calories?
                     </summary>
                     <p className="mt-2 text-sm">
-                      For a 70kg person, you&apos;d need approximately 12,500 steps
-                      to burn 500 calories. Use the calculator above with your
-                      specific weight for a more accurate estimate.
+                      To burn 500 calories walking, you need approximately 12,500
+                      steps if you weigh 70 kg (154 lbs). At 60 kg you&apos;d need
+                      ~14,700 steps, and at 85 kg about 10,300 steps. The heavier
+                      you are, the fewer steps required. Use the calculator above
+                      for your exact number.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many steps to burn 100 calories?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      To burn 100 calories, you need about 2,500 steps at 70 kg
+                      body weight. Lighter individuals (55 kg) need around 3,200
+                      steps, while heavier individuals (100 kg) only need about
+                      1,750 steps. That&apos;s roughly 20-30 minutes of walking.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many calories are burned per step?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      On average, you burn about 0.04 calories per step at 70 kg
+                      body weight. This scales with weight: a 55 kg person burns
+                      ~0.031 cal/step, while a 100 kg person burns ~0.057 cal/step.
+                      These values assume a normal walking pace of about 5 km/h.
                     </p>
                   </details>
 
@@ -345,10 +375,26 @@ export default function StepsToCaloriesCalculatorPage() {
               },
               {
                 "@type": "Question",
-                "name": "How many steps do I need to burn 500 calories?",
+                "name": "How many steps to burn 500 calories?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "For a 70kg person, you'd need approximately 12,500 steps to burn 500 calories. Use the calculator above with your specific weight for a more accurate estimate."
+                  "text": "To burn 500 calories walking, you need approximately 12,500 steps if you weigh 70 kg (154 lbs). At 60 kg you'd need ~14,700 steps, and at 85 kg about 10,300 steps. The heavier you are, the fewer steps required."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many steps to burn 100 calories?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "To burn 100 calories, you need about 2,500 steps at 70 kg body weight. Lighter individuals (55 kg) need around 3,200 steps, while heavier individuals (100 kg) only need about 1,750 steps. That's roughly 20-30 minutes of walking."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many calories are burned per step?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "On average, you burn about 0.04 calories per step at 70 kg body weight. This scales with weight: a 55 kg person burns ~0.031 cal/step, while a 100 kg person burns ~0.057 cal/step. These values assume a normal walking pace of about 5 km/h."
                 }
               },
               {

@@ -10,23 +10,27 @@ import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title:
-    "Walking Calories Calculator & MET Values for Walking Speeds | Steps",
+    "Free Walking Calorie Calculator & MET Values for Every Speed | Steps",
   description:
-    "Calculate calories burned walking with MET values for every walking speed. MET value walking 5 km/h is 3.5, brisk walking 6.4 km/h is 4.5. Free calculator with full MET reference table.",
+    "Free walking calorie calculator with MET values for every speed. MET value walking 5 km/h = 3.5, brisk 6.4 km/h = 4.5, moderate 4 km/h = 3.0. Full MET reference table + instant calorie results.",
   keywords: [
+    "walking calorie calculator",
+    "walking calories calculator",
     "MET value walking",
     "MET walking 5 km/h",
     "MET value for walking 3.1 mph",
     "MET value brisk walking",
-    "walking calories calculator",
+    "MET value walking average pace",
+    "MET value walking moderate pace",
     "calories burned walking",
     "calories burned walking per km",
     "MET value walking 4 km/h",
+    "MET value walking 4.5 km/h",
     "MET value walking 6 km/h",
-    "walking calorie burn calculator",
+    "calories burned walking calculator formula met",
   ],
   openGraph: {
-    title: "Walking Calories Calculator & MET Values for Walking Speeds",
+    title: "Free Walking Calorie Calculator & MET Values for Every Speed",
     description:
       "Calculate calories burned walking with MET values for every speed. Full MET reference table included.",
     type: "website",
@@ -54,7 +58,7 @@ export default function WalkingCaloriesCalculatorPage() {
       <section className="pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
-            Walking Calories Calculator &amp; MET Values
+            Walking Calorie Calculator &amp; MET Values
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
             Calculate calories burned walking using MET (Metabolic Equivalent)
@@ -155,6 +159,31 @@ export default function WalkingCaloriesCalculatorPage() {
                       energy expenditure. A MET of 1 represents your resting
                       metabolic rate. Walking at normal pace has a MET of 3.5,
                       meaning you burn 3.5 times more calories than at rest.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      What is the MET value for walking at average pace?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      The MET value for walking at an average pace (about 5 km/h or
+                      3.1 mph) is 3.5. This is the most common walking speed for
+                      adults and the baseline used in most calorie calculators. A
+                      70 kg person burns approximately 245 calories per hour at this
+                      pace.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      What is the MET value for walking at moderate pace?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      A moderate walking pace (4.0-4.5 km/h or 2.5-2.8 mph) has a
+                      MET value between 3.0 and 3.3. This is a comfortable,
+                      conversational pace ideal for daily walking. A 70 kg person
+                      burns 210-231 calories per hour at moderate pace.
                     </p>
                   </details>
 
@@ -438,6 +467,22 @@ export default function WalkingCaloriesCalculatorPage() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "MET (Metabolic Equivalent of Task) is a scientific measure of energy expenditure. A MET of 1 represents your resting metabolic rate. Walking at normal pace has a MET of 3.5, meaning you burn 3.5 times more calories than at rest."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the MET value for walking at average pace?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The MET value for walking at an average pace (about 5 km/h or 3.1 mph) is 3.5. This is the most common walking speed for adults and the baseline used in most calorie calculators. A 70 kg person burns approximately 245 calories per hour at this pace."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the MET value for walking at moderate pace?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A moderate walking pace (4.0-4.5 km/h or 2.5-2.8 mph) has a MET value between 3.0 and 3.3. This is a comfortable, conversational pace ideal for daily walking. A 70 kg person burns 210-231 calories per hour at moderate pace."
                 }
               },
               {
