@@ -148,6 +148,24 @@ export default function WalkingTimeCalculatorPage() {
 
                   <details className="group">
                     <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How long does it take to walk 7 km?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      At a normal pace (5 km/h), it takes about <strong>84 minutes</strong> (1 hour 24 min) to walk 7 km. At a brisk pace (6.4 km/h), you can finish in about 66 minutes. That&apos;s roughly 9,100 steps for an average adult.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How long does it take to walk 8 km?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      Walking 8 km takes about <strong>96 minutes</strong> (1 hour 36 min) at a normal pace (5 km/h), or about 75 minutes at a brisk pace. That&apos;s approximately 10,400 steps.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
                       Should I include breaks in my walking time?
                     </summary>
                     <p className="mt-2 text-sm">
@@ -245,6 +263,22 @@ export default function WalkingTimeCalculatorPage() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "10,000 steps equals roughly 7-8 km (4-5 miles). At a normal pace, this takes about 1 hour and 20-40 minutes. You don't need to do this all at once – spread it throughout the day."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does it take to walk 7 km?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "At a normal pace (5 km/h), it takes about 84 minutes (1 hour 24 min) to walk 7 km. At a brisk pace (6.4 km/h), you can finish in about 66 minutes. That's roughly 9,100 steps for an average adult."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does it take to walk 8 km?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Walking 8 km takes about 96 minutes (1 hour 36 min) at a normal pace (5 km/h), or about 75 minutes at a brisk pace. That's approximately 10,400 steps."
                 }
               },
               {

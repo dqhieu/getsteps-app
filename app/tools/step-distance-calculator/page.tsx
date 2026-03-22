@@ -203,6 +203,47 @@ export default function StepDistanceCalculatorPage() {
         </div>
       </section>
 
+      {/* Steps to Km Section */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
+              Steps to Km: How Many Kilometers in Your Steps?
+            </h2>
+
+            <div className="space-y-4 text-neutral-600 dark:text-neutral-400">
+              <p>
+                Converting <strong className="text-neutral-900 dark:text-white">steps to km</strong> depends on your stride length, which varies by height. As a quick rule of thumb: <strong className="text-neutral-900 dark:text-white">1,000 steps &asymp; 0.75 km</strong> for an average adult, and <strong className="text-neutral-900 dark:text-white">1 km &asymp; 1,300 steps</strong>.
+              </p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center">
+                  <p className="text-lg font-bold text-[#ED772F]">0.75 km</p>
+                  <p className="text-xs text-neutral-500">1,000 steps</p>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center">
+                  <p className="text-lg font-bold text-[#ED772F]">3.8 km</p>
+                  <p className="text-xs text-neutral-500">5,000 steps</p>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center">
+                  <p className="text-lg font-bold text-[#ED772F]">7.5 km</p>
+                  <p className="text-xs text-neutral-500">10,000 steps</p>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center">
+                  <p className="text-lg font-bold text-[#ED772F]">15 km</p>
+                  <p className="text-xs text-neutral-500">20,000 steps</p>
+                </div>
+              </div>
+
+              <p className="text-sm">
+                These are averages — your actual distance depends on your height and stride length. Use the calculator above for a personalized conversion, or see our detailed guide on{" "}
+                <a href="/blog/how-many-steps-in-a-kilometer" className="text-[#ED772F] hover:underline">how many steps in a kilometer</a> with height-based charts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Km to Steps Reference Table */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">

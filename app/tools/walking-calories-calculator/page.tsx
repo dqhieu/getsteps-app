@@ -254,10 +254,52 @@ export default function WalkingCaloriesCalculatorPage() {
         </div>
       </section>
 
-      {/* MET Explainer Section */}
+      {/* Walking Calories Formula Section */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
+              How the Walking Calories Formula Works
+            </h2>
+
+            <div className="space-y-4 text-neutral-600 dark:text-neutral-400 mb-8">
+              <p>
+                The <strong className="text-neutral-900 dark:text-white">calories burned walking calculator formula</strong> uses
+                MET (Metabolic Equivalent of Task) values from the <em>Compendium of Physical Activities</em> — the same
+                reference used by exercise physiologists worldwide. The formula is:
+              </p>
+
+              <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4 text-center">
+                <p className="text-lg font-semibold text-neutral-900 dark:text-white">
+                  Calories = MET &times; Weight (kg) &times; Duration (hours)
+                </p>
+              </div>
+
+              <p>
+                Each walking speed has a specific MET value. Here are the most searched MET values at a glance:
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3">
+                  <p className="text-sm"><strong className="text-neutral-900 dark:text-white">MET value walking 3 mph</strong> (4.8 km/h) = <span className="text-[#ED772F] font-bold">3.3</span></p>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3">
+                  <p className="text-sm"><strong className="text-neutral-900 dark:text-white">MET value moderate pace</strong> (3.1 mph) = <span className="text-[#ED772F] font-bold">3.5</span></p>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3">
+                  <p className="text-sm"><strong className="text-neutral-900 dark:text-white">MET value brisk walking</strong> (4 mph) = <span className="text-[#ED772F] font-bold">5.0</span></p>
+                </div>
+                <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3">
+                  <p className="text-sm"><strong className="text-neutral-900 dark:text-white">MET value walking 5 km/h</strong> (3.1 mph) = <span className="text-[#ED772F] font-bold">3.5</span></p>
+                </div>
+              </div>
+
+              <p className="text-sm">
+                For a complete breakdown, see our <a href="/blog/met-values-walking-chart" className="text-[#ED772F] hover:underline">MET Values for Walking Chart</a> with
+                every speed from slow strolls to race walking, plus incline and terrain adjustments.
+              </p>
+            </div>
+
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               Understanding MET Values for Walking
             </h2>

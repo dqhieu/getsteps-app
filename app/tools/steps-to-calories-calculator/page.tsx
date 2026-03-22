@@ -230,7 +230,13 @@ export default function StepsToCaloriesCalculatorPage() {
               </div>
             </div>
 
-            <RelatedBlogPosts items={TOOL_RELATED_BLOGS["steps-to-calories-calculator"] || []} />
+            <RelatedBlogPosts items={[
+              ...(TOOL_RELATED_BLOGS["steps-to-calories-calculator"] || []),
+              { title: "How Many Steps Burn 500 Calories?", href: "/blog/how-many-steps-burn-500-calories" },
+              { title: "How Many Steps to Burn 100 Calories?", href: "/blog/how-many-steps-to-burn-100-calories" },
+              { title: "How Many Calories Does 1,000 Steps Burn?", href: "/blog/how-many-calories-does-1000-steps-burn" },
+              { title: "Calories Burned Per Step", href: "/blog/calories-burned-per-step" },
+            ]} />
             <PersonaLinks items={TOOL_RELATED_PERSONAS["steps-to-calories-calculator"] || []} />
           </div>
         </div>
