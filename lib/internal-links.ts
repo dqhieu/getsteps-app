@@ -425,6 +425,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Calories Does 5,000 Steps Burn?", href: "/blog/how-many-calories-does-5000-steps-burn" },
     { title: "10,000 Steps Calories Burned", href: "/blog/10000-steps-calories-burned" },
   ],
+  "walking-workout-plan-beginners": [
+    { title: "Treadmill Walking Workouts for Weight Loss", href: "/blog/treadmill-walking-workout-weight-loss" },
+    { title: "Benefits of Walking 45 Minutes a Day", href: "/blog/benefits-of-walking-45-minutes-a-day" },
+    { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
+  ],
+  "treadmill-walking-workout-weight-loss": [
+    { title: "Walking Workout Plan for Beginners", href: "/blog/walking-workout-plan-beginners" },
+    { title: "Calories Burned on Treadmill", href: "/blog/calories-burned-on-treadmill" },
+    { title: "MET Values for Walking Chart", href: "/blog/met-values-walking-chart" },
+  ],
+  "benefits-of-walking-45-minutes-a-day": [
+    { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
+    { title: "Walking Workout Plan for Beginners", href: "/blog/walking-workout-plan-beginners" },
+    { title: "Evening Walking Benefits", href: "/blog/evening-walking-benefits" },
+  ],
+  "how-many-steps-in-a-kilometer": [
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+    { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
+  ],
+  "met-values-walking-chart": [
+    { title: "What Is TDEE?", href: "/blog/what-is-tdee" },
+    { title: "Calories Burned Per Step", href: "/blog/calories-burned-per-step" },
+    { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+  ],
+  "calories-burned-per-step": [
+    { title: "How Many Steps to Burn 100 Calories?", href: "/blog/how-many-steps-to-burn-100-calories" },
+    { title: "How Many Steps Burn 500 Calories?", href: "/blog/how-many-steps-burn-500-calories" },
+    { title: "MET Values for Walking Chart", href: "/blog/met-values-walking-chart" },
+  ],
+  "evening-walking-benefits": [
+    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
+    { title: "Benefits of Walking 45 Minutes a Day", href: "/blog/benefits-of-walking-45-minutes-a-day" },
+    { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -776,5 +811,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "how-many-calories-does-1000-steps-burn": [
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "walking-workout-plan-beginners": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "treadmill-walking-workout-weight-loss": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "benefits-of-walking-45-minutes-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-steps-in-a-kilometer": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "met-values-walking-chart": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+  ],
+  "calories-burned-per-step": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "evening-walking-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
   ],
 };
