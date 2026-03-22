@@ -10,9 +10,9 @@ import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title:
-    "Free Walking Calorie Calculator & MET Values for Every Speed | Steps",
+    "Walking Calorie Calculator [Free] — By Speed, Weight & Distance",
   description:
-    "Free walking calorie calculator with MET values for every speed. MET value walking 5 km/h = 3.5, brisk 6.4 km/h = 4.5, moderate 4 km/h = 3.0. Full MET reference table + instant calorie results.",
+    "Calculate calories burned walking by speed, weight, and distance. MET values for every pace: 3 mph = 3.3, 4 mph = 5.0. Enter your walk details for instant results with full MET reference table.",
   keywords: [
     "walking calorie calculator",
     "walking calories calculator",

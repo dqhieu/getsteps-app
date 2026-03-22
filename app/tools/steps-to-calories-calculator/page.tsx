@@ -9,9 +9,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Steps to Calories Calculator — How Many Calories Do Your Steps Burn?",
+  title: "Steps to Calories Calculator [Free] — Instant Results by Weight",
   description:
-    "Free steps to calories calculator. Enter your steps to see calories burned instantly. 10,000 steps ≈ 400 cal (70 kg). How many steps to burn 500 calories? ~12,500. Reference table included.",
+    "Convert steps to calories burned instantly. 10,000 steps ≈ 400 cal (70 kg). Enter your step count and weight for a personalized result. Includes reference table for 1,000–20,000 steps.",
   keywords: [
     "steps to calories",
     "steps to calories calculator",
