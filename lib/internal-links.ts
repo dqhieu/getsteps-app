@@ -460,6 +460,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Benefits of Walking 45 Minutes a Day", href: "/blog/benefits-of-walking-45-minutes-a-day" },
     { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
   ],
+  "how-many-steps-in-2-miles": [
+    { title: "How Many Steps in 3 Miles?", href: "/blog/how-many-steps-in-3-miles" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Long Does It Take to Walk 2 Miles?", href: "/blog/how-long-does-it-take-to-walk-2-miles" },
+  ],
+  "how-many-steps-in-3-miles": [
+    { title: "How Many Steps in 2 Miles?", href: "/blog/how-many-steps-in-2-miles" },
+    { title: "How Many Steps in a 5K?", href: "/blog/how-many-steps-in-a-5k" },
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+  ],
+  "how-long-does-it-take-to-walk-5-miles": [
+    { title: "How Long Does It Take to Walk 2 Miles?", href: "/blog/how-long-does-it-take-to-walk-2-miles" },
+    { title: "How Long to Walk 10,000 Steps?", href: "/blog/how-long-to-walk-10000-steps" },
+    { title: "Calories Burned Walking 3 Miles", href: "/blog/calories-burned-walking-3-miles" },
+  ],
+  "how-long-does-it-take-to-walk-2-miles": [
+    { title: "How Long Does It Take to Walk 5 Miles?", href: "/blog/how-long-does-it-take-to-walk-5-miles" },
+    { title: "How Many Steps in 2 Miles?", href: "/blog/how-many-steps-in-2-miles" },
+    { title: "Walking 30 Minutes a Day Results", href: "/blog/walking-30-minutes-a-day-results" },
+  ],
+  "how-many-steps-in-a-5k": [
+    { title: "How Many Steps in 3 Miles?", href: "/blog/how-many-steps-in-3-miles" },
+    { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
+    { title: "How Many KM Is 10,000 Steps?", href: "/blog/how-many-km-is-10000-steps" },
+  ],
+  "calories-burned-walking-3-miles": [
+    { title: "Calories Burned Walking One Mile", href: "/blog/calories-burned-walking-one-mile" },
+    { title: "Calories Burned Walking 1 Hour", href: "/blog/calories-burned-walking-1-hour" },
+    { title: "How Many Steps in 3 Miles?", href: "/blog/how-many-steps-in-3-miles" },
+  ],
+  "how-many-km-is-10000-steps": [
+    { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
+    { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
+    { title: "How Many Steps in a 5K?", href: "/blog/how-many-steps-in-a-5k" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -839,5 +874,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "evening-walking-benefits": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-steps-in-2-miles": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-many-steps-in-3-miles": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-5-miles": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-2-miles": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-many-steps-in-a-5k": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "calories-burned-walking-3-miles": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "how-many-km-is-10000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
   ],
 };
