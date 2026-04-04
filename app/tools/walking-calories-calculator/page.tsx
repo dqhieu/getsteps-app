@@ -10,9 +10,9 @@ import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title:
-    "Walking Calorie Calculator [Free] — By Speed, Weight & Distance",
+    "Walking Calories Burned Calculator [Free] — By Weight, Speed & Time",
   description:
-    "Calculate calories burned walking by speed, weight, and distance. MET values for every pace: 3 mph = 3.3, 4 mph = 5.0. Enter your walk details for instant results with full MET reference table.",
+    "How many calories does walking burn? A 155 lb person burns ~300 cal/hour at 3.5 mph. Enter your weight, speed, and time for an instant personalized estimate. Works for any pace from casual stroll to power walk.",
   keywords: [
     "walking calorie calculator",
     "walking calories calculator",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     "calories burned walking calculator formula met",
   ],
   openGraph: {
-    title: "Free Walking Calorie Calculator & MET Values for Every Speed",
+    title: "Walking Calories Burned Calculator [Free] — Instant Results",
     description:
-      "Calculate calories burned walking with MET values for every speed. Full MET reference table included.",
+      "A 155 lb person burns ~300 cal/hour walking at 3.5 mph. Enter your weight, speed, and time for a personalized calorie estimate.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/walking-calories-calculator`,
     images: [

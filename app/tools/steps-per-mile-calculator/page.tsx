@@ -9,9 +9,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Steps Per Mile Calculator - How Many Steps in a Mile?",
+  title: "Steps Per Mile Calculator [Free] — How Many Steps in a Mile?",
   description:
-    "Find out how many steps are in a mile or kilometer based on your height and gender. Get personalized step counts for common walking and running distances.",
+    "How many steps in a mile? About 2,000-2,500 depending on height and pace. Get personalized step counts per mile and per km — includes walking vs running comparison table.",
   keywords: [
     "steps per mile",
     "steps per km",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     "miles to steps",
   ],
   openGraph: {
-    title: "Steps Per Mile Calculator",
+    title: "Steps Per Mile Calculator [Free] — Personalized by Height",
     description:
-      "Find out how many steps are in a mile or kilometer based on your height.",
+      "How many steps in a mile? 2,000-2,500 depending on your height. Get personalized step counts per mile and per km.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/steps-per-mile-calculator`,
     images: [

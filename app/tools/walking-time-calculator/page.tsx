@@ -9,9 +9,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Walking Time Calculator: How Long to Walk 1 km, 5 km, or Any Distance",
+  title: "Walking Time Calculator [Free] — How Long to Walk 1 km, 1 Mile, or Any Distance",
   description:
-    "How long does it take to walk 5 km? About 60 min at normal pace. Calculate walking time for any distance — 1 km (12 min), 1 mile (18 min), 8 km (96 min), and more.",
+    "How long does it take to walk 1 mile? About 18 min. 5 km? ~60 min. Enter any distance for a personalized walking time estimate based on your pace. Includes common distances table.",
   keywords: [
     "walking time",
     "walking time calculator",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     "walk duration calculator",
   ],
   openGraph: {
-    title: "Walking Time Calculator: How Long to Walk Any Distance",
+    title: "Walking Time Calculator [Free] — How Long to Walk Any Distance",
     description:
-      "Calculate walking time for any distance. 5 km ≈ 60 min, 1 mile ≈ 18 min at normal pace.",
+      "1 mile ≈ 18 min, 5 km ≈ 60 min at normal pace. Enter any distance for a personalized walking time estimate.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/walking-time-calculator`,
     images: [
