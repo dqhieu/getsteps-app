@@ -495,6 +495,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
     { title: "How Many Steps in a 5K?", href: "/blog/how-many-steps-in-a-5k" },
   ],
+  "how-long-does-it-take-to-walk-1-mile": [
+    { title: "How Long Does It Take to Walk 2 Miles?", href: "/blog/how-long-does-it-take-to-walk-2-miles" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "Calories Burned Walking One Mile", href: "/blog/calories-burned-walking-one-mile" },
+  ],
+  "how-many-steps-to-burn-1000-calories": [
+    { title: "How Many Steps Burn 500 Calories?", href: "/blog/how-many-steps-burn-500-calories" },
+    { title: "How Many Steps to Burn 100 Calories?", href: "/blog/how-many-steps-to-burn-100-calories" },
+    { title: "20,000 Steps Calories Burned", href: "/blog/20000-steps-calories-burned" },
+  ],
+  "how-many-calories-does-8000-steps-burn": [
+    { title: "How Many Calories Does 5,000 Steps Burn?", href: "/blog/how-many-calories-does-5000-steps-burn" },
+    { title: "10,000 Steps Calories Burned", href: "/blog/10000-steps-calories-burned" },
+    { title: "How Many Calories Does 7,000 Steps Burn?", href: "/blog/how-many-calories-does-7000-steps-burn" },
+  ],
+  "how-many-calories-does-6000-steps-burn": [
+    { title: "How Many Calories Does 5,000 Steps Burn?", href: "/blog/how-many-calories-does-5000-steps-burn" },
+    { title: "How Many Calories Does 7,000 Steps Burn?", href: "/blog/how-many-calories-does-7000-steps-burn" },
+    { title: "How Many Calories Does 3,000 Steps Burn?", href: "/blog/how-many-calories-does-3000-steps-burn" },
+  ],
+  "how-many-calories-does-7000-steps-burn": [
+    { title: "How Many Calories Does 6,000 Steps Burn?", href: "/blog/how-many-calories-does-6000-steps-burn" },
+    { title: "How Many Calories Does 8,000 Steps Burn?", href: "/blog/how-many-calories-does-8000-steps-burn" },
+    { title: "How Many Calories Does 5,000 Steps Burn?", href: "/blog/how-many-calories-does-5000-steps-burn" },
+  ],
+  "benefits-of-walking-1-hour-a-day": [
+    { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
+    { title: "Benefits of Walking 45 Minutes a Day", href: "/blog/benefits-of-walking-45-minutes-a-day" },
+    { title: "Calories Burned Walking 1 Hour", href: "/blog/calories-burned-walking-1-hour" },
+  ],
+  "how-many-calories-does-3000-steps-burn": [
+    { title: "How Many Calories Does 5,000 Steps Burn?", href: "/blog/how-many-calories-does-5000-steps-burn" },
+    { title: "How Many Calories Does 1,000 Steps Burn?", href: "/blog/how-many-calories-does-1000-steps-burn" },
+    { title: "How Many Calories Does 6,000 Steps Burn?", href: "/blog/how-many-calories-does-6000-steps-burn" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -902,5 +937,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "how-many-km-is-10000-steps": [
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
     { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-1-mile": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-many-steps-to-burn-1000-calories": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-many-calories-does-8000-steps-burn": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-calories-does-6000-steps-burn": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-many-calories-does-7000-steps-burn": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "benefits-of-walking-1-hour-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-calories-does-3000-steps-burn": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
   ],
 };
