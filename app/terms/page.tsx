@@ -52,13 +52,30 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">3. Health Data</h2>
-                <p className="text-neutral-600 dark:text-neutral-400">
+                <p className="text-neutral-600 dark:text-neutral-400 mb-3">
                   The App integrates with Apple HealthKit. You are responsible for the accuracy of health data. The App is not a medical device and should not replace professional medical advice.
+                </p>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  By default, health data remains on your device. If you opt into the Stepboard feature, selected health metrics are synced to our servers as described in Section 4.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">4. Subscriptions</h2>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">4. Stepboard</h2>
+                <p className="text-neutral-600 dark:text-neutral-400 mb-3">
+                  Stepboard is an opt-in community leaderboard feature. By joining, you agree to the following:
+                </p>
+                <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                  <li>Your daily step count, distance, calories, and flights climbed are synced to our servers and visible to other participants</li>
+                  <li>You must create a display name to participate, which must not be offensive, impersonate others, or violate applicable laws</li>
+                  <li>Company reserves the right to remove participants who violate these guidelines</li>
+                  <li>Step data accuracy depends on your device and HealthKit — Company is not responsible for discrepancies</li>
+                  <li>You may leave the Stepboard at any time, which stops syncing and removes your leaderboard data from our servers</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">5. Subscriptions</h2>
                 <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
                   <li>Subscriptions auto-renew unless cancelled 24 hours before current period ends</li>
                   <li>Payment charged to iTunes Account at confirmation of purchase</li>
@@ -68,21 +85,21 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">5. Disclaimer</h2>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">6. Disclaimer</h2>
                 <p className="text-neutral-600 dark:text-neutral-400">
                   The App is provided "as is" without warranties. Company disclaims all warranties, express or implied, including merchantability and fitness for a particular purpose.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">6. Limitation of Liability</h2>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">7. Limitation of Liability</h2>
                 <p className="text-neutral-600 dark:text-neutral-400">
                   Company shall not be liable for any indirect, incidental, special, or consequential damages arising from use of the App.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">7. Termination</h2>
+                <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">8. Termination</h2>
                 <p className="text-neutral-600 dark:text-neutral-400">
                   This license terminates if you breach this Agreement. Upon termination, you must delete the App.
                 </p>

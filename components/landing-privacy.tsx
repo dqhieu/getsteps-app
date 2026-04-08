@@ -7,12 +7,12 @@ export function LandingPrivacy() {
             🔒
           </span>
           <h3 className="text-xl font-semibold mb-3 text-neutral-900 dark:text-white">
-            Your data stays on your device
+            Your data stays on your device by default
           </h3>
           <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
-            All health data is stored locally and never uploaded to external
-            servers. Steps uses Apple HealthKit to securely access your fitness
-            data with your permission.
+            Health data is stored locally and accessed securely through Apple
+            HealthKit with your permission. If you opt into the Stepboard
+            leaderboard, selected metrics are synced to power the rankings.
           </p>
         </div>
       </div>

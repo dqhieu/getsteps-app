@@ -55,6 +55,18 @@ export default function PrivacyPage() {
                       <li>App preferences and settings</li>
                     </ul>
                   </div>
+
+                  <div>
+                    <h3 className="text-base font-medium text-neutral-800 dark:text-neutral-200 mb-2">Stepboard Data (opt-in only)</h3>
+                    <p className="text-neutral-600 dark:text-neutral-400 mb-2">
+                      If you voluntarily join the Stepboard leaderboard, we collect and store the following on our servers:
+                    </p>
+                    <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
+                      <li>Display name, profile photo, and country code</li>
+                      <li>Daily step counts, walking/running distance, calories burned, and flights climbed</li>
+                      <li>Stepboard membership and participation dates</li>
+                    </ul>
+                  </div>
                 </div>
               </section>
 
@@ -66,6 +78,7 @@ export default function PrivacyPage() {
                   <li>Improve app functionality and user experience</li>
                   <li>Process subscription purchases and provide customer support</li>
                   <li>Send relevant notifications about your progress</li>
+                  <li>Power the Stepboard leaderboard so you can compare daily steps with other participants</li>
                 </ul>
               </section>
 
@@ -81,6 +94,13 @@ export default function PrivacyPage() {
                   </ul>
                 </div>
 
+                <div className="mb-4">
+                  <h3 className="text-base font-medium text-neutral-800 dark:text-neutral-200 mb-2">Stepboard</h3>
+                  <p className="text-neutral-600 dark:text-neutral-400">
+                    If you join the Stepboard, your display name, country, and daily step data are visible to other Stepboard participants.
+                  </p>
+                </div>
+
                 <p className="text-neutral-600 dark:text-neutral-400 font-medium">
                   We do not sell personal information to third parties.
                 </p>
@@ -89,11 +109,12 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-4">Health Data Protection</h2>
                 <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-400 space-y-1.5 ml-1">
-                  <li><span className="text-neutral-800 dark:text-neutral-200">Your health data is never uploaded to our servers</span> - all health data remains on your device</li>
-                  <li>Health data is stored locally on your device and in Apple's secure HealthKit</li>
+                  <li><span className="text-neutral-800 dark:text-neutral-200">By default, your health data stays on your device</span> and is never uploaded to our servers</li>
+                  <li><span className="text-neutral-800 dark:text-neutral-200">If you join the Stepboard,</span> selected health metrics (steps, distance, calories, flights climbed) are synced to our servers to power the leaderboard</li>
+                  <li>Stepboard participation is entirely opt-in — you can leave at any time and your synced data will be removed</li>
+                  <li>Health data not related to Stepboard (workouts, other HealthKit data) remains local on your device</li>
                   <li>Health data is encrypted and protected by Apple's security measures</li>
                   <li>You control what health data the app can access through iOS permissions</li>
-                  <li>Health data is not shared without your explicit consent</li>
                 </ul>
               </section>
 
@@ -103,6 +124,7 @@ export default function PrivacyPage() {
                   <li><span className="text-neutral-800 dark:text-neutral-200">Health data:</span> Retained as long as the app is installed</li>
                   <li><span className="text-neutral-800 dark:text-neutral-200">Analytics data:</span> Retained for up to 2 years</li>
                   <li><span className="text-neutral-800 dark:text-neutral-200">Account data:</span> Retained during active subscription period</li>
+                  <li><span className="text-neutral-800 dark:text-neutral-200">Stepboard data:</span> Removed from our servers when you leave the Stepboard</li>
                 </ul>
               </section>
 
@@ -114,6 +136,7 @@ export default function PrivacyPage() {
                   <li>Request deletion of your data</li>
                   <li>Withdraw consent for data processing</li>
                   <li>Opt-out of analytics data collection</li>
+                  <li>Leave the Stepboard at any time to stop syncing and remove your data from the leaderboard</li>
                 </ul>
               </section>
 
