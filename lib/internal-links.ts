@@ -530,6 +530,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Calories Does 1,000 Steps Burn?", href: "/blog/how-many-calories-does-1000-steps-burn" },
     { title: "How Many Calories Does 6,000 Steps Burn?", href: "/blog/how-many-calories-does-6000-steps-burn" },
   ],
+  "average-walking-pace": [
+    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
+    { title: "How Many Miles Is 8,000 Steps?", href: "/blog/how-many-miles-is-8000-steps" },
+    { title: "Walking at Home Workout", href: "/blog/walking-at-home-workout" },
+  ],
+  "what-is-brisk-walking": [
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
+    { title: "20,000 Steps a Day Benefits", href: "/blog/20000-steps-a-day-benefits" },
+  ],
+  "how-many-miles-is-8000-steps": [
+    { title: "How Many Miles Is 4,000 Steps?", href: "/blog/how-many-miles-is-4000-steps" },
+    { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+  ],
+  "how-many-miles-is-15000-steps": [
+    { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
+    { title: "How Many Calories Does 15,000 Steps Burn?", href: "/blog/how-many-calories-does-15000-steps-burn" },
+    { title: "20,000 Steps a Day Benefits", href: "/blog/20000-steps-a-day-benefits" },
+  ],
+  "how-many-miles-is-4000-steps": [
+    { title: "How Many Miles Is 8,000 Steps?", href: "/blog/how-many-miles-is-8000-steps" },
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+  ],
+  "walking-at-home-workout": [
+    { title: "Walking Workout Plan for Beginners", href: "/blog/walking-workout-plan-beginners" },
+    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
+    { title: "Treadmill Walking Workout for Weight Loss", href: "/blog/treadmill-walking-workout-weight-loss" },
+  ],
+  "20000-steps-a-day-benefits": [
+    { title: "20,000 Steps Calories Burned", href: "/blog/20000-steps-calories-burned" },
+    { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -965,5 +1000,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "how-many-calories-does-3000-steps-burn": [
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "average-walking-pace": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "what-is-brisk-walking": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-miles-is-8000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "how-many-miles-is-15000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "how-many-miles-is-4000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "walking-at-home-workout": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "20000-steps-a-day-benefits": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
   ],
 };
