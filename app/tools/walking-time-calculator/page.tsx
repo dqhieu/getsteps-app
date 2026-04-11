@@ -9,9 +9,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Walking Time Calculator [Free] — How Long to Walk 1 km, 1 Mile, or Any Distance",
+  title: "Walking Time Calculator: How Long to Walk 1 Km, 1 Mile, or Any Distance",
   description:
-    "How long does it take to walk 1 mile? About 18 min. 5 km? ~60 min. Enter any distance for a personalized walking time estimate based on your pace. Includes common distances table.",
+    "How long to walk 1 km? ~12 min. 1 mile? ~18 min. 5 km? ~60 min. 8 km? ~96 min. Enter any distance for walking time at slow, normal, brisk, or fast pace. Free calculator.",
   keywords: [
     "walking time",
     "walking time calculator",
@@ -114,6 +114,15 @@ export default function WalkingTimeCalculatorPage() {
                 </h3>
 
                 <div className="space-y-4">
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How long does it take to walk 1 km?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      At a normal pace (5 km/h), it takes about <strong>12 minutes</strong> to walk 1 km. At a slow pace (3.2 km/h) it&apos;s ~19 minutes, and at a brisk pace (6.4 km/h) you can finish in about 9 minutes. That&apos;s roughly 1,300 steps for an average adult.
+                    </p>
+                  </details>
+
                   <details className="group">
                     <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
                       How long does it take to walk 5 km?
@@ -241,6 +250,14 @@ export default function WalkingTimeCalculatorPage() {
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How long does it take to walk 1 km?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "At a normal pace (5 km/h), it takes about 12 minutes to walk 1 km. At a slow pace (3.2 km/h) it's ~19 minutes, and at a brisk pace (6.4 km/h) you can finish in about 9 minutes. That's roughly 1,300 steps for an average adult."
+                }
+              },
               {
                 "@type": "Question",
                 "name": "How long does it take to walk 5 km?",

@@ -9,9 +9,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Step Distance Calculator [Free] — Convert Km to Steps & Steps to Km",
+  title: "Km to Steps Calculator: Convert Any Distance to Step Count (Free)",
   description:
-    "How many steps in 1 km? About 1,300 (varies by height). Convert any distance to steps or steps to distance — personalized by your height, gender, and stride length. Instant results.",
+    "1 km ≈ 1,300 steps. 3 km ≈ 3,900. 5 km ≈ 6,500. 10 km ≈ 13,000. Convert km to steps or steps to km instantly — personalized by your height, gender, and stride length.",
   keywords: [
     "km in steps",
     "steps to km",
