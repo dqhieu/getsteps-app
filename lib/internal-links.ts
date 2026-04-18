@@ -565,6 +565,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
   ],
+  "walking-with-weighted-vest": [
+    { title: "Walking Backwards Benefits", href: "/blog/walking-backwards-benefits" },
+    { title: "Japanese Interval Walking Method", href: "/blog/japanese-interval-walking-method" },
+    { title: "Walking Workout Plan for Beginners", href: "/blog/walking-workout-plan-beginners" },
+  ],
+  "walking-backwards-benefits": [
+    { title: "Walking with a Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+    { title: "Japanese Interval Walking Method", href: "/blog/japanese-interval-walking-method" },
+    { title: "Benefits of Walking Everyday", href: "/blog/benefits-of-walking-everyday" },
+  ],
+  "japanese-interval-walking-method": [
+    { title: "Walking with a Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
+    { title: "Heart Rate Zones Explained", href: "/blog/heart-rate-zones-explained" },
+  ],
+  "average-step-length": [
+    { title: "Walking Speed Calculator Guide", href: "/blog/walking-speed-calculator-guide" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
+  ],
+  "walking-speed-calculator-guide": [
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Step Length by Height", href: "/blog/average-step-length" },
+    { title: "How Long Does It Take to Walk 1 km?", href: "/blog/how-long-does-it-take-to-walk-1-km" },
+  ],
+  "walking-after-dinner-benefits": [
+    { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
+    { title: "Evening Walking Benefits", href: "/blog/evening-walking-benefits" },
+    { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
+  ],
+  "how-long-does-it-take-to-walk-1-km": [
+    { title: "How Long Does It Take to Walk 1 Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
+    { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
+    { title: "Walking Speed Calculator Guide", href: "/blog/walking-speed-calculator-guide" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -1028,5 +1063,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "20000-steps-a-day-benefits": [
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "walking-with-weighted-vest": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "walking-backwards-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "japanese-interval-walking-method": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+  ],
+  "average-step-length": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "walking-speed-calculator-guide": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "walking-after-dinner-benefits": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-1-km": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
   ],
 };
