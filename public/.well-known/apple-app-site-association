@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["BH46VD9229.com.hieudinh.Steps"],
+        "components": [
+          { "/": "/join/*", "comment": "Stepboard group invite" }
+        ]
+      }
+    ]
+  }
+}
