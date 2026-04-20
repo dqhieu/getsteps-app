@@ -1,7 +1,9 @@
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { getSupabase } from "@/lib/supabase";
+import { SITE_CONFIG } from "@/lib/constants";
 import JoinCodeCopy from "./JoinCodeCopy";
 
 interface GroupPreview {
@@ -12,23 +14,24 @@ interface GroupPreview {
 }
 
 const CODE_REGEX = /^[A-Z2-9]{4}$/;
-const APP_STORE_URL = "https://apps.apple.com/app/id6746096378";
 
-async function fetchPreview(code: string): Promise<GroupPreview | null> {
-  const supabase = getSupabase();
-  // Cast to any because the RPC function type isn't in the generated Database
-  // types (no typed Database generic is passed to createClient in lib/supabase.ts).
-  const { data, error } = await (supabase.rpc as any)(
-    "get_stepboard_group_preview",
-    { p_invite_code: code }
-  );
-  if (error) {
-    throw error;
+const fetchPreview = cache(
+  async (code: string): Promise<GroupPreview | null> => {
+    const supabase = getSupabase();
+    // Cast to any because the RPC function type isn't in the generated Database
+    // types (no typed Database generic is passed to createClient in lib/supabase.ts).
+    const { data, error } = await (supabase.rpc as any)(
+      "get_stepboard_group_preview",
+      { p_invite_code: code }
+    );
+    if (error) {
+      throw error;
+    }
+    const row = Array.isArray(data) ? data[0] : data;
+    if (!row) return null;
+    return row as GroupPreview;
   }
-  const row = Array.isArray(data) ? data[0] : data;
-  if (!row) return null;
-  return row as GroupPreview;
-}
+);
 
 function normalizeCode(raw: string): string | null {
   const upper = raw.trim().toUpperCase();
@@ -93,7 +96,7 @@ export default async function JoinPage({
   const ua = hdrs.get("user-agent") ?? "";
   const isIOS = /iPhone|iPad|iPod/.test(ua);
 
-  const primaryHref = isIOS ? `https://getsteps.app/join/${code}` : APP_STORE_URL;
+  const primaryHref = isIOS ? `https://getsteps.app/join/${code}` : SITE_CONFIG.appStoreUrl;
   const primaryLabel = isIOS ? "Open in Steps" : "Get Steps";
 
   const memberWord = preview.member_count === 1 ? "member" : "members";
@@ -123,7 +126,7 @@ export default async function JoinPage({
           </a>
           {isIOS && (
             <a
-              href={APP_STORE_URL}
+              href={SITE_CONFIG.appStoreUrl}
               className="inline-flex items-center justify-center rounded-full border border-neutral-300 dark:border-neutral-700 px-6 py-3 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-900 transition"
             >
               Get Steps on the App Store
