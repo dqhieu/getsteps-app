@@ -6,10 +6,10 @@ export function LandingFeatures() {
     <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900/50">
       <div className="container mx-auto px-4">
         {/* Section header */}
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-neutral-900 dark:text-white">
+        <h2 className="text-2xl md:text-3xl font-bold text-balance text-center mb-4 text-neutral-900 dark:text-white">
           Everything you need to stay active
         </h2>
-        <p className="text-center text-neutral-600 dark:text-neutral-400 mb-4 max-w-xl mx-auto">
+        <p className="text-center text-pretty text-neutral-600 dark:text-neutral-400 mb-4 max-w-xl mx-auto">
           Powered by Apple HealthKit for accurate, automatic tracking
         </p>
         <div className="flex justify-center mb-12">

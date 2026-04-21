@@ -5,11 +5,11 @@ export function LandingWorkouts() {
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         {/* Section header */}
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-neutral-900 dark:text-white">
+        <h2 className="text-2xl md:text-3xl font-bold text-balance text-center mb-4 text-neutral-900 dark:text-white">
           Track Any Activity
         </h2>
-        <p className="text-center text-neutral-600 dark:text-neutral-400 mb-12 max-w-xl mx-auto">
-          23+ workout types with detailed analytics
+        <p className="text-center text-pretty text-neutral-600 dark:text-neutral-400 mb-12 max-w-xl mx-auto">
+          <span className="tabular-nums">23+</span> workout types with detailed analytics
         </p>
 
         {/* Workout types */}

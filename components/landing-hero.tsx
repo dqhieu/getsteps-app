@@ -16,7 +16,7 @@ export function LandingHero() {
     <section className="pt-24 pb-12 md:pt-32 md:pb-16">
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         {/* App Icon */}
-        <div className="relative w-24 h-24 mb-8 shadow-xl rounded-[22px] overflow-hidden">
+        <div className="relative w-24 h-24 mb-8 shadow-xl rounded-[22px] overflow-hidden ring-1 ring-black/10 dark:ring-white/10">
           <Image
             src="/app_icon.png"
             alt="Steps App Icon"
@@ -27,19 +27,21 @@ export function LandingHero() {
         </div>
 
         {/* Headline */}
-        <h1 className="text-4xl md:text-6xl font-medium tracking-tight mb-4 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
+        <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-balance mb-4 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
           {SITE_CONFIG.name}
         </h1>
 
         {/* Tagline */}
-        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mb-6 leading-relaxed">
+        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mb-6 leading-relaxed text-pretty">
           Every step counts. Every milestone shows.
         </p>
 
         {/* Rating */}
         <div className="flex items-center gap-2 mb-8 text-sm text-neutral-600 dark:text-neutral-400">
           <span className="text-amber-500">★★★★★</span>
-          <span>{SITE_CONFIG.appStoreRating} Rating</span>
+          <span>
+            <span className="tabular-nums">{SITE_CONFIG.appStoreRating}</span> Rating
+          </span>
           <span className="text-neutral-300 dark:text-neutral-700">·</span>
           <span>Free Download</span>
         </div>
@@ -49,7 +51,7 @@ export function LandingHero() {
           href={SITE_CONFIG.appStoreUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="transition-transform hover:scale-105 active:scale-95 inline-block"
+          className="inline-block transition-transform duration-150 hover:scale-105 active:scale-[0.96]"
           aria-label="Download on the App Store"
           data-fast-goal="open-app-store"
           onClick={handleAppStoreClick}

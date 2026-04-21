@@ -6,10 +6,10 @@ export function LandingPrivacy() {
           <span className="text-3xl mb-4 block" role="img" aria-label="Privacy">
             🔒
           </span>
-          <h3 className="text-xl font-semibold mb-3 text-neutral-900 dark:text-white">
+          <h3 className="text-xl font-semibold text-balance mb-3 text-neutral-900 dark:text-white">
             Your data stays on your device by default
           </h3>
-          <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+          <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed text-pretty">
             Health data is stored locally and accessed securely through Apple
             HealthKit with your permission. If you opt into the Stepboard
             leaderboard, selected metrics are synced to power the rankings.

@@ -10,10 +10,10 @@ export function LandingYearlyInsights() {
           <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 mb-4">
             Steps Pro
           </span>
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-neutral-900 dark:text-white">
+          <h2 className="text-2xl md:text-3xl font-bold text-balance mb-4 text-neutral-900 dark:text-white">
             Your Year in Review
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto">
+          <p className="text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto text-pretty">
             See your fitness journey transformed into beautiful, shareable
             visualizations
           </p>

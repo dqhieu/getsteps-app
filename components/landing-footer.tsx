@@ -47,7 +47,7 @@ export function LandingFooter() {
                 alt="Steps"
                 width={32}
                 height={32}
-                className="rounded-lg"
+                className="rounded-lg ring-1 ring-black/10 dark:ring-white/10"
               />
               <span className="text-lg font-semibold text-neutral-900 dark:text-white">
                 {SITE_CONFIG.name}
@@ -206,7 +206,7 @@ export function LandingFooter() {
               href={SITE_CONFIG.appStoreUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-6 transition-transform hover:scale-105 active:scale-95"
+              className="inline-block mt-6 transition-transform duration-150 hover:scale-105 active:scale-[0.96]"
               aria-label="Download on the App Store"
             >
               <Image

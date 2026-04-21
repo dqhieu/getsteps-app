@@ -15,7 +15,7 @@ export function LandingNavbar() {
             alt="Steps"
             width={32}
             height={32}
-            className="rounded-lg"
+            className="rounded-lg ring-1 ring-black/10 dark:ring-white/10"
           />
           <span className="font-semibold text-neutral-900 dark:text-white hidden sm:inline">
             Steps: Workout & Pedometer
@@ -52,7 +52,7 @@ export function LandingNavbar() {
             href={SITE_CONFIG.appStoreUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium px-3 py-1.5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:opacity-90 transition-opacity"
+            className="inline-flex min-h-[40px] items-center justify-center text-sm font-medium px-4 py-1.5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 transition-[opacity,transform] duration-150 hover:opacity-90 active:scale-[0.96]"
           >
             Download
           </a>

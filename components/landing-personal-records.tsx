@@ -5,10 +5,10 @@ export function LandingPersonalRecords() {
     <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900/50">
       <div className="container mx-auto px-4">
         {/* Section header */}
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-neutral-900 dark:text-white">
-          8 Ways to Beat Your Best
+        <h2 className="text-2xl md:text-3xl font-bold text-balance text-center mb-4 text-neutral-900 dark:text-white">
+          <span className="tabular-nums">8</span> Ways to Beat Your Best
         </h2>
-        <p className="text-center text-neutral-600 dark:text-neutral-400 mb-12 max-w-xl mx-auto">
+        <p className="text-center text-pretty text-neutral-600 dark:text-neutral-400 mb-12 max-w-xl mx-auto">
           Track personal records across every metric that matters
         </p>
 

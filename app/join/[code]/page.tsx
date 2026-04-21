@@ -116,24 +116,25 @@ export default async function JoinPage({
         <p className="text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
           You've been invited to join
         </p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
           {preview.name}
         </h1>
-        <p className="mt-4 text-base text-neutral-600 dark:text-neutral-300">
-          👥 {preview.member_count} {memberWord} · {invitedBy}
+        <p className="mt-4 text-base text-neutral-600 dark:text-neutral-300 text-pretty">
+          👥 <span className="tabular-nums">{preview.member_count}</span>{" "}
+          {memberWord} · {invitedBy}
         </p>
 
         <div className="mt-10 flex flex-col gap-3">
           <a
             href={primaryHref}
-            className="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-white font-medium hover:bg-orange-600 transition"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-white font-medium transition-[background-color,transform] duration-150 hover:bg-orange-600 active:scale-[0.96]"
           >
             {primaryLabel}
           </a>
           {isIOS && (
             <a
               href={SITE_CONFIG.appStoreUrl}
-              className="inline-flex items-center justify-center rounded-full border border-neutral-300 dark:border-neutral-700 px-6 py-3 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-900 transition"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-neutral-300 px-6 py-3 font-medium transition-[background-color,border-color,transform] duration-150 hover:bg-neutral-100 active:scale-[0.96] dark:border-neutral-700 dark:hover:bg-neutral-900"
             >
               Get Steps on the App Store
             </a>

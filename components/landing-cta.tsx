@@ -14,7 +14,7 @@ export function LandingCTA() {
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-neutral-900 dark:text-white">
+        <h2 className="text-2xl md:text-3xl font-bold text-balance mb-6 text-neutral-900 dark:text-white">
           Ready to track every step?
         </h2>
 
@@ -23,7 +23,7 @@ export function LandingCTA() {
           href={SITE_CONFIG.appStoreUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="transition-transform hover:scale-105 active:scale-95 inline-block mb-6"
+          className="inline-block mb-6 transition-transform duration-150 hover:scale-105 active:scale-[0.96]"
           aria-label="Download on the App Store"
           onClick={handleAppStoreClick}
         >
