@@ -96,7 +96,13 @@ export default async function JoinPage({
   const ua = hdrs.get("user-agent") ?? "";
   const isIOS = /iPhone|iPad|iPod/.test(ua);
 
-  const primaryHref = isIOS ? `https://getsteps.app/join/${code}` : SITE_CONFIG.appStoreUrl;
+  // Safari suppresses Universal Links when the href points to the same
+  // origin the user is already on. Use the steps:// custom scheme so iOS
+  // prompts "Open in Steps?" and launches the app via handleDeepLink's
+  // JOIN_GROUP branch instead.
+  const primaryHref = isIOS
+    ? `steps://open?screen=JOIN_GROUP&code=${code}`
+    : SITE_CONFIG.appStoreUrl;
   const primaryLabel = isIOS ? "Open in Steps" : "Get Steps";
 
   const memberWord = preview.member_count === 1 ? "member" : "members";
