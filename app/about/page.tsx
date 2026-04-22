@@ -27,9 +27,12 @@ export const metadata: Metadata = {
 };
 
 const PHOTOS = [
-  { src: "/about/race-1.jpg", alt: "Hieu and his wife at a 10K race finish line" },
-  { src: "/about/race-2.jpg", alt: "Running together on a morning trail" },
-  { src: "/about/race-3.jpg", alt: "Post-race celebration with medals" },
+  { src: "/about/race-1.jpg", alt: "Hieu and his wife at a 10K race finish line", aspect: "aspect-[4/5]" },
+  { src: "/about/race-2.jpg", alt: "Running together on a morning trail", aspect: "aspect-[4/5]" },
+  { src: "/about/race-3.jpg", alt: "Post-race celebration with medals", aspect: "aspect-[4/5]" },
+  { src: "/about/route-marina-bay.jpg", alt: "10.07 km Marina Bay run tracked with the Steps app", aspect: "aspect-[1896/2131]" },
+  { src: "/about/route-pulau-ubin.jpg", alt: "9.14 km Pulau Ubin run tracked with the Steps app", aspect: "aspect-[1896/2131]" },
+  { src: "/about/route-geylang.jpg", alt: "6.23 km Geylang evening run tracked with the Steps app", aspect: "aspect-[1896/2131]" },
 ];
 
 const STATS = [
@@ -89,7 +92,7 @@ export default function AboutPage() {
                 {PHOTOS.map((photo) => (
                   <div
                     key={photo.src}
-                    className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900"
+                    className={`relative ${photo.aspect} rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900`}
                   >
                     <Image
                       src={photo.src}
