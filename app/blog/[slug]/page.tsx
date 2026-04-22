@@ -105,6 +105,11 @@ export default async function BlogPostPage({ params }: Props) {
       ...(post.author.role && { jobTitle: post.author.role }),
       ...(post.author.bio && { description: post.author.bio }),
       ...(post.author.url && { url: post.author.url }),
+      ...(post.author.avatar && {
+        image: post.author.avatar.startsWith("http")
+          ? post.author.avatar
+          : `${SITE_CONFIG.baseUrl}${post.author.avatar}`,
+      }),
       ...(post.author.sameAs && post.author.sameAs.length > 0 && { sameAs: post.author.sameAs }),
     },
     publisher: {

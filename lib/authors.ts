@@ -14,6 +14,7 @@ export const AUTHORS: Record<string, AuthorProfile> = {
     name: "Hieu Dinh",
     role: "Co-founder, Steps",
     bio: "Co-founder of Steps. Walks 10,000 steps a day and runs 10 KM every weekend. Started Steps after trying every step tracker on the App Store and finding none that felt right.",
+    avatar: "/about/hieu.jpg",
     url: "https://getsteps.app/about",
   },
   "steps-team": {
