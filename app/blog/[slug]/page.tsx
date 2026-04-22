@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -12,6 +11,8 @@ import { RelatedContentSection } from "@/components/related-content-section";
 import { PersonaLinks } from "@/components/persona-links";
 import { BLOG_RELATED_POSTS, BLOG_RELATED_TOOLS, BLOG_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
+import { buildBreadcrumbList } from "@/lib/schema/breadcrumb";
+import { mdxComponents } from "@/components/mdx";
 
 const SITE_KEYWORDS = [
   "step counter", "pedometer", "workout tracker", "fitness app",
@@ -54,6 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: post.image ? [post.image] : [],
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.lastUpdated ?? post.date,
       authors: [post.author.name],
       tags: keywords,
     },
@@ -96,9 +98,14 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.description,
     image: post.image ? `${SITE_CONFIG.baseUrl}${post.image}` : undefined,
     datePublished: post.date,
+    dateModified: post.lastUpdated ?? post.date,
     author: {
       "@type": "Person",
       name: post.author.name,
+      ...(post.author.role && { jobTitle: post.author.role }),
+      ...(post.author.bio && { description: post.author.bio }),
+      ...(post.author.url && { url: post.author.url }),
+      ...(post.author.sameAs && post.author.sameAs.length > 0 && { sameAs: post.author.sameAs }),
     },
     publisher: {
       "@type": "Organization",
@@ -115,16 +122,24 @@ export default async function BlogPostPage({ params }: Props) {
     ...(post.keyword && { keywords: [post.keyword, ...SITE_KEYWORDS] }),
   };
 
+  const breadcrumbSchema = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: `/blog/${slug}` },
+  ]);
+
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
-      <Script
-        id="article-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {faqSchema && (
-        <Script
-          id="faq-schema"
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
@@ -145,7 +160,7 @@ export default async function BlogPostPage({ params }: Props) {
           <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-6">
             {post.description}
           </p>
-          <div className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-500">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-neutral-500 dark:text-neutral-500">
             {post.author.avatar && (
               <Image
                 src={post.author.avatar}
@@ -166,6 +181,19 @@ export default async function BlogPostPage({ params }: Props) {
                 day: "numeric",
               })}
             </time>
+            {post.lastUpdated && post.lastUpdated !== post.date && (
+              <>
+                <span className="text-neutral-300 dark:text-neutral-700">•</span>
+                <time dateTime={post.lastUpdated}>
+                  Updated{" "}
+                  {new Date(post.lastUpdated).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+              </>
+            )}
           </div>
         </header>
 
@@ -182,7 +210,11 @@ export default async function BlogPostPage({ params }: Props) {
         )}
 
         <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
-          <MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+          <MDXRemote
+            source={post.content}
+            components={mdxComponents}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          />
         </div>
 
         <RelatedContentSection

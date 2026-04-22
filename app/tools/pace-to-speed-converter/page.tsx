@@ -5,6 +5,7 @@ import { LandingFooter } from "@/components/landing-footer";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { PaceSpeedConverterClient } from "./client";
 
@@ -125,6 +126,7 @@ export default function PaceToSpeedConverterPage() {
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["pace-to-speed-converter"] || []} />
           <PersonaLinks items={TOOL_RELATED_PERSONAS["pace-to-speed-converter"] || []} />
+          <ToolHowToBlock slug="pace-to-speed-converter" />
         </div>
       </section>
 

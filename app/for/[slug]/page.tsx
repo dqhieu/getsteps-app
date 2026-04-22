@@ -13,6 +13,7 @@ import {
   getAllPersonaSlugs,
   getPersonaBySlug,
 } from "@/lib/personas";
+import { buildBreadcrumbList } from "@/lib/schema/breadcrumb";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -65,6 +66,12 @@ export default async function PersonaPage({ params }: Props) {
       acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
   };
+
+  const breadcrumbSchema = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "For", path: "/for" },
+    { name: persona.headline, path: `/for/${slug}` },
+  ]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
@@ -227,6 +234,12 @@ export default async function PersonaPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <LandingFooter />

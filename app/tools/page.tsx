@@ -3,6 +3,7 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ToolsClient } from "./tools-client";
+import { buildBreadcrumbList } from "@/lib/schema/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Free Fitness Calculators - Steps, Calories, BMI & More",
@@ -211,9 +212,38 @@ const TOOLS = [
 
 const popularTools = TOOLS.filter((tool) => tool.popular);
 
+const breadcrumbSchema = buildBreadcrumbList([
+  { name: "Home", path: "/" },
+  { name: "Tools", path: "/tools" },
+]);
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Free Fitness Calculators",
+  description:
+    "A directory of free, browser-based fitness calculators: steps, calories, pace, heart rate, BMI, body fat, TDEE, macros, and more.",
+  numberOfItems: TOOLS.length,
+  itemListElement: TOOLS.map((tool, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: `${SITE_CONFIG.baseUrl}${tool.href}`,
+    name: tool.title,
+    description: tool.description,
+  })),
+};
+
 export default function ToolsPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <LandingNavbar />
 
       {/* Hero Section */}

@@ -6,6 +6,7 @@ import { HeartRateZonesCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
@@ -180,6 +181,7 @@ export default function HeartRateZonesCalculatorPage() {
             </div>
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["heart-rate-zones-calculator"] || []} />
             <PersonaLinks items={TOOL_RELATED_PERSONAS["heart-rate-zones-calculator"] || []} />
+            <ToolHowToBlock slug="heart-rate-zones-calculator" />
           </div>
         </div>
       </section>

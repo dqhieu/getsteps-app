@@ -5,6 +5,7 @@ import { LandingFooter } from "@/components/landing-footer";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { RaceTimePredictorClient } from "./client";
 
@@ -124,6 +125,7 @@ export default function RaceTimePredictorPage() {
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["race-time-predictor"] || []} />
           <PersonaLinks items={TOOL_RELATED_PERSONAS["race-time-predictor"] || []} />
+          <ToolHowToBlock slug="race-time-predictor" />
         </div>
       </section>
 

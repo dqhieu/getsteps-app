@@ -4,6 +4,7 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { WalkingTimeCalculatorClient } from "./client";
 import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -200,6 +201,7 @@ export default function WalkingTimeCalculatorPage() {
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["walking-time-calculator"] || []} />
             <PersonaLinks items={TOOL_RELATED_PERSONAS["walking-time-calculator"] || []} />
           </div>
+          <ToolHowToBlock slug="walking-time-calculator" />
         </div>
       </section>
 

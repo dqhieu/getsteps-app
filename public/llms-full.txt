@@ -1,0 +1,205 @@
+# Steps: Workout & Pedometer — Full Reference
+
+> Steps is an iOS and watchOS fitness app for iPhone and Apple Watch that tracks daily steps, workouts, calories, distance, heart rate, and health data. getsteps.app is the marketing site, hosting free fitness calculators, a blog, documentation, and Stepboard — an optional leaderboard for group step challenges. This is the expanded reference for AI crawlers and large language models.
+
+## About
+Steps was built by Hieu Dinh and his wife after they started running in 2024. They wanted a step counter that was simple, beautiful, and private — not bloated with social features they did not need and not stuck looking like it was last updated in 2018. Steps tracks 10,000 steps a day and 10 KM a week of running, and serves both casual walkers and more serious runners.
+Read the full founder story: https://getsteps.app/about
+
+## App Capabilities
+- Step counting with automatic tracking via iPhone and Apple Watch (reads from Apple HealthKit).
+- 23+ workout types: running, walking, cycling, hiking, swimming, strength, yoga, pickleball, tennis, rowing, dance, stair climbing, and more.
+- Beautiful charts with hourly, weekly, and monthly views.
+- Daily goal, streaks, and reminders for motivation.
+- App Lock: block distracting apps until you hit your daily step goal.
+- GPX export for walking, running, and hiking routes.
+- 8 personal records: fastest pace, most calories, earliest start, most elevation, longest duration, farthest distance, latest night, max heart rate.
+- 8 iPhone home screen widgets and Lock Screen widgets in multiple sizes.
+- Apple Watch companion app with complications in multiple styles.
+- Yearly Insights: a Fitness Wrapped-style recap of the year's steps and workouts.
+- Siri Shortcuts and shortcut actions for automation.
+- Sharing: share activity summaries, routes, and personal records.
+- Privacy-first: health data stays on device by default. Stepboard (group leaderboards) is opt-in and only syncs the data needed for the leaderboard.
+
+## Stepboard (Group Leaderboards)
+Stepboard is an opt-in social feature for step challenges. Users join a group via a 4-character invite code (shared via links like https://getsteps.app/join/ABCD). Data synced for Stepboard is limited to display name, country, daily steps, distance, calories, and flights climbed. Users can leave a group at any time and have their data removed. Nothing is synced unless a user actively joins.
+
+## Pricing
+Steps core features are free forever. Steps Pro unlocks additional features such as detailed workout history and extended analytics. Free on the App Store: https://getsteps.app/docs/features/steps-pro
+
+## Free Fitness Calculators (Web Tools)
+All tools are browser-based, require no signup, and work in all major browsers. Inputs are never sent to a server.
+
+- [Step Distance Calculator](https://getsteps.app/tools/step-distance-calculator): Convert steps to distance or distance to steps based on user height. Supports metric and imperial units. Inputs: Height, steps or distance. Outputs: Distance in km/miles or step count.
+- [Steps to Calories Calculator](https://getsteps.app/tools/steps-to-calories-calculator): Calculate calories burned from daily steps using weight and pace. Inputs: Steps, weight, pace. Outputs: Calories burned.
+- [Walking Calories Calculator](https://getsteps.app/tools/walking-calories-calculator): Calculate calories burned while walking based on distance, time, body weight, and terrain using MET values. Inputs: Distance or time, pace, weight. Outputs: Calories burned, MET multiplier used.
+- [Steps Per Mile Calculator](https://getsteps.app/tools/steps-per-mile-calculator): Find how many steps fit in a mile or kilometer, adjusted for height and pace. Inputs: Height, optional pace. Outputs: Steps per mile, steps per km.
+- [Walking Time Calculator](https://getsteps.app/tools/walking-time-calculator): Estimate how long it takes to walk any distance at slow, normal, brisk, or fast pace. Inputs: Distance, pace. Outputs: Walking time in minutes.
+- [Daily Step Goal Calculator](https://getsteps.app/tools/daily-step-goal-calculator): Personalized daily step goal recommendation based on age, sex, BMI, activity level, and goal (fitness, weight loss, longevity). Inputs: Age, sex, weight, height, activity, goal. Outputs: Suggested daily step count.
+- [Weight Loss Walking Calculator](https://getsteps.app/tools/weight-loss-walking-calculator): Calculate steps, distance, and time needed to walk to hit a weight loss target. Inputs: Current weight, goal weight, timeline, pace. Outputs: Daily steps needed, total weeks.
+- [BMI Calculator](https://getsteps.app/tools/bmi-calculator): Body Mass Index calculator with CDC health category breakdown. Inputs: Height, weight. Outputs: BMI value, health category.
+- [Body Fat Percentage Calculator](https://getsteps.app/tools/body-fat-calculator): Navy method body fat percentage estimate with ACE category breakdown. No calipers needed. Inputs: Neck, waist, hip circumference, height, sex. Outputs: Body fat %, category.
+- [Calorie Deficit Calculator](https://getsteps.app/tools/calorie-deficit-calculator): Calorie target to lose weight at a chosen rate per week. Inputs: Current weight, goal weight, TDEE, rate per week. Outputs: Daily calorie target, deficit size.
+- [TDEE Calculator](https://getsteps.app/tools/tdee-calculator): Total Daily Energy Expenditure calculator using Mifflin-St Jeor + activity multiplier. Inputs: Age, sex, weight, height, activity level. Outputs: BMR, TDEE.
+- [Macro Calculator](https://getsteps.app/tools/macro-calculator): Daily protein, carbs, and fat targets by fitness goal (cut, maintain, bulk). Inputs: TDEE or stats, goal. Outputs: Grams of protein, carbs, fat.
+- [Water Intake Calculator](https://getsteps.app/tools/water-intake-calculator): Recommended daily water intake based on body weight, activity, and climate. Inputs: Weight, activity, climate. Outputs: Daily water intake in L or oz.
+- [Activity to Steps Converter](https://getsteps.app/tools/activity-to-steps-converter): Convert cycling, swimming, yoga, strength training, and other workouts into equivalent step counts. Inputs: Activity type, duration, intensity. Outputs: Equivalent step count.
+- [Distance Equivalent Calculator](https://getsteps.app/tools/distance-equivalent-calculator): Convert between km, miles, meters, yards — plus steps, time, and calories. Inputs: Distance in any unit. Outputs: Equivalent units, time, steps.
+- [Running Pace Calculator](https://getsteps.app/tools/running-pace-calculator): Convert pace, speed, and race times for any distance. Inputs: Pace or distance and time. Outputs: min/km, min/mile, km/h, mph.
+- [Pace to Speed Converter](https://getsteps.app/tools/pace-to-speed-converter): Convert between min/km, min/mile, km/h, and mph instantly. Inputs: Pace or speed. Outputs: Pace and speed in all units.
+- [Training Pace Zones](https://getsteps.app/tools/training-pace-zones): Five personalized running training pace zones (recovery, endurance, tempo, threshold, interval) from any recent race result. Inputs: Race distance, race time. Outputs: Five pace zones.
+- [Race Time Predictor](https://getsteps.app/tools/race-time-predictor): Finish time from pace, or pace needed for a goal time. Inputs: Distance, pace or target time. Outputs: Predicted finish or required pace.
+- [Marathon Pace Predictor](https://getsteps.app/tools/marathon-pace-predictor): Predict marathon, half marathon, 10K, and 5K finish times using the Riegel formula. Inputs: Known race distance and time. Outputs: Predicted times for other distances.
+- [Heart Rate Zones Calculator](https://getsteps.app/tools/heart-rate-zones-calculator): Five training heart rate zones from age or max HR. Supports Karvonen method with resting HR. Inputs: Age, max HR, optional resting HR. Outputs: HR range for 5 zones.
+- [Resting Heart Rate Calculator](https://getsteps.app/tools/resting-heart-rate-calculator): Cardiovascular fitness category and Karvonen zones from resting heart rate. Inputs: Age, resting HR. Outputs: Fitness category, Karvonen zones.
+- [VO2 Max Calculator](https://getsteps.app/tools/vo2-max-calculator): Estimate aerobic fitness level using heart rate method or Cooper test. Inputs: Age, max HR or Cooper distance. Outputs: VO2 max estimate, fitness percentile.
+- [GPX Viewer](https://getsteps.app/tools/gpx-viewer): Upload and view GPX files on an interactive map with distance, duration, pace, and elevation stats. Inputs: GPX file. Outputs: Map, stats.
+
+## Personas / Use Cases
+
+- [Step Tracking for Seniors](https://getsteps.app/for/seniors): Gentler daily goals, bigger text, fall-aware design, and simple Apple Watch setup for older adults.
+- [Step Tracking for Weight Loss](https://getsteps.app/for/weight-loss): Step and calorie targets that fit a weight loss plan, with progress charts and streak motivation.
+- [Step Tracking for Beginners](https://getsteps.app/for/beginners): Start from zero with achievable daily goals, plain-language guidance, and an interface that is not overwhelming.
+- [Step Tracking for Kids and Families](https://getsteps.app/for/kids): Family-friendly step goals by age, privacy-respecting tracking, and shared group challenges via Stepboard.
+- [Step Tracking for Runners](https://getsteps.app/for/runners): Detailed workout sessions with GPX export, pace zones, personal records, and cross-training step totals.
+- [Step Tracking for Women](https://getsteps.app/for/women): Step recommendations by life stage and fitness goal, plus body composition tools like BMI and body fat estimates.
+- [Step Tracking During Pregnancy](https://getsteps.app/for/pregnancy): Trimester-aware step guidance that prioritizes comfort and consistency over hitting aggressive targets.
+- [Step Tracking for Nurses](https://getsteps.app/for/nurses): Built for 12-hour shifts: large step counts, fast glance widgets, and realistic calorie burn estimates for hospital floor walking.
+- [Step Tracking for Office Workers](https://getsteps.app/for/office-workers): Reach 10,000 steps despite a desk job using goal reminders, lunchtime targets, and activity-to-steps conversions for cycling or gym sessions.
+- [Step Tracking for Heart Health](https://getsteps.app/for/heart-health): Heart rate zone guidance, brisk walking targets, and consistency streaks backed by cardiovascular research.
+
+## Blog Posts (89 total)
+
+Fitness explainers, calculators, walking and running guides, comparisons, and app feature posts. Sorted by most recently updated.
+
+- [How Long Does It Take to Walk 1 km? (2026 Guide)](https://getsteps.app/blog/how-long-does-it-take-to-walk-1-km): How long does it take to walk 1 km? Normal pace: 10-12 min. Brisk: 9 min. Slow: 15-19 min. Full pace, age, and calorie charts inside. (updated 2026-04-19)
+- [Walking After Dinner Benefits: Science-Backed Guide 2026](https://getsteps.app/blog/walking-after-dinner-benefits): Walking after dinner benefits blood sugar, digestion, sleep, and weight loss. Get the exact timing, pace, and duration protocol backed by research. (updated 2026-04-18)
+- [Walking Speed Calculator: Formula, Pace Chart & Examples 2026](https://getsteps.app/blog/walking-speed-calculator-guide): Free walking speed calculator guide with formulas, pace charts, calorie tables, and goal-based targets. Find your mph in seconds. (updated 2026-04-17)
+- [Average Step Length by Height and Gender (2026 Guide)](https://getsteps.app/blog/average-step-length): Average step length is 26-30 inches for adults. Get the full height chart, step vs stride, and how to measure your own step length accurately. (updated 2026-04-16)
+- [Japanese Interval Walking Method: 30-Min Protocol Guide](https://getsteps.app/blog/japanese-interval-walking-method): The Japanese interval walking method (IWT) uses 3-min brisk/3-min easy cycles. Full protocol, 12-week plan, calories burned, and science. (updated 2026-04-15)
+- [Walking Backwards Benefits: 4-Week Retro Walking Guide](https://getsteps.app/blog/walking-backwards-benefits): Walking backwards benefits include 40% more calories burned, knee pain relief, and sharper cognition. Science-backed program, calorie math, and safety tips. (updated 2026-04-14)
+- [Walking with Weighted Vest: Benefits, Calories & 4-Week Plan](https://getsteps.app/blog/walking-with-weighted-vest): Walking with a weighted vest burns 5-20% more calories, builds bone density, and strengthens muscles. Full calorie table and 4-week plan inside. (updated 2026-04-13)
+- [20,000 Steps a Day Benefits: Weight Loss, Health & Results](https://getsteps.app/blog/20000-steps-a-day-benefits): Walking 20,000 steps a day burns 800-1,000 calories and can cut heart risk by 31%. See benefits, risks, and a realistic plan. (updated 2026-04-12)
+- [Walking at Home Workout: 28-Day Indoor Plan for Beginners](https://getsteps.app/blog/walking-at-home-workout): No treadmill, no gym. This walking at home workout uses 4 simple moves and builds from 10 to 45 minutes over 4 weeks. (updated 2026-04-11)
+- [How Many Miles Is 4,000 Steps? Distance by Height & Gender](https://getsteps.app/blog/how-many-miles-is-4000-steps): 4,000 steps equals roughly 1.9 miles (3 km) for the average adult. See exact distance by height, gender, and walking pace. (updated 2026-04-10)
+- [How Many Miles Is 15,000 Steps? Distance, Time & Calories](https://getsteps.app/blog/how-many-miles-is-15000-steps): 15,000 steps equals approximately 6.5 miles (10.5 km) for the average adult. See exact distance by height, plus time and calories. (updated 2026-04-09)
+- [How Many Miles Is 8,000 Steps? Distance by Height & Gender](https://getsteps.app/blog/how-many-miles-is-8000-steps): 8,000 steps equals roughly 3.8 miles (6.4 km) for the average adult. See exact distance by height, gender, and stride length. (updated 2026-04-08)
+- [What Is Brisk Walking? Speed, Benefits & How-To Guide](https://getsteps.app/blog/what-is-brisk-walking): Brisk walking is 3.0-4.5 mph (100+ steps/min). Learn the exact pace, benefits, and how to know if you're walking briskly. (updated 2026-04-07)
+- [Average Walking Pace by Age, Gender & Fitness Level (2026)](https://getsteps.app/blog/average-walking-pace): Average walking pace is 3.0-4.0 mph for adults. See exact pace by age, gender, and fitness — plus how your speed compares. (updated 2026-04-06)
+- [How Many Calories Does 3,000 Steps Burn? Complete Guide](https://getsteps.app/blog/how-many-calories-does-3000-steps-burn): Walking 3,000 steps burns 100-180 calories depending on weight and pace. See exact calorie burn by body weight with our calculator. (updated 2026-04-05)
+- [Benefits of Walking 1 Hour a Day: Weight Loss, Heart Health & More](https://getsteps.app/blog/benefits-of-walking-1-hour-a-day): Walking 1 hour daily burns 200-400 calories and improves heart health, mood, and longevity. Discover 8 science-backed benefits and how to start. (updated 2026-04-04)
+- [How Many Calories Does 7,000 Steps Burn? Complete Guide](https://getsteps.app/blog/how-many-calories-does-7000-steps-burn): Walking 7,000 steps burns 250-400 calories depending on weight and pace. See exact calorie burn by body weight with our calculator. (updated 2026-04-03)
+- [How Many Calories Does 6,000 Steps Burn? Complete Guide](https://getsteps.app/blog/how-many-calories-does-6000-steps-burn): Walking 6,000 steps burns 200-350 calories depending on weight and pace. See exact calorie burn by body weight with our calculator. (updated 2026-04-02)
+- [How Many Calories Does 8,000 Steps Burn? Complete Guide](https://getsteps.app/blog/how-many-calories-does-8000-steps-burn): Walking 8,000 steps burns 300-450 calories depending on weight and pace. See exact calorie burn by body weight with our calculator. (updated 2026-04-01)
+- [How Many Steps to Burn 1,000 Calories? Complete Breakdown](https://getsteps.app/blog/how-many-steps-to-burn-1000-calories): Burning 1,000 calories takes 18,000-27,000 steps depending on weight and pace. See exact step counts by body weight with our calculator. (updated 2026-03-31)
+- [How Long Does It Take to Walk 1 Mile? By Age + Pace](https://getsteps.app/blog/how-long-does-it-take-to-walk-1-mile): Walking 1 mile takes 15-22 minutes on average. See walk times by age, pace, and fitness level with tips to improve your speed. (updated 2026-03-30)
+- [How Many KM Is 10,000 Steps? Distance by Stride Length & Height](https://getsteps.app/blog/how-many-km-is-10000-steps): 10,000 steps equals roughly 6.4–8.0 km depending on your stride length. See exact km distances by height, gender, and pace — plus a steps-to-km conversion table. (updated 2026-03-29)
+- [Calories Burned Walking 3 Miles: By Weight and Pace](https://getsteps.app/blog/calories-burned-walking-3-miles): Walking 3 miles burns 210–370 calories depending on weight and pace. See a full calorie table by body weight and speed, the MET formula, and tips to burn more. (updated 2026-03-28)
+- [How Many Steps in a 5K? Walking vs Running Breakdown](https://getsteps.app/blog/how-many-steps-in-a-5k): A 5K is about 6,600 steps walking or 4,700 steps running. See exact step counts by height and stride length, plus 5K training tips for beginners. (updated 2026-03-27)
+- [How Long Does It Take to Walk 2 Miles? Time by Speed & Pace](https://getsteps.app/blog/how-long-does-it-take-to-walk-2-miles): Find out how long it takes to walk 2 miles at different speeds. Includes time breakdowns, calories burned, and tips to walk faster. (updated 2026-03-26)
+- [How Long Does It Take to Walk 5 Miles? Time by Pace and Age](https://getsteps.app/blog/how-long-does-it-take-to-walk-5-miles): Walking 5 miles takes 1 hour 15 minutes to 2 hours depending on your pace. See time breakdowns by speed, age group, terrain, and tips to walk faster. (updated 2026-03-25)
+- [How Many Steps in 3 Miles? Chart by Height & Gender](https://getsteps.app/blog/how-many-steps-in-3-miles): Walking 3 miles takes about 6,300–7,500 steps depending on your height and pace. See a full breakdown by height, gender, and speed with our steps-per-mile chart. (updated 2026-03-24)
+- [How Many Steps in 2 Miles? By Height, Gender & Pace](https://getsteps.app/blog/how-many-steps-in-2-miles): Walking 2 miles takes 4,000–4,600 steps on average. See exact steps in 2 miles by height and gender, plus how long it takes and calories burned. (updated 2026-03-23)
+- [Evening Walking Benefits: 10 Reasons to Walk at Night](https://getsteps.app/blog/evening-walking-benefits): Discover the science-backed evening walking benefits, from better sleep and digestion to stress relief. Plus a sample evening walk routine. (updated 2026-03-22)
+- [Calories Burned Per Step: Full Breakdown by Weight, Pace & Terrain](https://getsteps.app/blog/calories-burned-per-step): How many calories do you burn per step? See exact calories-per-step values by weight (120–220 lbs), walking pace, and terrain — plus the formula behind the math. (updated 2026-03-21)
+- [MET Values for Walking: Complete Chart and Calorie Calculator Guide](https://getsteps.app/blog/met-values-walking-chart): See every MET value for walking from slow strolls to race walking. Learn how to calculate calories burned using MET values with simple formulas and examples. (updated 2026-03-20)
+- [How Many Steps in a Kilometer? Chart by Height & Pace](https://getsteps.app/blog/how-many-steps-in-a-kilometer): The average person takes 1,250–1,550 steps per kilometer. See a steps-per-km chart by height, walking vs running differences, and km-to-steps conversions for 1–10 km. (updated 2026-03-19)
+- [Benefits of Walking 45 Minutes a Day: Calories, Steps, and Science-Backed Results](https://getsteps.app/blog/benefits-of-walking-45-minutes-a-day): Discover the benefits of walking 45 minutes a day — from calories burned and step counts to heart health and weight loss. Data tables and a science-backed guide. (updated 2026-03-18)
+- [5 Treadmill Walking Workouts for Weight Loss (Beginner to Advanced)](https://getsteps.app/blog/treadmill-walking-workout-weight-loss): Try these 5 treadmill walking workouts to burn more calories and lose weight. Includes the 12-3-30 workout, fat-burn intervals, step-count equivalents, and a calorie comparison table. (updated 2026-03-17)
+- [Walking Workout Plan for Beginners: A 4-Week Guide](https://getsteps.app/blog/walking-workout-plan-beginners): Follow this progressive walking workout plan for beginners. Includes a 4-week schedule, step-count targets, and tips to lose weight with a walking exercise plan. (updated 2026-03-16)
+- [How Many Calories Does 1000 Steps Burn? (By Weight and Pace)](https://getsteps.app/blog/how-many-calories-does-1000-steps-burn): How many calories does 1000 steps burn? Most people burn 30–50 calories — here's a full breakdown by weight, pace, and walking surface with a quick-reference table. (updated 2026-03-15)
+- [How Many Calories Does 5000 Steps Burn? Complete Guide](https://getsteps.app/blog/how-many-calories-does-5000-steps-burn): Walking 5,000 steps burns 150-250 calories depending on your weight and pace. See exact calorie burn by body weight with our steps to calories calculator. (updated 2026-03-14)
+- [How Many Steps in a 1 Hour Walk? (By Pace & Height)](https://getsteps.app/blog/how-many-steps-in-1-hour-walk): Find out how many steps in a 1 hour walk at slow, moderate, brisk, and power-walking speeds. Includes a steps-per-hour table by pace and stride length. (updated 2026-03-13)
+- [Calories Burned Walking 30 Minutes: By Weight and Speed](https://getsteps.app/blog/calories-burned-walking-30-minutes): How many calories do you burn walking 30 minutes? See exact numbers by weight and speed, plus tips to burn more on every walk. (updated 2026-03-12)
+- [How Many Calories Does 15000 Steps Burn? Complete Guide 2026](https://getsteps.app/blog/how-many-calories-does-15000-steps-burn): Wondering how many calories does 15000 steps burn? Get weight-based estimates, expert tips to maximize burn, and a free calculator to track your progress. (updated 2026-03-11)
+- [Calories Burned Walking 1 Hour: Complete Guide by Weight & Speed](https://getsteps.app/blog/calories-burned-walking-1-hour): Walking 1 hour burns 200–500 calories depending on weight and speed. See exact calorie tables by body weight, plus tips to burn more on every walk. (updated 2026-03-10)
+- [How Many Steps a Day to Lose Weight Calculator: Your Exact Number](https://getsteps.app/blog/how-many-steps-a-day-to-lose-weight-calculator): Use our steps-a-day-to-lose-weight calculator to find your personal daily step target. Includes a reference table by weight loss goal and expert walking tips. (updated 2026-03-09)
+- [Average Steps Per Day for a Woman: What's Normal and What to Aim For](https://getsteps.app/blog/average-steps-per-day-for-women): The average steps per day for a woman in the U.S. is 3,000–4,000. Learn age-specific goals, what research says about 7,500 steps, and how to close the gap. (updated 2026-03-08)
+- [Walking 30 Minutes a Day for a Month: Real Results You Can Expect](https://getsteps.app/blog/walking-30-minutes-a-day-results): Walking 30 minutes a day for a month results include 2-4 lbs weight loss, better sleep, reduced anxiety, and improved cardiovascular fitness. Here's what the research says. (updated 2026-03-07)
+- [How Many Steps to Burn 100 Calories? (By Weight and Pace)](https://getsteps.app/blog/how-many-steps-to-burn-100-calories): Find out exactly how many steps it takes to burn 100 calories. Most people need 2,000–3,000 steps — here's how weight, pace, and stride length affect the number. (updated 2026-03-06)
+- [Benefits of Walking 30 Minutes a Day: What Science Says About This Specific Duration](https://getsteps.app/blog/benefits-of-walking-30-minutes-a-day): Discover the science-backed benefits of walking 30 minutes a day — from heart disease prevention and calorie burn to mental health and blood sugar control. (updated 2026-03-05)
+- [Calories Burned Walking 1 Mile: By Weight and Speed](https://getsteps.app/blog/calories-burned-walking-one-mile): Walking 1 mile burns 60–100 calories depending on your weight and pace. See exact calorie estimates for every body weight and speed, plus tips to burn more per mile. (updated 2026-03-04)
+- [How Many Calories Does 20000 Steps Burn? Complete Guide](https://getsteps.app/blog/20000-steps-calories-burned): 20,000 steps burns 600–1,000 calories depending on your weight and pace. See exact calorie estimates by body weight and learn how far 20,000 steps really is. (updated 2026-03-03)
+- [How Many Miles Is 5,000 Steps? Distance by Height & Gender](https://getsteps.app/blog/how-far-is-5000-steps): 5,000 steps equals roughly 2.0–2.5 miles (3.2–4.0 km). See exact distance by height, stride length, and gender — plus time and calories. (updated 2026-03-02)
+- [Walking After Eating: 7 Benefits Backed by Science](https://getsteps.app/blog/walking-after-eating-benefits): Learn why a short walk after meals can improve blood sugar, digestion, and weight loss. Just 10 minutes makes a difference. (updated 2026-03-01)
+- [12 Morning Walk Benefits That Will Get You Out of Bed](https://getsteps.app/blog/morning-walk-benefits): Discover the science-backed benefits of morning walks, from better energy and mood to weight loss and improved sleep quality. (updated 2026-02-28)
+- [Best Pedometer App for iPhone — Free & Accurate (2026)](https://getsteps.app/blog/best-pedometer-app-iphone-2026): Looking for the best pedometer app for iPhone? Compare free pedometer apps by accuracy, widgets, and features. Find the right one for your fitness goals. (updated 2026-02-27)
+- [Best Step Counter App for iPhone in 2026](https://getsteps.app/blog/best-step-counter-app-iphone-2026): Find the best step counter app for iPhone. Compare features, widgets, and accuracy to pick the right pedometer for your daily step goals. (updated 2026-02-27)
+- [Does Walking Reduce Belly Fat? What Research Says](https://getsteps.app/blog/does-walking-reduce-belly-fat): Find out if walking can reduce belly fat, how much you need to walk, and the best walking strategies for targeting visceral fat. (updated 2026-02-27)
+- [How Many Steps to Lose a Pound? The Math Explained](https://getsteps.app/blog/how-many-steps-to-lose-a-pound): Learn exactly how many steps it takes to lose one pound of fat. Includes calorie math, walking plans, and realistic timelines. (updated 2026-02-26)
+- [How Many Steps in 30 Minutes of Walking?](https://getsteps.app/blog/how-many-steps-in-30-minutes-walking): Find out how many steps you take in 30 minutes of walking at different paces. Includes tips to maximize your walking sessions. (updated 2026-02-25)
+- [How Many Steps Burn 500 Calories? Complete Guide](https://getsteps.app/blog/how-many-steps-burn-500-calories): Learn how many steps you need to burn 500 calories based on your weight, pace, and terrain. Use our calculator for an exact number. (updated 2026-02-24)
+- [How Long Does It Take to Walk 10,000 Steps?](https://getsteps.app/blog/how-long-to-walk-10000-steps): Find out how long it takes to walk 10,000 steps based on your pace, height, and fitness level. Includes time breakdowns and tips. (updated 2026-02-23)
+- [App Lock: Block Distracting Apps Until You Hit Your Step Goal](https://getsteps.app/blog/app-lock-block-apps-until-step-goal): Discover how App Lock in Steps uses Screen Time to block social media and distracting apps until you reach your daily step goal. Walk more, scroll less. (updated 2026-02-22)
+- [Calories Burned Hiking: Complete Guide by Weight & Distance](https://getsteps.app/blog/calories-burned-hiking): How many calories does hiking burn? Use MET values and our formula to estimate calories by body weight, trail difficulty, elevation gain, and pack weight. (updated 2026-02-22)
+- [Has Anyone Lost Weight Walking 10,000 Steps a Day? Real Results](https://getsteps.app/blog/10000-steps-weight-loss-results): Yes — real results show 0.5–1 lb/week weight loss from 10,000 steps daily. Backed by JAMA and PMC studies, plus month-by-month expectations and tips. (updated 2026-02-21)
+- [Calories Burned on Treadmill: Speed, Incline & Weight Guide](https://getsteps.app/blog/calories-burned-on-treadmill): How many calories does a treadmill burn? See exact estimates by speed, incline, and body weight for 30 and 60 minutes of walking and running. (updated 2026-02-21)
+- [How Many Steps in a Mile Running? Chart by Pace](https://getsteps.app/blog/how-many-steps-in-a-mile-running): Runners take 1,400–2,000 steps per mile depending on pace and height. See the full steps-per-mile running chart by speed, plus how it compares to walking. (updated 2026-02-20)
+- [Walking vs Running for Weight Loss: Which Is Better?](https://getsteps.app/blog/walking-vs-running-for-weight-loss): Walking vs running for weight loss compared by calorie burn, sustainability, injury risk, and fat loss. Find out which is right for your fitness level and goals. (updated 2026-02-20)
+- [Benefits of Walking Everyday: What Science Says](https://getsteps.app/blog/benefits-of-walking-everyday): Daily walking improves heart health, mood, weight, sleep, and longevity. Discover 10 science-backed benefits of walking every day from Mayo Clinic and Harvard. (updated 2026-02-19)
+- [How Many Steps in a Mile? Chart by Height & Pace](https://getsteps.app/blog/how-many-steps-in-a-mile): The average person takes 2,000–2,500 steps per mile. See exact steps per mile by height and walking pace, plus a chart to find your personal number. (updated 2026-02-19)
+- [Heart Rate Zones for Walkers: Train Smarter, Not Harder](https://getsteps.app/blog/heart-rate-zones-explained): Heart rate zones aren't just for runners. Learn which zone burns the most fat while walking, how to find your zones, and walking-specific training plans for each zone. (updated 2026-02-18)
+- [How to Calculate Body Fat Percentage Without Equipment](https://getsteps.app/blog/how-to-calculate-body-fat-percentage): Calculate your body fat percentage at home with just a tape measure. Use our free calculator, learn the US Navy method, and see how walking reduces body fat faster than dieting alone. (updated 2026-02-18)
+- [Macro Calculator Guide: Protein, Carbs and Fat Targets](https://getsteps.app/blog/macro-calculator-guide): Learn how to calculate your macros (protein, carbs, fat) for weight loss, maintenance, or muscle gain. Includes daily targets by goal, food sources, and a free macro calculator. (updated 2026-02-18)
+- [Running Pace Calculator: min/km vs min/mile Explained](https://getsteps.app/blog/running-pace-calculator-guide): Learn how to calculate your running pace, convert between min/km and min/mile, and predict race finish times. Includes pace zones from beginner to elite. (updated 2026-02-18)
+- [What Is TDEE? A Walker's Guide to Total Daily Energy Expenditure](https://getsteps.app/blog/what-is-tdee): TDEE is the total calories you burn daily — and walking is the biggest variable. Learn how to calculate your TDEE, why NEAT matters for walkers, and use our free calculator. (updated 2026-02-18)
+- [10,000 Steps a Day Benefits: What Science Actually Says](https://getsteps.app/blog/10000-steps-a-day-benefits): Walking 10,000 steps daily reduces heart disease risk by 50%, burns 300-500 calories, and improves mental health. Backed by research from JAMA and Harvard. (updated 2026-02-16)
+- [Calories Burned Walking: 30 Minutes, 1 Hour, and Beyond](https://getsteps.app/blog/calories-burned-walking-by-time-and-distance): How many calories do you burn walking? See exact numbers for 30 minutes, 1 hour, and 10,000 steps based on weight and speed. Free calculator included. (updated 2026-02-16)
+- [Steps Per Day Goal by Age: 2026 Recommended Daily Steps](https://getsteps.app/blog/recommended-steps-per-day-by-age): Steps per day goal by age in 2026: children 12,000-16,000, adults 7,000-10,000, seniors 6,000-8,000. Science-backed step goals by age group with charts. (updated 2026-02-15)
+- [15,000 Steps a Day: Benefits, Calories Burned, and Results](https://getsteps.app/blog/15000-steps-a-day-benefits): 15,000 steps a day burns 500–750 calories and cuts heart disease risk by 50%. See the full calorie burn chart by weight, a 4-week challenge plan, and real results. (updated 2026-02-14)
+- [Walking to Lose Weight Chart (2026): Calories by Speed & Weight](https://getsteps.app/blog/walking-to-lose-weight-chart): Free walking to lose weight chart showing exact calories burned by speed, body weight, and duration. Plus an 8-week walking plan to lose 4-16 lbs safely. (updated 2026-02-13)
+- [How Many Calories Does 10,000 Steps Burn? Complete Guide](https://getsteps.app/blog/10000-steps-calories-burned): Walking 10,000 steps burns 300-500 calories depending on weight and pace. See exact calorie burn by body weight with our steps to calories calculator. (updated 2026-02-12)
+- [How Many Miles Should I Walk a Day to Lose Weight?](https://getsteps.app/blog/how-many-miles-to-walk-a-day-to-lose-weight): Walk 3-5 miles daily to lose weight effectively. Learn the ideal walking distance, calorie burn per mile, and a practical plan to reach your weight loss goals. (updated 2026-02-11)
+- [How Many Miles Is 10,000 Steps? Distance Calculator Guide](https://getsteps.app/blog/how-many-miles-is-10000-steps): 10,000 steps equals about 4-5 miles depending on stride length. Learn exact distances by height, gender, and pace with our step distance calculator. (updated 2026-02-10)
+- [Steps vs Apple Fitness: Which Step Tracker Is Better in 2026?](https://getsteps.app/blog/steps-vs-apple-fitness-comparison): We tested Steps and Apple Fitness side by side for 30 days. See the real differences in widgets, step tracking accuracy, GPX export, and which app is actually worth using in 2026. (updated 2026-02-09)
+- [Steps vs Nike Run Club: Best Fitness Tracker App 2026](https://getsteps.app/blog/steps-vs-nike-run-club-comparison): Steps vs Nike Run Club — compare step tracking, workouts, widgets, GPX export, and Apple Watch features. Find the best fitness tracker for your routine. (updated 2026-02-09)
+- [Steps vs Pedometer++: Best Pedometer App Compared 2026](https://getsteps.app/blog/steps-vs-pedometer-plus-plus-comparison): Steps vs Pedometer++ — compare widgets, Apple Watch features, GPX export, workout tracking, and more. Find the best pedometer app for your iPhone. (updated 2026-02-09)
+- [Steps vs Strava: Which Fitness Tracker Is Right for You in 2026?](https://getsteps.app/blog/steps-vs-strava-comparison): Steps vs Strava — which is better for tracking walks and runs? We compare step counting, widgets, GPX export, social features, and pricing to help you decide. (updated 2026-02-09)
+- [8 Best Step Counter Widgets for iPhone Home Screen [2026 Tested]](https://getsteps.app/blog/best-step-counter-widgets-iphone-home-screen-2026): We tested every step counter widget for iPhone. Here are the 8 best widgets ranked by design, accuracy, and features — with setup guides and real screenshots. (updated 2026-02-06)
+- [Fitness Wrapped: How to Get Your Yearly Fitness Recap in 2026](https://getsteps.app/blog/fitness-wrapped-yearly-recap-steps-insights): Discover how to get your own Fitness Wrapped with yearly insights, personal records, and beautiful shareable stats. See your step count, calories, and workouts summarized. (updated 2026-02-05)
+- [Walking for Weight Loss: How Many Steps Do You Really Need?](https://getsteps.app/blog/walking-for-weight-loss-how-many-steps): Learn how walking helps you lose weight, how many steps per day you need, and how to track calories burned. Science-backed tips for effective weight loss through walking. (updated 2026-02-04)
+- [7 Best Step Counter Apps in 2026 (iPhone & Apple Watch)](https://getsteps.app/blog/best-step-counter-app-apple-watch-2026): The 7 best step counter apps for 2026, tested and ranked. Compare accuracy, widgets, Apple Watch support, and battery life to find your perfect pedometer app. (updated 2026-02-03)
+- [How to Export GPX from Apple Watch Workouts: Complete Guide 2026](https://getsteps.app/blog/how-to-export-gpx-from-apple-watch-workouts): Learn how to export your Apple Watch workout routes as GPX files. Step-by-step guide to save, share, and analyze your walking, running, and hiking GPS data. (updated 2026-02-02)
+- [Welcome to the Steps Blog](https://getsteps.app/blog/welcome-to-steps-blog): Introducing the Steps blog - your source for fitness tips, app updates, and health insights. (updated 2026-02-01)
+
+## Documentation
+English docs are canonical. Translations: Chinese (zh), French (fr), German (de), Italian (it), Portuguese Brazil (pt-BR), Spanish (es).
+- [Docs Home](https://getsteps.app/docs)
+- [Getting Started](https://getsteps.app/docs/features/getting-started)
+- [Steps Pro](https://getsteps.app/docs/features/steps-pro)
+- [Home Dashboard](https://getsteps.app/docs/features/home-dashboard)
+- [Streaks](https://getsteps.app/docs/features/streaks)
+- [Workout Session](https://getsteps.app/docs/features/workout-session)
+- [Activity List](https://getsteps.app/docs/features/activity-list)
+- [Activity Detail](https://getsteps.app/docs/features/activity-detail)
+- [History](https://getsteps.app/docs/features/history)
+- [Insights Overview](https://getsteps.app/docs/features/insights-overview)
+- [Daily Goal](https://getsteps.app/docs/features/daily-goal)
+- [App Lock](https://getsteps.app/docs/features/app-lock)
+- [Notifications](https://getsteps.app/docs/features/notifications)
+- [Color Themes](https://getsteps.app/docs/features/color-themes)
+- [App Icon Selector](https://getsteps.app/docs/features/app-icon-selector)
+- [Settings Overview](https://getsteps.app/docs/features/settings-overview)
+- [Widgets](https://getsteps.app/docs/features/widgets)
+- [Apple Watch App](https://getsteps.app/docs/features/watch-app)
+- [Siri Shortcuts](https://getsteps.app/docs/features/siri-shortcuts)
+- [Sharing](https://getsteps.app/docs/features/sharing)
+
+## Key Links
+- [Homepage](https://getsteps.app)
+- [App Store](https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378)
+- [Blog](https://getsteps.app/blog)
+- [Tools](https://getsteps.app/tools)
+- [Use Cases](https://getsteps.app/for)
+- [About](https://getsteps.app/about)
+- [Press](https://getsteps.app/press)
+- [Feedback](https://getsteps.app/feedback)
+- [Privacy](https://getsteps.app/privacy)
+- [Terms](https://getsteps.app/terms)
+- [Sitemap](https://getsteps.app/sitemap.xml)
+- [llms.txt](https://getsteps.app/llms.txt)
+
+## Platforms Supported
+- iOS 17+ on iPhone
+- watchOS 10+ on Apple Watch
+- Data source: Apple HealthKit. Steps does not require Fitbit, Garmin, or any other third-party hardware.

@@ -4,6 +4,7 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { BMICalculatorClient } from "./client";
 import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -178,6 +179,7 @@ export default function BMICalculatorPage() {
 
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["bmi-calculator"] || []} />
             <PersonaLinks items={TOOL_RELATED_PERSONAS["bmi-calculator"] || []} />
+            <ToolHowToBlock slug="bmi-calculator" />
           </div>
         </div>
       </section>

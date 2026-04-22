@@ -6,6 +6,7 @@ import { RunningPaceCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
@@ -165,6 +166,7 @@ export default function RunningPaceCalculatorPage() {
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["running-pace-calculator"] || []} />
           <PersonaLinks items={TOOL_RELATED_PERSONAS["running-pace-calculator"] || []} />
+          <ToolHowToBlock slug="running-pace-calculator" />
         </div>
       </section>
 

@@ -5,6 +5,7 @@ import { LandingFooter } from "@/components/landing-footer";
 import { GpxViewerClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { TOOL_RELATED_BLOGS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
@@ -163,6 +164,7 @@ export default function GpxViewerPage() {
             </div>
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["gpx-viewer"] || []} />
+          <ToolHowToBlock slug="gpx-viewer" />
         </div>
       </section>
 

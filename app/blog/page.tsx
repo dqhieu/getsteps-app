@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { BlogPostCard } from "@/components/blog-post-card";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
+import { buildBreadcrumbList } from "@/lib/schema/breadcrumb";
 
 // Force static generation - fs operations only work at build time
 export const dynamic = "force-static";
@@ -19,8 +20,17 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   const posts = getAllPosts();
 
+  const breadcrumbSchema = buildBreadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+  ]);
+
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <LandingNavbar />
       <div className="container mx-auto px-4 pt-24 pb-12">
         <header className="mb-12 text-center">

@@ -4,6 +4,7 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { DailyStepGoalCalculatorClient } from "./client";
 import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -168,6 +169,7 @@ export default function DailyStepGoalCalculatorPage() {
 
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["daily-step-goal-calculator"] || []} />
             <PersonaLinks items={TOOL_RELATED_PERSONAS["daily-step-goal-calculator"] || []} />
+            <ToolHowToBlock slug="daily-step-goal-calculator" />
           </div>
         </div>
       </section>

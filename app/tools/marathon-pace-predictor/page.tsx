@@ -6,6 +6,7 @@ import { MarathonRacePredictorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
@@ -139,6 +140,7 @@ export default function MarathonPacePredictorPage() {
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["marathon-pace-predictor"] || []} />
           <PersonaLinks items={TOOL_RELATED_PERSONAS["marathon-pace-predictor"] || []} />
+          <ToolHowToBlock slug="marathon-pace-predictor" />
         </div>
       </section>
 

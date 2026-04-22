@@ -1,21 +1,20 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { resolveAuthor, type AuthorProfile } from "./authors";
 
 const POSTS_DIR = path.join(process.cwd(), "content/blog");
 const POSTS_PER_PAGE = 10;
 
-export interface Author {
-  name: string;
-  avatar?: string;
-}
+export type Author = AuthorProfile;
 
 export interface BlogPost {
   slug: string;
   title: string;
   description: string;
   date: string;
-  author: Author;
+  lastUpdated?: string;
+  author: AuthorProfile;
   image?: string;
   keyword?: string;
   content: string;
@@ -39,10 +38,8 @@ function parsePostFile(filename: string): BlogPost | null {
       title: data.title || "Untitled",
       description: data.description || "",
       date: data.date || new Date().toISOString().split("T")[0],
-      author: {
-        name: data.author?.name || "Steps Team",
-        avatar: data.author?.avatar,
-      },
+      lastUpdated: data.lastUpdated || data.updated || undefined,
+      author: resolveAuthor(data.author),
       image: data.image,
       keyword: data.keyword,
       content,
@@ -93,10 +90,8 @@ export function getPostBySlug(slug: string): BlogPost | null {
       title: data.title || "Untitled",
       description: data.description || "",
       date: data.date || new Date().toISOString().split("T")[0],
-      author: {
-        name: data.author?.name || "Steps Team",
-        avatar: data.author?.avatar,
-      },
+      lastUpdated: data.lastUpdated || data.updated || undefined,
+      author: resolveAuthor(data.author),
       image: data.image,
       keyword: data.keyword,
       content,

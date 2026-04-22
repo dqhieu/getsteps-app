@@ -6,6 +6,7 @@ import { BodyFatCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
@@ -179,6 +180,7 @@ export default function BodyFatCalculatorPage() {
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["body-fat-calculator"] || []} />
           <PersonaLinks items={TOOL_RELATED_PERSONAS["body-fat-calculator"] || []} />
+          <ToolHowToBlock slug="body-fat-calculator" />
         </div>
       </section>
 

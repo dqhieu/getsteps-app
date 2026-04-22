@@ -4,6 +4,7 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { WeightLossWalkingCalculatorClient } from "./client";
 import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -208,6 +209,7 @@ export default function WeightLossWalkingCalculatorPage() {
 
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["weight-loss-walking-calculator"] || []} />
             <PersonaLinks items={TOOL_RELATED_PERSONAS["weight-loss-walking-calculator"] || []} />
+            <ToolHowToBlock slug="weight-loss-walking-calculator" />
           </div>
         </div>
       </section>

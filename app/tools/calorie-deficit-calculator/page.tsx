@@ -6,6 +6,7 @@ import { CalorieDeficitCalculatorClient } from "./client";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
@@ -184,6 +185,7 @@ export default function CalorieDeficitCalculatorPage() {
           </div>
           <RelatedBlogPosts items={TOOL_RELATED_BLOGS["calorie-deficit-calculator"] || []} />
           <PersonaLinks items={TOOL_RELATED_PERSONAS["calorie-deficit-calculator"] || []} />
+          <ToolHowToBlock slug="calorie-deficit-calculator" />
         </div>
       </section>
 

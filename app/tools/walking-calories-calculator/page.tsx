@@ -4,6 +4,7 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { WalkingCaloriesCalculatorClient } from "./client";
 import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -250,6 +251,7 @@ export default function WalkingCaloriesCalculatorPage() {
 
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["walking-calories-calculator"] || []} />
             <PersonaLinks items={TOOL_RELATED_PERSONAS["walking-calories-calculator"] || []} />
+            <ToolHowToBlock slug="walking-calories-calculator" />
           </div>
         </div>
       </section>
