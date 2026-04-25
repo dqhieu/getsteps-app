@@ -10,9 +10,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Km to Steps: 1km=1,300 · 2km=2,600 · 3km=3,900 · 5km=6,500",
+  title: "Steps to Distance Calculator: Convert Steps ↔ Km & Miles",
   description:
-    "How many steps in 1 km? ~1,300. 2 km = 2,600. 3 km = 3,900. 6,500 steps ≈ 5 km. Free km↔steps calculator personalized by your height and stride length.",
+    "1 km ≈ 1,300 steps. 1 mile ≈ 2,100 steps. 5,000 steps ≈ 3.8 km / 2.4 mi. Free step distance calculator — personalize by your height and stride length.",
   keywords: [
     "km in steps",
     "steps to km",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     "steps to miles",
   ],
   openGraph: {
-    title: "Km to Steps: 1km=1,300 · 2km=2,600 · 3km=3,900 · 5km=6,500",
+    title: "Steps to Distance Calculator: Convert Steps ↔ Km & Miles",
     description:
-      "How many steps in 1 km? ~1,300. 2 km = 2,600. 3 km = 3,900. 6,500 steps ≈ 5 km. Free calculator personalized by height.",
+      "1 km ≈ 1,300 steps · 5,000 steps ≈ 3.8 km / 2.4 mi · 10,000 ≈ 7.6 km / 4.7 mi. Free step distance calculator personalized by your height.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/step-distance-calculator`,
     images: [

@@ -10,10 +10,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title:
-    "Walking Calories Burned Calculator [Free] — By Weight, Speed & Time",
+  title: "Walking Calorie Calculator: Calories Burned Walking by Weight",
   description:
-    "How many calories does walking burn? A 155 lb person burns ~300 cal/hour at 3.5 mph. Enter your weight, speed, and time for an instant personalized estimate. Works for any pace from casual stroll to power walk.",
+    "How many calories does walking burn? A 155 lb adult burns ~150 cal in 30 min at 3.5 mph. Free walking calorie calculator — instant results by weight, speed & time.",
   keywords: [
     "walking calorie calculator",
     "walking calories calculator",
@@ -31,9 +30,9 @@ export const metadata: Metadata = {
     "calories burned walking calculator formula met",
   ],
   openGraph: {
-    title: "Walking Calories Burned Calculator [Free] — Instant Results",
+    title: "Walking Calorie Calculator: Calories Burned Walking by Weight",
     description:
-      "A 155 lb person burns ~300 cal/hour walking at 3.5 mph. Enter your weight, speed, and time for a personalized calorie estimate.",
+      "A 155 lb adult burns ~150 cal in 30 min at 3.5 mph. Free walking calorie calculator — instant results by weight, speed & time.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/walking-calories-calculator`,
     images: [

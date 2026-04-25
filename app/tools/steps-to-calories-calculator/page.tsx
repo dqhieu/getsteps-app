@@ -10,9 +10,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Steps to Calories: 3k=120 · 10k=400 · 15k=600 Cal (70 kg) | Calc",
+  title: "Steps to Calories Calculator: Free, by Body Weight (lb & kg)",
   description:
-    "3,000 steps = 120 cal. 5,000 = 200. 10,000 = 400. 15,000 = 600 cal (70 kg). Free calculator personalized by your body weight — full reference table below.",
+    "How many calories do your steps burn? 10,000 steps ≈ 280 cal (130 lb), 400 cal (170 lb), 520 cal (220 lb). Free calculator personalized by your weight — full chart below.",
   keywords: [
     "steps to calories",
     "steps to calories calculator",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     "calories burned per step",
   ],
   openGraph: {
-    title: "Steps to Calories: 3k=120 · 10k=400 · 15k=600 Cal (70 kg)",
+    title: "Steps to Calories Calculator: Free, by Body Weight",
     description:
-      "3,000 steps = 120 cal · 10,000 = 400 · 15,000 = 600 cal (70 kg). Free calculator personalized by body weight.",
+      "How many calories do your steps burn? 10,000 steps ≈ 280-520 cal depending on body weight. Free calculator with full reference chart.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/steps-to-calories-calculator`,
     images: [

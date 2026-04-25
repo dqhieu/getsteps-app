@@ -635,6 +635,36 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Evening Walking Benefits", href: "/blog/evening-walking-benefits" },
     { title: "Best Time to Walk for Weight Loss", href: "/blog/best-time-to-walk-for-weight-loss" },
   ],
+  "how-many-steps-in-2-km": [
+    { title: "How Many Steps in 1 Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
+    { title: "How Many Steps in 3 km?", href: "/blog/how-many-steps-in-3-km" },
+    { title: "How Long Does It Take to Walk 1 km?", href: "/blog/how-long-does-it-take-to-walk-1-km" },
+  ],
+  "how-many-steps-in-3-km": [
+    { title: "How Many Steps in 2 km?", href: "/blog/how-many-steps-in-2-km" },
+    { title: "How Many Steps in 5 km?", href: "/blog/how-many-steps-in-5-km" },
+    { title: "How Many Steps in 1 Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
+  ],
+  "how-many-steps-in-5-km": [
+    { title: "How Many Steps in a 5K?", href: "/blog/how-many-steps-in-a-5k" },
+    { title: "How Many Steps in 3 km?", href: "/blog/how-many-steps-in-3-km" },
+    { title: "How Many Steps in 6 km?", href: "/blog/how-many-steps-in-6-km" },
+  ],
+  "how-many-steps-in-6-km": [
+    { title: "How Many Steps in 5 km?", href: "/blog/how-many-steps-in-5-km" },
+    { title: "How Many Steps in 8 km?", href: "/blog/how-many-steps-in-8-km" },
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+  ],
+  "how-many-steps-in-8-km": [
+    { title: "How Many Km Is 10,000 Steps?", href: "/blog/how-many-km-is-10000-steps" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+    { title: "How Many Steps in 10 km?", href: "/blog/how-many-steps-in-10-km" },
+  ],
+  "how-many-steps-in-10-km": [
+    { title: "How Many Km Is 10,000 Steps?", href: "/blog/how-many-km-is-10000-steps" },
+    { title: "How Many Steps in 8 km?", href: "/blog/how-many-steps-in-8-km" },
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -1153,6 +1183,30 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   ],
   "silent-walking-benefits": [
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-steps-in-2-km": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-steps-in-3-km": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-many-steps-in-5-km": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-steps-in-6-km": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-steps-in-8-km": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-many-steps-in-10-km": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
     { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
   ],
 };
