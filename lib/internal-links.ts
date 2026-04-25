@@ -600,6 +600,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
     { title: "Walking Speed Calculator Guide", href: "/blog/walking-speed-calculator-guide" },
   ],
+  "walking-with-ankle-weights": [
+    { title: "Walking with Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+    { title: "Walking for Cardio", href: "/blog/walking-for-cardio" },
+  ],
+  "incline-walking-benefits": [
+    { title: "Treadmill Walking Workout for Weight Loss", href: "/blog/treadmill-walking-workout-weight-loss" },
+    { title: "Walking with Ankle Weights", href: "/blog/walking-with-ankle-weights" },
+    { title: "Walking for Cardio", href: "/blog/walking-for-cardio" },
+  ],
+  "calories-burned-walking-2-miles": [
+    { title: "How Long Does It Take to Walk 2 Miles?", href: "/blog/how-long-does-it-take-to-walk-2-miles" },
+    { title: "Calories Burned Walking 30 Minutes", href: "/blog/calories-burned-walking-30-minutes" },
+    { title: "Best Time to Walk for Weight Loss", href: "/blog/best-time-to-walk-for-weight-loss" },
+  ],
+  "best-time-to-walk-for-weight-loss": [
+    { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
+    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
+    { title: "Walking for Cardio", href: "/blog/walking-for-cardio" },
+  ],
+  "walking-for-cardio": [
+    { title: "Heart Rate Zones Explained", href: "/blog/heart-rate-zones-explained" },
+    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+  ],
+  "is-walking-enough-exercise": [
+    { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
+    { title: "Walking for Cardio", href: "/blog/walking-for-cardio" },
+    { title: "Walking with Ankle Weights", href: "/blog/walking-with-ankle-weights" },
+  ],
+  "silent-walking-benefits": [
+    { title: "Walking After Dinner Benefits", href: "/blog/walking-after-dinner-benefits" },
+    { title: "Evening Walking Benefits", href: "/blog/evening-walking-benefits" },
+    { title: "Best Time to Walk for Weight Loss", href: "/blog/best-time-to-walk-for-weight-loss" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -1091,5 +1126,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "how-long-does-it-take-to-walk-1-km": [
     { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "walking-with-ankle-weights": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "incline-walking-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+  ],
+  "calories-burned-walking-2-miles": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "best-time-to-walk-for-weight-loss": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "walking-for-cardio": [
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "is-walking-enough-exercise": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "silent-walking-benefits": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
   ],
 };
