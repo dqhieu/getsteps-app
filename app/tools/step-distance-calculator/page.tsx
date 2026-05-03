@@ -281,13 +281,21 @@ export default function StepDistanceCalculatorPage() {
                   {[
                     { distance: "0.5 km", steps: "650", time: "~6 min" },
                     { distance: "1 km", steps: "1,300", time: "~12 min" },
+                    { distance: "1.5 km", steps: "1,950", time: "~18 min" },
                     { distance: "1.8 km", steps: "2,340", time: "~22 min" },
                     { distance: "2 km", steps: "2,600", time: "~24 min" },
+                    { distance: "2.5 km", steps: "3,250", time: "~30 min" },
                     { distance: "3 km", steps: "3,900", time: "~36 min" },
                     { distance: "3.5 km", steps: "4,550", time: "~42 min" },
-                    { distance: "5 km (1 mile = ~1.6 km)", steps: "6,500", time: "~60 min", highlight: true },
-                    { distance: "8 km (5 miles)", steps: "10,400", time: "~96 min" },
-                    { distance: "10 km", steps: "13,000", time: "~2 hr" },
+                    { distance: "4 km", steps: "5,200", time: "~48 min" },
+                    { distance: "5 km (~3.1 miles)", steps: "6,500", time: "~60 min", highlight: true },
+                    { distance: "6 km", steps: "7,800", time: "~72 min" },
+                    { distance: "7 km", steps: "9,100", time: "~84 min" },
+                    { distance: "8 km (~5 miles)", steps: "10,400", time: "~96 min" },
+                    { distance: "10 km (~6.2 miles)", steps: "13,000", time: "~2 hr" },
+                    { distance: "12 km", steps: "15,600", time: "~2 hr 24 min" },
+                    { distance: "15 km", steps: "19,500", time: "~3 hr" },
+                    { distance: "20 km", steps: "26,000", time: "~4 hr" },
                   ].map((row) => (
                     <tr
                       key={row.distance}
@@ -316,6 +324,82 @@ export default function StepDistanceCalculatorPage() {
               Based on average stride length (~0.75 m) and normal walking pace
               (~5 km/h). Use the calculator above for results personalized to
               your height and gender.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Steps to Km/Miles Reference Table */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+              Steps to Km &amp; Miles Quick Reference
+            </h2>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+              Approximate distance in km and miles for common step counts, based
+              on an average stride length of 0.75 m.
+            </p>
+
+            <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
+              <table className="w-full min-w-[400px]">
+                <thead>
+                  <tr className="border-b-2 border-neutral-200 dark:border-neutral-700">
+                    <th className="text-left py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Steps
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Km
+                    </th>
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                      Miles
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { steps: "1,000", km: "0.75 km", miles: "0.47 mi" },
+                    { steps: "2,000", km: "1.5 km", miles: "0.93 mi" },
+                    { steps: "2,500", km: "1.9 km", miles: "1.17 mi" },
+                    { steps: "3,000", km: "2.25 km", miles: "1.4 mi" },
+                    { steps: "5,000", km: "3.8 km", miles: "2.4 mi", highlight: true },
+                    { steps: "6,000", km: "4.5 km", miles: "2.8 mi" },
+                    { steps: "6,500", km: "4.9 km", miles: "3.0 mi" },
+                    { steps: "7,000", km: "5.25 km", miles: "3.3 mi" },
+                    { steps: "7,500", km: "5.6 km", miles: "3.5 mi" },
+                    { steps: "10,000", km: "7.5 km", miles: "4.7 mi" },
+                    { steps: "12,000", km: "9.0 km", miles: "5.6 mi" },
+                    { steps: "13,000", km: "9.75 km", miles: "6.05 mi" },
+                    { steps: "15,000", km: "11.25 km", miles: "7.0 mi" },
+                    { steps: "20,000", km: "15 km", miles: "9.3 mi" },
+                  ].map((row) => (
+                    <tr
+                      key={row.steps}
+                      className={`border-b border-neutral-100 dark:border-neutral-700/50 ${
+                        row.highlight
+                          ? "bg-[#ED772F]/5 dark:bg-[#ED772F]/10"
+                          : ""
+                      }`}
+                    >
+                      <td className="py-3 px-2 text-sm font-medium text-neutral-900 dark:text-white">
+                        {row.steps}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center font-semibold text-[#ED772F]">
+                        {row.km}
+                      </td>
+                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                        {row.miles}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">
+              Distances assume an average adult stride. Taller walkers cover
+              more ground per step; shorter walkers cover less. Use the
+              calculator above for a personalized result based on your height.
             </p>
           </div>
         </div>

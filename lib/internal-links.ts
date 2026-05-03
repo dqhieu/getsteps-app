@@ -555,6 +555,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
     { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
   ],
+  "how-many-miles-is-20000-steps": [
+    { title: "How Many Miles Is 12,000 Steps?", href: "/blog/how-many-miles-is-12000-steps" },
+    { title: "20,000 Steps a Day Benefits", href: "/blog/20000-steps-a-day-benefits" },
+    { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
+  ],
+  "how-many-miles-is-12000-steps": [
+    { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
+    { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
+    { title: "How Many Miles Is 20,000 Steps?", href: "/blog/how-many-miles-is-20000-steps" },
+  ],
+  "how-many-miles-is-7000-steps": [
+    { title: "How Many Miles Is 6,000 Steps?", href: "/blog/how-many-miles-is-6000-steps" },
+    { title: "How Many Miles Is 8,000 Steps?", href: "/blog/how-many-miles-is-8000-steps" },
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+  ],
+  "how-many-miles-is-6000-steps": [
+    { title: "How Many Miles Is 7,000 Steps?", href: "/blog/how-many-miles-is-7000-steps" },
+    { title: "How Many Miles Is 4,000 Steps?", href: "/blog/how-many-miles-is-4000-steps" },
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+  ],
+  "how-long-does-it-take-to-walk-3-miles": [
+    { title: "How Long Does It Take to Walk 4 Miles?", href: "/blog/how-long-does-it-take-to-walk-4-miles" },
+    { title: "How Long Does It Take to Walk 2 Miles?", href: "/blog/how-long-does-it-take-to-walk-2-miles" },
+    { title: "How Many Steps in 3 Miles?", href: "/blog/how-many-steps-in-3-miles" },
+  ],
+  "how-long-does-it-take-to-walk-4-miles": [
+    { title: "How Long Does It Take to Walk 3 Miles?", href: "/blog/how-long-does-it-take-to-walk-3-miles" },
+    { title: "How Long Does It Take to Walk 5 Miles?", href: "/blog/how-long-does-it-take-to-walk-5-miles" },
+    { title: "How Many Miles Is 8,000 Steps?", href: "/blog/how-many-miles-is-8000-steps" },
+  ],
+  "how-long-does-it-take-to-walk-10-miles": [
+    { title: "How Long Does It Take to Walk 5 Miles?", href: "/blog/how-long-does-it-take-to-walk-5-miles" },
+    { title: "20,000 Steps a Day Benefits", href: "/blog/20000-steps-a-day-benefits" },
+    { title: "Walking Workout Plan for Beginners", href: "/blog/walking-workout-plan-beginners" },
+  ],
   "walking-at-home-workout": [
     { title: "Walking Workout Plan for Beginners", href: "/blog/walking-workout-plan-beginners" },
     { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
@@ -1120,6 +1155,34 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "how-many-miles-is-4000-steps": [
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-miles-is-20000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "how-many-miles-is-12000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "how-many-miles-is-7000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-miles-is-6000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-3-miles": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-4-miles": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-10-miles": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
   ],
   "walking-at-home-workout": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
