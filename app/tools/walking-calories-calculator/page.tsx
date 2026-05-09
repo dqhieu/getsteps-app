@@ -140,6 +140,36 @@ export default function WalkingCaloriesCalculatorPage() {
 
                   <details className="group">
                     <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many calories does 40 minutes of walking burn?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      A 40-minute walk burns roughly 140-200 calories at a
+                      moderate pace (3.0 mph) and 200-280 calories at a brisk
+                      pace (3.5-4.0 mph) for a 155 lb adult. At a power-walk pace
+                      of 5.0 mph, the same 40 minutes burns about 290 calories.
+                      At 6.0 mph (a fast walk or light jog, MET ~7.0), 40
+                      minutes burns approximately 325-330 calories for a 155 lb
+                      person.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      How many calories does walking 40 minutes at 6.0 mph burn?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      Walking 40 minutes at 6.0 mph (9.7 km/h) — a treadmill
+                      power-walking pace, MET ~7.0 — burns about 327 calories
+                      for a 155 lb (70 kg) person. Heavier walkers burn more:
+                      roughly 380 cal at 180 lbs, 422 cal at 200 lbs. Most
+                      adults can't sustain a true walk at this speed; many
+                      transition to a light jog. Use the calculator above for
+                      a precise number based on your weight.
+                    </p>
+                  </details>
+
+                  <details className="group">
+                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
                       Does walking speed affect calorie burn?
                     </summary>
                     <p className="mt-2 text-sm">
@@ -494,6 +524,22 @@ export default function WalkingCaloriesCalculatorPage() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "A 30-minute walk at normal pace burns roughly 100-150 calories for most adults. Walking briskly can increase this to 150-200 calories. Use the calculator above for a personalized estimate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many calories does 40 minutes of walking burn?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A 40-minute walk burns roughly 140-200 calories at a moderate pace (3.0 mph) and 200-280 calories at a brisk pace (3.5-4.0 mph) for a 155 lb adult. At a power-walk pace of 5.0 mph, 40 minutes burns about 290 calories. At 6.0 mph (a fast walk or light jog, MET ~7.0), 40 minutes burns approximately 325-330 calories for a 155 lb person."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many calories does walking 40 minutes at 6.0 mph burn?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Walking 40 minutes at 6.0 mph (9.7 km/h) — a treadmill power-walking pace, MET ~7.0 — burns about 327 calories for a 155 lb (70 kg) person. Heavier walkers burn more: roughly 380 calories at 180 lbs and 422 calories at 200 lbs. Most adults can't sustain a true walk at this speed and transition to a light jog."
                 }
               },
               {
