@@ -42,9 +42,9 @@ export const officeWorkersPersona: PersonaData = {
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
   ],
   relatedPosts: [
+    { title: "Average Steps Per Day for an Office Worker", href: "/blog/average-steps-per-day-office-worker" },
     { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
-    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
   ],
   relatedPersonas: [
     { title: "Weight Loss", slug: "weight-loss" },

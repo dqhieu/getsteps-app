@@ -42,8 +42,8 @@ export const nursesPersona: PersonaData = {
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
   ],
   relatedPosts: [
+    { title: "How Many Steps Do Nurses Walk Per Shift?", href: "/blog/how-many-steps-do-nurses-walk-per-shift" },
     { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
-    { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
     { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
   ],
   relatedPersonas: [
