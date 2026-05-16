@@ -10,9 +10,9 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Steps to Calories Calculator: Free, by Body Weight (lb & kg)",
+  title: "Steps to Calories Calculator: 10K Steps Burn 280-520 Cal",
   description:
-    "How many calories do your steps burn? 10,000 steps ≈ 280 cal (130 lb), 400 cal (170 lb), 520 cal (220 lb). Free calculator personalized by your weight — full chart below.",
+    "10,000 steps ≈ 280 cal (130 lb), 400 cal (170 lb), 520 cal (220 lb). Free steps-to-calories calculator personalized by your weight — full chart inside.",
   keywords: [
     "steps to calories",
     "steps to calories calculator",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     "calories burned per step",
   ],
   openGraph: {
-    title: "Steps to Calories Calculator: Free, by Body Weight",
+    title: "Steps to Calories Calculator: 10K Steps Burn 280-520 Cal",
     description:
-      "How many calories do your steps burn? 10,000 steps ≈ 280-520 cal depending on body weight. Free calculator with full reference chart.",
+      "10,000 steps ≈ 280-520 cal depending on body weight. Free steps-to-calories calculator personalized by your weight — full chart inside.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/steps-to-calories-calculator`,
     images: [
