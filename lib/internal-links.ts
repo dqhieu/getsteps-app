@@ -735,6 +735,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Calories Does 15,000 Steps Burn?", href: "/blog/how-many-calories-does-15000-steps-burn" },
     { title: "20,000 Steps Calories Burned", href: "/blog/20000-steps-calories-burned" },
   ],
+  "how-many-km-is-2500-steps": [
+    { title: "How Many KM Is 6,500 Steps?", href: "/blog/how-many-km-is-6500-steps" },
+    { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+  ],
+  "how-many-km-is-6500-steps": [
+    { title: "How Many KM Is 7,500 Steps?", href: "/blog/how-many-km-is-7500-steps" },
+    { title: "How Many KM Is 2,500 Steps?", href: "/blog/how-many-km-is-2500-steps" },
+    { title: "How Many Steps in 5 km?", href: "/blog/how-many-steps-in-5-km" },
+  ],
+  "how-many-km-is-7500-steps": [
+    { title: "How Many KM Is 6,500 Steps?", href: "/blog/how-many-km-is-6500-steps" },
+    { title: "How Many KM Is 10,000 Steps?", href: "/blog/how-many-km-is-10000-steps" },
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+  ],
+  "how-many-km-is-12000-steps": [
+    { title: "How Many KM Is 13,000 Steps?", href: "/blog/how-many-km-is-13000-steps" },
+    { title: "How Many KM Is 10,000 Steps?", href: "/blog/how-many-km-is-10000-steps" },
+    { title: "How Many Miles Is 12,000 Steps?", href: "/blog/how-many-miles-is-12000-steps" },
+  ],
+  "how-many-km-is-13000-steps": [
+    { title: "How Many KM Is 12,000 Steps?", href: "/blog/how-many-km-is-12000-steps" },
+    { title: "How Many KM Is 15,000 Steps?", href: "/blog/how-many-km-is-15000-steps" },
+    { title: "How Many Miles Is 13,000 Steps?", href: "/blog/how-many-miles-is-13000-steps" },
+  ],
+  "how-many-km-is-15000-steps": [
+    { title: "How Many KM Is 13,000 Steps?", href: "/blog/how-many-km-is-13000-steps" },
+    { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
+    { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
+  ],
+  "calories-burned-walking-per-km": [
+    { title: "Calories Burned Per Step", href: "/blog/calories-burned-per-step" },
+    { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+    { title: "MET Values for Walking Chart", href: "/blog/met-values-walking-chart" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -1334,5 +1369,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "how-many-calories-does-13000-steps-burn": [
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "how-many-km-is-2500-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-km-is-6500-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-many-km-is-7500-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-many-km-is-12000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-many-km-is-13000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-km-is-15000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "calories-burned-walking-per-km": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
   ],
 };
