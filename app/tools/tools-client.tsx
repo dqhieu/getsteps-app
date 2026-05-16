@@ -95,6 +95,53 @@ export function ToolsClient({ tools, popularTools }: ToolsClientProps) {
         </div>
       </section>
 
+      {/* Conversion tables — quick reference */}
+      <section className="py-8 md:py-12">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="rounded-3xl bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 border border-[#ED772F]/20 p-6 md:p-10">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-1">
+                  Quick conversion tables
+                </h2>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  Pre-computed answers for common step, distance, and time conversions.
+                </p>
+              </div>
+              <Link
+                href="/conversions"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ED772F] text-white text-sm font-medium hover:bg-[#d8651f] transition-colors whitespace-nowrap self-start md:self-auto"
+              >
+                Conversion hub →
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+              <Link href="/conversions/steps-to-miles" className="p-3 rounded-xl bg-white/60 dark:bg-black/30 border border-transparent hover:border-[#ED772F] transition-colors text-neutral-700 dark:text-neutral-300">
+                Steps → miles
+              </Link>
+              <Link href="/conversions/miles-to-steps" className="p-3 rounded-xl bg-white/60 dark:bg-black/30 border border-transparent hover:border-[#ED772F] transition-colors text-neutral-700 dark:text-neutral-300">
+                Miles → steps
+              </Link>
+              <Link href="/conversions/steps-to-km" className="p-3 rounded-xl bg-white/60 dark:bg-black/30 border border-transparent hover:border-[#ED772F] transition-colors text-neutral-700 dark:text-neutral-300">
+                Steps → km
+              </Link>
+              <Link href="/conversions/km-to-steps" className="p-3 rounded-xl bg-white/60 dark:bg-black/30 border border-transparent hover:border-[#ED772F] transition-colors text-neutral-700 dark:text-neutral-300">
+                Km → steps
+              </Link>
+              <Link href="/conversions/steps-to-calories" className="p-3 rounded-xl bg-white/60 dark:bg-black/30 border border-transparent hover:border-[#ED772F] transition-colors text-neutral-700 dark:text-neutral-300">
+                Steps → calories
+              </Link>
+              <Link href="/conversions/steps-to-time" className="p-3 rounded-xl bg-white/60 dark:bg-black/30 border border-transparent hover:border-[#ED772F] transition-colors text-neutral-700 dark:text-neutral-300">
+                Steps → walking time
+              </Link>
+              <Link href="/conversions/miles-to-time" className="p-3 rounded-xl bg-white/60 dark:bg-black/30 border border-transparent hover:border-[#ED772F] transition-colors text-neutral-700 dark:text-neutral-300">
+                Miles → walking time
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Use Our Calculators */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">

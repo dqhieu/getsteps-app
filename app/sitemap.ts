@@ -1,6 +1,15 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { getAllPersonas } from "@/lib/personas";
+import {
+  STEPS_TO_MILES_VALUES,
+  MILES_TO_STEPS_VALUES,
+  STEPS_TO_CALORIES_VALUES,
+  STEPS_TO_KM_VALUES,
+  KM_TO_STEPS_VALUES,
+  STEPS_TO_TIME_VALUES,
+  MILES_TO_TIME_VALUES,
+} from "@/lib/conversions";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://getsteps.app";
@@ -13,6 +22,99 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly",
     priority: 0.7,
   }));
+
+  const conversionHubUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/conversions`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/conversions/steps-to-miles`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/conversions/miles-to-steps`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/conversions/steps-to-calories`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    ...STEPS_TO_MILES_VALUES.map((steps) => ({
+      url: `${baseUrl}/conversions/steps-to-miles/${steps}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...MILES_TO_STEPS_VALUES.map((miles) => ({
+      url: `${baseUrl}/conversions/miles-to-steps/${miles}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...STEPS_TO_CALORIES_VALUES.map((steps) => ({
+      url: `${baseUrl}/conversions/steps-to-calories/${steps}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    {
+      url: `${baseUrl}/conversions/steps-to-km`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/conversions/km-to-steps`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/conversions/steps-to-time`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/conversions/miles-to-time`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    ...STEPS_TO_KM_VALUES.map((steps) => ({
+      url: `${baseUrl}/conversions/steps-to-km/${steps}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...KM_TO_STEPS_VALUES.map((km) => ({
+      url: `${baseUrl}/conversions/km-to-steps/${km}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...STEPS_TO_TIME_VALUES.map((steps) => ({
+      url: `${baseUrl}/conversions/steps-to-time/${steps}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...MILES_TO_TIME_VALUES.map((miles) => ({
+      url: `${baseUrl}/conversions/miles-to-time/${miles}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
 
   return [
     {
@@ -255,5 +357,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.5,
     },
+    ...conversionHubUrls,
   ];
 }

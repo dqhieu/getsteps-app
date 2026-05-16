@@ -198,6 +198,17 @@ export default function WalkingTimeCalculatorPage() {
               </div>
             </div>
 
+            <div className="mt-6">
+              <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">Pre-computed walking times</p>
+              <div className="flex flex-wrap gap-2">
+                <a href="/conversions/steps-to-time/10000" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">How long to walk 10,000 steps</a>
+                <a href="/conversions/miles-to-time/5" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">How long to walk 5 miles</a>
+                <a href="/conversions/miles-to-time/3" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">How long to walk 3 miles</a>
+                <a href="/conversions/miles-to-time/1" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">How long to walk 1 mile</a>
+                <a href="/conversions" className="text-sm px-3 py-1.5 rounded-lg bg-[#ED772F]/10 text-[#ED772F] hover:bg-[#ED772F]/20 transition-colors font-medium">All conversions →</a>
+              </div>
+            </div>
+
             <RelatedBlogPosts items={TOOL_RELATED_BLOGS["walking-time-calculator"] || []} />
             <PersonaLinks items={TOOL_RELATED_PERSONAS["walking-time-calculator"] || []} />
           </div>
