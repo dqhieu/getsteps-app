@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import posthog from "posthog-js";
 import { SITE_CONFIG } from "@/lib/constants";
 
 interface Tool {
@@ -19,20 +16,6 @@ interface ToolsClientProps {
 }
 
 export function ToolsClient({ tools, popularTools }: ToolsClientProps) {
-  const handleToolClick = (tool: Tool) => {
-    posthog.capture("tool_card_clicked", {
-      tool_title: tool.title,
-      tool_href: tool.href,
-      is_popular: tool.popular,
-    });
-  };
-
-  const handleAppStoreClick = () => {
-    posthog.capture("app_store_link_clicked", {
-      location: "tools_cta",
-    });
-  };
-
   return (
     <>
       {/* Popular Tools */}
@@ -47,7 +30,6 @@ export function ToolsClient({ tools, popularTools }: ToolsClientProps) {
               <Link
                 key={tool.href}
                 href={tool.href}
-                onClick={() => handleToolClick(tool)}
                 className="group bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-2xl p-6 border border-[#ED772F]/20 hover:border-[#ED772F]/40 transition-all hover:shadow-lg"
               >
                 <span className="text-3xl mb-4 block">{tool.icon}</span>
@@ -75,7 +57,6 @@ export function ToolsClient({ tools, popularTools }: ToolsClientProps) {
               <Link
                 key={tool.href}
                 href={tool.href}
-                onClick={() => handleToolClick(tool)}
                 className="group bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50 hover:border-[#ED772F]/40 dark:hover:border-[#ED772F]/40 transition-all hover:shadow-lg"
               >
                 <div className="flex items-start gap-4">
@@ -206,7 +187,6 @@ export function ToolsClient({ tools, popularTools }: ToolsClientProps) {
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105 active:scale-95 inline-block"
             aria-label="Download on the App Store"
-            onClick={handleAppStoreClick}
           >
             <Image
               src="/badge_light_mode.svg"

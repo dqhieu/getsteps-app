@@ -1,16 +1,7 @@
-"use client";
-
 import Image from "next/image";
-import posthog from "posthog-js";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export function LandingCTA() {
-  const handleAppStoreClick = () => {
-    posthog.capture("app_store_link_clicked", {
-      location: "cta",
-    });
-  };
-
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4 text-center">
@@ -25,7 +16,6 @@ export function LandingCTA() {
           rel="noopener noreferrer"
           className="inline-block mb-6 transition-transform duration-150 hover:scale-105 active:scale-[0.96]"
           aria-label="Download on the App Store"
-          onClick={handleAppStoreClick}
         >
           <Image
             src="/badge_light_mode.svg"
