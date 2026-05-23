@@ -770,6 +770,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
     { title: "MET Values for Walking Chart", href: "/blog/met-values-walking-chart" },
   ],
+  "walking-schedule-for-weight-loss": [
+    { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+    { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
+    { title: "10,000 Steps a Day for a Month: Results", href: "/blog/10000-steps-a-day-for-a-month-results" },
+  ],
+  "calories-burned-walking-5-miles": [
+    { title: "Calories Burned Walking 4 Miles", href: "/blog/calories-burned-walking-4-miles" },
+    { title: "Calories Burned Walking 3 Miles", href: "/blog/calories-burned-walking-3-miles" },
+    { title: "How Long Does It Take to Walk 5 Miles?", href: "/blog/how-long-does-it-take-to-walk-5-miles" },
+  ],
+  "calories-burned-walking-4-miles": [
+    { title: "Calories Burned Walking 5 Miles", href: "/blog/calories-burned-walking-5-miles" },
+    { title: "Calories Burned Walking 3 Miles", href: "/blog/calories-burned-walking-3-miles" },
+    { title: "How Long Does It Take to Walk 4 Miles?", href: "/blog/how-long-does-it-take-to-walk-4-miles" },
+  ],
+  "walking-10000-steps-weight-loss-stories": [
+    { title: "10,000 Steps a Day for a Month: Results", href: "/blog/10000-steps-a-day-for-a-month-results" },
+    { title: "10,000 Steps Weight Loss Results", href: "/blog/10000-steps-weight-loss-results" },
+    { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+  ],
+  "walking-lunges-benefits": [
+    { title: "Walking at Home Workout", href: "/blog/walking-at-home-workout" },
+    { title: "Walking with Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+    { title: "Walking for Sciatica", href: "/blog/walking-for-sciatica" },
+  ],
+  "walking-for-sciatica": [
+    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
+    { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
+    { title: "Walking Lunges Benefits", href: "/blog/walking-lunges-benefits" },
+  ],
+  "10000-steps-a-day-for-a-month-results": [
+    { title: "Has Anyone Lost Weight Walking 10,000 Steps a Day?", href: "/blog/walking-10000-steps-weight-loss-stories" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+    { title: "10,000 Steps Weight Loss Results", href: "/blog/10000-steps-weight-loss-results" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -1397,5 +1432,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "calories-burned-walking-per-km": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "walking-schedule-for-weight-loss": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "calories-burned-walking-5-miles": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "calories-burned-walking-4-miles": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "walking-10000-steps-weight-loss-stories": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "walking-lunges-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "walking-for-sciatica": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "10000-steps-a-day-for-a-month-results": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
   ],
 };
