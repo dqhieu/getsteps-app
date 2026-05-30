@@ -805,6 +805,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
     { title: "10,000 Steps Weight Loss Results", href: "/blog/10000-steps-weight-loss-results" },
   ],
+  "how-many-miles-is-a-5k": [
+    { title: "How Many Steps in a 5K?", href: "/blog/how-many-steps-in-a-5k" },
+    { title: "How Many Steps in a Half Marathon?", href: "/blog/how-many-steps-in-a-half-marathon" },
+    { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
+  ],
+  "how-many-steps-a-day-is-healthy": [
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+    { title: "How Many Steps a Day to Lose Belly Fat?", href: "/blog/how-many-steps-a-day-to-lose-belly-fat" },
+  ],
+  "calories-burned-cycling": [
+    { title: "Calories Burned Hiking", href: "/blog/calories-burned-hiking" },
+    { title: "Calories Burned on Treadmill", href: "/blog/calories-burned-on-treadmill" },
+    { title: "Incline Walking vs Running", href: "/blog/incline-walking-vs-running" },
+  ],
+  "incline-walking-vs-running": [
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+    { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
+    { title: "Treadmill Walking Workout for Weight Loss", href: "/blog/treadmill-walking-workout-weight-loss" },
+  ],
+  "how-many-steps-in-a-half-marathon": [
+    { title: "How Many Steps in a 5K?", href: "/blog/how-many-steps-in-a-5k" },
+    { title: "How Many Miles Is a 5K?", href: "/blog/how-many-miles-is-a-5k" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+  ],
+  "how-many-steps-a-day-to-lose-belly-fat": [
+    { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },
+    { title: "Walking Weight Loss Before and After", href: "/blog/walking-weight-loss-before-and-after" },
+    { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
+  ],
+  "walking-weight-loss-before-and-after": [
+    { title: "Has Anyone Lost Weight Walking 10,000 Steps a Day?", href: "/blog/walking-10000-steps-weight-loss-stories" },
+    { title: "How Many Steps a Day to Lose Belly Fat?", href: "/blog/how-many-steps-a-day-to-lose-belly-fat" },
+    { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -1460,5 +1495,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "10000-steps-a-day-for-a-month-results": [
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "how-many-miles-is-a-5k": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-steps-a-day-is-healthy": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "calories-burned-cycling": [
+    { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "incline-walking-vs-running": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-many-steps-in-a-half-marathon": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-many-steps-a-day-to-lose-belly-fat": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "walking-weight-loss-before-and-after": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
   ],
 };
