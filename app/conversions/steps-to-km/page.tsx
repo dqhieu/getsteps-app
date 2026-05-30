@@ -39,8 +39,11 @@ export const metadata: Metadata = {
       },
     ],
   },
+  // Canonical points to the calculator so the "steps to km" head term
+  // consolidates onto one page; this hub serves the long-tail table and
+  // links out to the per-count detail pages, which self-canonical.
   alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/conversions/steps-to-km`,
+    canonical: `${SITE_CONFIG.baseUrl}/tools/step-distance-calculator`,
   },
 };
 
@@ -98,7 +101,14 @@ export default function StepsToKmCategoryPage() {
           <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-10 max-w-2xl">
             Convert any step count to kilometers. Each row links to a detailed
             page with calorie burn, walking time, and a stride-length table by
-            height.
+            height. For an exact, personalized answer, use the{" "}
+            <Link
+              href="/tools/step-distance-calculator"
+              className="text-[#ED772F] hover:underline"
+            >
+              step distance calculator
+            </Link>
+            .
           </p>
 
           <section className="rounded-3xl bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 border border-[#ED772F]/20 p-6 md:p-8 mb-10">
