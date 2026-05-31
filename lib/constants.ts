@@ -21,6 +21,21 @@ export const THEME = {
 
 export const FEATURES = [
   {
+    icon: "🤖",
+    title: "AI Coach",
+    description: "Smart on-device workout feedback",
+  },
+  {
+    icon: "💬",
+    title: "Workout Chat",
+    description: "Ask anything about your workout",
+  },
+  {
+    icon: "🏅",
+    title: "Stepboard",
+    description: "Daily leaderboards with friends",
+  },
+  {
     icon: "⌚",
     title: "Apple Watch",
     description: "Seamless sync with your Watch",
@@ -48,7 +63,7 @@ export const FEATURES = [
   {
     icon: "📱",
     title: "Home Widgets",
-    description: "8 widgets for your home screen",
+    description: "10 widgets for your home screen",
   },
   {
     icon: "🔒",

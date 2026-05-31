@@ -144,8 +144,11 @@ export default function RootLayout({
               sameAs: [appStoreUrl],
               featureList: [
                 "Automatic step counting via iPhone and Apple Watch",
+                "AI Coach — personalized on-device workout feedback",
+                "Workout Chat — ask questions about any workout",
                 "23+ workout types (running, walking, cycling, hiking, yoga, strength)",
-                "8 home screen and Lock Screen widgets",
+                "Heart rate zones and per-split workout breakdowns",
+                "10 home screen and Lock Screen widgets",
                 "GPX export for routes",
                 "8 personal record categories",
                 "App Lock — block apps until daily step goal is hit",
@@ -153,6 +156,7 @@ export default function RootLayout({
                 "Streaks and daily goals",
                 "Siri Shortcuts integration",
                 "Stepboard — optional opt-in group step leaderboards",
+                "World Stats — global community totals, rank, and percentile",
               ],
               author: {
                 "@type": "Organization",
