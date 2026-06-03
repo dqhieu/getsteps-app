@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   type Gender,
   type UserProfile,
@@ -26,7 +26,7 @@ const DEFAULT_PROFILE: UserProfile = {
   heightCm: 170,
 };
 
-export function StepCalculator() {
+export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
   // User profile state
   const [gender, setGender] = useState<Gender>(DEFAULT_PROFILE.gender);
   const [age, setAge] = useState<number>(DEFAULT_PROFILE.age);
@@ -356,6 +356,8 @@ export function StepCalculator() {
           </div>
         </div>
       </div>
+
+      {resultCta}
 
       {/* Reference Table */}
       <ReferenceTable profile={profile} />

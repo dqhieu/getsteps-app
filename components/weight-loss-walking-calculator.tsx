@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   calculateWeightLoss,
   TIMEFRAME_OPTIONS,
@@ -17,7 +17,11 @@ const DEFAULT_VALUES = {
   daysPerWeek: 5,
 };
 
-export function WeightLossWalkingCalculator() {
+export function WeightLossWalkingCalculator({
+  resultCta,
+}: {
+  resultCta?: ReactNode;
+} = {}) {
   // Input state
   const [currentWeight, setCurrentWeight] = useState<number>(DEFAULT_VALUES.currentWeight);
   const [targetWeight, setTargetWeight] = useState<number>(DEFAULT_VALUES.targetWeight);
@@ -242,6 +246,8 @@ export function WeightLossWalkingCalculator() {
           </div>
         </div>
       </div>
+
+      {resultCta}
 
       {/* Milestones Card */}
       {results.milestones.length > 0 && (

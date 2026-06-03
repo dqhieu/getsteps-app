@@ -6,6 +6,7 @@ import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
 import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { WeightLossWalkingCalculatorClient } from "./client";
+import { ToolAppCta, ToolStickyCta } from "@/components/tool-app-cta";
 import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -67,7 +68,14 @@ export default function WeightLossWalkingCalculatorPage() {
       {/* Main Calculator Section */}
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4 max-w-3xl">
-          <WeightLossWalkingCalculatorClient />
+          <WeightLossWalkingCalculatorClient
+            resultCta={
+              <ToolAppCta
+                headline="Hit your daily step target — automatically"
+                description="Steps tracks your steps in the background, no manual logging, so you actually reach the number above and stay on track to your goal weight."
+              />
+            }
+          />
         </div>
       </section>
 
@@ -323,6 +331,10 @@ export default function WeightLossWalkingCalculatorPage() {
       />
 
       <LandingFooter />
+
+      {/* Mobile spacer so the sticky bar never covers footer content */}
+      <div aria-hidden className="h-20 md:hidden" />
+      <ToolStickyCta label="Track your steps with Steps" />
     </div>
   );
 }

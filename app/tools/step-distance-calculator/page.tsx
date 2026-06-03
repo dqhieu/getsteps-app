@@ -6,6 +6,7 @@ import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
 import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { StepDistanceCalculatorClient } from "./client";
+import { ToolAppCta, ToolStickyCta } from "@/components/tool-app-cta";
 import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -70,7 +71,14 @@ export default function StepDistanceCalculatorPage() {
       {/* Main Calculator Section */}
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4 max-w-3xl">
-          <StepDistanceCalculatorClient />
+          <StepDistanceCalculatorClient
+            resultCta={
+              <ToolAppCta
+                headline="Track your real steps and distance"
+                description="Steps counts your steps automatically and shows your real distance, pace, and calories every day, no manual entry needed."
+              />
+            }
+          />
         </div>
       </section>
 
@@ -517,6 +525,10 @@ export default function StepDistanceCalculatorPage() {
       />
 
       <LandingFooter />
+
+      {/* Mobile spacer so the sticky bar never covers footer content */}
+      <div aria-hidden className="h-20 md:hidden" />
+      <ToolStickyCta label="Track your steps with Steps" />
     </div>
   );
 }
