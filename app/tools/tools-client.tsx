@@ -182,7 +182,7 @@ export function ToolsClient({ tools, popularTools }: ToolsClientProps) {
           </p>
 
           <a
-            href={SITE_CONFIG.appStoreUrl}
+            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105 active:scale-95 inline-block"

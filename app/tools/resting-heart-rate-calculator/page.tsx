@@ -156,7 +156,7 @@ export default function RestingHeartRateCalculatorPage() {
             Track your daily steps to improve your cardiovascular health over time.
           </p>
           <a
-            href={SITE_CONFIG.appStoreUrl}
+            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105 active:scale-95 inline-block"

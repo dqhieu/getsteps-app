@@ -49,7 +49,7 @@ export function LandingNavbar() {
             Docs
           </Link>
           <a
-            href={SITE_CONFIG.appStoreUrl}
+            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-[40px] items-center justify-center text-sm font-medium px-4 py-1.5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 transition-[opacity,transform] duration-150 hover:opacity-90 active:scale-[0.96]"

@@ -162,7 +162,7 @@ export default function TrainingPaceZonesPage() {
             Track your runs and daily steps together in the Steps app.
           </p>
           <a
-            href={SITE_CONFIG.appStoreUrl}
+            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105 active:scale-95 inline-block"

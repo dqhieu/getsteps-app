@@ -163,7 +163,7 @@ export default function AboutPage() {
                 Ready to track every step?
               </h2>
               <a
-                href={SITE_CONFIG.appStoreUrl}
+                href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-transform hover:scale-105 active:scale-95 inline-block mb-6"

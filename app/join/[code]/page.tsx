@@ -133,7 +133,7 @@ export default async function JoinPage({
           </a>
           {isIOS && (
             <a
-              href={SITE_CONFIG.appStoreUrl}
+              href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
               className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-neutral-300 px-6 py-3 font-medium transition-[background-color,border-color,transform] duration-150 hover:bg-neutral-100 active:scale-[0.96] dark:border-neutral-700 dark:hover:bg-neutral-900"
             >
               Get Steps on the App Store

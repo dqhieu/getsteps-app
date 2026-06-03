@@ -178,7 +178,7 @@ export default function GpxViewerPage() {
             Track your workouts and export GPX files directly from the Steps app on iPhone and Apple Watch.
           </p>
           <a
-            href={SITE_CONFIG.appStoreUrl}
+            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105 active:scale-95 inline-block"

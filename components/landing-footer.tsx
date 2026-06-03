@@ -203,7 +203,7 @@ export function LandingFooter() {
 
             {/* App Store badge */}
             <a
-              href={SITE_CONFIG.appStoreUrl}
+              href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-6 transition-transform duration-150 hover:scale-105 active:scale-[0.96]"

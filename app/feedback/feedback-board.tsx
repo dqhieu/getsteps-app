@@ -107,7 +107,7 @@ function AppStoreDialog({ mode, onClose }: { mode: DialogMode; onClose: () => vo
         </p>
         <div className="flex flex-col gap-3">
           <a
-            href={SITE_CONFIG.appStoreUrl}
+            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 rounded-xl bg-[#ED772F] px-5 py-3 text-sm font-medium text-white hover:bg-[#d9691f] transition-colors"

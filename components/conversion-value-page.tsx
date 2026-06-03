@@ -395,7 +395,7 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
               from your iPhone and Apple Watch.
             </p>
             <a
-              href={SITE_CONFIG.appStoreUrl}
+              href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Download Steps on the App Store"
