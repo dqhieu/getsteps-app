@@ -163,6 +163,41 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "12-3-30-workout": [
+    { title: "Treadmill Walking Workout for Weight Loss", href: "/blog/treadmill-walking-workout-weight-loss" },
+    { title: "Does Walking Build Muscle?", href: "/blog/does-walking-build-muscle" },
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+  ],
+  "does-walking-build-muscle": [
+    { title: "Is Walking Enough Exercise?", href: "/blog/is-walking-enough-exercise" },
+    { title: "Rucking Benefits", href: "/blog/rucking-benefits" },
+    { title: "Walking with a Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+  ],
+  "walking-3-miles-a-day": [
+    { title: "Calories Burned Walking 3 Miles", href: "/blog/calories-burned-walking-3-miles" },
+    { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
+    { title: "Walking vs Cycling", href: "/blog/walking-vs-cycling" },
+  ],
+  "stair-climbing-benefits": [
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+    { title: "Walking for Cardio", href: "/blog/walking-for-cardio" },
+    { title: "Does Walking Build Muscle?", href: "/blog/does-walking-build-muscle" },
+  ],
+  "fasted-walking": [
+    { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
+    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
+    { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },
+  ],
+  "walking-vs-cycling": [
+    { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
+    { title: "Calories Burned Cycling", href: "/blog/calories-burned-cycling" },
+    { title: "Walking 3 Miles a Day", href: "/blog/walking-3-miles-a-day" },
+  ],
+  "rucking-benefits": [
+    { title: "Walking with a Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+    { title: "Walking with Ankle Weights", href: "/blog/walking-with-ankle-weights" },
+    { title: "12-3-30 Workout", href: "/blog/12-3-30-workout" },
+  ],
   "10000-steps-a-day-benefits": [
     { title: "How Many Calories Does 10,000 Steps Burn?", href: "/blog/10000-steps-calories-burned" },
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
@@ -979,6 +1014,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "12-3-30-workout": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "does-walking-build-muscle": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "walking-3-miles-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "stair-climbing-benefits": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "fasted-walking": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "walking-vs-cycling": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
+  ],
+  "rucking-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
   "10000-steps-a-day-benefits": [
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
