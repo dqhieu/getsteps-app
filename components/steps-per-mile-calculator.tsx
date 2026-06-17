@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   calculateStepLength,
   feetInchesToCm,
@@ -29,7 +29,7 @@ const REFERENCE_DISTANCES = [
   { label: "Marathon", km: 42.195 },
 ];
 
-export function StepsPerMileCalculator() {
+export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
   // Input state
   const [gender, setGender] = useState<Gender>(DEFAULT_VALUES.gender);
   const [heightCm, setHeightCm] = useState<number>(DEFAULT_VALUES.heightCm);
@@ -241,6 +241,8 @@ export function StepsPerMileCalculator() {
           </div>
         </div>
       </div>
+
+      {resultCta}
 
       {/* Reference Table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

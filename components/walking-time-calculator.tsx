@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   type WalkingSpeed,
   WALKING_SPEEDS_KMH,
@@ -35,7 +35,7 @@ const COMMON_DISTANCES = [
   { label: "Half Marathon", km: 21.0975 },
 ];
 
-export function WalkingTimeCalculator() {
+export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
   // Input state
   const [distance, setDistance] = useState<number>(DEFAULT_VALUES.distance);
   const [distanceUnit, setDistanceUnit] = useState<DistanceUnit>("km");
@@ -222,6 +222,8 @@ export function WalkingTimeCalculator() {
           </div>
         </div>
       </div>
+
+      {resultCta}
 
       {/* Reference Table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

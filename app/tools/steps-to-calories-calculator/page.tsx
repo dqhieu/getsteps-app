@@ -6,6 +6,7 @@ import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
 import { ToolHowToBlock } from "@/components/tool-how-to-block";
 import { StepsToCaloriesCalculatorClient } from "./client";
+import { ToolAppCta, ToolStickyCta } from "@/components/tool-app-cta";
 import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -74,7 +75,14 @@ export default function StepsToCaloriesCalculatorPage() {
       {/* Main Calculator Section */}
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4 max-w-3xl">
-          <StepsToCaloriesCalculatorClient />
+          <StepsToCaloriesCalculatorClient
+            resultCta={
+              <ToolAppCta
+                headline="See the calories behind your real step count"
+                description="Steps tracks your steps automatically and shows the calories you burn every day, so you never have to estimate again."
+              />
+            }
+          />
         </div>
       </section>
 
@@ -455,6 +463,10 @@ export default function StepsToCaloriesCalculatorPage() {
       />
 
       <LandingFooter />
+
+      {/* Mobile spacer so the sticky bar never covers footer content */}
+      <div aria-hidden className="h-20 md:hidden" />
+      <ToolStickyCta label="Track your steps with Steps" />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   calculateFromDistance,
   calculateFromDuration,
@@ -29,7 +29,7 @@ const SPEED_OPTIONS: { value: WalkingSpeed; label: string; description: string }
   { value: "fast", label: "Fast", description: `${WALKING_SPEEDS_KMH.fast} km/h (4.5 mph)` },
 ];
 
-export function WalkingCaloriesCalculator() {
+export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
   // Input state
   const [mode, setMode] = useState<CalculationMode>("distance");
   const [weight, setWeight] = useState<number>(DEFAULT_VALUES.weight);
@@ -260,6 +260,8 @@ export function WalkingCaloriesCalculator() {
           </div>
         </div>
       </div>
+
+      {resultCta}
 
       {/* MET Info Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

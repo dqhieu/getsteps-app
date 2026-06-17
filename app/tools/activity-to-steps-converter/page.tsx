@@ -3,6 +3,7 @@ import Image from "next/image";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { ActivityToStepsCalculatorClient } from "./client";
+import { ToolAppCta, ToolStickyCta } from "@/components/tool-app-cta";
 import { SITE_CONFIG } from "@/lib/constants";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
@@ -77,7 +78,14 @@ export default function ActivityToStepsConverterPage() {
       {/* Calculator Section */}
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4 max-w-3xl">
-          <ActivityToStepsCalculatorClient />
+          <ActivityToStepsCalculatorClient
+            resultCta={
+              <ToolAppCta
+                headline="Count every activity as steps — automatically"
+                description="Steps tracks your daily movement in the background and turns your activity into step-equivalents, no manual entry needed."
+              />
+            }
+          />
         </div>
       </section>
 
@@ -238,6 +246,10 @@ export default function ActivityToStepsConverterPage() {
         }}
       />
       <LandingFooter />
+
+      {/* Mobile spacer so the sticky bar never covers footer content */}
+      <div aria-hidden className="h-20 md:hidden" />
+      <ToolStickyCta label="Track your steps with Steps" />
     </div>
   );
 }

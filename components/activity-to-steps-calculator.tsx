@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   ACTIVITIES,
   convertActivityToSteps,
@@ -14,7 +14,7 @@ type WeightUnit = "kg" | "lbs";
 const DURATION_PRESETS = [15, 30, 45, 60, 90];
 const ACTIVITY_KEYS = Object.keys(ACTIVITIES) as ActivityKey[];
 
-export function ActivityToStepsCalculator() {
+export function ActivityToStepsCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
   const [selectedActivity, setSelectedActivity] = useState<ActivityKey>("cycling");
   const [duration, setDuration] = useState<number>(30);
   const [intensity, setIntensity] = useState<Intensity>("medium");
@@ -204,6 +204,8 @@ export function ActivityToStepsCalculator() {
           </p>
         </div>
       </div>
+
+      {resultCta}
     </div>
   );
 }

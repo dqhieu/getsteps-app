@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   calculateStepGoal,
   ACTIVITY_LEVELS,
@@ -19,7 +19,7 @@ const DEFAULT_VALUES = {
   currentSteps: undefined as number | undefined,
 };
 
-export function DailyStepGoalCalculator() {
+export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
   // Input state
   const [age, setAge] = useState<number>(DEFAULT_VALUES.age);
   const [gender, setGender] = useState<Gender>(DEFAULT_VALUES.gender);
@@ -227,6 +227,8 @@ export function DailyStepGoalCalculator() {
           </div>
         </div>
       </div>
+
+      {resultCta}
 
       {/* Milestones Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">

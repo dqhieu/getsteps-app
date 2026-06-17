@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import {
   calculateCaloriesFromSteps,
   getFoodEquivalents,
@@ -33,7 +33,7 @@ const DEFAULT_VALUES = {
   heightCm: 170,
 };
 
-export function StepsToCaloriesCalculator() {
+export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
   // Input state
   const [steps, setSteps] = useState<number>(DEFAULT_VALUES.steps);
   const [weight, setWeight] = useState<number>(DEFAULT_VALUES.weightKg);
@@ -267,6 +267,8 @@ export function StepsToCaloriesCalculator() {
           </div>
         )}
       </div>
+
+      {resultCta}
 
       {/* Reference Table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
