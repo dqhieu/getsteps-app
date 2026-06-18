@@ -94,18 +94,39 @@ app/dashboard/dashboard-view.tsx   # "use client": stat cards, chart, raw table
 
 ### 5. RLS lockdown (Supabase)
 
-- Disable anonymous `SELECT` on `notification_opt_in` so the public anon key can
-  no longer read device tokens directly.
-- **CRITICAL RISK:** the iOS Steps app writes opt-ins to this table. Removing the
-  SELECT policy must not break those writes.
-  - supabase-js `upsert`/`insert` returns the row by default
-    (`Prefer: return=representation`), which requires `SELECT`. If the app reads
-    back the written row, dropping SELECT breaks it.
-  - **Mitigation:** before changing any policy, inspect the app's write code in
-    `/Users/hieudinh/Projects/Steps` to confirm how it writes (and whether it
-    relies on return representation or its own SELECTs). Adjust the app to use
-    `returning: "minimal"` if needed, OR scope the SELECT-removal narrowly.
-  - The migration is **gated on this verification** — do not apply blind.
+Disable anonymous `SELECT` on `notification_opt_in` so the public anon key can no
+longer read device tokens directly. Dashboard reads switch to the service-role key.
+
+**App write-path verification (DONE — risk cleared).** Inspected the iOS app at
+`/Users/hieudinh/Projects/Steps`. All access is in
+`Steps/Supabase/SupabaseClient.swift`:
+
+- Opt-in: `.upsert(..., onConflict: "device_token").execute()` — no `.select()`,
+  response ignored.
+- Opt-out: `.delete().eq("device_token", ...).execute()` — response ignored.
+- **No SELECT/read of this table anywhere.** App uses the **anon** key, project
+  `gshxvsadvvodnhqdkosa` (same project as the web app).
+- DEBUG builds target a **separate** table `notification_opt_in_development`;
+  production uses `notification_opt_in`. The RLS change targets production only.
+
+**Conclusion:** the app needs anon `INSERT` / `UPDATE` / `DELETE` but **not**
+`SELECT`. Removing only anon `SELECT` is safe and will not break opt-ins.
+
+**Constraints on the migration:**
+
+- Drop/deny only the anon `SELECT`; preserve anon `INSERT` / `UPDATE` / `DELETE`.
+- Do **not** touch `notification_opt_in_development`.
+
+**Open items (require owner action — cannot be done from the web repo):**
+
+- `.env.local` currently has only the anon key — **no** `SUPABASE_SERVICE_ROLE_KEY`
+  and no DB connection string. The exact current policy definitions could not be
+  read (no elevated access); anon `SELECT` was confirmed open empirically.
+- Owner must: (1) add `SUPABASE_SERVICE_ROLE_KEY` to `.env.local` + Vercel from
+  Supabase → Project Settings → API; (2) run the RLS SQL in the Supabase SQL
+  editor (or provide a DB connection string so it can be applied + verified here).
+- The SQL migration is authored as part of the plan but **applied by the owner**;
+  the code phases do not depend on it being applied first (see plan sequencing).
 
 ## Components & responsibilities
 
