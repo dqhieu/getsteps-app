@@ -68,7 +68,7 @@ export const SPOTLIGHTS: ReadonlyArray<{
     title: "AI Coach",
     description:
       "Personalized feedback on every workout, plus chat about any activity — powered by on-device Apple Intelligence.",
-    media: "/spotlights/ai-coach.png",
+    media: "/spotlights/ai-coach.mp4",
     icon: "Bot",
   },
   {
