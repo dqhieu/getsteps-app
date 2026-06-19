@@ -39,7 +39,7 @@ export function LandingTrust() {
         {/* Featured in */}
         <Reveal>
           <div className="flex flex-col items-center text-center">
-            <p className="text-xs font-medium tracking-[0.3em] text-white/50">
+            <p className="text-sm md:text-base font-medium tracking-[0.3em] text-white/80">
               FEATURED IN
             </p>
             <a
