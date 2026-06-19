@@ -3,11 +3,11 @@ import { Reveal } from "./landing-reveal";
 
 export function LandingTrust() {
   return (
-    <section className="py-14 md:py-20 border-y border-neutral-200/70 dark:border-white/5 bg-neutral-50/60 dark:bg-white/[0.02]">
+    <section className="py-14 md:py-20 bg-black text-white">
       <div className="container mx-auto px-4">
         <Reveal>
           <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
+            <div className="flex items-center gap-2 text-sm text-white/70">
               <span className="text-amber-500" aria-hidden>
                 ★★★★★
               </span>
@@ -15,11 +15,11 @@ export function LandingTrust() {
                 <span className="tabular-nums">{SITE_CONFIG.appStoreRating}</span>{" "}
                 rating
               </span>
-              <span className="text-neutral-300 dark:text-neutral-700">·</span>
+              <span className="text-white/30">·</span>
               <span>Loved by thousands of walkers</span>
             </div>
 
-            <p className="mt-10 text-xs font-medium tracking-[0.3em] text-neutral-400 dark:text-neutral-500">
+            <p className="mt-10 text-xs font-medium tracking-[0.3em] text-white/50">
               FEATURED IN
             </p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
@@ -29,7 +29,7 @@ export function LandingTrust() {
                   href={article.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-neutral-200 dark:border-white/10 px-4 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:border-[#ED772F]/50 hover:text-[#ED772F] transition-colors"
+                  className="rounded-full border border-white/15 px-4 py-1.5 text-sm font-medium text-white/70 hover:border-[#ED772F]/50 hover:text-[#ED772F] transition-colors"
                 >
                   {article.outlet}
                 </a>
