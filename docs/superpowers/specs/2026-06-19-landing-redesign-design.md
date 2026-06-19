@@ -36,15 +36,26 @@ Workouts → Privacy → Reviews → CTA → Footer.
 
 New flow (keeps every real asset, rebuilds rhythm):
 
-1. **Hero** — Bigger. Value-prop headline (not just the app name), tagline, inline rating + "Free
-   Download" + App Store badge. Calmer, more confident. App icon retained.
+1. **Hero** — Bigger. **H1 becomes the value-prop line** ("Every step counts. Every milestone
+   shows."); the app name "Steps: Workout & Pedometer" shown smaller above the H1 (and retained in
+   page metadata for SEO). Inline rating + "Free Download" + App Store badge. App icon retained.
 2. **Screenshot showcase** — Keep the snap-scroll carousel. Refine framing/shadows to hairline +
    soft shadow.
 3. **Trust strip** — Merge "Featured in" press links + rating + "loved by thousands" laurels into
    one quiet social-proof band. Drops the jarring full-black `Featured` section; the Appreciation
    video is retained but reframed within the new system.
-4. **Feature spotlights** — 3 alternating hero-feature blocks (AI Coach, Stepboard, Apple Watch)
-   pairing copy with a real screenshot, replacing the flat emoji grid for the headline features.
+4. **Feature spotlights** — 4 alternating hero-feature blocks pairing copy with a real screenshot,
+   replacing the flat emoji grid for the headline features. Copy sourced from the mobile app
+   changelog (`Steps/Steps/Localizable.xcstrings`):
+   - **3D Route Playback** — "Replay your activity routes with a cinematic 3D follow camera. Pick
+     your map style and adjust the playback speed to relive every workout your way." (lead — most
+     distinctive/visual)
+   - **AI Coach** — "Personalized feedback on every workout, plus chat about any activity powered
+     by on-device Apple Intelligence."
+   - **Stepboard** — "Daily leaderboards with friends. Create private boards, invite via a
+     getsteps.app/join link, and compete by steps or distance."
+   - **Apple Watch Workouts** — "Start and track workouts from your wrist with GPS routes, live
+     metrics, and real-time mirroring to your phone."
 5. **Yearly Insights** — Keep as a distinct "Spotify Wrapped for fitness" moment (most distinctive
    feature). May retain one subtle gradient here.
 6. **Everything else** — Consolidate the remaining features + Personal Records + Workout Types into
@@ -52,6 +63,20 @@ New flow (keeps every real asset, rebuilds rhythm):
 7. **Privacy** — Keep. Fits the trust narrative (HealthKit, on-device).
 8. **Reviews** — Keep, refined cards (hairline borders, calmer).
 9. **Final CTA + Footer** — Strong, calm close.
+
+## Spotlight Assets (user-provided)
+
+The 4 spotlights use **clean, caption-free** assets that the user will place under
+`public/spotlights/`. The build references these fixed paths (phone aspect `1170/2532`, same as
+existing screenshots; a `.mp4` is acceptable for the 3D route playback):
+
+- `public/spotlights/route-3d.png` (or `.mp4`) — 3D Route Playback
+- `public/spotlights/ai-coach.png` — AI Coach
+- `public/spotlights/stepboard.png` — Stepboard
+- `public/spotlights/apple-watch.png` — Apple Watch Workouts
+
+Until the assets are added, spotlights render with a neutral placeholder frame so the page never
+breaks. Existing caption-baked marketing screenshots remain in the carousel only.
 
 ## Components Affected
 
