@@ -89,7 +89,7 @@ export function LandingTrust() {
           <div className="mt-20 flex items-center justify-center gap-3">
             <Laurel side="left" />
             <h2 className="text-sm md:text-base font-medium tracking-[0.3em] text-white/80">
-              LOVED BY THOUSANDS
+              LOVED BY 10,000+ WALKERS
             </h2>
             <Laurel side="right" />
           </div>

@@ -35,7 +35,7 @@ export function LandingYearlyInsights() {
               Your Year in Review
             </h2>
             <p className="text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto text-pretty">
-              Your fitness journey turned into beautiful, shareable
+              Your fitness journey turned into colorful, shareable
               visualizations.
             </p>
           </div>

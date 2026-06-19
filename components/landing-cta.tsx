@@ -35,7 +35,7 @@ export function LandingCTA() {
               />
             </a>
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              Free forever · Pro features available
+              Free forever · No account needed · Pro features available
             </p>
           </div>
         </Reveal>

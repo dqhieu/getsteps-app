@@ -99,7 +99,7 @@ export const FEATURE_GRID: ReadonlyArray<{
   title: string;
   description: string;
 }> = [
-  { icon: "LineChart", title: "Beautiful Charts", description: "Hourly, weekly & monthly views" },
+  { icon: "LineChart", title: "Clear Charts", description: "Hourly, weekly & monthly views" },
   { icon: "Flame", title: "Goals & Streaks", description: "Stay motivated every day" },
   { icon: "LayoutGrid", title: "Home Widgets", description: "10 widgets for your home screen" },
   { icon: "Lock", title: "App Lock", description: "Block apps until you hit your goal" },
