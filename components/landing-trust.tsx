@@ -60,7 +60,7 @@ export function LandingTrust() {
                   aria-hidden
                 />
               </div>
-              <p className="mt-6 text-sm font-semibold tracking-[0.3em] text-white/80">
+              <p className="-mt-8 text-sm font-semibold tracking-[0.3em] text-white/80">
                 APPRECIATION
               </p>
               <p className="mt-1 text-xs font-medium text-white/50">
@@ -68,7 +68,7 @@ export function LandingTrust() {
               </p>
             </a>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
               {PRESS_ARTICLES.map((article) => (
                 <a
                   key={article.url}
