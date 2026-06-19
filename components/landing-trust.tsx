@@ -39,12 +39,15 @@ export function LandingTrust() {
         {/* Featured in */}
         <Reveal>
           <div className="flex flex-col items-center text-center">
+            <p className="text-xs font-medium tracking-[0.3em] text-white/50">
+              FEATURED IN
+            </p>
             <a
               href="https://www.youtube.com/watch?v=hx-JzOCNBbM"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Watch Appreciation, starring Erick the Architect, on YouTube"
-              className="relative block w-full max-w-sm rounded-3xl overflow-hidden bg-black"
+              className="mt-6 relative block w-full max-w-sm rounded-3xl overflow-hidden bg-black"
             >
               <video
                 className="w-full aspect-square object-cover"
@@ -65,10 +68,7 @@ export function LandingTrust() {
               </div>
             </a>
 
-            <p className="mt-10 text-xs font-medium tracking-[0.3em] text-white/50">
-              FEATURED IN
-            </p>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               {PRESS_ARTICLES.map((article) => (
                 <a
                   key={article.url}
