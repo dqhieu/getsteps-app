@@ -47,25 +47,25 @@ export function LandingTrust() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Watch Appreciation, starring Erick the Architect, on YouTube"
-              className="mt-6 relative block w-full max-w-sm rounded-3xl overflow-hidden bg-black"
+              className="mt-6 block w-full max-w-sm text-center"
             >
-              <video
-                className="w-full aspect-square object-cover"
-                src="/featured/appreciation.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                aria-hidden
-              />
-              <div className="absolute inset-x-0 bottom-0 pb-8 pt-20 bg-gradient-to-t from-black/80 to-transparent text-center">
-                <p className="text-sm font-semibold tracking-[0.3em] text-white/80">
-                  APPRECIATION
-                </p>
-                <p className="text-xs font-medium text-white/50 mt-2">
-                  starring Erick the Architect
-                </p>
+              <div className="rounded-3xl overflow-hidden bg-black">
+                <video
+                  className="w-full aspect-square object-cover"
+                  src="/featured/appreciation.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-hidden
+                />
               </div>
+              <p className="mt-6 text-sm font-semibold tracking-[0.3em] text-white/80">
+                APPRECIATION
+              </p>
+              <p className="mt-1 text-xs font-medium text-white/50">
+                starring Erick the Architect
+              </p>
             </a>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
