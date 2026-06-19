@@ -7,7 +7,6 @@ import {
   LandingYearlyInsights,
   LandingFeatureGrid,
   LandingPrivacy,
-  LandingReviews,
   LandingCTA,
   LandingFooter,
 } from "@/components";
@@ -24,7 +23,6 @@ export default function Home() {
         <LandingYearlyInsights />
         <LandingFeatureGrid />
         <LandingPrivacy />
-        <LandingReviews />
         <LandingCTA />
       </main>
       <LandingFooter />
