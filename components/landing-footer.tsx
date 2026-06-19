@@ -233,7 +233,6 @@ export function LandingFooter() {
             src="https://datafa.st/widgets/6925318ce43b7634d244dc04/recent?mainTextSize=16&primaryColor=%23ee772f"
             style={{ background: "transparent", border: "none", width: "100%", height: "400px", maxWidth: "400px" }}
             frameBorder="0"
-            allowTransparency
             title="DataFast Widget"
             loading="lazy"
           />
