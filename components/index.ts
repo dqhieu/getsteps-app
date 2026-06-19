@@ -2,11 +2,10 @@
 export { LandingNavbar } from "./landing-navbar";
 export { LandingHero } from "./landing-hero";
 export { LandingScreenshots } from "./landing-screenshots";
-export { LandingFeatured } from "./landing-featured";
-export { LandingFeatures } from "./landing-features";
+export { LandingTrust } from "./landing-trust";
+export { LandingSpotlights } from "./landing-spotlights";
 export { LandingYearlyInsights } from "./landing-yearly-insights";
-export { LandingPersonalRecords } from "./landing-personal-records";
-export { LandingWorkouts } from "./landing-workouts";
+export { LandingFeatureGrid } from "./landing-feature-grid";
 export { LandingPrivacy } from "./landing-privacy";
 export { LandingReviews } from "./landing-reviews";
 export { LandingCTA } from "./landing-cta";

@@ -21,89 +21,26 @@ export const THEME = {
   cardRadius: "32px",
 } as const;
 
-export const FEATURES = [
-  {
-    icon: "🤖",
-    title: "AI Coach",
-    description: "Smart on-device workout feedback",
-  },
-  {
-    icon: "💬",
-    title: "Workout Chat",
-    description: "Ask anything about your workout",
-  },
-  {
-    icon: "🏅",
-    title: "Stepboard",
-    description: "Daily leaderboards with friends",
-  },
-  {
-    icon: "⌚",
-    title: "Apple Watch",
-    description: "Seamless sync with your Watch",
-  },
-  {
-    icon: "📊",
-    title: "Beautiful Charts",
-    description: "Hourly, weekly & monthly views",
-  },
-  {
-    icon: "🔥",
-    title: "23+ Workouts",
-    description: "Running, cycling, yoga & more",
-  },
-  {
-    icon: "🎯",
-    title: "Goals & Streaks",
-    description: "Stay motivated every day",
-  },
-  {
-    icon: "🏆",
-    title: "Personal Records",
-    description: "Track 8 different PRs",
-  },
-  {
-    icon: "📱",
-    title: "Home Widgets",
-    description: "10 widgets for your home screen",
-  },
-  {
-    icon: "🔒",
-    title: "App Lock",
-    description: "Block apps until you hit your goal",
-  },
-  {
-    icon: "📍",
-    title: "GPX Export",
-    description: "Export & share your workout routes",
-  },
-  {
-    icon: "✨",
-    title: "Yearly Insights",
-    description: "Spotify Wrapped for your fitness",
-  },
-] as const;
-
 export const PERSONAL_RECORDS = [
-  { icon: "⚡", title: "Fastest Pace" },
-  { icon: "🔥", title: "Most Calories" },
-  { icon: "🌅", title: "Earliest Start" },
-  { icon: "🏔️", title: "Most Elevation" },
-  { icon: "⏱️", title: "Longest Duration" },
-  { icon: "📏", title: "Farthest Distance" },
-  { icon: "🌙", title: "Latest Night" },
-  { icon: "❤️", title: "Max Heart Rate" },
+  { icon: "Zap", title: "Fastest Pace" },
+  { icon: "Flame", title: "Most Calories" },
+  { icon: "Sunrise", title: "Earliest Start" },
+  { icon: "Mountain", title: "Most Elevation" },
+  { icon: "Timer", title: "Longest Duration" },
+  { icon: "Ruler", title: "Farthest Distance" },
+  { icon: "Moon", title: "Latest Night" },
+  { icon: "HeartPulse", title: "Max Heart Rate" },
 ] as const;
 
 export const WORKOUT_TYPES = [
-  { icon: "🏃", name: "Running" },
-  { icon: "🚶", name: "Walking" },
-  { icon: "🚴", name: "Cycling" },
-  { icon: "🥾", name: "Hiking" },
-  { icon: "🏊", name: "Swimming" },
-  { icon: "💪", name: "Strength" },
-  { icon: "🧘", name: "Yoga" },
-  { icon: "🏓", name: "Pickleball" },
+  { icon: "Footprints", name: "Running" },
+  { icon: "PersonStanding", name: "Walking" },
+  { icon: "Bike", name: "Cycling" },
+  { icon: "Mountain", name: "Hiking" },
+  { icon: "Waves", name: "Swimming" },
+  { icon: "Dumbbell", name: "Strength" },
+  { icon: "Flower2", name: "Yoga" },
+  { icon: "CircleDot", name: "Pickleball" },
 ] as const;
 
 // Hero feature spotlights. `media` points at a caption-free asset in

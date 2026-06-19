@@ -1,12 +1,14 @@
 import { describe, it, expect } from "vitest";
 import { LANDING_ICONS } from "./landing-icons";
-import { SPOTLIGHTS, FEATURE_GRID } from "./constants";
+import { SPOTLIGHTS, FEATURE_GRID, PERSONAL_RECORDS, WORKOUT_TYPES } from "./constants";
 
 describe("landing icon integrity", () => {
   const keys = new Set(Object.keys(LANDING_ICONS));
   const cases: Array<[string, ReadonlyArray<{ icon: string }>]> = [
     ["SPOTLIGHTS", SPOTLIGHTS],
     ["FEATURE_GRID", FEATURE_GRID],
+    ["PERSONAL_RECORDS", PERSONAL_RECORDS],
+    ["WORKOUT_TYPES", WORKOUT_TYPES],
   ];
 
   for (const [name, list] of cases) {
