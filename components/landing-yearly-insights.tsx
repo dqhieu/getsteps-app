@@ -28,8 +28,8 @@ export function LandingYearlyInsights() {
       <div className="container mx-auto px-4 relative">
         <Reveal>
           <div className="text-center mb-12">
-            <span className="inline-block rounded-full border border-[#ED772F]/30 px-3 py-1 text-xs font-medium text-[#ED772F] mb-4">
-              Steps Pro
+            <span className="inline-block rounded-full border border-neutral-300 dark:border-white/15 px-3 py-1 text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-4">
+              Free for everyone
             </span>
             <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-balance mb-3 text-neutral-900 dark:text-white">
               Your Year in Review
