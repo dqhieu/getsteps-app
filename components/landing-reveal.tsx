@@ -24,6 +24,15 @@ export function Reveal({
       setShown(true);
       return;
     }
+    // Reveal above-the-fold content right away: a browser's first
+    // IntersectionObserver callback can be deferred until a scroll/paint,
+    // which would otherwise leave already-visible sections (e.g. the hero)
+    // stuck hidden. The observer still handles everything below the fold.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setShown(true);
+      return;
+    }
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

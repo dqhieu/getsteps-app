@@ -16,7 +16,7 @@ export function LandingScreenshots() {
               key={index}
               className="snap-center shrink-0 first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0"
             >
-              <div className="relative w-[280px] md:w-[320px] aspect-[1170/2532] rounded-[2.5rem] overflow-hidden shadow-2xl border-[8px] border-neutral-100 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800">
+              <div className="relative w-[280px] md:w-[320px] aspect-[1170/2532] rounded-[2.5rem] overflow-hidden border-[7px] border-neutral-100 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800 shadow-xl shadow-black/5 dark:shadow-black/40">
                 <Image
                   src={src}
                   alt={`Steps app showing ${
