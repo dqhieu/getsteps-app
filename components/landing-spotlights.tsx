@@ -6,10 +6,10 @@ import { Reveal } from "./landing-reveal";
 function SpotlightMedia({ src, title }: { src: string; title: string }) {
   const isVideo = src.endsWith(".mp4");
   return (
-    <div className="relative mx-auto w-[240px] md:w-[280px] aspect-[1170/2532] rounded-[2.25rem] overflow-hidden border-[7px] border-neutral-100 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800 shadow-xl shadow-black/5 dark:shadow-black/40">
+    <div className="relative mx-auto w-[260px] md:w-[300px] aspect-[1170/2532]">
       {isVideo ? (
         <video
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
           src={src}
           autoPlay
           muted
@@ -22,8 +22,8 @@ function SpotlightMedia({ src, title }: { src: string; title: string }) {
           src={src}
           alt={`${title} shown in the Steps app`}
           fill
-          className="object-cover"
-          sizes="280px"
+          className="object-contain"
+          sizes="300px"
         />
       )}
     </div>
