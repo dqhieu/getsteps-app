@@ -58,11 +58,11 @@ export function LandingTrust() {
                 playsInline
                 aria-hidden
               />
-              <div className="absolute inset-x-0 bottom-0 pb-5 pt-10 bg-gradient-to-t from-black/80 to-transparent text-center">
+              <div className="absolute inset-x-0 bottom-0 pb-8 pt-20 bg-gradient-to-t from-black/80 to-transparent text-center">
                 <p className="text-sm font-semibold tracking-[0.3em] text-white/80">
                   APPRECIATION
                 </p>
-                <p className="text-xs font-medium text-white/50 mt-1">
+                <p className="text-xs font-medium text-white/50 mt-2">
                   starring Erick the Architect
                 </p>
               </div>
