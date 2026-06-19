@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LandingNavbar, LandingFooter } from "@/components";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, PRESS_ARTICLES } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "In the Press",
@@ -24,29 +24,6 @@ export const metadata: Metadata = {
     images: ["/meta.png"],
   },
 };
-
-const PRESS_ARTICLES = [
-  {
-    outlet: "iPhoneBlog.de",
-    url: "https://www.iphoneblog.de/2026/02/21/steps-visualisiert-das-tagliche-schrittziel/",
-    title: "Steps visualisiert das tägliche Schrittziel",
-    summary:
-      "A look at how Steps visualizes your daily step goal with beautiful charts, widgets, and personal records.",
-    author: "Alex Olma",
-    date: "Feb 21, 2026",
-  },
-  {
-    outlet: "iphone-ticker.de",
-    url: "https://www.iphone-ticker.de/schrittzaehler-mit-mehrwert-compresto-entwickler-startet-steps-273418/",
-    title:
-      'Schrittzähler mit Mehrwert: Compresto-Entwickler startet „Steps"',
-    summary:
-      "How the Compresto developer built Steps as a step counter with real added value — workouts, App Lock, and more.",
-    author: "Nicolas",
-    date: "Feb 23, 2026",
-  },
-] as const;
-
 
 export default function PressPage() {
   return (
