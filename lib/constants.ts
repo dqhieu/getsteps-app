@@ -59,7 +59,7 @@ export const SPOTLIGHTS: ReadonlyArray<{
     title: "3D Route Playback",
     description:
       "Replay your activity routes with a cinematic 3D follow camera. Pick your map style and adjust the playback speed to relive every workout your way.",
-    media: "/spotlights/route-3d.png",
+    media: "/spotlights/route-3d.mp4",
     icon: "Orbit",
   },
   {
