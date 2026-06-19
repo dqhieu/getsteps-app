@@ -1,5 +1,7 @@
 // Shared constants for the Steps landing page
 
+import type { LandingIconName } from "./landing-icons";
+
 export const SITE_CONFIG = {
   name: "Steps: Workout & Pedometer",
   shortName: "Steps",
@@ -103,6 +105,70 @@ export const WORKOUT_TYPES = [
   { icon: "🧘", name: "Yoga" },
   { icon: "🏓", name: "Pickleball" },
 ] as const;
+
+// Hero feature spotlights. `media` points at a caption-free asset in
+// public/spotlights/; a missing file degrades to the neutral media frame.
+export const SPOTLIGHTS: ReadonlyArray<{
+  key: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  media: string;
+  icon: LandingIconName;
+}> = [
+  {
+    key: "route-3d",
+    eyebrow: "New in 1.27",
+    title: "3D Route Playback",
+    description:
+      "Replay your activity routes with a cinematic 3D follow camera. Pick your map style and adjust the playback speed to relive every workout your way.",
+    media: "/spotlights/route-3d.png",
+    icon: "Orbit",
+  },
+  {
+    key: "ai-coach",
+    eyebrow: "Apple Intelligence",
+    title: "AI Coach",
+    description:
+      "Personalized feedback on every workout, plus chat about any activity — powered by on-device Apple Intelligence.",
+    media: "/spotlights/ai-coach.png",
+    icon: "Bot",
+  },
+  {
+    key: "stepboard",
+    eyebrow: "Compete with friends",
+    title: "Stepboard",
+    description:
+      "Daily leaderboards with friends. Create private boards, invite with a getsteps.app/join link, and rank by steps or distance.",
+    media: "/spotlights/stepboard.png",
+    icon: "Trophy",
+  },
+  {
+    key: "apple-watch",
+    eyebrow: "On your wrist",
+    title: "Apple Watch Workouts",
+    description:
+      "Start and track workouts from your wrist with GPS routes, live metrics, and real-time mirroring to your phone.",
+    media: "/spotlights/apple-watch.png",
+    icon: "Watch",
+  },
+];
+
+// Secondary features ("everything else"). Spotlighted features, Yearly Insights
+// (own section), records and workout types (own sub-blocks) are intentionally
+// excluded to avoid duplication.
+export const FEATURE_GRID: ReadonlyArray<{
+  icon: LandingIconName;
+  title: string;
+  description: string;
+}> = [
+  { icon: "LineChart", title: "Beautiful Charts", description: "Hourly, weekly & monthly views" },
+  { icon: "Flame", title: "Goals & Streaks", description: "Stay motivated every day" },
+  { icon: "LayoutGrid", title: "Home Widgets", description: "10 widgets for your home screen" },
+  { icon: "Lock", title: "App Lock", description: "Block apps until you hit your goal" },
+  { icon: "Route", title: "GPX Export", description: "Export & share your workout routes" },
+  { icon: "HeartPulse", title: "Apple Health Sync", description: "Accurate, automatic tracking" },
+];
 
 export const SCREENSHOTS = [
   "/screenshots/screenshot1.png",
