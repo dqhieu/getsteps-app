@@ -105,9 +105,9 @@ export function LandingTrust() {
         </Reveal>
 
         {/* Reviews */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
           {REVIEWS.map((review, index) => (
-            <Reveal key={review.title} delay={(index % 3) * 60}>
+            <Reveal key={review.title} delay={(index % 4) * 60}>
               <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6">
                 <div className="text-amber-500 mb-3" aria-label="5 out of 5 stars">
                   ★★★★★
