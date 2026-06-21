@@ -163,6 +163,41 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "walking-45-minutes-a-day-weight-loss": [
+    { title: "15,000 Steps a Day for Weight Loss", href: "/blog/15000-steps-a-day-weight-loss" },
+    { title: "How Long to Walk to Lose 10 Pounds", href: "/blog/how-long-to-walk-to-lose-10-pounds" },
+    { title: "Benefits of Walking 45 Minutes a Day", href: "/blog/benefits-of-walking-45-minutes-a-day" },
+  ],
+  "15000-steps-a-day-weight-loss": [
+    { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
+    { title: "Walking 45 Minutes a Day for Weight Loss", href: "/blog/walking-45-minutes-a-day-weight-loss" },
+    { title: "How Many Calories Does 15,000 Steps Burn?", href: "/blog/how-many-calories-does-15000-steps-burn" },
+  ],
+  "steps-per-day-by-age-to-lose-weight": [
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+    { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
+    { title: "How Many Steps Per Day for Seniors?", href: "/blog/how-many-steps-per-day-for-seniors" },
+  ],
+  "how-far-is-3000-steps": [
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "Average 1-Mile Walk Time by Age", href: "/blog/average-mile-walk-time-by-age" },
+  ],
+  "how-long-to-walk-to-lose-10-pounds": [
+    { title: "How Many Steps to Lose a Pound?", href: "/blog/how-many-steps-to-lose-a-pound" },
+    { title: "Walking 45 Minutes a Day for Weight Loss", href: "/blog/walking-45-minutes-a-day-weight-loss" },
+    { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+  ],
+  "average-mile-walk-time-by-age": [
+    { title: "How Long Does It Take to Walk 1 Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "How Far Is 3,000 Steps?", href: "/blog/how-far-is-3000-steps" },
+  ],
+  "how-many-steps-per-day-for-seniors": [
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+    { title: "How Many Steps a Day Is Healthy?", href: "/blog/how-many-steps-a-day-is-healthy" },
+    { title: "Steps Per Day by Age to Lose Weight", href: "/blog/steps-per-day-by-age-to-lose-weight" },
+  ],
   "12-3-30-workout": [
     { title: "Treadmill Walking Workout for Weight Loss", href: "/blog/treadmill-walking-workout-weight-loss" },
     { title: "Does Walking Build Muscle?", href: "/blog/does-walking-build-muscle" },
@@ -1014,6 +1049,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "walking-45-minutes-a-day-weight-loss": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "15000-steps-a-day-weight-loss": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "steps-per-day-by-age-to-lose-weight": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "how-far-is-3000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-long-to-walk-to-lose-10-pounds": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "average-mile-walk-time-by-age": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-many-steps-per-day-for-seniors": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
   "12-3-30-workout": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
