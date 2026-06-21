@@ -19,26 +19,27 @@ vi.mock("../lib/supabase", () => ({
 afterEach(cleanup);
 
 describe("landing page composition", () => {
-  it("places the Stepboard total after screenshots and before trust", () => {
+  it("places the Stepboard total after the final CTA and before the footer", async () => {
     render(<Home />);
 
-    const screenshots = screen
-      .getByAltText("Steps app showing daily step count dashboard")
+    const cta = screen
+      .getByRole("heading", { name: "Ready to track every step?" })
       .closest("section");
-    const counter = screen
-      .getByRole("heading", { name: "Stepboard community step total" })
-      .closest("section");
-    const trust = screen.getByText("FEATURED IN").closest("section");
+    const counter = (
+      await screen.findByRole("img", {
+        name: "84,261,940 steps walked by the Steps community",
+      })
+    ).closest("section");
+    const footer = screen.getByRole("contentinfo");
 
-    expect(screenshots).not.toBeNull();
+    expect(cta).not.toBeNull();
     expect(counter).not.toBeNull();
-    expect(trust).not.toBeNull();
     expect(
-      screenshots!.compareDocumentPosition(counter!) &
+      cta!.compareDocumentPosition(counter!) &
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
     expect(
-      counter!.compareDocumentPosition(trust!) &
+      counter!.compareDocumentPosition(footer) &
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
   });

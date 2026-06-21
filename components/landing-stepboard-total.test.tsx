@@ -49,9 +49,14 @@ describe("LandingStepboardTotal", () => {
         .querySelector('[data-testid="flip-counter-visual"]')
         ?.getAttribute("aria-hidden"),
     ).toBe("true");
+    expect(screen.queryByText("Walking together")).toBeNull();
+    expect(
+      screen.queryByText("steps walked by the Steps community"),
+    ).toBeNull();
+    expect(screen.queryByText("and counting")).toBeNull();
   });
 
-  it("renders the unavailable state when the RPC fails", async () => {
+  it("renders nothing when the RPC fails", async () => {
     rpcMock.mockResolvedValue({
       data: null,
       error: { code: "42501", details: null, hint: null, message: "denied" },
@@ -60,18 +65,18 @@ describe("LandingStepboardTotal", () => {
       statusText: "Forbidden",
     });
 
-    render(<LandingStepboardTotal />);
+    const { container } = render(<LandingStepboardTotal />);
 
-    expect(await screen.findByText("Total currently unavailable")).toBeTruthy();
+    await waitFor(() => expect(container.firstElementChild).toBeNull());
     expect(screen.queryByRole("img")).toBeNull();
   });
 
-  it("renders the unavailable state when the request throws", async () => {
+  it("renders nothing when the request throws", async () => {
     rpcMock.mockRejectedValue(new Error("network unavailable"));
 
-    render(<LandingStepboardTotal />);
+    const { container } = render(<LandingStepboardTotal />);
 
-    expect(await screen.findByText("Total currently unavailable")).toBeTruthy();
+    await waitFor(() => expect(container.firstElementChild).toBeNull());
   });
 
   it("rejects unsafe or malformed totals", async () => {
@@ -83,8 +88,8 @@ describe("LandingStepboardTotal", () => {
       statusText: "OK",
     });
 
-    render(<LandingStepboardTotal />);
+    const { container } = render(<LandingStepboardTotal />);
 
-    expect(await screen.findByText("Total currently unavailable")).toBeTruthy();
+    await waitFor(() => expect(container.firstElementChild).toBeNull());
   });
 });

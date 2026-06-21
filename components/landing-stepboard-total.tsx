@@ -119,39 +119,20 @@ export function LandingStepboardTotal() {
     };
   }, []);
 
+  if (state.status === "unavailable") {
+    return null;
+  }
+
   return (
     <section
-      className="px-4 py-12 md:py-16"
-      aria-labelledby="stepboard-total-title"
+      className="relative z-10 -mt-8 px-4 pb-16 md:-mt-14 md:pb-20"
+      aria-label="Stepboard community step total"
     >
       <Reveal>
-        <div className="mx-auto max-w-5xl rounded-3xl bg-gradient-to-br from-orange-50/80 via-white to-white px-4 py-10 text-center shadow-[0_0_0_1px_rgba(237,119,47,0.12),0_1px_2px_-1px_rgba(0,0,0,0.08),0_12px_30px_-16px_rgba(0,0,0,0.16)] dark:from-orange-950/20 dark:via-neutral-900 dark:to-neutral-950 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08)] sm:px-8 md:py-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#ED772F]">
-            Walking together
-          </p>
-          <h2 id="stepboard-total-title" className="sr-only">
-            Stepboard community step total
-          </h2>
-
-          <div className="mt-5">
-            {state.status === "loading" ? <CounterPlaceholder /> : null}
-            {state.status === "loaded" ? (
-              <FlipCounter total={state.total} />
-            ) : null}
-            {state.status === "unavailable" ? (
-              <p className="flex min-h-16 items-center justify-center text-pretty text-lg font-medium text-neutral-500 dark:text-neutral-400 md:min-h-20">
-                Total currently unavailable
-              </p>
-            ) : null}
-          </div>
-
-          <p className="mt-5 text-pretty text-lg font-medium tracking-tight text-neutral-800 dark:text-neutral-100 md:text-xl">
-            steps walked by the Steps community
-          </p>
-          <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-            {state.status === "loaded" ? "and counting" : "Live from Stepboard"}
-          </p>
-        </div>
+        {state.status === "loading" ? <CounterPlaceholder /> : null}
+        {state.status === "loaded" ? (
+          <FlipCounter total={state.total} />
+        ) : null}
       </Reveal>
     </section>
   );
