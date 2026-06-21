@@ -247,6 +247,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
     { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
+    { title: "15,000 Steps a Day for Weight Loss", href: "/blog/15000-steps-a-day-weight-loss" },
   ],
   "how-many-miles-is-10000-steps": [
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
@@ -257,6 +258,8 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
     { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
     { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
+    { title: "Steps Per Day by Age to Lose Weight", href: "/blog/steps-per-day-by-age-to-lose-weight" },
+    { title: "How Many Steps Per Day for Seniors?", href: "/blog/how-many-steps-per-day-for-seniors" },
   ],
   "walking-for-weight-loss-how-many-steps": [
     { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
@@ -267,6 +270,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
     { title: "How Many Miles to Walk a Day to Lose Weight?", href: "/blog/how-many-miles-to-walk-a-day-to-lose-weight" },
     { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+    { title: "How Long to Walk to Lose 10 Pounds", href: "/blog/how-long-to-walk-to-lose-10-pounds" },
   ],
   "how-many-miles-to-walk-a-day-to-lose-weight": [
     { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
@@ -409,6 +413,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Steps Burn 500 Calories?", href: "/blog/how-many-steps-burn-500-calories" },
     { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },
     { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+    { title: "How Long to Walk to Lose 10 Pounds", href: "/blog/how-long-to-walk-to-lose-10-pounds" },
   ],
   "does-walking-reduce-belly-fat": [
     { title: "How Many Steps to Lose a Pound?", href: "/blog/how-many-steps-to-lose-a-pound" },
@@ -429,6 +434,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
     { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "Average Steps Per Day for Women", href: "/blog/average-steps-per-day-for-women" },
+    { title: "How Far Is 3,000 Steps?", href: "/blog/how-far-is-3000-steps" },
   ],
   "20000-steps-calories-burned": [
     { title: "How Many Calories Does 10,000 Steps Burn?", href: "/blog/10000-steps-calories-burned" },
@@ -509,6 +515,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
     { title: "Walking Workout Plan for Beginners", href: "/blog/walking-workout-plan-beginners" },
     { title: "Evening Walking Benefits", href: "/blog/evening-walking-benefits" },
+    { title: "Walking 45 Minutes a Day for Weight Loss", href: "/blog/walking-45-minutes-a-day-weight-loss" },
   ],
   "how-many-steps-in-a-kilometer": [
     { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
@@ -569,6 +576,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Long Does It Take to Walk 2 Miles?", href: "/blog/how-long-does-it-take-to-walk-2-miles" },
     { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "Calories Burned Walking One Mile", href: "/blog/calories-burned-walking-one-mile" },
+    { title: "Average 1-Mile Walk Time by Age", href: "/blog/average-mile-walk-time-by-age" },
   ],
   "how-many-steps-to-burn-1000-calories": [
     { title: "How Many Steps Burn 500 Calories?", href: "/blog/how-many-steps-burn-500-calories" },
@@ -619,6 +627,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "15,000 Steps a Day Benefits", href: "/blog/15000-steps-a-day-benefits" },
     { title: "How Many Calories Does 15,000 Steps Burn?", href: "/blog/how-many-calories-does-15000-steps-burn" },
     { title: "20,000 Steps a Day Benefits", href: "/blog/20000-steps-a-day-benefits" },
+    { title: "15,000 Steps a Day for Weight Loss", href: "/blog/15000-steps-a-day-weight-loss" },
   ],
   "how-many-miles-is-4000-steps": [
     { title: "How Many Miles Is 8,000 Steps?", href: "/blog/how-many-miles-is-8000-steps" },
@@ -884,6 +893,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
     { title: "How Many Steps a Day to Lose Belly Fat?", href: "/blog/how-many-steps-a-day-to-lose-belly-fat" },
+    { title: "How Many Steps Per Day for Seniors?", href: "/blog/how-many-steps-per-day-for-seniors" },
   ],
   "calories-burned-cycling": [
     { title: "Calories Burned Hiking", href: "/blog/calories-burned-hiking" },
