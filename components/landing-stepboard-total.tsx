@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   formatStepboardTotal,
   normalizeStepboardTotal,
@@ -34,7 +34,7 @@ function FlipCounter({ total }: { total: string }) {
     <div
       role="img"
       aria-label={`${formatted} steps walked by the Steps community`}
-      className="flex min-h-20 items-center justify-center md:min-h-24"
+      className="flex items-center justify-center"
     >
       <span
         aria-hidden="true"
@@ -66,16 +66,56 @@ function FlipCounter({ total }: { total: string }) {
   );
 }
 
+function BoardFrame({ children }: { children: ReactNode }) {
+  return (
+    <div className="mx-auto w-full max-w-3xl">
+      <div className="relative overflow-hidden rounded-[2rem] border border-black/70 bg-gradient-to-b from-neutral-700 via-neutral-800 to-neutral-950 p-4 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.18)]">
+        {[
+          "left-2.5 top-2.5",
+          "right-2.5 top-2.5",
+          "left-2.5 bottom-2.5",
+          "right-2.5 bottom-2.5",
+        ].map((position) => (
+          <span
+            key={position}
+            aria-hidden="true"
+            className={`absolute ${position} h-2 w-2 rounded-full bg-neutral-900 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),0_1px_1px_rgba(0,0,0,0.6)]`}
+          />
+        ))}
+        <div className="rounded-2xl bg-neutral-950 shadow-[inset_0_2px_14px_rgba(0,0,0,0.9)]">
+          <div className="flex items-center justify-between border-b border-white/10 px-5 py-3 sm:px-8">
+            <span className="flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.25em] text-[#F8EAD8]/70 sm:text-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.9)]" />
+              Stepboard
+            </span>
+            <span className="font-mono text-[0.6rem] uppercase tracking-[0.25em] text-[#F8EAD8]/45 sm:text-xs">
+              Total Steps
+            </span>
+          </div>
+          <div className="flex min-h-32 items-center justify-center px-5 py-8 sm:px-8 sm:py-10 md:min-h-40 md:py-12">
+            {children}
+          </div>
+          <div className="border-t border-white/10 px-5 py-3 text-center sm:px-8">
+            <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#F8EAD8]/45 sm:text-xs">
+              Total steps walked by Stepboard members
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CounterPlaceholder() {
   return (
     <div
       aria-hidden="true"
-      className="flex min-h-20 flex-wrap items-center justify-center md:min-h-24"
+      className="flex flex-wrap items-center justify-center"
     >
       {Array.from({ length: 10 }, (_, index) => (
         <span
           key={index}
-          className="mx-0.5 h-14 w-10 animate-pulse rounded-lg bg-neutral-200 dark:bg-neutral-800 sm:mx-1 sm:h-16 sm:w-12 md:h-20 md:w-14"
+          className="mx-0.5 h-14 w-10 animate-pulse rounded-lg bg-neutral-800 sm:mx-1 sm:h-16 sm:w-12 md:h-20 md:w-14"
         />
       ))}
     </div>
@@ -129,15 +169,13 @@ export function LandingStepboardTotal() {
       aria-label="Stepboard community step total"
     >
       <Reveal>
-        {state.status === "loading" ? <CounterPlaceholder /> : null}
-        {state.status === "loaded" ? (
-          <div className="flex flex-col items-center">
+        <BoardFrame>
+          {state.status === "loaded" ? (
             <FlipCounter total={state.total} />
-            <p className="mt-4 text-pretty text-center text-sm font-medium text-neutral-500 dark:text-neutral-400 sm:text-base">
-              Total steps walked by Stepboard members
-            </p>
-          </div>
-        ) : null}
+          ) : (
+            <CounterPlaceholder />
+          )}
+        </BoardFrame>
       </Reveal>
     </section>
   );
