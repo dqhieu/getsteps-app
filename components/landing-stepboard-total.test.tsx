@@ -49,6 +49,18 @@ describe("LandingStepboardTotal", () => {
         .querySelector('[data-testid="flip-counter-visual"]')
         ?.getAttribute("aria-hidden"),
     ).toBe("true");
+    const characterTiles = container.querySelectorAll(
+      ".stepboard-flip-digit",
+    );
+    expect(characterTiles).toHaveLength(10);
+    expect(
+      Array.from(characterTiles)
+        .map((tile) => tile.textContent)
+        .join(""),
+    ).toBe("84,261,940");
+    expect(
+      screen.getByText("Total steps walked by Stepboard members"),
+    ).toBeTruthy();
     expect(screen.queryByText("Walking together")).toBeNull();
     expect(
       screen.queryByText("steps walked by the Steps community"),
