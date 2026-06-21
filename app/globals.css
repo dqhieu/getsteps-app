@@ -33,3 +33,30 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes stepboard-flip-in {
+  0% {
+    opacity: 0;
+    transform: perspective(480px) rotateX(-88deg);
+  }
+  55% {
+    opacity: 1;
+    transform: perspective(480px) rotateX(8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(480px) rotateX(0deg);
+  }
+}
+
+.stepboard-flip-digit {
+  backface-visibility: hidden;
+  transform-origin: center;
+  animation: stepboard-flip-in 560ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepboard-flip-digit {
+    animation: none;
+  }
+}
