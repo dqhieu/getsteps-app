@@ -390,7 +390,7 @@ In `lib/constants.ts`, add a field to `SITE_CONFIG` (replace the placeholder wit
 ```ts
   appStoreUrl:
     "https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378",
-  proWebCheckoutUrl: "https://pay.rev.cat/REPLACE_WITH_WEB_PURCHASE_LINK",
+  proWebCheckoutUrl: "https://pay.rev.cat/almjpuvcjngxzlih/",
   supportEmail: "support@getsteps.app",
 ```
 
