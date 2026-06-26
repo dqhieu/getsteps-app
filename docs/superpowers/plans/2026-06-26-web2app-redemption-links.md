@@ -8,6 +8,14 @@
 
 **Tech Stack:** RevenueCat Web Billing + dashboard config; RevenueCat iOS SDK (`purchases-ios`, already integrated); SwiftUI; Next.js 16 / React 19 / TypeScript / Vitest (getsteps.app web app).
 
+## Status (2026-06-26)
+
+- ✅ **Task 1** (RevenueCat dashboard) — products/prices/entitlement/offering verified via MCP; purchase link live. Remaining: Stripe test purchase (folds into Task 5).
+- ✅ **Task 2** (iOS `PurchaseManager` redemption) — committed `2c6ec62` on `feat/web-purchase-redemption`; builds clean.
+- ✅ **Task 3** (iOS `StepsApp` deep-link + alert) — committed `849767f`; builds clean; scheme routing confirmed on simulator.
+- ✅ **Task 4** (web `/get-pro` redirect) — committed `38e9fb4` on `feat/web2app-get-pro`; vitest + tsc pass.
+- ⏳ **Task 5** (end-to-end on a fresh install) — **user-driven**: real Stripe purchase → redeem → Pro unlocks. Run before merging either branch.
+
 ## Funnel Context (drives Task 4 design)
 
 - **No paid ads.** The funnel is **organic getsteps.app traffic** (~28K visitors / 28 days as of 2026-06): SEO blog + tool/conversion pages + landing page.
