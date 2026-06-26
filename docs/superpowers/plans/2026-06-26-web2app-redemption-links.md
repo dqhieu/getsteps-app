@@ -8,6 +8,14 @@
 
 **Tech Stack:** RevenueCat Web Billing + dashboard config; RevenueCat iOS SDK (`purchases-ios`, already integrated); SwiftUI; Next.js 16 / React 19 / TypeScript / Vitest (getsteps.app web app).
 
+## Funnel Context (drives Task 4 design)
+
+- **No paid ads.** The funnel is **organic getsteps.app traffic** (~28K visitors / 28 days as of 2026-06): SEO blog + tool/conversion pages + landing page.
+- **Placement + intent is the key conversion lever**, not the number of products. Most traffic is informational; cold researchers rarely buy Pro before trying the app, so web-Pro buyers skew toward **already-convinced** visitors (landing page, returning users).
+- Implication for **Task 4**: the web entry should be **more than a bare redirect** — favor a real **pricing/comparison placement on getsteps.app** ("same Pro, cheaper on web — for iPhone") at high-intent spots (landing hero/pricing; A/B vs the existing high-converting tool-page App Store CTAs). The `/get-pro` redirect remains the canonical checkout target.
+- **App is iOS-only** — web checkout copy must say so (avoid refunds/chargebacks from non-iOS buyers; required for MoR clarity).
+- **Pricing (current, individual):** Monthly $4.99 / Yearly $29.99 / Lifetime $49.99 (App Store). Launch web set: **Yearly $19.99 + Lifetime $34.99** (Monthly optional). Family plans deferred.
+
 ## Global Constraints
 
 - **Entitlement key is `"pro"`** — verbatim; do not introduce a new entitlement. (`Steps/Utilities/PurchaseManager.swift:60`)
@@ -32,29 +40,42 @@ Spec: `docs/superpowers/specs/2026-06-26-web2app-redemption-links-stripe-design.
 **Interfaces:**
 - Produces: a hosted **Web Purchase Link URL** (paste into `lib/constants.ts` in Task 4); a configured redemption flow that emits `steps://redeem_web_purchase?redemption_token=...`.
 
-- [ ] **Step 1: Connect Stripe under RevenueCat Billing**
+**Current state (verified via RevenueCat MCP, project `proj5d0b420c`, 2026-06):**
+- ✅ A **Web Billing app** (`Steps (Web Billing)`, `app8d0d7f7f03`) already exists with **Stripe connected** (`acct_1TmaP1...`), USD, support email + seller name set. → **Steps 1–2 below are already DONE; most of Step 7 too.**
+- ✅ The **`pro` entitlement** (`entl348ec23ff9`) exists. Current offering is `pro` (App Store products only); **no Web Billing products yet** → Step 3 is the real starting point.
 
-In the RevenueCat dashboard → the project's web setup ("Start selling on the web"), select the **RevenueCat Billing** tab and complete **Connect Stripe** (Stripe is the payment gateway; RevenueCat is merchant of record). Use Stripe **test mode** for now.
+- [x] **Step 1: Connect Stripe under RevenueCat Billing** — already done (Web Billing app has `stripe_account_id`).
 
-Verify: the "Connect Stripe" step shows a checkmark.
+- [x] **Step 2: Add web config** — already done (the `rc_billing` app is the web config).
 
-- [ ] **Step 2: Add web config**
+- [ ] **Step 3: Create the discounted web product(s) + price**
 
-Click **Add web config**. Configure the web checkout (this is also where checkout appearance is later branded).
+Under the **`Steps (Web Billing)`** app, create web product(s) and set the price **directly in RevenueCat** (RevenueCat is MoR). Launch set (individual):
 
-Verify: a web config exists and is selectable.
+| Plan | Identifier | Name (customer-facing) | Description | Web price | App Store |
+|---|---|---|---|---|---|
+| Yearly | `steps_pro_annual_web` | `Steps Pro — Annual` | `Full access to all Steps Pro features in the Steps app for iPhone & iPad. Billed yearly.` | **$19.99** | $29.99 |
+| Lifetime | `steps_pro_lifetime_web` | `Steps Pro — Lifetime` | `Full access to all Steps Pro features in the Steps app for iPhone & iPad. One-time payment.` | **$34.99** | $49.99 |
 
-- [ ] **Step 3: Create the discounted web product + price**
+- Description **must state iOS-only** (avoids refunds from non-iOS buyers).
+- **Lifetime caveat:** Web Billing is subscription-first — only create Lifetime if the product form offers a **one-time / non-renewing** option; if not, ship **Yearly only** for v1 (don't fake it as a subscription).
+- **Monthly is deferred** (optional low-commitment door; see Funnel Context). No trial for v1.
 
-Create the web product(s) for Pro and set a **discounted price** below the App Store price (you choose the exact number — e.g. ~20–30% below App Store, funded by avoiding Apple's cut). Match the cadence(s) you sell in-app (e.g. monthly and/or annual).
+Verify: each product appears with the intended price/currency.
 
-Verify: the product appears with the intended price/currency.
+- [ ] **Step 3b: Attach the web product(s) to the `pro` entitlement** ⚠️ critical
 
-- [ ] **Step 4: Create an offering and attach the product(s)**
+Attach each new web product to the existing **`pro`** entitlement (`entl348ec23ff9`). This is what makes a web purchase unlock the same Pro the app gates on.
 
-Create a web **offering** and add the product(s) from Step 3.
+Verify (ask Claude to re-query via RevenueCat MCP): the `pro` entitlement now lists the web product(s).
 
-Verify: the offering lists the discounted product(s).
+- [ ] **Step 4: Create a dedicated web offering and attach the product(s)**
+
+Create a **new web offering** (e.g. lookup key `pro-web`) and add packages pointing at the Step 3 web product(s).
+
+⚠️ **Do NOT set this offering as "current."** The iOS app reads the current offering (`pro`); web products aren't purchasable via StoreKit, so making it current would break the in-app paywall. The Web Purchase Link references `pro-web` explicitly.
+
+Verify: the offering lists the discounted product(s) and is **not** current.
 
 - [ ] **Step 5: Enable Redemption Links**
 
@@ -68,11 +89,11 @@ Set the app's custom URL scheme used for redemption to **`steps`** so the hosted
 
 Verify: the configured scheme is `steps`.
 
-- [ ] **Step 7: Set App Information (required for the success page)**
+- [ ] **Step 7: Confirm App Information (required for the success page)**
 
-Under **App Information**, set: Steps **app icon**, **app name** (`Steps`), and the **App Store link**: `https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378`.
+App name + support email + seller name are already set on the Web Billing app. Confirm the **app icon** and **App Store link** (`https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378`) are present.
 
-Verify: all three are filled (the hosted success page requires them).
+Verify: icon + App Store link filled (the hosted success page requires them).
 
 - [ ] **Step 8: Brand the checkout + success page (Appearance editor)**
 
