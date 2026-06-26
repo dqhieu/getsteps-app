@@ -163,6 +163,41 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "how-many-steps-does-the-average-person-walk-a-day": [
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+    { title: "How Many Steps a Day Is Healthy?", href: "/blog/how-many-steps-a-day-is-healthy" },
+    { title: "How to Get 10,000 Steps a Day", href: "/blog/how-to-get-10000-steps-a-day" },
+  ],
+  "walking-1-hour-a-day-for-a-month-results": [
+    { title: "Walking 30 Minutes a Day for a Month: Results", href: "/blog/walking-30-minutes-a-day-results" },
+    { title: "Benefits of Walking 1 Hour a Day", href: "/blog/benefits-of-walking-1-hour-a-day" },
+    { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
+  ],
+  "how-to-get-10000-steps-a-day": [
+    { title: "How Long to Walk 10,000 Steps", href: "/blog/how-long-to-walk-10000-steps" },
+    { title: "How Many Steps Does the Average Person Walk a Day?", href: "/blog/how-many-steps-does-the-average-person-walk-a-day" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+  ],
+  "treadmill-walking-speed-for-weight-loss": [
+    { title: "12-3-30 Workout", href: "/blog/12-3-30-workout" },
+    { title: "Calories Burned on a Treadmill", href: "/blog/calories-burned-on-treadmill" },
+    { title: "HIIT Walking Workout", href: "/blog/hiit-walking-workout" },
+  ],
+  "30-minute-walking-workout": [
+    { title: "Walking 30 Minutes a Day for a Month: Results", href: "/blog/walking-30-minutes-a-day-results" },
+    { title: "HIIT Walking Workout", href: "/blog/hiit-walking-workout" },
+    { title: "Walking at Home Workout", href: "/blog/walking-at-home-workout" },
+  ],
+  "mental-benefits-of-walking": [
+    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
+    { title: "Benefits of Walking Everyday", href: "/blog/benefits-of-walking-everyday" },
+    { title: "Evening Walking Benefits", href: "/blog/evening-walking-benefits" },
+  ],
+  "hiit-walking-workout": [
+    { title: "30-Minute Walking Workout", href: "/blog/30-minute-walking-workout" },
+    { title: "Best Treadmill Walking Speed for Weight Loss", href: "/blog/treadmill-walking-speed-for-weight-loss" },
+    { title: "12-3-30 Workout", href: "/blog/12-3-30-workout" },
+  ],
   "walking-45-minutes-a-day-weight-loss": [
     { title: "15,000 Steps a Day for Weight Loss", href: "/blog/15000-steps-a-day-weight-loss" },
     { title: "How Long to Walk to Lose 10 Pounds", href: "/blog/how-long-to-walk-to-lose-10-pounds" },
@@ -1059,6 +1094,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "how-many-steps-does-the-average-person-walk-a-day": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "walking-1-hour-a-day-for-a-month-results": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "how-to-get-10000-steps-a-day": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "treadmill-walking-speed-for-weight-loss": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "30-minute-walking-workout": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "mental-benefits-of-walking": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "hiit-walking-workout": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
   "walking-45-minutes-a-day-weight-loss": [
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
