@@ -23,15 +23,21 @@ fresh install, no login — with the purchase visible in RevenueCat and DataFast
 | Welcome/success page | **1A — brand RevenueCat's hosted success page** | The hosted page *is* the desired 2-step layout; brandable (logo, colors, App Store badge, redeem instructions) via dashboard — **zero web code**. |
 | Pricing | **Web discount** vs App Store | The ~30% Apple saving funds a lower web price as the funnel incentive. |
 
-## Important Constraint (corrects an earlier assumption)
+## Reinstall / Cross-Device Restore (A1, account-less) — zero build
 
-**Redemption Links expire 60 minutes after purchase.** They are for *prompt* redemption,
-not weeks-later restore. Consequences under A1 (anonymous):
+Restore is handled by RevenueCat's built-in behavior; **nothing to build**. A web purchase is tied
+to the **billing email** collected at checkout:
 
-- Happy path (buy → open app within the hour) is fully covered.
-- Durable cross-device / reinstall restore is **NOT** solved by emailing the link (it expires).
-  That is genuinely an **A2 (identity-binding)** capability and is a **non-goal for v1** — see below.
-- The confirmation email still carries the link for the immediate "open on phone" case.
+- A redemption link is one-time-use with a 60-minute expiry, but **tapping an expired/used link
+  automatically re-issues a fresh valid link to the billing email**
+  ([docs](https://www.revenuecat.com/docs/web/redemption-links)).
+- So on reinstall or a new device, the user re-opens the link from their email; if it's stale,
+  RevenueCat emails a new one, and they redeem to the new install. The same purchase can be
+  redeemed across multiple devices this way.
+
+**Caveat (no action needed):** the standard StoreKit "Restore Purchases" button restores App Store
+purchases only — a web purchase isn't in the device receipt. Web-purchase restore is the
+email-link path above, which requires no in-app UI.
 
 ## Components
 
@@ -91,12 +97,13 @@ isProUser = true ──► app unlocks. Done.
 
 ## Edge Cases
 - **App not installed:** success page Step 1 → App Store; redeem after install (within 60 min, or via emailed link while valid).
-- **Link expired (>60 min) / already redeemed:** SDK returns non-success → friendly state; durable re-redeem is an A2 concern (out of scope v1).
+- **Link expired (>60 min) / already redeemed:** RevenueCat auto-reissues a fresh link to the billing email — the user redeems from the new email link (see Restore section). Show a friendly "check your email for a new link" state if a stale link is opened.
 - **Refund / chargeback:** RevenueCat lifecycle revokes the `"pro"` entitlement; webhook fires.
 
 ## Non-Goals (v1)
-- **A2 identity binding** (Apple Sign In / Supabase profile → `Purchases.logIn`) for portable,
-  cross-device restore. Design the iOS redemption handler so this can be layered on later without rework.
+- **A2 identity binding** (Apple Sign In / Supabase profile → `Purchases.logIn`). Not needed for
+  restore — RevenueCat's email re-issue already covers reinstall/cross-device. A2 would only be a
+  future nicety (one-tap restore without the email round-trip; unify App Store + web identity).
 - Custom in-Next.js card form / fully custom `/welcome` page (1B) — can upgrade later via `redeem_url`.
 - Branded transactional email.
 - Replacing the existing App Store offer-code flow (`OfferCodeOneTimeUseCodes_*.csv`) — coexists.
