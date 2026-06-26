@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import type { NextRequest, NextFetchEvent } from "next/server";
+import { trackAICrawlerRequest } from "@datafast/ai-crawl";
 
-export function middleware(request: NextRequest) {
+export function middleware(request: NextRequest, event: NextFetchEvent) {
   const { pathname } = request.nextUrl;
+
+  // Track AI assistants, search crawlers, and model-training bots server-side.
+  // Best-effort and non-blocking: it schedules work via event.waitUntil and we
+  // never await it, so it must not delay the response.
+  trackAICrawlerRequest(request, event, {
+    websiteId: "dfid_GHemojUg7quBdpkgDlIXS",
+  });
 
   // Gate the internal dashboard with HTTP Basic Auth.
   if (pathname.startsWith("/dashboard")) {
@@ -33,15 +41,19 @@ export function middleware(request: NextRequest) {
 
   // Strip cookies from PostHog proxy requests to avoid HTTP 431 errors
   // (Request Header Fields Too Large).
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.delete("cookie");
-  return NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  if (pathname.startsWith("/ingest")) {
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.delete("cookie");
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/ingest/:path*", "/dashboard", "/dashboard/:path*"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
