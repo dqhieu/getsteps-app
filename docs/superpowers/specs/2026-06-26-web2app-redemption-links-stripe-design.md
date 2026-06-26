@@ -1,4 +1,4 @@
-# Web2App Pro via Redemption Links + Stripe Managed Payments — Design
+# Web2App Pro via Redemption Links on RevenueCat Web Billing — Design
 
 **Date:** 2026-06-26
 **Status:** Approved (design) — pending spec review → implementation plan
@@ -17,9 +17,9 @@ fresh install, no login — with the purchase visible in RevenueCat and DataFast
 | Decision | Choice | Rationale |
 |---|---|---|
 | Orchestration | **RevenueCat Web Billing** (Option A) | App already gates Pro on the RevenueCat `"pro"` entitlement (`PurchaseManager.swift:60`). Web purchase grants the *same* entitlement — zero new entitlement logic. |
-| Payments | **Stripe Managed Payments** | Stripe is merchant of record → handles tax/compliance/payouts. |
+| Payments / MoR | **RevenueCat Web Billing** — RevenueCat is merchant of record; **Stripe connected as payment gateway** | RevenueCat calculates/collects/remits tax. No Stripe Managed Payments eligibility hoops (those require Stripe Billing + eligible tax codes); fastest path. Checkout is RevenueCat-hosted and brandable. |
 | Identity | **A1 — anonymous, no login** | App configures RevenueCat without an app user ID (`PurchaseManager.swift:80`); redemption binds the web purchase to the install's anonymous RC ID. |
-| Web checkout surface | **RC-hosted Web Purchase Link** (Stripe Managed Payments) | Fastest; RevenueCat owns PCI/checkout. |
+| Web checkout surface | **RC-hosted Web Purchase Link** (RevenueCat Billing) | Fastest; RevenueCat hosts + brands the checkout (Stripe as gateway), owns PCI. |
 | Welcome/success page | **1A — brand RevenueCat's hosted success page** | The hosted page *is* the desired 2-step layout; brandable (logo, colors, App Store badge, redeem instructions) via dashboard — **zero web code**. |
 | Pricing | **Web discount** vs App Store | The ~30% Apple saving funds a lower web price as the funnel incentive. |
 
@@ -36,14 +36,13 @@ not weeks-later restore. Consequences under A1 (anonymous):
 ## Components
 
 ### 1. RevenueCat dashboard (config only — no code)
-- Connect **Stripe Managed Payments**.
-- Create a **web Offering** with the discounted Pro product(s) and price point(s).
+- Under **RevenueCat Billing**: **Connect Stripe** (Stripe as payment gateway; RevenueCat is MoR) → **Add web config** → **Create web products and prices** (discounted Pro) → **Create an offering**.
 - Enable **Redemption Links** on the offering.
 - Configure the **custom URL scheme** so the hosted "Redeem purchase" button opens the Steps app
   (reuse the existing `steps://` scheme).
 - **App Information:** Steps app icon, app name, App Store link.
-- **Appearance editor:** Steps brand colors/logo so the hosted success page matches the brand
-  (the 2-step "Purchase successful → Install → Redeem" layout).
+- **Appearance editor:** Steps brand colors/logo for both the **RevenueCat-hosted checkout** and the
+  hosted success page (the 2-step "Purchase successful → Install → Redeem" layout).
 
 ### 2. Web — Next.js (`getsteps.app`) — minimal
 - Add/point an entry CTA (ad URL and/or a button on landing/pricing) at the **RC-hosted Web Purchase Link**.
@@ -73,8 +72,8 @@ not weeks-later restore. Consequences under A1 (anonymous):
 ## Runtime Flow
 
 ```
-Ad / CTA ──► RC-hosted checkout (Stripe Managed Payments, anonymous, no app user ID)
-   │ pays; Stripe = merchant of record (tax handled)
+Ad / CTA ──► RevenueCat-hosted checkout (RevenueCat Billing, Stripe gateway; anonymous, no app user ID)
+   │ pays; RevenueCat = merchant of record (tax handled)
    ▼
 RevenueCat records purchase ──► generates Redemption Link (60-min expiry)
    │ (fires existing RC webhook → DataFast)
@@ -108,8 +107,19 @@ isProUser = true ──► app unlocks. Done.
 - Which CTA/entry points on getsteps.app (and/or ad URLs) point at the purchase link.
 - Confirm RevenueCat's built-in email includes the redemption link as shipped.
 
+## Reversibility — switching to Stripe Managed Payments later
+The web2app **redemption links and the branded 2-step success page are RevenueCat-hosted and
+engine-agnostic** — they are identical whether on RevenueCat Billing or Stripe Billing/Managed
+Payments. Only the **card-entry checkout** differs (RevenueCat-hosted checkout vs embedded
+**Stripe Checkout**, branded in the Stripe dashboard). So moving to **Stripe Managed Payments**
+later (to make Stripe the MoR) is possible with **no app changes and no change to the redemption
+experience** — it requires: a Stripe Billing integration, the "Use Managed Payments when available"
+checkbox, Managed Payments enabled/eligible on the Stripe account, elevated permissions, and
+eligible tax codes on products. Existing RevenueCat Billing subscribers do not auto-migrate; new
+purchases would route to the new engine while the old cohort renews/churns out.
+
 ## Success Criteria
-- A web visitor can purchase Pro with a card via Stripe Managed Payments (anonymous).
+- A web visitor can purchase Pro with a card via RevenueCat-hosted checkout (RevenueCat as MoR, anonymous).
 - They see a Steps-branded 2-step success page and receive a confirmation email with the link.
 - Opening Steps and tapping **Redeem purchase** grants `entitlements["pro"]` and flips `isProUser`,
   on a fresh install with no login.
