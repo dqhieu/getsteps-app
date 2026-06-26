@@ -10,6 +10,9 @@ export const SITE_CONFIG = {
   baseUrl: "https://getsteps.app",
   appStoreUrl:
     "https://apps.apple.com/us/app/steps-workout-pedometer/id6746096378",
+  // RevenueCat-hosted web checkout (Stripe gateway, RC as merchant of record).
+  // `/get-pro` redirects here so ad/CTA links can change destination without edits.
+  proWebCheckoutUrl: "https://pay.rev.cat/almjpuvcjngxzlih/",
   supportEmail: "support@getsteps.app",
   appStoreRating: "4.9",
 } as const;
