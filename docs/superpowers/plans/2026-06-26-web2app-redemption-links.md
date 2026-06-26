@@ -14,7 +14,7 @@
 - **Placement + intent is the key conversion lever**, not the number of products. Most traffic is informational; cold researchers rarely buy Pro before trying the app, so web-Pro buyers skew toward **already-convinced** visitors (landing page, returning users).
 - Implication for **Task 4**: the web entry should be **more than a bare redirect** — favor a real **pricing/comparison placement on getsteps.app** ("same Pro, cheaper on web — for iPhone") at high-intent spots (landing hero/pricing; A/B vs the existing high-converting tool-page App Store CTAs). The `/get-pro` redirect remains the canonical checkout target.
 - **App is iOS-only** — web checkout copy must say so (avoid refunds/chargebacks from non-iOS buyers; required for MoR clarity).
-- **Pricing (current, individual):** Monthly $4.99 / Yearly $29.99 / Lifetime $49.99 (App Store). Launch web set: **Yearly $19.99 + Lifetime $34.99** (Monthly optional). Family plans deferred.
+- **Pricing — LIVE & verified (individual, all 20% off App Store):** Monthly **$3.99** (vs $4.99) · Yearly **$23.99** (vs $29.99) · Lifetime **$39.99** (vs $49.99, one-time). Enables a flat "20% cheaper than the App Store" claim. Family deferred. Offering `pro-web` (`ofrngc82725fb86`), all three attached to the `pro` entitlement, `is_current: false`.
 
 ## Global Constraints
 
@@ -50,32 +50,21 @@ Spec: `docs/superpowers/specs/2026-06-26-web2app-redemption-links-stripe-design.
 
 - [ ] **Step 3: Create the discounted web product(s) + price**
 
-Under the **`Steps (Web Billing)`** app, create web product(s) and set the price **directly in RevenueCat** (RevenueCat is MoR). Launch set (individual):
+✅ **DONE & verified via MCP.** Under the **`Steps (Web Billing)`** app, three products created (price set directly in RevenueCat; RC is MoR), all 20% off App Store, no trial:
 
-| Plan | Identifier | Name (customer-facing) | Description | Web price | App Store |
+| Plan | Identifier | Name (customer-facing) | Web price | App Store | Type |
 |---|---|---|---|---|---|
-| Yearly | `steps_pro_annual_web` | `Steps Pro — Annual` | `Full access to all Steps Pro features in the Steps app for iPhone & iPad. Billed yearly.` | **$19.99** | $29.99 |
-| Lifetime | `steps_pro_lifetime_web` | `Steps Pro — Lifetime` | `Full access to all Steps Pro features in the Steps app for iPhone & iPad. One-time payment.` | **$34.99** | $49.99 |
+| Monthly | `steps_pro_monthly_web` | `Steps Pro — Monthly` | **$3.99** | $4.99 | subscription |
+| Yearly | `steps_pro_annual_web` | `Steps Pro — Annual` | **$23.99** | $29.99 | subscription |
+| Lifetime | `steps_pro_lifetime_web` | `Steps Pro — Lifetime` | **$39.99** | $49.99 | one-time |
 
-- Description **must state iOS-only** (avoids refunds from non-iOS buyers).
-- **Lifetime caveat:** Web Billing is subscription-first — only create Lifetime if the product form offers a **one-time / non-renewing** option; if not, ship **Yearly only** for v1 (don't fake it as a subscription).
-- **Monthly is deferred** (optional low-commitment door; see Funnel Context). No trial for v1.
+Descriptions state iOS-only (`…in the Steps app for iPhone & iPad`). Web Billing did support a one-time Lifetime product.
 
-Verify: each product appears with the intended price/currency.
+Verify: ✅ each appears with the intended price/currency.
 
-- [ ] **Step 3b: Attach the web product(s) to the `pro` entitlement** ⚠️ critical
+- [x] **Step 3b: Attach the web product(s) to the `pro` entitlement** ⚠️ critical — ✅ verified: all three web products attached to `pro` (`entl348ec23ff9`), matching the offering's product IDs exactly (no orphans).
 
-Attach each new web product to the existing **`pro`** entitlement (`entl348ec23ff9`). This is what makes a web purchase unlock the same Pro the app gates on.
-
-Verify (ask Claude to re-query via RevenueCat MCP): the `pro` entitlement now lists the web product(s).
-
-- [ ] **Step 4: Create a dedicated web offering and attach the product(s)**
-
-Create a **new web offering** (e.g. lookup key `pro-web`) and add packages pointing at the Step 3 web product(s).
-
-⚠️ **Do NOT set this offering as "current."** The iOS app reads the current offering (`pro`); web products aren't purchasable via StoreKit, so making it current would break the in-app paywall. The Web Purchase Link references `pro-web` explicitly.
-
-Verify: the offering lists the discounted product(s) and is **not** current.
+- [x] **Step 4: Create a dedicated web offering** — ✅ verified: offering `pro-web` (`ofrngc82725fb86`) with Monthly/Yearly/Lifetime web packages, **`is_current: false`** (app paywall unaffected).
 
 - [ ] **Step 5: Enable Redemption Links**
 
