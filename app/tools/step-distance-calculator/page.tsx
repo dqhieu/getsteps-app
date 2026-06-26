@@ -217,6 +217,9 @@ export default function StepDistanceCalculatorPage() {
                 <a href="/conversions/steps-to-miles/5000" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">5,000 steps to miles</a>
                 <a href="/conversions/miles-to-steps" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">Steps in a mile</a>
                 <a href="/conversions/km-to-steps" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">Steps in a km</a>
+                <a href="/conversions/steps-to-km" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">Steps to km table</a>
+                <a href="/conversions/steps-to-miles" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">Steps to miles table</a>
+                <a href="/conversions/steps-to-calories" className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">Steps to calories table</a>
                 <a href="/conversions" className="text-sm px-3 py-1.5 rounded-lg bg-[#ED772F]/10 text-[#ED772F] hover:bg-[#ED772F]/20 transition-colors font-medium">All conversions →</a>
               </div>
             </div>

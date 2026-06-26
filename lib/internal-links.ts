@@ -133,16 +133,19 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
     { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Steps to Miles Table", href: "/conversions/steps-to-miles" },
   ],
   "steps-to-calories-calculator": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Steps to Calories Table", href: "/conversions/steps-to-calories" },
   ],
   "walking-calories-calculator": [
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
     { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+    { title: "Steps to Calories Table", href: "/conversions/steps-to-calories" },
   ],
   "walking-time-calculator": [
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
