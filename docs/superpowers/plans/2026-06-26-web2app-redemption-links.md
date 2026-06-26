@@ -27,7 +27,7 @@
 ## Global Constraints
 
 - **Entitlement key is `"pro"`** — verbatim; do not introduce a new entitlement. (`Steps/Utilities/PurchaseManager.swift:60`)
-- **Redemption deep-link format:** `steps://redeem_web_purchase?redemption_token=<token>` — host is `redeem_web_purchase` (RevenueCat `DeepLinkParser`). The `steps` URL scheme is **already registered** (`Steps/Info.plist:178`); do not add a new scheme.
+- **Redemption deep-link format:** `<scheme>://redeem_web_purchase?redemption_token=<token>` — what matters is **host `redeem_web_purchase`** (RevenueCat `DeepLinkParser`), not the scheme. RevenueCat emits redemption links on its generated scheme **`rc-8d0d7f7f03`** (registered in `Steps/Info.plist` as "RevenueCat Redemption Links"). The iOS interception parses by host (scheme-agnostic via `Purchases.parseAsWebPurchaseRedemption`), so it handles both `rc-8d0d7f7f03://` and `steps://` redemption URLs.
 - **Merchant of record:** RevenueCat Web Billing (RevenueCat is MoR, handles tax); Stripe connected as payment gateway. Not Stripe Managed Payments.
 - **Identity:** anonymous (A1). The app calls `Purchases.configure(withAPIKey:)` with no app user ID (`PurchaseManager.swift:80`); redemption binds to the install's anonymous RC ID. No login.
 - **Restore:** RevenueCat auto-reissues a fresh one-time link to the billing email when an expired/used link is opened (60-min link expiry). No in-app restore UI, no Apple Sign In.
@@ -80,11 +80,7 @@ On the offering/web config, **enable Redemption Links** (allows anonymous checko
 
 Verify: Redemption Links shows as enabled.
 
-- [ ] **Step 6: Configure the redemption custom URL scheme**
-
-Set the app's custom URL scheme used for redemption to **`steps`** so the hosted "Redeem purchase" button opens `steps://redeem_web_purchase?redemption_token=...`.
-
-Verify: the configured scheme is `steps`.
+- [x] **Step 6: Redemption custom URL scheme** — ✅ RevenueCat uses its generated scheme **`rc-8d0d7f7f03`**, registered in `Steps/Info.plist` ("RevenueCat Redemption Links"). The hosted "Redeem purchase" button opens `rc-8d0d7f7f03://redeem_web_purchase?redemption_token=...`. iOS interception is host-based, so no scheme-specific code is needed.
 
 - [ ] **Step 7: Confirm App Information (required for the success page)**
 
