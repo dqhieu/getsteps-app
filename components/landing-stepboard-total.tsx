@@ -23,10 +23,10 @@ function FlipTile({ character, index }: { character: string; index: number }) {
     >
       <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/[0.07] to-transparent" />
       <span className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-black/35" />
-      <span className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 bg-black/85 shadow-[0_1px_0_rgba(255,255,255,0.07)]" />
-      <span className="absolute left-0 top-1/2 h-2 w-[3px] -translate-y-1/2 rounded-r-sm bg-gradient-to-r from-neutral-500 to-neutral-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]" />
-      <span className="absolute right-0 top-1/2 h-2 w-[3px] -translate-y-1/2 rounded-l-sm bg-gradient-to-l from-neutral-500 to-neutral-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]" />
       <span className="relative">{character}</span>
+      <span className="pointer-events-none absolute inset-x-0 top-1/2 z-10 h-[2px] -translate-y-1/2 bg-black/90 shadow-[0_1px_0_rgba(255,255,255,0.08),0_-1px_0_rgba(0,0,0,0.6)]" />
+      <span className="pointer-events-none absolute left-0 top-1/2 z-10 h-2 w-[3px] -translate-y-1/2 rounded-r-sm bg-gradient-to-r from-neutral-500 to-neutral-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]" />
+      <span className="pointer-events-none absolute right-0 top-1/2 z-10 h-2 w-[3px] -translate-y-1/2 rounded-l-sm bg-gradient-to-l from-neutral-500 to-neutral-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]" />
     </span>
   );
 }
