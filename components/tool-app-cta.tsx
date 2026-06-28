@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
+import { ProUpsell } from "./pro-upsell";
 
 function AppStoreBadge() {
   return (
@@ -51,11 +52,12 @@ export function ToolAppCta({
             {description}
           </p>
         </div>
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 flex flex-col md:items-end gap-2">
           <AppStoreBadge />
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             Free on the App Store
           </p>
+          <ProUpsell compact />
         </div>
       </div>
     </div>
@@ -64,28 +66,27 @@ export function ToolAppCta({
 
 /**
  * Persistent bottom bar on mobile, where ~80% of traffic lands and bounce is
- * high. Captures users who never scroll to an in-page CTA.
+ * high. The fixed nav already carries the free App Store download everywhere,
+ * so this redundant slot promotes the discounted web Pro upgrade via /get-pro.
  */
-export function ToolStickyCta({ label }: { label: string }) {
+export function ToolStickyCta() {
   return (
     <div className="fixed bottom-0 inset-x-0 z-50 md:hidden flex items-center justify-between gap-3 border-t border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur px-4 py-3">
       <div className="min-w-0">
         <p className="text-sm font-semibold text-neutral-900 dark:text-white truncate">
-          {label}
+          Get more from every step
         </p>
         <p className="text-xs text-neutral-500 dark:text-neutral-400">
-          Free on the App Store
+          Steps Pro — 20% off the App Store
         </p>
       </div>
       <a
-        href={SITE_CONFIG.appStoreUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-fast-goal="open-app-store"
-        aria-label="Download on the App Store"
+        href="/get-pro"
+        data-fast-goal="get-pro"
+        aria-label="Get Steps Pro"
         className="flex-shrink-0 rounded-full bg-[#ED772F] text-white text-sm font-semibold px-5 py-2.5 active:scale-95 transition-transform"
       >
-        Get Steps
+        Get Pro
       </a>
     </div>
   );

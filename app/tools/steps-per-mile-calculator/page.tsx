@@ -290,7 +290,7 @@ export default function StepsPerMileCalculatorPage() {
 
       {/* Mobile spacer so the sticky bar never covers footer content */}
       <div aria-hidden className="h-20 md:hidden" />
-      <ToolStickyCta label="Track your steps with Steps" />
+      <ToolStickyCta />
     </div>
   );
 }
