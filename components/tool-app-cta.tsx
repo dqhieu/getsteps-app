@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
+import { ProUpsell } from "./pro-upsell";
 
 function AppStoreBadge() {
   return (
@@ -56,6 +57,7 @@ export function ToolAppCta({
           <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">
             Free on the App Store
           </p>
+          <ProUpsell />
         </div>
       </div>
     </div>
