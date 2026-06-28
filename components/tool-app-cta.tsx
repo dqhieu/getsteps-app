@@ -57,8 +57,10 @@ export function ToolAppCta({
           <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">
             Free on the App Store
           </p>
-          <ProUpsell />
         </div>
+      </div>
+      <div className="mt-6 pt-5 border-t border-[#ED772F]/20">
+        <ProUpsell />
       </div>
     </div>
   );

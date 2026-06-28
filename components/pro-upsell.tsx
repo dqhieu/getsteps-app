@@ -6,7 +6,7 @@
  */
 export function ProUpsell() {
   return (
-    <div className="mt-3 flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2">
       <span className="text-sm text-neutral-500 dark:text-neutral-400">
         Already using Steps?
       </span>

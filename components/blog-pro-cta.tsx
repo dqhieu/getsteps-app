@@ -11,7 +11,7 @@ export function BlogProCta() {
       <h2 className="text-lg font-bold text-neutral-900 dark:text-white mb-1">
         Get more from every walk
       </h2>
-      <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
         Steps Pro unlocks deeper insights and goals.
       </p>
       <ProUpsell />
