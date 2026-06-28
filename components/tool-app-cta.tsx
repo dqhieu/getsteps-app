@@ -52,15 +52,13 @@ export function ToolAppCta({
             {description}
           </p>
         </div>
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 flex flex-col md:items-end gap-2">
           <AppStoreBadge />
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             Free on the App Store
           </p>
+          <ProUpsell compact />
         </div>
-      </div>
-      <div className="mt-6 pt-5 border-t border-[#ED772F]/20">
-        <ProUpsell />
       </div>
     </div>
   );
