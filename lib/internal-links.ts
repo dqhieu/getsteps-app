@@ -166,6 +166,41 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "walking-5-miles-a-day": [
+    { title: "Walking 4 Miles a Day: Benefits & Results", href: "/blog/walking-4-miles-a-day" },
+    { title: "Walking 3 Miles a Day: Benefits & Results", href: "/blog/walking-3-miles-a-day" },
+    { title: "Calories Burned Walking 5 Miles", href: "/blog/calories-burned-walking-5-miles" },
+  ],
+  "is-walking-good-for-lower-back-pain": [
+    { title: "Is Walking Good for Bad Knees?", href: "/blog/is-walking-good-for-bad-knees" },
+    { title: "Walking for Sciatica: Does It Help?", href: "/blog/walking-for-sciatica" },
+    { title: "Benefits of Walking Everyday", href: "/blog/benefits-of-walking-everyday" },
+  ],
+  "walking-for-diabetes": [
+    { title: "Is Walking Good for Your Heart?", href: "/blog/is-walking-good-for-your-heart" },
+    { title: "Walking After Eating: 7 Benefits", href: "/blog/walking-after-eating-benefits" },
+    { title: "Best Time to Walk for Weight Loss", href: "/blog/best-time-to-walk-for-weight-loss" },
+  ],
+  "walking-4-miles-a-day": [
+    { title: "Walking 5 Miles a Day: Benefits & Results", href: "/blog/walking-5-miles-a-day" },
+    { title: "Walking 3 Miles a Day: Benefits & Results", href: "/blog/walking-3-miles-a-day" },
+    { title: "Calories Burned Walking 4 Miles", href: "/blog/calories-burned-walking-4-miles" },
+  ],
+  "walking-during-pregnancy": [
+    { title: "Is Walking Good for Your Heart?", href: "/blog/is-walking-good-for-your-heart" },
+    { title: "Benefits of Walking Everyday", href: "/blog/benefits-of-walking-everyday" },
+    { title: "How Many Steps a Day Is Healthy?", href: "/blog/how-many-steps-a-day-is-healthy" },
+  ],
+  "is-walking-good-for-your-heart": [
+    { title: "Walking for Diabetes: Blood Sugar Guide", href: "/blog/walking-for-diabetes" },
+    { title: "Heart Rate Zones for Walkers", href: "/blog/heart-rate-zones-explained" },
+    { title: "Walking for Cardio", href: "/blog/walking-for-cardio" },
+  ],
+  "is-walking-good-for-bad-knees": [
+    { title: "Is Walking Good for Lower Back Pain?", href: "/blog/is-walking-good-for-lower-back-pain" },
+    { title: "Walking for Sciatica: Does It Help?", href: "/blog/walking-for-sciatica" },
+    { title: "Is Walking Enough Exercise?", href: "/blog/is-walking-enough-exercise" },
+  ],
   "how-many-steps-does-the-average-person-walk-a-day": [
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
     { title: "How Many Steps a Day Is Healthy?", href: "/blog/how-many-steps-a-day-is-healthy" },
@@ -1097,6 +1132,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "walking-5-miles-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "is-walking-good-for-lower-back-pain": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "walking-for-diabetes": [
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "walking-4-miles-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "walking-during-pregnancy": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "is-walking-good-for-your-heart": [
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "is-walking-good-for-bad-knees": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
   "how-many-steps-does-the-average-person-walk-a-day": [
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
