@@ -166,6 +166,48 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "how-far-is-2000-steps": [
+    { title: "How Far Is 3,000 Steps?", href: "/blog/how-far-is-3000-steps" },
+    { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
+    { title: "How Many Miles Is 14,000 Steps?", href: "/blog/how-many-miles-is-14000-steps" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+  ],
+  "how-many-miles-is-14000-steps": [
+    { title: "How Many Miles Is 13,000 Steps?", href: "/blog/how-many-miles-is-13000-steps" },
+    { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
+    { title: "How Many Miles Is 18,000 Steps?", href: "/blog/how-many-miles-is-18000-steps" },
+    { title: "How Far Is 2,000 Steps?", href: "/blog/how-far-is-2000-steps" },
+  ],
+  "how-many-miles-is-18000-steps": [
+    { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
+    { title: "How Many Miles Is 20,000 Steps?", href: "/blog/how-many-miles-is-20000-steps" },
+    { title: "How Many Miles Is 14,000 Steps?", href: "/blog/how-many-miles-is-14000-steps" },
+    { title: "How Many Miles Is 25,000 Steps?", href: "/blog/how-many-miles-is-25000-steps" },
+  ],
+  "how-many-miles-is-25000-steps": [
+    { title: "How Many Miles Is 20,000 Steps?", href: "/blog/how-many-miles-is-20000-steps" },
+    { title: "How Many Steps in a Half Marathon?", href: "/blog/how-many-steps-in-a-half-marathon" },
+    { title: "How Many Miles Is 18,000 Steps?", href: "/blog/how-many-miles-is-18000-steps" },
+    { title: "How Many Miles Is 14,000 Steps?", href: "/blog/how-many-miles-is-14000-steps" },
+  ],
+  "is-6000-steps-a-day-good": [
+    { title: "How Many Steps a Day Is Healthy?", href: "/blog/how-many-steps-a-day-is-healthy" },
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+    { title: "Is Walking Enough Exercise?", href: "/blog/is-walking-enough-exercise" },
+    { title: "Does Walking Tone Your Legs?", href: "/blog/does-walking-tone-your-legs" },
+  ],
+  "does-walking-tone-your-legs": [
+    { title: "Does Walking Build Muscle?", href: "/blog/does-walking-build-muscle" },
+    { title: "Walking With Ankle Weights", href: "/blog/walking-with-ankle-weights" },
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+    { title: "Walking vs Elliptical", href: "/blog/walking-vs-elliptical" },
+  ],
+  "walking-vs-elliptical": [
+    { title: "Walking vs Cycling", href: "/blog/walking-vs-cycling" },
+    { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
+    { title: "Does Walking Tone Your Legs?", href: "/blog/does-walking-tone-your-legs" },
+    { title: "Is 6,000 Steps a Day Good?", href: "/blog/is-6000-steps-a-day-good" },
+  ],
   "walking-5-miles-a-day": [
     { title: "Walking 4 Miles a Day: Benefits & Results", href: "/blog/walking-4-miles-a-day" },
     { title: "Walking 3 Miles a Day: Benefits & Results", href: "/blog/walking-3-miles-a-day" },
@@ -1132,6 +1174,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "how-far-is-2000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-many-miles-is-14000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-many-miles-is-18000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-many-miles-is-25000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "is-6000-steps-a-day-good": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "does-walking-tone-your-legs": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "walking-vs-elliptical": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
   "walking-5-miles-a-day": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
