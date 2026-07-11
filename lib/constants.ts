@@ -110,18 +110,6 @@ export const FEATURE_GRID: ReadonlyArray<{
   { icon: "HeartPulse", title: "Apple Health Sync", description: "Accurate, automatic tracking" },
 ];
 
-export const SCREENSHOTS = [
-  "/screenshots/screenshot1.png",
-  "/screenshots/screenshot2.png",
-  "/screenshots/screenshot3.png",
-  "/screenshots/screenshot4.png",
-  "/screenshots/screenshot5.png",
-  "/screenshots/screenshot9.png",
-  "/screenshots/screenshot6.png",
-  "/screenshots/screenshot7.png",
-  "/screenshots/screenshot8.png",
-] as const;
-
 // App Store reviews shown in the "Loved by thousands" section.
 // `country` is an ISO 3166-1 alpha-2 code, rendered as a flag emoji.
 export const REVIEWS = [
