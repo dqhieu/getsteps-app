@@ -1044,6 +1044,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Steps a Day to Lose Belly Fat?", href: "/blog/how-many-steps-a-day-to-lose-belly-fat" },
     { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
   ],
+  "is-7000-steps-a-day-enough": [
+    { title: "Is 6,000 Steps a Day Good?", href: "/blog/is-6000-steps-a-day-good" },
+    { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+  ],
+  "how-many-miles-is-17000-steps": [
+    { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
+    { title: "How Many Miles Is 18,000 Steps?", href: "/blog/how-many-miles-is-18000-steps" },
+    { title: "How Many Miles Is 20,000 Steps?", href: "/blog/how-many-miles-is-20000-steps" },
+  ],
+  "walking-pad-benefits": [
+    { title: "Treadmill vs Walking Outside: Which Is Better?", href: "/blog/treadmill-vs-walking-outside" },
+    { title: "Treadmill Walking Workout for Weight Loss", href: "/blog/treadmill-walking-workout-weight-loss" },
+    { title: "Average Steps Per Day for Office Workers", href: "/blog/average-steps-per-day-office-worker" },
+  ],
+  "zone-2-walking": [
+    { title: "Heart Rate Zones for Walkers", href: "/blog/heart-rate-zones-explained" },
+    { title: "Japanese Interval Walking Method", href: "/blog/japanese-interval-walking-method" },
+    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
+  ],
+  "walking-for-high-blood-pressure": [
+    { title: "Is Walking Good for Your Heart?", href: "/blog/is-walking-good-for-your-heart" },
+    { title: "Walking for Diabetes", href: "/blog/walking-for-diabetes" },
+    { title: "Is 7,000 Steps a Day Enough?", href: "/blog/is-7000-steps-a-day-enough" },
+  ],
+  "nordic-walking-benefits": [
+    { title: "Rucking Benefits", href: "/blog/rucking-benefits" },
+    { title: "Walking With a Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+    { title: "Zone 2 Walking", href: "/blog/zone-2-walking" },
+  ],
+  "treadmill-vs-walking-outside": [
+    { title: "Walking Pad Benefits", href: "/blog/walking-pad-benefits" },
+    { title: "Calories Burned on a Treadmill", href: "/blog/calories-burned-on-treadmill" },
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -1867,5 +1902,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "walking-weight-loss-before-and-after": [
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "is-7000-steps-a-day-enough": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-many-miles-is-17000-steps": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "walking-pad-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "zone-2-walking": [
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "walking-for-high-blood-pressure": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "nordic-walking-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "treadmill-vs-walking-outside": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
   ],
 };
