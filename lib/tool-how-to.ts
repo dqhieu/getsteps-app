@@ -478,4 +478,23 @@ export const TOOL_HOW_TO: Record<string, ToolHowToData> = {
       },
     ],
   },
+  "strava-stats-generator": {
+    name: "How to make a transparent workout stats overlay",
+    description:
+      "Enter the distance and moving time from a run, download a transparent PNG, and layer it over your own photo in Instagram Stories.",
+    steps: [
+      {
+        name: "Enter distance and moving time",
+        text: "Type the distance you covered and switch between kilometers and miles, then enter your moving time as MM:SS or H:MM:SS.",
+      },
+      {
+        name: "Download the transparent PNG",
+        text: "Pace is calculated from your distance and time. Tap Download to save a 1080x1080 PNG with no background — just the three stats.",
+      },
+      {
+        name: "Layer it over your photo",
+        text: "In Instagram Stories, pick your photo, tap the sticker button, choose the photo sticker, and select the PNG. Only the stats appear over your image — pinch to resize and drag it into place.",
+      },
+    ],
+  },
 };

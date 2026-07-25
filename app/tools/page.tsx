@@ -208,6 +208,13 @@ const TOOLS = [
     icon: "🗺️",
     popular: false,
   },
+  {
+    title: "Strava Stats Generator",
+    description: "Turn a run into a transparent stats overlay for Instagram Stories",
+    href: "/tools/strava-stats-generator",
+    icon: "🏃",
+    popular: true,
+  },
 ];
 
 const popularTools = TOOLS.filter((tool) => tool.popular);

@@ -110,6 +110,10 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
     { title: "How to Export GPX from Apple Watch Workouts", href: "/blog/how-to-export-gpx-from-apple-watch-workouts" },
     { title: "Steps vs Strava", href: "/blog/steps-vs-strava-comparison" },
   ],
+  "strava-stats-generator": [
+    { title: "Steps vs Strava", href: "/blog/steps-vs-strava-comparison" },
+    { title: "How to Export GPX from Apple Watch Workouts", href: "/blog/how-to-export-gpx-from-apple-watch-workouts" },
+  ],
 };
 
 // Tool slug → related tool links (for the 8 pages missing Related Calculators)
@@ -160,7 +164,12 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "gpx-viewer": [
     { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
     { title: "Distance Equivalent Calculator", href: "/tools/distance-equivalent-calculator" },
-    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+    { title: "Strava Stats Generator", href: "/tools/strava-stats-generator" },
+  ],
+  "strava-stats-generator": [
+    { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
+    { title: "GPX Viewer", href: "/tools/gpx-viewer" },
+    { title: "Distance Equivalent Calculator", href: "/tools/distance-equivalent-calculator" },
   ],
 };
 
