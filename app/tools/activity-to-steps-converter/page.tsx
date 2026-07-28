@@ -249,7 +249,7 @@ export default function ActivityToStepsConverterPage() {
 
       {/* Mobile spacer so the sticky bar never covers footer content */}
       <div aria-hidden className="h-20 md:hidden" />
-      <ToolStickyCta />
+      <ToolStickyCta label="Track your steps with Steps" />
     </div>
   );
 }
