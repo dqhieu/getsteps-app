@@ -175,6 +175,48 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "how-many-steps-in-a-mile-for-a-woman": [
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Is Half a Mile?", href: "/blog/how-many-steps-is-half-a-mile" },
+    { title: "Average Steps Per Day for Women", href: "/blog/average-steps-per-day-for-women" },
+    { title: "Average Step Length", href: "/blog/average-step-length" },
+  ],
+  "how-many-steps-is-half-a-mile": [
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps in a Mile for a Woman?", href: "/blog/how-many-steps-in-a-mile-for-a-woman" },
+    { title: "How Far Is 2,000 Steps?", href: "/blog/how-far-is-2000-steps" },
+    { title: "How Long Does It Take to Walk 1 Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
+  ],
+  "how-many-steps-per-day-for-men": [
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+    { title: "How Many Steps Does the Average Person Walk a Day?", href: "/blog/how-many-steps-does-the-average-person-walk-a-day" },
+    { title: "Is 7,000 Steps a Day Enough?", href: "/blog/is-7000-steps-a-day-enough" },
+    { title: "How to Calculate TDEE With Steps", href: "/blog/how-to-calculate-tdee-with-steps" },
+  ],
+  "how-to-calculate-tdee-with-steps": [
+    { title: "What Is TDEE?", href: "/blog/what-is-tdee" },
+    { title: "Calories Burned Per Step", href: "/blog/calories-burned-per-step" },
+    { title: "Macro Calculator Guide", href: "/blog/macro-calculator-guide" },
+    { title: "How Many Steps Per Day for Men?", href: "/blog/how-many-steps-per-day-for-men" },
+  ],
+  "walking-for-arthritis": [
+    { title: "Is Walking Good for Bad Knees?", href: "/blog/is-walking-good-for-bad-knees" },
+    { title: "Is Walking Good for Lower Back Pain?", href: "/blog/is-walking-good-for-lower-back-pain" },
+    { title: "How Many Steps Per Day for Seniors", href: "/blog/how-many-steps-per-day-for-seniors" },
+    { title: "Walking to Lower Cholesterol", href: "/blog/walking-to-lower-cholesterol" },
+  ],
+  "walking-during-menopause": [
+    { title: "Average Steps Per Day for Women", href: "/blog/average-steps-per-day-for-women" },
+    { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },
+    { title: "Walking With a Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+    { title: "How Many Steps in a Mile for a Woman?", href: "/blog/how-many-steps-in-a-mile-for-a-woman" },
+  ],
+  "walking-to-lower-cholesterol": [
+    { title: "Walking for High Blood Pressure", href: "/blog/walking-for-high-blood-pressure" },
+    { title: "Is Walking Good for Your Heart?", href: "/blog/is-walking-good-for-your-heart" },
+    { title: "Walking for Diabetes", href: "/blog/walking-for-diabetes" },
+    { title: "Walking for Arthritis", href: "/blog/walking-for-arthritis" },
+  ],
   "how-far-is-2000-steps": [
     { title: "How Far Is 3,000 Steps?", href: "/blog/how-far-is-3000-steps" },
     { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
@@ -1218,6 +1260,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "how-many-steps-in-a-mile-for-a-woman": [
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-many-steps-is-half-a-mile": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-many-steps-per-day-for-men": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "how-to-calculate-tdee-with-steps": [
+    { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
+  "walking-for-arthritis": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "walking-during-menopause": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "walking-to-lower-cholesterol": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
   "how-far-is-2000-steps": [
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
     { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
