@@ -175,6 +175,48 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "how-much-should-i-walk-to-lose-weight": [
+    { title: "If I Walk 1 Hour a Day, How Much Weight Will I Lose?", href: "/blog/if-i-walk-1-hour-a-day-how-much-weight-will-i-lose" },
+    { title: "How Many Miles Do I Need to Walk to Lose 5 Pounds a Week?", href: "/blog/how-many-miles-to-walk-to-lose-5-pounds-a-week" },
+    { title: "Walking for Weight Loss: How Many Steps?", href: "/blog/walking-for-weight-loss-how-many-steps" },
+    { title: "Walking Schedule for Weight Loss", href: "/blog/walking-schedule-for-weight-loss" },
+  ],
+  "calories-burned-walking-10km": [
+    { title: "How Long Does It Take to Walk 12 km?", href: "/blog/how-long-does-it-take-to-walk-12-km" },
+    { title: "How Many Steps Is 2 Hours of Walking?", href: "/blog/how-many-steps-in-2-hours-of-walking" },
+    { title: "Calories Burned Walking Per Km", href: "/blog/calories-burned-walking-per-km" },
+    { title: "How Many Steps in 10 km?", href: "/blog/how-many-steps-in-10-km" },
+  ],
+  "if-i-walk-1-hour-a-day-how-much-weight-will-i-lose": [
+    { title: "How Much Should I Walk to Lose Weight?", href: "/blog/how-much-should-i-walk-to-lose-weight" },
+    { title: "How Many Miles Do I Need to Walk to Lose 5 Pounds a Week?", href: "/blog/how-many-miles-to-walk-to-lose-5-pounds-a-week" },
+    { title: "Walking 1 Hour a Day for a Month: Results", href: "/blog/walking-1-hour-a-day-for-a-month-results" },
+    { title: "Calories Burned Walking 1 Hour", href: "/blog/calories-burned-walking-1-hour" },
+  ],
+  "how-many-steps-in-2-hours-of-walking": [
+    { title: "How Many Steps in a 1 Hour Walk?", href: "/blog/how-many-steps-in-1-hour-walk" },
+    { title: "How Many Steps in 30 Minutes of Walking?", href: "/blog/how-many-steps-in-30-minutes-walking" },
+    { title: "How Long Does It Take to Walk 12 km?", href: "/blog/how-long-does-it-take-to-walk-12-km" },
+    { title: "10km Walk Calories Burned", href: "/blog/calories-burned-walking-10km" },
+  ],
+  "how-long-does-it-take-to-walk-12-km": [
+    { title: "10km Walk Calories Burned", href: "/blog/calories-burned-walking-10km" },
+    { title: "How Many Steps Is 2 Hours of Walking?", href: "/blog/how-many-steps-in-2-hours-of-walking" },
+    { title: "How Long Does It Take to Walk 1 km?", href: "/blog/how-long-does-it-take-to-walk-1-km" },
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+  ],
+  "how-many-steps-is-1-5-miles": [
+    { title: "How Many Steps Is Half a Mile?", href: "/blog/how-many-steps-is-half-a-mile" },
+    { title: "How Many Steps in 2 Miles?", href: "/blog/how-many-steps-in-2-miles" },
+    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Is 2 Hours of Walking?", href: "/blog/how-many-steps-in-2-hours-of-walking" },
+  ],
+  "how-many-miles-to-walk-to-lose-5-pounds-a-week": [
+    { title: "How Much Should I Walk to Lose Weight?", href: "/blog/how-much-should-i-walk-to-lose-weight" },
+    { title: "If I Walk 1 Hour a Day, How Much Weight Will I Lose?", href: "/blog/if-i-walk-1-hour-a-day-how-much-weight-will-i-lose" },
+    { title: "How Long to Walk to Lose 10 Pounds", href: "/blog/how-long-to-walk-to-lose-10-pounds" },
+    { title: "How Many Miles to Walk a Day to Lose Weight?", href: "/blog/how-many-miles-to-walk-a-day-to-lose-weight" },
+  ],
   "how-many-steps-in-a-mile-for-a-woman": [
     { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "How Many Steps Is Half a Mile?", href: "/blog/how-many-steps-is-half-a-mile" },
@@ -1260,6 +1302,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "how-much-should-i-walk-to-lose-weight": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "calories-burned-walking-10km": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "if-i-walk-1-hour-a-day-how-much-weight-will-i-lose": [
+    { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "how-many-steps-in-2-hours-of-walking": [
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-12-km": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Pace to Speed Converter", href: "/tools/pace-to-speed-converter" },
+  ],
+  "how-many-steps-is-1-5-miles": [
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-many-miles-to-walk-to-lose-5-pounds-a-week": [
+    { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
+    { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+  ],
   "how-many-steps-in-a-mile-for-a-woman": [
     { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
