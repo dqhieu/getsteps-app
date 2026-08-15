@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Write, Edit, Bash, WebSearch, WebFetch, Glob, Grep, mcp__gsc__enhanced_search_analytics
+allowed-tools: Read, Write, Edit, Bash, WebSearch, WebFetch, Glob, Grep, mcp__gsc__enhanced_search_analytics, mcp__keywords-everywhere__get_related_keywords, mcp__keywords-everywhere__get_keyword_data
 argument-hint: "<keyword>"
 description: Full pipeline — research keyword, generate brief, write and publish blog post in one command
 ---
@@ -33,27 +33,20 @@ Call `mcp__gsc__enhanced_search_analytics` with:
 
 #### 1b. Keyword Expansion (Keywords Everywhere)
 
-**IMPORTANT:** Use Node.js `fetch` for KE API calls (curl has shell quoting issues with the API key).
+Call `mcp__keywords-everywhere__get_related_keywords` with:
+- keyword: "$ARGUMENTS"
+- num: 20
 
-```bash
-node -e "
-const key = process.env.KEYWORDS_EVERYWHERE_API_KEY;
-if (!key) { console.log('SKIP: KEYWORDS_EVERYWHERE_API_KEY not set'); process.exit(0); }
-const params = new URLSearchParams();
-params.append('country', 'us');
-params.append('currency', 'usd');
-params.append('dataSource', 'gkp');
-params.append('keyword', '$ARGUMENTS');
-params.append('num', '20');
-fetch('https://api.keywordseverywhere.com/v1/get_related_keywords', {
-  method: 'POST',
-  headers: { 'Authorization': 'Bearer ' + key, 'Accept': 'application/json' },
-  body: params
-}).then(r => r.json()).then(d => console.log(JSON.stringify(d, null, 2))).catch(e => console.error(e));
-"
-```
+Returns a flat array of keyword strings under `data`, with no metrics attached. Do not pass
+`country`, `currency`, or `dataSource` — they are not parameters of this tool. Costs 2 credits
+per keyword returned (~40 for this call).
 
-If `KEYWORDS_EVERYWHERE_API_KEY` is not set, skip and rely on WebSearch.
+To score the results, batch them through `mcp__keywords-everywhere__get_keyword_data` with
+`country: "us"`, `currency: "usd"`, `dataSource: "gkp"`, and `kw` as an array of at most 100
+keywords. Each keyword costs 1 credit.
+
+If the `mcp__keywords-everywhere__*` tools are unavailable, skip and rely on WebSearch. Do not
+fail the run.
 
 #### 1c. SERP Analysis
 Use `WebSearch` to search for the target keyword. Analyze top 10 results:

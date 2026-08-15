@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Write, Bash, WebSearch, WebFetch, Glob, Grep, mcp__gsc__enhanced_search_analytics
+allowed-tools: Read, Write, Bash, WebSearch, WebFetch, Glob, Grep, mcp__gsc__enhanced_search_analytics, mcp__keywords-everywhere__get_related_keywords, mcp__keywords-everywhere__get_keyword_data
 argument-hint: "<keyword>"
 description: Generate a content brief for a target keyword — SERP analysis, outline, internal links
 ---
@@ -40,48 +40,27 @@ Use `WebSearch` to search for the target keyword. Analyze the top 10 results:
 
 ### Step 3: Keyword Expansion via Keywords Everywhere
 
-**IMPORTANT:** Use Node.js `fetch` for KE API calls (curl has shell quoting issues with the API key).
+**3a. Related keywords.** Call `mcp__keywords-everywhere__get_related_keywords` with:
+- keyword: "$ARGUMENTS"
+- num: 20
 
-```bash
-# Get related keywords
-node -e "
-const key = process.env.KEYWORDS_EVERYWHERE_API_KEY;
-if (!key) { console.log('SKIP: KEYWORDS_EVERYWHERE_API_KEY not set'); process.exit(0); }
-const params = new URLSearchParams();
-params.append('country', 'us');
-params.append('currency', 'usd');
-params.append('dataSource', 'gkp');
-params.append('keyword', '$ARGUMENTS');
-params.append('num', '20');
-fetch('https://api.keywordseverywhere.com/v1/get_related_keywords', {
-  method: 'POST',
-  headers: { 'Authorization': 'Bearer ' + key, 'Accept': 'application/json' },
-  body: params
-}).then(r => r.json()).then(d => console.log(JSON.stringify(d, null, 2))).catch(e => console.error(e));
-"
-```
+Returns a flat array of keyword strings under `data`, no metrics attached. Do not pass `country`,
+`currency`, or `dataSource` — they are not parameters of this tool. Costs 2 credits per keyword
+returned (~40 for this call).
 
-```bash
-# Get volume data for keyword + related keywords
-node -e "
-const key = process.env.KEYWORDS_EVERYWHERE_API_KEY;
-if (!key) { console.log('SKIP: KEYWORDS_EVERYWHERE_API_KEY not set'); process.exit(0); }
-const params = new URLSearchParams();
-params.append('country', 'us');
-params.append('currency', 'usd');
-params.append('dataSource', 'gkp');
-['$ARGUMENTS'].forEach(k => params.append('kw[]', k));
-fetch('https://api.keywordseverywhere.com/v1/get_keyword_data', {
-  method: 'POST',
-  headers: { 'Authorization': 'Bearer ' + key, 'Accept': 'application/json' },
-  body: params
-}).then(r => r.json()).then(d => {
-  d.data.forEach(k => console.log(k.keyword.padEnd(45) + '| Vol: ' + String(k.vol).padStart(6) + ' | CPC: ' + k.cpc.value + ' | Comp: ' + k.competition));
-}).catch(e => console.error(e));
-"
-```
+**3b. Volume data.** Batch the target keyword plus its related keywords through
+`mcp__keywords-everywhere__get_keyword_data`:
+- kw: ["$ARGUMENTS", ...related keywords] — **maximum 100 per call**
+- country: "us"
+- currency: "usd"
+- dataSource: "gkp"
 
-If `KEYWORDS_EVERYWHERE_API_KEY` is not set, skip and rely on WebSearch + GSC data.
+All four arguments are required. Each keyword costs 1 credit. Each entry in `data` is
+`{keyword, vol, cpc: {currency, value}, competition, trend[]}`. A keyword absent from `data` has
+no Keyword Planner data — record its volume as unknown, not zero.
+
+If the `mcp__keywords-everywhere__*` tools are unavailable, skip and rely on WebSearch + GSC data.
+Do not fail the run.
 
 ### Step 4: Internal Linking Analysis
 

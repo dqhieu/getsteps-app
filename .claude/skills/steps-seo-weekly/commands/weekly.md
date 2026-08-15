@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Write, Edit, Bash, WebSearch, WebFetch, Glob, Grep, mcp__gsc__search_analytics, mcp__gsc__enhanced_search_analytics, mcp__gsc__detect_quick_wins, mcp__gsc__index_inspect
+allowed-tools: Read, Write, Edit, Bash, WebSearch, WebFetch, Glob, Grep, mcp__gsc__search_analytics, mcp__gsc__enhanced_search_analytics, mcp__gsc__detect_quick_wins, mcp__gsc__index_inspect, mcp__keywords-everywhere__get_related_keywords, mcp__keywords-everywhere__get_keyword_data, mcp__keywords-everywhere__get_credit_balance
 description: Full weekly SEO report — GSC analysis, quick wins, keyword expansion, action items
 ---
 
@@ -50,36 +50,43 @@ Call `mcp__gsc__detect_quick_wins` with:
 - endDate: 3 days ago
 - positionRangeMin: 4
 - positionRangeMax: 15
-- minImpressions: 20
+- minImpressions: 100
+- maxCtr: 5
 
-### Step 5: Keyword Expansion via Keywords Everywhere API
+**Always pass `maxCtr` explicitly.** It defaults to 2 and is ANDed with the other three
+thresholds, so omitting it silently drops every keyword already earning above 2% CTR. On this
+site that hides ~19% of matching rows, and those rows skew heavily toward calculator-intent
+queries — the class that converts best. See `commands/quick-wins.md` for the full rationale.
 
-Pick top 10 seed keywords from GSC data (highest impressions) and expand them.
+The tool has no row limit and returns every match, which is a very large response on this
+property. Results are pre-sorted by `additionalClicks` descending, so read from the top and stop
+once you have the rows you need.
 
-```bash
-# Get related keywords for each seed
-curl -s -X POST "https://api.keywordseverywhere.com/v1/get_keyword_data" \
-  -H "Authorization: Bearer $KEYWORDS_EVERYWHERE_API_KEY" \
-  -H "Accept: application/json" \
-  --data-urlencode "country=us" \
-  --data-urlencode "currency=usd" \
-  --data-urlencode "dataSource=gkp" \
-  --data-urlencode "kw[]=seed keyword 1" \
-  --data-urlencode "kw[]=seed keyword 2"
-```
+### Step 5: Keyword Expansion via Keywords Everywhere
 
-```bash
-# Get related/long-tail keywords
-curl -s -X POST "https://api.keywordseverywhere.com/v1/get_related_keywords" \
-  -H "Authorization: Bearer $KEYWORDS_EVERYWHERE_API_KEY" \
-  -H "Accept: application/json" \
-  --data-urlencode "country=us" \
-  --data-urlencode "currency=usd" \
-  --data-urlencode "dataSource=gkp" \
-  --data-urlencode "kw=seed keyword"
-```
+Pick top 10 seed keywords from GSC data (highest impressions) and expand them. This step costs
+roughly 10 × 20 × 2 ≈ 400 credits plus 1 credit per keyword scored — call
+`mcp__keywords-everywhere__get_credit_balance` first if the balance is unknown.
 
-If `KEYWORDS_EVERYWHERE_API_KEY` is not set, skip this step and note it in the report.
+**5a. Related keywords.** For each seed, call `mcp__keywords-everywhere__get_related_keywords`:
+- keyword: {seed keyword}
+- num: 20
+
+Returns a flat array of keyword strings under `data`. Do not pass `country`, `currency`, or
+`dataSource` — they are not parameters of this tool.
+
+**5b. Volume data.** De-duplicate the results and batch-score them with
+`mcp__keywords-everywhere__get_keyword_data`:
+- kw: [array of keywords, **maximum 100 per call** — chunk longer lists]
+- country: "us"
+- currency: "usd"
+- dataSource: "gkp"
+
+Each entry in `data` is `{keyword, vol, cpc: {currency, value}, competition, trend[]}`. A keyword
+absent from `data` has no Keyword Planner data — record its volume as unknown, not zero.
+
+If the `mcp__keywords-everywhere__*` tools are unavailable, skip this step and note it in the
+report. Do not fail the run.
 
 ### Step 6: Analyze and Generate Report
 

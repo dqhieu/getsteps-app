@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Write, Edit, Bash, WebSearch, WebFetch, Glob, Grep, mcp__gsc__search_analytics, mcp__gsc__enhanced_search_analytics, mcp__gsc__detect_quick_wins
+allowed-tools: Read, Write, Edit, Bash, WebSearch, WebFetch, Glob, Grep, mcp__gsc__search_analytics, mcp__gsc__enhanced_search_analytics, mcp__gsc__detect_quick_wins, mcp__keywords-everywhere__get_related_keywords, mcp__keywords-everywhere__get_pasf_keywords, mcp__keywords-everywhere__get_keyword_data, mcp__keywords-everywhere__get_credit_balance
 description: Full SEO pipeline — analyze GSC, expand keywords, pick best opportunity, write and publish blog post
 ---
 
@@ -48,56 +48,64 @@ Call `mcp__gsc__detect_quick_wins` with:
 - endDate: 3 days ago
 - positionRangeMin: 4
 - positionRangeMax: 15
-- minImpressions: 20
+- minImpressions: 100
+- maxCtr: 5
+
+**Always pass `maxCtr` explicitly.** It defaults to 2 and is ANDed with the other three
+thresholds, so omitting it silently drops every keyword already earning above 2% CTR — including
+most calculator-intent queries, which are the highest-converting class on this site.
+
+The tool has no row limit and returns every match, which is a very large response on this
+property. Results are pre-sorted by `additionalClicks` descending, so read from the top and stop
+once you have the rows you need.
 
 ## Phase 2: Keyword Expansion
 
-Pick top 10 seed keywords from GSC (highest impressions) and expand via Keywords Everywhere.
+Pick top 10 seed keywords from GSC (highest impressions) and expand via the Keywords Everywhere
+MCP tools. See `.claude/skills/steps-seo-weekly/SKILL.md` for the full tool contract.
 
-**IMPORTANT:** Use Node.js `fetch` for KE API calls (curl has shell quoting issues with the API key).
+If the `mcp__keywords-everywhere__*` tools are unavailable, skip to the fallback at the end of
+this phase. Do not fail the run.
 
-### 2a. Get Related Keywords (for each seed)
-```bash
-node -e "
-const key = process.env.KEYWORDS_EVERYWHERE_API_KEY;
-if (!key) { console.log('SKIP: KEYWORDS_EVERYWHERE_API_KEY not set'); process.exit(0); }
-const params = new URLSearchParams();
-params.append('country', 'us');
-params.append('currency', 'usd');
-params.append('dataSource', 'gkp');
-params.append('keyword', 'SEED_KEYWORD');
-params.append('num', '20');
-fetch('https://api.keywordseverywhere.com/v1/get_related_keywords', {
-  method: 'POST',
-  headers: { 'Authorization': 'Bearer ' + key, 'Accept': 'application/json' },
-  body: params
-}).then(r => r.json()).then(d => console.log(JSON.stringify(d, null, 2))).catch(e => console.error(e));
-"
-```
+### 2a. Cost check
 
-### 2b. Get Volume Data for Candidates
-```bash
-node -e "
-const key = process.env.KEYWORDS_EVERYWHERE_API_KEY;
-if (!key) { console.log('SKIP: KEYWORDS_EVERYWHERE_API_KEY not set'); process.exit(0); }
-const params = new URLSearchParams();
-params.append('country', 'us');
-params.append('currency', 'usd');
-params.append('dataSource', 'gkp');
-const kws = ['keyword1', 'keyword2', 'keyword3'];
-kws.forEach(k => params.append('kw[]', k));
-fetch('https://api.keywordseverywhere.com/v1/get_keyword_data', {
-  method: 'POST',
-  headers: { 'Authorization': 'Bearer ' + key, 'Accept': 'application/json' },
-  body: params
-}).then(r => r.json()).then(d => {
-  d.data.sort((a,b) => b.vol - a.vol);
-  d.data.forEach(k => console.log(k.keyword.padEnd(45) + '| Vol: ' + String(k.vol).padStart(6) + ' | CPC: ' + k.cpc.value + ' | Comp: ' + k.competition));
-}).catch(e => console.error(e));
-"
-```
+This phase costs roughly 10 seeds × 20 related × 2 credits ≈ 400 credits, doubled if PASF
+expansion is also run, plus 1 credit per keyword scored in 2c. Call
+`mcp__keywords-everywhere__get_credit_balance` first if the balance is unknown.
 
-If `KEYWORDS_EVERYWHERE_API_KEY` is not set, skip and rely on GSC + WebSearch data.
+### 2b. Get Related Keywords (for each seed)
+
+Call `mcp__keywords-everywhere__get_related_keywords` with:
+- keyword: {seed keyword}
+- num: 20
+
+Returns `{"data": ["related keyword", ...], "credits_consumed": N}` — a flat array of strings
+with no metrics attached. Do not pass `country`, `currency`, or `dataSource`; they are not
+parameters of this tool.
+
+Optionally also call `mcp__keywords-everywhere__get_pasf_keywords` with the same arguments for
+"People Also Search For" terms, which surface question-shaped and adjacent-intent keywords that
+related-keyword expansion tends to miss.
+
+### 2c. Get Volume Data for Candidates
+
+Collect and de-duplicate all related keywords, then batch-score them with
+`mcp__keywords-everywhere__get_keyword_data`:
+- kw: [array of keywords, **maximum 100 per call** — chunk longer lists]
+- country: "us"
+- currency: "usd"
+- dataSource: "gkp"
+
+All four arguments are required. 10 seeds at 20 related each yields ~200 candidates, so expect
+two calls. Each keyword costs 1 credit.
+
+Each entry in `data` is `{keyword, vol, cpc: {currency, value}, competition, trend[]}`. Sort by
+`vol` descending and use `vol` plus `competition` for the Phase 3 selection criteria. A keyword
+absent from `data` has no Keyword Planner data — treat its volume as unknown, not zero.
+
+**Fallback if the MCP tools are unavailable:** rely on GSC data plus `WebSearch` for "related
+searches" and "people also ask" results on the top seeds, and note in the report that volume and
+competition figures were unavailable.
 
 ## Phase 3: Pick Top 7 Opportunities
 

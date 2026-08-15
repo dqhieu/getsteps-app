@@ -22,7 +22,30 @@ Call `mcp__gsc__detect_quick_wins` with:
 - endDate: 3 days ago
 - positionRangeMin: 4
 - positionRangeMax: 15
-- minImpressions: 10
+- minImpressions: 100
+- maxCtr: 5
+
+**Why `maxCtr` must be passed explicitly.** The tool ANDs all four thresholds and `maxCtr`
+defaults to 2, so leaving it off returns only keywords already below 2% CTR. That silently
+excludes the "high impressions, low CTR" category this command is supposed to surface as a
+*separate* bucket from striking-distance position.
+
+Measured on this property (28d to 2026-08-11) at the thresholds above: the default `maxCtr` of 2
+returned 1,096 rows and hid 49 more. Those 49 were **61.2% calculator-intent versus 4.6%** in the
+default set — a 13x enrichment of the class that converts ~8.5% versus ~0.7% for informational
+queries. Top suppressed: "steps to calories calculator" (3,982 impr, 2.03% CTR),
+"walking calories calculator" (3,241 impr, 2.22%), "step calorie calculator" (1,555 impr, 2.83%).
+
+The recovered rows are few and their modeled click upside is small — the tool gives high-CTR
+keywords little headroom by design. Raise `maxCtr` for intent quality, not for modeled clicks.
+
+**Response size:** the tool has no row limit and returns every match. At `minImpressions: 100`
+that is ~433 KB (1,145 rows, measured) while still capturing 94% of the total modeled upside
+available at a floor of 20. This still overflows a single tool result, so expect it to spill to
+a file. Results are pre-sorted by `additionalClicks` descending, so read from the top and stop
+once you have enough. If a run needs to be smaller, raise `minImpressions` further — a floor of
+200 roughly halves the payload at 88% of upside. Never lower `maxCtr` to shrink the response;
+that trades away the highest-intent queries first.
 
 ### Step 2: Get Page-Level Data for Context
 
