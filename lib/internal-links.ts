@@ -5,6 +5,12 @@ export interface RelatedLink {
 
 // Tool slug → related blog post links
 export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
+  "treadmill-calorie-calculator": [
+    { title: "Calories Burned on Treadmill", href: "/blog/calories-burned-on-treadmill" },
+    { title: "The 12-3-30 Workout", href: "/blog/12-3-30-workout" },
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+    { title: "Treadmill vs Walking Outside", href: "/blog/treadmill-vs-walking-outside" },
+  ],
   "step-distance-calculator": [
     { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
@@ -145,6 +151,12 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
     { title: "Steps to Calories Table", href: "/conversions/steps-to-calories" },
   ],
+  "treadmill-calorie-calculator": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+  ],
   "walking-calories-calculator": [
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
@@ -175,6 +187,21 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "average-hiking-speed": [
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Jogging Speed by Age, Sex & Fitness Level", href: "/blog/average-jogging-speed" },
+    { title: "Calories Burned Hiking", href: "/blog/calories-burned-hiking" },
+  ],
+  "how-many-steps-in-20-minutes-walking": [
+    { title: "How Many Steps in 30 Minutes of Walking?", href: "/blog/how-many-steps-in-30-minutes-walking" },
+    { title: "How Many Steps in 1 Hour Walk?", href: "/blog/how-many-steps-in-1-hour-walk" },
+    { title: "How to Get 10,000 Steps a Day", href: "/blog/how-to-get-10000-steps-a-day" },
+  ],
+  "average-jogging-speed": [
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Hiking Speed", href: "/blog/average-hiking-speed" },
+    { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
+  ],
   "how-much-should-i-walk-to-lose-weight": [
     { title: "If I Walk 1 Hour a Day, How Much Weight Will I Lose?", href: "/blog/if-i-walk-1-hour-a-day-how-much-weight-will-i-lose" },
     { title: "How Many Miles Do I Need to Walk to Lose 5 Pounds a Week?", href: "/blog/how-many-miles-to-walk-to-lose-5-pounds-a-week" },
@@ -1302,6 +1329,18 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "average-hiking-speed": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "how-many-steps-in-20-minutes-walking": [
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "average-jogging-speed": [
+    { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
+    { title: "Pace to Speed Converter", href: "/tools/pace-to-speed-converter" },
+  ],
   "how-much-should-i-walk-to-lose-weight": [
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },

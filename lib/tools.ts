@@ -46,6 +46,15 @@ export const TOOLS: Tool[] = [
     outputs: "Calories burned, MET multiplier used",
   },
   {
+    title: "Treadmill Calorie Calculator",
+    description: "Calculate treadmill calories by speed, incline, weight and time",
+    href: "/tools/treadmill-calorie-calculator",
+    icon: "🏃",
+    popular: false,
+    inputs: "Weight, speed, incline percentage, duration",
+    outputs: "Calories burned, MET value, distance, estimated steps, incline comparison table",
+  },
+  {
     title: "Steps Per Mile Calculator",
     description: "Find out how many steps are in a mile or kilometer",
     href: "/tools/steps-per-mile-calculator",
