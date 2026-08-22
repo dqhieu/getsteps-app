@@ -5,6 +5,35 @@ export interface RelatedLink {
 
 // Tool slug → related blog post links
 export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
+  "bmr-calculator": [
+    { title: "What Is TDEE? A Walker's Guide to Total Daily Energy Expenditure", href: "/blog/what-is-tdee" },
+    { title: "How to Calculate TDEE With Steps (2026 Method)", href: "/blog/how-to-calculate-tdee-with-steps" },
+    { title: "MET Values for Walking: Complete Chart and Calorie Calculator Guide", href: "/blog/met-values-walking-chart" },
+    { title: "How to Calculate Body Fat Percentage Without Equipment", href: "/blog/how-to-calculate-body-fat-percentage" },
+  ],
+  "weight-loss-calculator": [
+    { title: "How Many Steps a Day to Lose Weight Calculator: Your Exact Number", href: "/blog/how-many-steps-a-day-to-lose-weight-calculator" },
+    { title: "Walking to Lose Weight Chart (2026): Calories by Speed & Weight", href: "/blog/walking-to-lose-weight-chart" },
+    { title: "How Many Steps to Lose a Pound? The Math Explained", href: "/blog/how-many-steps-to-lose-a-pound" },
+    { title: "Walking Schedule for Weight Loss: 4-Week Plan That Works", href: "/blog/walking-schedule-for-weight-loss" },
+  ],
+  "calories-burned-calculator": [
+    { title: "Calories Burned Walking: 30 Minutes, 1 Hour, and Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
+    { title: "Calories Burned Cycling: Charts by Speed, Time & Weight", href: "/blog/calories-burned-cycling" },
+    { title: "Calories Burned Hiking: Complete Guide by Weight & Distance", href: "/blog/calories-burned-hiking" },
+    { title: "MET Values for Walking: Complete Chart and Calorie Calculator Guide", href: "/blog/met-values-walking-chart" },
+  ],
+  "ideal-weight-calculator": [
+    { title: "How to Calculate Body Fat Percentage Without Equipment", href: "/blog/how-to-calculate-body-fat-percentage" },
+    { title: "How Many Steps a Day Is Healthy? What Science Says", href: "/blog/how-many-steps-a-day-is-healthy" },
+    { title: "Walking to Lose Weight Chart (2026): Calories by Speed & Weight", href: "/blog/walking-to-lose-weight-chart" },
+  ],
+  "waist-to-hip-ratio-calculator": [
+    { title: "Does Walking Reduce Belly Fat? What Research Says", href: "/blog/does-walking-reduce-belly-fat" },
+    { title: "How Many Steps a Day to Lose Belly Fat? Real Targets", href: "/blog/how-many-steps-a-day-to-lose-belly-fat" },
+    { title: "Is Walking Good for Your Heart? The Evidence (2026)", href: "/blog/is-walking-good-for-your-heart" },
+    { title: "Benefits of Walking Everyday: What Science Says", href: "/blog/benefits-of-walking-everyday" },
+  ],
   "treadmill-calorie-calculator": [
     { title: "Calories Burned on Treadmill", href: "/blog/calories-burned-on-treadmill" },
     { title: "The 12-3-30 Workout", href: "/blog/12-3-30-workout" },
@@ -124,6 +153,35 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
 
 // Tool slug → related tool links (for the 8 pages missing Related Calculators)
 export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "bmr-calculator": [
+    { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+    { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
+    { title: "Body Fat Calculator", href: "/tools/body-fat-calculator" },
+    { title: "Macro Calculator", href: "/tools/macro-calculator" },
+  ],
+  "weight-loss-calculator": [
+    { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+    { title: "BMR Calculator", href: "/tools/bmr-calculator" },
+  ],
+  "calories-burned-calculator": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Treadmill Calorie Calculator", href: "/tools/treadmill-calorie-calculator" },
+    { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
+  ],
+  "ideal-weight-calculator": [
+    { title: "BMI Calculator", href: "/tools/bmi-calculator" },
+    { title: "Body Fat Calculator", href: "/tools/body-fat-calculator" },
+    { title: "Weight Loss Calculator", href: "/tools/weight-loss-calculator" },
+    { title: "BMR Calculator", href: "/tools/bmr-calculator" },
+  ],
+  "waist-to-hip-ratio-calculator": [
+    { title: "BMI Calculator", href: "/tools/bmi-calculator" },
+    { title: "Body Fat Calculator", href: "/tools/body-fat-calculator" },
+    { title: "Weight Loss Calculator", href: "/tools/weight-loss-calculator" },
+  ],
   "bmi-calculator": [
     { title: "Body Fat Calculator", href: "/tools/body-fat-calculator" },
     { title: "TDEE Calculator", href: "/tools/tdee-calculator" },

@@ -10,6 +10,121 @@ export interface ToolHowToData {
 }
 
 export const TOOL_HOW_TO: Record<string, ToolHowToData> = {
+  "bmr-calculator": {
+    name: "How to calculate your BMR",
+    description:
+      "Enter your gender, age, weight and height to get your basal metabolic rate from three clinical formulas, plus daily calorie needs at every activity level.",
+    steps: [
+      {
+        name: "Enter your body stats",
+        text: "Set your gender, age, weight and height. Weight switches between kilograms and pounds, height between centimetres and feet/inches.",
+      },
+      {
+        name: "Add body fat percentage if you know it",
+        text: "Optional. Supplying it unlocks the Katch-McArdle formula, which works from lean body mass and is the most accurate option for lean or muscular bodies.",
+      },
+      {
+        name: "Pick your activity level",
+        text: "Choose from sedentary through very active. This does not change BMR, but it sets which maintenance calorie figure is highlighted.",
+      },
+      {
+        name: "Read your BMR and maintenance calories",
+        text: "The calculator returns your BMR, all three formula estimates side by side, and total daily calories at each of the five activity levels.",
+      },
+    ],
+  },
+  "weight-loss-calculator": {
+    name: "How to plan your weight loss",
+    description:
+      "Enter your stats and goal weight to get a daily calorie target, the number of weeks to reach your goal, and week-by-week milestones.",
+    steps: [
+      {
+        name: "Enter your body stats",
+        text: "Set gender, age and height, then your current weight and your goal weight. Both weights use the same unit toggle.",
+      },
+      {
+        name: "Pick your activity level",
+        text: "Choose sedentary through very active. This determines your TDEE, which the calorie target is calculated from.",
+      },
+      {
+        name: "Choose a rate of loss",
+        text: "Mild is 0.25 kg per week, moderate 0.5 kg, aggressive 0.75 kg, rapid 1 kg. Faster rates need larger deficits and are harder to sustain.",
+      },
+      {
+        name: "Read your plan",
+        text: "You get a daily calorie target, the deficit it creates, weeks to goal, and projected milestones. Warnings appear if the rate would push you below safe calorie floors.",
+      },
+    ],
+  },
+  "calories-burned-calculator": {
+    name: "How to calculate calories burned",
+    description:
+      "Pick an activity, enter your weight and duration, and get calories burned using MET values from the Compendium of Physical Activities.",
+    steps: [
+      {
+        name: "Choose a category and activity",
+        text: "Pick a category such as Walking & Running or Sports, then select the specific activity. Each option shows its MET rating.",
+      },
+      {
+        name: "Enter your weight",
+        text: "Calorie burn scales directly with body mass, so this is the input that matters most. Switch between kilograms and pounds.",
+      },
+      {
+        name: "Set the duration",
+        text: "Use a preset of 15 to 90 minutes or type an exact figure.",
+      },
+      {
+        name: "Read gross and net calories",
+        text: "The calculator returns total calories, net calories above resting, calories per hour, a walking and step equivalent, and a table comparing other activities over the same duration.",
+      },
+    ],
+  },
+  "ideal-weight-calculator": {
+    name: "How to calculate your ideal weight",
+    description:
+      "Enter your gender and height to see ideal body weight from the Devine, Robinson, Miller and Hamwi formulas, plus the healthy BMI range.",
+    steps: [
+      {
+        name: "Select your gender",
+        text: "Every one of the four formulas uses a different base weight and per-inch increment for men and women.",
+      },
+      {
+        name: "Enter your height",
+        text: "Switch between centimetres and feet/inches. Height is the only variable the four formulas actually use.",
+      },
+      {
+        name: "Add your current weight if you want a comparison",
+        text: "Optional. Supplying it shows how far you sit from the formula average and whether you fall inside the healthy BMI range.",
+      },
+      {
+        name: "Read the range, not the number",
+        text: "The calculator returns all four estimates, their average, and the healthy BMI weight band for your height, which is the wider and more useful answer.",
+      },
+    ],
+  },
+  "waist-to-hip-ratio-calculator": {
+    name: "How to calculate your waist-to-hip ratio",
+    description:
+      "Measure your waist and hips, enter both, and see where your ratio falls against the WHO cardiovascular risk thresholds.",
+    steps: [
+      {
+        name: "Select your gender",
+        text: "The WHO sets lower thresholds for women, who naturally carry more hip and thigh fat.",
+      },
+      {
+        name: "Measure your waist",
+        text: "Find the narrowest point between your lowest rib and the top of your hip bone. Measure at the end of a normal breath out, without holding your stomach in.",
+      },
+      {
+        name: "Measure your hips",
+        text: "Measure the widest point around your buttocks, keeping the tape level and snug without compressing the skin.",
+      },
+      {
+        name: "Read your risk band",
+        text: "The calculator returns your ratio, the WHO risk band it falls into, a separate waist circumference check, and the waist measurement that would put you in the low-risk band.",
+      },
+    ],
+  },
   "walking-time-calculator": {
     name: "How to use the walking time calculator",
     description:
