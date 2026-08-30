@@ -34,6 +34,18 @@ export const TOOL_RELATED_BLOGS: Record<string, RelatedLink[]> = {
     { title: "Is Walking Good for Your Heart? The Evidence (2026)", href: "/blog/is-walking-good-for-your-heart" },
     { title: "Benefits of Walking Everyday: What Science Says", href: "/blog/benefits-of-walking-everyday" },
   ],
+  "treadmill-incline-calculator": [
+    { title: "The 12-3-30 Workout", href: "/blog/12-3-30-workout" },
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+    { title: "Incline Walking vs Running", href: "/blog/incline-walking-vs-running" },
+    { title: "Calories Burned on Treadmill", href: "/blog/calories-burned-on-treadmill" },
+  ],
+  "rucking-calorie-calculator": [
+    { title: "Rucking Benefits", href: "/blog/rucking-benefits" },
+    { title: "Walking With a Weighted Vest", href: "/blog/walking-with-weighted-vest" },
+    { title: "Calories Burned Hiking", href: "/blog/calories-burned-hiking" },
+    { title: "Average Hiking Speed", href: "/blog/average-hiking-speed" },
+  ],
   "treadmill-calorie-calculator": [
     { title: "Calories Burned on Treadmill", href: "/blog/calories-burned-on-treadmill" },
     { title: "The 12-3-30 Workout", href: "/blog/12-3-30-workout" },
@@ -209,11 +221,23 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
     { title: "Steps to Calories Table", href: "/conversions/steps-to-calories" },
   ],
+  "treadmill-incline-calculator": [
+    { title: "Treadmill Calorie Calculator", href: "/tools/treadmill-calorie-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Rucking Calorie Calculator", href: "/tools/rucking-calorie-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "rucking-calorie-calculator": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Treadmill Incline Calculator", href: "/tools/treadmill-incline-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+    { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
+  ],
   "treadmill-calorie-calculator": [
+    { title: "Treadmill Incline Calculator", href: "/tools/treadmill-incline-calculator" },
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
-    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
-    { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
+    { title: "Rucking Calorie Calculator", href: "/tools/rucking-calorie-calculator" },
   ],
   "walking-calories-calculator": [
     { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },

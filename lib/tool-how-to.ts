@@ -10,6 +10,60 @@ export interface ToolHowToData {
 }
 
 export const TOOL_HOW_TO: Record<string, ToolHowToData> = {
+  "treadmill-incline-calculator": {
+    name: "How to convert treadmill incline to a flat pace",
+    description:
+      "Enter your belt speed, incline and duration to see the flat pace that costs the same effort, how much harder the grade makes it, and the elevation you climbed.",
+    steps: [
+      {
+        name: "Enter your belt speed",
+        text: "Set the speed shown on the treadmill console. Toggle between km/h and mph; every result follows the unit you pick.",
+      },
+      {
+        name: "Set the incline",
+        text: "Drag the slider or tap a preset from 0% to 15%. The presets cover the grades most consumer treadmills offer, including the 12% used by the 12-3-30 workout.",
+      },
+      {
+        name: "Enter how long you walked",
+        text: "Duration in minutes. This does not change the pace equivalence, but it sets the distance and the elevation climbed.",
+      },
+      {
+        name: "Read the flat-pace equivalent",
+        text: "The headline figure is the level pace that costs the same oxygen. Above roughly 3% grade no walking pace matches, so the comparison switches to a jog and says so.",
+      },
+      {
+        name: "Check the elevation and comparison table",
+        text: "See the climb in vertical metres, feet, building storeys and stair steps, then compare every standard grade at your speed in the equivalence table.",
+      },
+    ],
+  },
+  "rucking-calorie-calculator": {
+    name: "How to calculate rucking calories",
+    description:
+      "Enter your body weight, pack weight, pace, grade and terrain to get calories burned, plus how much of that burn the load is responsible for.",
+    steps: [
+      {
+        name: "Enter your body and pack weight",
+        text: "Both in kilograms or pounds. The load penalty scales with the square of the pack-to-body ratio, so both figures matter, not just the pack.",
+      },
+      {
+        name: "Set your pace and duration",
+        text: "Rucking pace in km/h or mph, and how long you were moving. Together these set the distance covered.",
+      },
+      {
+        name: "Add the grade",
+        text: "Average uphill grade as a percentage. Descents are treated as level ground, because the Pandolf equation is only validated for level and uphill walking.",
+      },
+      {
+        name: "Pick your terrain",
+        text: "From paved road through trail, heavy brush and loose sand. Terrain multiplies the movement cost, and sand is more than twice blacktop.",
+      },
+      {
+        name: "Read your calories and load contribution",
+        text: "The calculator returns total calories, how many came from the pack alone, metabolic rate in watts, and a table of calories across common ruck loads.",
+      },
+    ],
+  },
   "bmr-calculator": {
     name: "How to calculate your BMR",
     description:
