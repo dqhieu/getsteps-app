@@ -269,6 +269,41 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "how-many-miles-should-i-walk-a-day": [
+    { title: "How Many Miles to Walk a Day to Lose Weight", href: "/blog/how-many-miles-to-walk-a-day-to-lose-weight" },
+    { title: "Is 8,000 Steps a Day Good?", href: "/blog/is-8000-steps-a-day-good" },
+    { title: "How Many Steps a Day Is Considered Active?", href: "/blog/how-many-steps-a-day-is-considered-active" },
+  ],
+  "walking-pad-vs-treadmill": [
+    { title: "Walking Pad Benefits", href: "/blog/walking-pad-benefits" },
+    { title: "Indoor Walking Workout", href: "/blog/indoor-walking-workout" },
+    { title: "Treadmill vs Walking Outside", href: "/blog/treadmill-vs-walking-outside" },
+  ],
+  "indoor-walking-workout": [
+    { title: "Walking at Home Workout", href: "/blog/walking-at-home-workout" },
+    { title: "Walking Pad vs Treadmill", href: "/blog/walking-pad-vs-treadmill" },
+    { title: "30-Minute Walking Workout", href: "/blog/30-minute-walking-workout" },
+  ],
+  "walking-2-miles-a-day": [
+    { title: "Walking 3 Miles a Day", href: "/blog/walking-3-miles-a-day" },
+    { title: "How Many Miles Should I Walk a Day?", href: "/blog/how-many-miles-should-i-walk-a-day" },
+    { title: "Calories Burned Walking 2 Miles", href: "/blog/calories-burned-walking-2-miles" },
+  ],
+  "how-long-does-it-take-to-walk-6-miles": [
+    { title: "How Long Does It Take to Walk 5 Miles?", href: "/blog/how-long-does-it-take-to-walk-5-miles" },
+    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Walking 2 Miles a Day", href: "/blog/walking-2-miles-a-day" },
+  ],
+  "is-8000-steps-a-day-good": [
+    { title: "Is 7,000 Steps a Day Enough?", href: "/blog/is-7000-steps-a-day-enough" },
+    { title: "How Many Steps a Day Is Considered Active?", href: "/blog/how-many-steps-a-day-is-considered-active" },
+    { title: "How Many Miles Is 8,000 Steps?", href: "/blog/how-many-miles-is-8000-steps" },
+  ],
+  "how-many-steps-a-day-is-considered-active": [
+    { title: "How Many Steps a Day Is Healthy?", href: "/blog/how-many-steps-a-day-is-healthy" },
+    { title: "Is 8,000 Steps a Day Good?", href: "/blog/is-8000-steps-a-day-good" },
+    { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
+  ],
   "average-hiking-speed": [
     { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
     { title: "Average Jogging Speed by Age, Sex & Fitness Level", href: "/blog/average-jogging-speed" },
@@ -1411,6 +1446,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "how-many-miles-should-i-walk-a-day": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "walking-pad-vs-treadmill": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "indoor-walking-workout": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "walking-2-miles-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-6-miles": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "is-8000-steps-a-day-good": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "how-many-steps-a-day-is-considered-active": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
+  ],
   "average-hiking-speed": [
     { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
     { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
