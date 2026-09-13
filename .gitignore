@@ -51,3 +51,5 @@ next-env.d.ts
 # scripts
 scripts/.venv
 scripts/*.json
+/dist/
+.vinext/

@@ -1,5 +1,6 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
+import remarkGfm from "remark-gfm";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
@@ -11,11 +12,97 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/features/:path*",
+        destination: "/docs/features/:path*",
+        permanent: true,
+      },
+      {
+        source: "/zh/:path*",
+        destination: "/docs/zh/:path*",
+        permanent: true,
+      },
+      {
+        source: "/fr/:path*",
+        destination: "/docs/fr/:path*",
+        permanent: true,
+      },
+      {
+        source: "/de/:path*",
+        destination: "/docs/de/:path*",
+        permanent: true,
+      },
+      {
+        source: "/it/:path*",
+        destination: "/docs/it/:path*",
+        permanent: true,
+      },
+      {
+        source: "/pt-BR/:path*",
+        destination: "/docs/pt-BR/:path*",
+        permanent: true,
+      },
+      {
+        source: "/es/:path*",
+        destination: "/docs/es/:path*",
+        permanent: true,
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/_mintlify/:path*",
+        destination: "https://steps-9a9e4b74.mintlify.dev/_mintlify/:path*",
+      },
+      {
+        source: "/api/request",
+        destination: "https://steps-9a9e4b74.mintlify.dev/_mintlify/api/request",
+      },
+      {
+        source: "/docs/llms.txt",
+        destination: "https://steps-9a9e4b74.mintlify.dev/llms.txt",
+      },
+      {
+        source: "/docs/llms-full.txt",
+        destination: "https://steps-9a9e4b74.mintlify.dev/llms-full.txt",
+      },
+      {
+        source: "/docs/sitemap.xml",
+        destination: "https://steps-9a9e4b74.mintlify.dev/sitemap.xml",
+      },
+      {
+        source: "/docs/robots.txt",
+        destination: "https://steps-9a9e4b74.mintlify.dev/robots.txt",
+      },
+      {
+        source: "/docs/mcp",
+        destination: "https://steps-9a9e4b74.mintlify.dev/mcp",
+      },
+      {
+        source: "/docs",
+        destination: "https://steps-9a9e4b74.mintlify.dev/docs",
+      },
+      {
+        source: "/docs/:path*",
+        destination: "https://steps-9a9e4b74.mintlify.dev/docs/:path*",
+      },
+      {
+        source: "/mintlify-assets/:path+",
+        destination: "https://steps-9a9e4b74.mintlify.dev/mintlify-assets/:path+",
+      },
+    ];
+  },
   skipTrailingSlashRedirect: true,
 };
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkGfm],
+  },
 });
 
 export default withMDX(nextConfig);

@@ -1,10 +1,51 @@
 import fs from "fs";
 import path from "path";
+import type { ComponentType } from "react";
+import type { MDXComponents } from "mdx/types";
 import matter from "gray-matter";
 import { resolveAuthor, type AuthorProfile } from "./authors";
 
 const POSTS_DIR = path.join(process.cwd(), "content/blog");
 const POSTS_PER_PAGE = 10;
+
+function slugFromPath(filePath: string): string {
+  const filename = filePath.split("/").pop() ?? filePath;
+  return filename.replace(/\.mdx?$/, "");
+}
+
+type MdxContentComponent = ComponentType<{ components?: MDXComponents }>;
+
+let bundledBlogPosts: Record<string, string> | null = null;
+let bundledBlogLoaders:
+  | Record<string, () => Promise<{ default: MdxContentComponent }>>
+  | null = null;
+try {
+  // Vite inlines these files into the Worker bundle. Next.js leaves the call
+  // intact, it throws, and we fall back to reading content/blog from disk.
+  const modules = import.meta.glob("../content/blog/*.{md,mdx}", {
+    eager: true,
+    query: "?raw",
+    import: "default",
+  }) as Record<string, string>;
+  if (modules && Object.keys(modules).length > 0) {
+    bundledBlogPosts = Object.fromEntries(
+      Object.entries(modules).map(([filePath, raw]) => [slugFromPath(filePath), raw])
+    );
+  }
+
+  const compiled = import.meta.glob("../content/blog/*.{md,mdx}") as Record<
+    string,
+    () => Promise<{ default: MdxContentComponent }>
+  >;
+  if (compiled && Object.keys(compiled).length > 0) {
+    bundledBlogLoaders = Object.fromEntries(
+      Object.entries(compiled).map(([filePath, loader]) => [slugFromPath(filePath), loader])
+    );
+  }
+} catch {
+  bundledBlogPosts = null;
+  bundledBlogLoaders = null;
+}
 
 export type Author = AuthorProfile;
 
@@ -18,6 +59,7 @@ export interface BlogPost {
   image?: string;
   keyword?: string;
   content: string;
+  MdxContent?: MdxContentComponent;
 }
 
 export interface PaginatedPosts {
@@ -26,24 +68,28 @@ export interface PaginatedPosts {
   currentPage: number;
 }
 
+function parsePostSource(slug: string, fileContents: string): BlogPost {
+  const { data, content } = matter(fileContents);
+
+  return {
+    slug,
+    title: data.title || "Untitled",
+    description: data.description || "",
+    date: data.date || new Date().toISOString().split("T")[0],
+    lastUpdated: data.lastUpdated || data.updated || undefined,
+    author: resolveAuthor(data.author),
+    image: data.image,
+    keyword: data.keyword,
+    content,
+  };
+}
+
 function parsePostFile(filename: string): BlogPost | null {
   try {
     const slug = filename.replace(/\.mdx?$/, "");
     const filePath = path.join(POSTS_DIR, filename);
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContents);
-
-    return {
-      slug,
-      title: data.title || "Untitled",
-      description: data.description || "",
-      date: data.date || new Date().toISOString().split("T")[0],
-      lastUpdated: data.lastUpdated || data.updated || undefined,
-      author: resolveAuthor(data.author),
-      image: data.image,
-      keyword: data.keyword,
-      content,
-    };
+    return parsePostSource(slug, fileContents);
   } catch {
     return null;
   }
@@ -51,6 +97,15 @@ function parsePostFile(filename: string): BlogPost | null {
 
 export function getAllPosts(): BlogPost[] {
   try {
+    if (bundledBlogPosts) {
+      const posts = Object.entries(bundledBlogPosts).map(([slug, raw]) =>
+        parsePostSource(slug, raw)
+      );
+      return posts.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+    }
+
     if (!fs.existsSync(POSTS_DIR)) {
       return [];
     }
@@ -68,34 +123,38 @@ export function getAllPosts(): BlogPost[] {
   }
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
-    const mdxPath = path.join(POSTS_DIR, `${slug}.mdx`);
-    const mdPath = path.join(POSTS_DIR, `${slug}.md`);
+    let post: BlogPost | null = null;
 
-    let filePath: string | null = null;
-    if (fs.existsSync(mdxPath)) {
-      filePath = mdxPath;
-    } else if (fs.existsSync(mdPath)) {
-      filePath = mdPath;
+    if (bundledBlogPosts) {
+      const raw = bundledBlogPosts[slug];
+      post = raw ? parsePostSource(slug, raw) : null;
+    } else {
+      const mdxPath = path.join(POSTS_DIR, `${slug}.mdx`);
+      const mdPath = path.join(POSTS_DIR, `${slug}.md`);
+
+      let filePath: string | null = null;
+      if (fs.existsSync(mdxPath)) {
+        filePath = mdxPath;
+      } else if (fs.existsSync(mdPath)) {
+        filePath = mdPath;
+      }
+
+      if (filePath) {
+        post = parsePostSource(slug, fs.readFileSync(filePath, "utf8"));
+      }
     }
 
-    if (!filePath) return null;
+    if (!post) return null;
 
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContents);
+    const loader = bundledBlogLoaders?.[slug];
+    if (loader) {
+      const mod = await loader();
+      post.MdxContent = mod.default;
+    }
 
-    return {
-      slug,
-      title: data.title || "Untitled",
-      description: data.description || "",
-      date: data.date || new Date().toISOString().split("T")[0],
-      lastUpdated: data.lastUpdated || data.updated || undefined,
-      author: resolveAuthor(data.author),
-      image: data.image,
-      keyword: data.keyword,
-      content,
-    };
+    return post;
   } catch {
     return null;
   }
@@ -163,6 +222,10 @@ export function extractFaqFromContent(content: string): FaqItem[] {
 
 export function getAllSlugs(): string[] {
   try {
+    if (bundledBlogPosts) {
+      return Object.keys(bundledBlogPosts);
+    }
+
     if (!fs.existsSync(POSTS_DIR)) {
       return [];
     }

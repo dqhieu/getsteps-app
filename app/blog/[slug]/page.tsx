@@ -30,7 +30,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -70,13 +70,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
   const faqs = extractFaqFromContent(post.content);
+  const PostContent = post.MdxContent;
 
   const faqSchema = faqs.length > 0 ? {
     "@context": "https://schema.org",
@@ -215,11 +216,15 @@ export default async function BlogPostPage({ params }: Props) {
         )}
 
         <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
-          <MDXRemote
-            source={post.content}
-            components={mdxComponents}
-            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-          />
+          {PostContent ? (
+            <PostContent components={mdxComponents} />
+          ) : (
+            <MDXRemote
+              source={post.content}
+              components={mdxComponents}
+              options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+            />
+          )}
         </div>
 
         <RelatedContentSection
