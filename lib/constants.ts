@@ -54,6 +54,8 @@ export const SPOTLIGHTS: ReadonlyArray<{
   title: string;
   description: string;
   media: string;
+  mediaWidth?: number;
+  mediaHeight?: number;
   icon: LandingIconName;
 }> = [
   {
@@ -81,6 +83,8 @@ export const SPOTLIGHTS: ReadonlyArray<{
     description:
       "Daily leaderboards with friends. Create private boards, invite with a getsteps.app/join link, and rank by steps or distance.",
     media: "/spotlights/stepboard.png",
+    mediaWidth: 600,
+    mediaHeight: 1252,
     icon: "Trophy",
   },
   {
@@ -90,6 +94,8 @@ export const SPOTLIGHTS: ReadonlyArray<{
     description:
       "Start and track workouts from your wrist with GPS routes, live metrics, and real-time mirroring to your phone.",
     media: "/spotlights/apple-watch.png",
+    mediaWidth: 600,
+    mediaHeight: 1028,
     icon: "Watch",
   },
 ];

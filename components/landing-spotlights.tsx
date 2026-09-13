@@ -3,13 +3,24 @@ import { SPOTLIGHTS } from "@/lib/constants";
 import { getLandingIcon } from "@/lib/landing-icons";
 import { Reveal } from "./landing-reveal";
 
-function SpotlightMedia({ src, title }: { src: string; title: string }) {
+function SpotlightMedia({
+  src,
+  title,
+  width,
+  height,
+}: {
+  src: string;
+  title: string;
+  width?: number;
+  height?: number;
+}) {
   const isVideo = src.endsWith(".mp4");
-  return (
-    <div className="relative mx-auto w-[260px] md:w-[300px] aspect-[1170/2532]">
-      {isVideo ? (
+
+  if (isVideo) {
+    return (
+      <div className="relative mx-auto w-[260px] md:w-[300px] aspect-[1170/2532]">
         <video
-          className="w-full h-full object-contain"
+          className="h-full w-full object-contain"
           src={src}
           autoPlay
           muted
@@ -17,15 +28,20 @@ function SpotlightMedia({ src, title }: { src: string; title: string }) {
           playsInline
           aria-hidden
         />
-      ) : (
-        <Image
-          src={src}
-          alt={`${title} shown in the Steps app`}
-          fill
-          className="object-contain"
-          sizes="300px"
-        />
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto w-[260px] md:w-[320px]">
+      <Image
+        src={src}
+        alt={`${title} shown in the Steps app`}
+        width={width ?? 600}
+        height={height ?? 1200}
+        className="h-auto w-full"
+        sizes="(min-width: 768px) 320px, 260px"
+      />
     </div>
   );
 }
@@ -57,7 +73,12 @@ export function LandingSpotlights() {
                   </p>
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <SpotlightMedia src={item.media} title={item.title} />
+                  <SpotlightMedia
+                    src={item.media}
+                    title={item.title}
+                    width={item.mediaWidth}
+                    height={item.mediaHeight}
+                  />
                 </div>
               </div>
             </Reveal>
