@@ -11,12 +11,13 @@ import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Steps Per Mile Calculator [Free] — How Many Steps in a Mile?",
+  title: "How Many Steps Are in a Mile? Calculator [Free]",
   description:
-    "How many steps in a mile? About 2,000-2,500 depending on height and pace. Get personalized step counts per mile and per km — includes walking vs running comparison table.",
+    "How many steps are in a mile? About 2,000-2,500 depending on height and pace. Get personalized steps per mile and per km — walking vs running table included.",
   keywords: [
     "steps per mile",
     "steps per km",
+    "how many steps are in a mile",
     "how many steps in a mile",
     "steps in a kilometer",
     "step length calculator",
@@ -25,9 +26,9 @@ export const metadata: Metadata = {
     "miles to steps",
   ],
   openGraph: {
-    title: "Steps Per Mile Calculator [Free] — Personalized by Height",
+    title: "How Many Steps Are in a Mile? Calculator [Free]",
     description:
-      "How many steps in a mile? 2,000-2,500 depending on your height. Get personalized step counts per mile and per km.",
+      "How many steps are in a mile? 2,000-2,500 depending on your height. Get personalized steps per mile and per km.",
     type: "website",
     url: `${SITE_CONFIG.baseUrl}/tools/steps-per-mile-calculator`,
     images: [
@@ -53,11 +54,11 @@ export default function StepsPerMileCalculatorPage() {
       <section className="pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
-            Steps Per Mile Calculator
+            How Many Steps Are in a Mile?
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Find out how many steps you take per mile or kilometer based on your
-            height. Get personalized step counts for any distance.
+            How many steps are in a mile? About 2,000–2,500 for most adults.
+            Enter your height for a personalized steps-per-mile and per-km count.
           </p>
         </div>
       </section>

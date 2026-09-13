@@ -326,7 +326,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   ],
   "how-long-does-it-take-to-walk-6-miles": [
     { title: "How Long Does It Take to Walk 5 Miles?", href: "/blog/how-long-does-it-take-to-walk-5-miles" },
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
     { title: "Walking 2 Miles a Day", href: "/blog/walking-2-miles-a-day" },
   ],
   "is-8000-steps-a-day-good": [
@@ -340,7 +340,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
   ],
   "average-hiking-speed": [
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
     { title: "Average Jogging Speed by Age, Sex & Fitness Level", href: "/blog/average-jogging-speed" },
     { title: "Calories Burned Hiking", href: "/blog/calories-burned-hiking" },
   ],
@@ -350,7 +350,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How to Get 10,000 Steps a Day", href: "/blog/how-to-get-10000-steps-a-day" },
   ],
   "average-jogging-speed": [
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
     { title: "Average Hiking Speed", href: "/blog/average-hiking-speed" },
     { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
   ],
@@ -382,12 +382,12 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "10km Walk Calories Burned", href: "/blog/calories-burned-walking-10km" },
     { title: "How Many Steps Is 2 Hours of Walking?", href: "/blog/how-many-steps-in-2-hours-of-walking" },
     { title: "How Long Does It Take to Walk 1 km?", href: "/blog/how-long-does-it-take-to-walk-1-km" },
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
   ],
   "how-many-steps-is-1-5-miles": [
     { title: "How Many Steps Is Half a Mile?", href: "/blog/how-many-steps-is-half-a-mile" },
     { title: "How Many Steps in 2 Miles?", href: "/blog/how-many-steps-in-2-miles" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "How Many Steps Is 2 Hours of Walking?", href: "/blog/how-many-steps-in-2-hours-of-walking" },
   ],
   "how-many-miles-to-walk-to-lose-5-pounds-a-week": [
@@ -397,16 +397,16 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Miles to Walk a Day to Lose Weight?", href: "/blog/how-many-miles-to-walk-a-day-to-lose-weight" },
   ],
   "how-many-steps-in-a-mile-for-a-woman": [
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "How Many Steps Is Half a Mile?", href: "/blog/how-many-steps-is-half-a-mile" },
     { title: "Average Steps Per Day for Women", href: "/blog/average-steps-per-day-for-women" },
     { title: "Average Step Length", href: "/blog/average-step-length" },
   ],
   "how-many-steps-is-half-a-mile": [
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "How Many Steps in a Mile for a Woman?", href: "/blog/how-many-steps-in-a-mile-for-a-woman" },
     { title: "How Far Is 2,000 Steps?", href: "/blog/how-far-is-2000-steps" },
-    { title: "How Long Does It Take to Walk 1 Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
+    { title: "How Long Does It Take to Walk a Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
   ],
   "how-many-steps-per-day-for-men": [
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
@@ -442,7 +442,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Far Is 3,000 Steps?", href: "/blog/how-far-is-3000-steps" },
     { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
     { title: "How Many Miles Is 14,000 Steps?", href: "/blog/how-many-miles-is-14000-steps" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
   ],
   "how-many-miles-is-14000-steps": [
     { title: "How Many Miles Is 13,000 Steps?", href: "/blog/how-many-miles-is-13000-steps" },
@@ -567,7 +567,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   ],
   "how-far-is-3000-steps": [
     { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "Average 1-Mile Walk Time by Age", href: "/blog/average-mile-walk-time-by-age" },
   ],
   "how-long-to-walk-to-lose-10-pounds": [
@@ -576,8 +576,8 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Walking to Lose Weight Chart", href: "/blog/walking-to-lose-weight-chart" },
   ],
   "average-mile-walk-time-by-age": [
-    { title: "How Long Does It Take to Walk 1 Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "How Long Does It Take to Walk a Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
     { title: "How Far Is 3,000 Steps?", href: "/blog/how-far-is-3000-steps" },
   ],
   "how-many-steps-per-day-for-seniors": [
@@ -752,7 +752,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "How Many Steps in a Mile Running?", href: "/blog/how-many-steps-in-a-mile-running" },
   ],
   "how-many-steps-in-a-mile-running": [
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
     { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
   ],
@@ -819,7 +819,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   ],
   "how-far-is-5000-steps": [
     { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "Average Steps Per Day for Women", href: "/blog/average-steps-per-day-for-women" },
     { title: "How Far Is 3,000 Steps?", href: "/blog/how-far-is-3000-steps" },
   ],
@@ -831,7 +831,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   "calories-burned-walking-one-mile": [
     { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
     { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
   ],
   "benefits-of-walking-30-minutes-a-day": [
     { title: "Walking 30 Minutes a Day for a Month Results", href: "/blog/walking-30-minutes-a-day-results" },
@@ -905,7 +905,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Walking 45 Minutes a Day for Weight Loss", href: "/blog/walking-45-minutes-a-day-weight-loss" },
   ],
   "how-many-steps-in-a-kilometer": [
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
     { title: "How Many Miles Is 10,000 Steps?", href: "/blog/how-many-miles-is-10000-steps" },
   ],
@@ -926,7 +926,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   ],
   "how-many-steps-in-2-miles": [
     { title: "How Many Steps in 3 Miles?", href: "/blog/how-many-steps-in-3-miles" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "How Long Does It Take to Walk 2 Miles?", href: "/blog/how-long-does-it-take-to-walk-2-miles" },
   ],
   "how-many-steps-in-3-miles": [
@@ -961,7 +961,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   ],
   "how-long-does-it-take-to-walk-1-mile": [
     { title: "How Long Does It Take to Walk 2 Miles?", href: "/blog/how-long-does-it-take-to-walk-2-miles" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "Calories Burned Walking One Mile", href: "/blog/calories-burned-walking-one-mile" },
     { title: "Average 1-Mile Walk Time by Age", href: "/blog/average-mile-walk-time-by-age" },
   ],
@@ -1001,7 +1001,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Walking at Home Workout", href: "/blog/walking-at-home-workout" },
   ],
   "what-is-brisk-walking": [
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
     { title: "How Many Miles Is 15,000 Steps?", href: "/blog/how-many-miles-is-15000-steps" },
     { title: "20,000 Steps a Day Benefits", href: "/blog/20000-steps-a-day-benefits" },
   ],
@@ -1019,7 +1019,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   "how-many-miles-is-4000-steps": [
     { title: "How Many Miles Is 8,000 Steps?", href: "/blog/how-many-miles-is-8000-steps" },
     { title: "How Far Is 5,000 Steps?", href: "/blog/how-far-is-5000-steps" },
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
   ],
   "how-many-miles-is-20000-steps": [
     { title: "How Many Miles Is 12,000 Steps?", href: "/blog/how-many-miles-is-12000-steps" },
@@ -1083,11 +1083,11 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   ],
   "average-step-length": [
     { title: "Walking Speed Calculator Guide", href: "/blog/walking-speed-calculator-guide" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
   ],
   "walking-speed-calculator-guide": [
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
     { title: "Average Step Length by Height", href: "/blog/average-step-length" },
     { title: "How Long Does It Take to Walk 1 km?", href: "/blog/how-long-does-it-take-to-walk-1-km" },
   ],
@@ -1097,7 +1097,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
   ],
   "how-long-does-it-take-to-walk-1-km": [
-    { title: "How Long Does It Take to Walk 1 Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
+    { title: "How Long Does It Take to Walk a Mile?", href: "/blog/how-long-does-it-take-to-walk-1-mile" },
     { title: "How Many Steps in a Kilometer?", href: "/blog/how-many-steps-in-a-kilometer" },
     { title: "Walking Speed Calculator Guide", href: "/blog/walking-speed-calculator-guide" },
   ],
@@ -1157,14 +1157,14 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Recommended Steps Per Day by Age", href: "/blog/recommended-steps-per-day-by-age" },
   ],
   "how-many-steps-in-8-km": [
-    { title: "How Many Km Is 10,000 Steps?", href: "/blog/how-many-km-is-10000-steps" },
+    { title: "10,000 Steps in KM", href: "/blog/how-many-km-is-10000-steps" },
     { title: "10,000 Steps a Day Benefits", href: "/blog/10000-steps-a-day-benefits" },
     { title: "How Many Steps in 10 km?", href: "/blog/how-many-steps-in-10-km" },
   ],
   "how-many-steps-in-10-km": [
-    { title: "How Many Km Is 10,000 Steps?", href: "/blog/how-many-km-is-10000-steps" },
+    { title: "10,000 Steps in KM", href: "/blog/how-many-km-is-10000-steps" },
     { title: "How Many Steps in 8 km?", href: "/blog/how-many-steps-in-8-km" },
-    { title: "Average Walking Pace", href: "/blog/average-walking-pace" },
+    { title: "Average Walking Speed & Pace", href: "/blog/average-walking-pace" },
   ],
   "how-many-miles-is-13000-steps": [
     { title: "How Many Miles Is 12,000 Steps?", href: "/blog/how-many-miles-is-12000-steps" },
@@ -1295,7 +1295,7 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
   "how-many-steps-in-a-half-marathon": [
     { title: "How Many Steps in a 5K?", href: "/blog/how-many-steps-in-a-5k" },
     { title: "How Many Miles Is a 5K?", href: "/blog/how-many-miles-is-a-5k" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
   ],
   "how-many-steps-a-day-to-lose-belly-fat": [
     { title: "Does Walking Reduce Belly Fat?", href: "/blog/does-walking-reduce-belly-fat" },

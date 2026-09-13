@@ -43,7 +43,7 @@ export const nursesPersona: PersonaData = {
   ],
   relatedPosts: [
     { title: "How Many Steps Do Nurses Walk Per Shift?", href: "/blog/how-many-steps-do-nurses-walk-per-shift" },
-    { title: "How Many Steps in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
+    { title: "How Many Steps Are in a Mile?", href: "/blog/how-many-steps-in-a-mile" },
     { title: "Calories Burned Walking: 30 Min, 1 Hour & Beyond", href: "/blog/calories-burned-walking-by-time-and-distance" },
   ],
   relatedPersonas: [
