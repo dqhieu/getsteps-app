@@ -269,6 +269,41 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "is-20000-steps-a-day-good": [
+    { title: "Is 14,000 Steps a Day Good?", href: "/blog/is-14000-steps-a-day-good" },
+    { title: "Is 3,000 Steps a Day Enough?", href: "/blog/is-3000-steps-a-day-enough" },
+    { title: "If I Walk 2 Hours a Day, How Much Weight Will I Lose?", href: "/blog/if-i-walk-2-hours-a-day-how-much-weight-will-i-lose" },
+  ],
+  "does-walking-help-you-sleep": [
+    { title: "Evening Walking Benefits", href: "/blog/evening-walking-benefits" },
+    { title: "Morning Walk Benefits", href: "/blog/morning-walk-benefits" },
+    { title: "Power Walking Benefits", href: "/blog/power-walking-benefits" },
+  ],
+  "if-i-walk-2-hours-a-day-how-much-weight-will-i-lose": [
+    { title: "If I Walk 1 Hour a Day, How Much Weight Will I Lose?", href: "/blog/if-i-walk-1-hour-a-day-how-much-weight-will-i-lose" },
+    { title: "Is 20,000 Steps a Day Good?", href: "/blog/is-20000-steps-a-day-good" },
+    { title: "Walking vs Swimming", href: "/blog/walking-vs-swimming" },
+  ],
+  "power-walking-benefits": [
+    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
+    { title: "Does Walking Help You Sleep?", href: "/blog/does-walking-help-you-sleep" },
+    { title: "Zone 2 Walking", href: "/blog/zone-2-walking" },
+  ],
+  "walking-vs-swimming": [
+    { title: "Walking vs Cycling", href: "/blog/walking-vs-cycling" },
+    { title: "Does Walking Increase Bone Density?", href: "/blog/does-walking-increase-bone-density" },
+    { title: "Is Walking Enough Exercise?", href: "/blog/is-walking-enough-exercise" },
+  ],
+  "is-3000-steps-a-day-enough": [
+    { title: "Is 5,000 Steps a Day Enough?", href: "/blog/is-5000-steps-a-day-enough" },
+    { title: "Is 7,000 Steps a Day Enough?", href: "/blog/is-7000-steps-a-day-enough" },
+    { title: "Is 20,000 Steps a Day Good?", href: "/blog/is-20000-steps-a-day-good" },
+  ],
+  "does-walking-increase-bone-density": [
+    { title: "Walking During Menopause", href: "/blog/walking-during-menopause" },
+    { title: "Walking vs Swimming", href: "/blog/walking-vs-swimming" },
+    { title: "How Many Steps Per Day for Seniors?", href: "/blog/how-many-steps-per-day-for-seniors" },
+  ],
   "is-14000-steps-a-day-good": [
     { title: "Is 9,000 Steps a Day Good?", href: "/blog/is-9000-steps-a-day-good" },
     { title: "Is 8,000 Steps a Day Good?", href: "/blog/is-8000-steps-a-day-good" },
@@ -1481,6 +1516,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "is-20000-steps-a-day-good": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "does-walking-help-you-sleep": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "if-i-walk-2-hours-a-day-how-much-weight-will-i-lose": [
+    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "power-walking-benefits": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+  ],
+  "walking-vs-swimming": [
+    { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "is-3000-steps-a-day-enough": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "does-walking-increase-bone-density": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+  ],
   "is-14000-steps-a-day-good": [
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
     { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
