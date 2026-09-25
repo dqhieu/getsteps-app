@@ -1,69 +1,60 @@
 import type { Metadata } from "next";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
-import { SITE_CONFIG } from "@/lib/constants";
 import { TOOLS } from "@/lib/tools";
 import { ToolsClient } from "./tools-client";
 import { buildBreadcrumbList } from "@/lib/schema/breadcrumb";
+import { absoluteUrl, localizePath } from "@/lib/i18n/href";
+import { getCommonMessages } from "@/lib/i18n/messages/common";
+import { getToolsMessages, type ToolSlug } from "@/lib/i18n/messages/tools";
+import { buildPageMetadata, getLocale, type LangPageProps } from "@/lib/i18n/page";
 
-export const metadata: Metadata = {
-  title: "Free Fitness Calculators - Steps, Calories, BMI & More",
-  description:
-    "Free online fitness calculators for steps, calories, BMI, walking time, and weight loss. Get personalized results based on your profile.",
-  keywords: [
-    "fitness calculator",
-    "step calculator",
-    "calorie calculator",
-    "BMI calculator",
-    "walking calculator",
-    "weight loss calculator",
-    "steps to calories",
-    "walking time calculator",
-  ],
-  openGraph: {
-    title: "Free Fitness Calculators",
-    description:
-      "Free online fitness calculators for steps, calories, BMI, walking time, and weight loss.",
-    type: "website",
-    url: `${SITE_CONFIG.baseUrl}/tools`,
-    images: [
-      {
-        url: "/og/tools.png",
-        width: 1200,
-        height: 630,
-        alt: "Free Fitness Calculators",
-      },
-    ],
-  },
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/tools`,
-  },
-};
+export async function generateMetadata({ params }: LangPageProps): Promise<Metadata> {
+  const locale = await getLocale(params);
+  return buildPageMetadata({
+    locale,
+    path: "/tools",
+    meta: getToolsMessages(locale).meta,
+    ogImage: "/og/tools.png",
+  });
+}
 
-const popularTools = TOOLS.filter((tool) => tool.popular);
+export default async function ToolsPage({ params }: LangPageProps) {
+  const locale = await getLocale(params);
+  const t = getToolsMessages(locale);
+  const common = getCommonMessages(locale);
 
-const breadcrumbSchema = buildBreadcrumbList([
-  { name: "Home", path: "/" },
-  { name: "Tools", path: "/tools" },
-]);
+  const tools = TOOLS.map((tool) => {
+    const copy = t.tools[tool.href.replace("/tools/", "") as ToolSlug];
+    return {
+      ...tool,
+      href: localizePath(locale, tool.href),
+      title: copy?.title ?? tool.title,
+      description: copy?.description ?? tool.description,
+    };
+  });
+  const popularTools = tools.filter((tool) => tool.popular);
 
-const itemListSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Free Fitness Calculators",
-  description:
-    "A directory of free, browser-based fitness calculators: steps, calories, pace, heart rate, BMI, body fat, TDEE, macros, and more.",
-  numberOfItems: TOOLS.length,
-  itemListElement: TOOLS.map((tool, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    url: `${SITE_CONFIG.baseUrl}${tool.href}`,
-    name: tool.title,
-    description: tool.description,
-  })),
-};
+  const breadcrumbSchema = buildBreadcrumbList([
+    { name: common.breadcrumbs.home, path: localizePath(locale, "/") },
+    { name: common.breadcrumbs.tools, path: localizePath(locale, "/tools") },
+  ]);
 
-export default function ToolsPage() {
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: t.hero.title,
+    description: t.itemListDescription,
+    numberOfItems: tools.length,
+    itemListElement: tools.map((tool, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: absoluteUrl(locale, TOOLS[index].href),
+      name: tool.title,
+      description: tool.description,
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
       <script
@@ -74,24 +65,23 @@ export default function ToolsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
-      <LandingNavbar />
+      <LandingNavbar locale={locale} />
 
       {/* Hero Section */}
       <section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
-            Free Fitness Calculators
+            {t.hero.title}
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Personalized calculators for steps, calories, distance, and more.
-            All free, no signup required.
+            {t.hero.subtitle}
           </p>
         </div>
       </section>
 
-      <ToolsClient tools={TOOLS} popularTools={popularTools} />
+      <ToolsClient tools={tools} popularTools={popularTools} locale={locale} t={t} />
 
-      <LandingFooter />
+      <LandingFooter locale={locale} />
     </div>
   );
 }

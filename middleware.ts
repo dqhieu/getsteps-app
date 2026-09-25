@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest, NextFetchEvent } from "next/server";
 import { trackAICrawlerRequest } from "@datafast/ai-crawl";
+import { resolveLocaleRoute } from "@/lib/i18n/routing";
 
 export function middleware(request: NextRequest, event: NextFetchEvent) {
   const { pathname } = request.nextUrl;
@@ -22,6 +23,15 @@ export function middleware(request: NextRequest, event: NextFetchEvent) {
         headers: requestHeaders,
       },
     });
+  }
+
+  const route = resolveLocaleRoute(pathname);
+  if (route.type === "rewrite" || route.type === "redirect") {
+    const url = request.nextUrl.clone();
+    url.pathname = route.pathname;
+    return route.type === "rewrite"
+      ? NextResponse.rewrite(url)
+      : NextResponse.redirect(url, 308);
   }
 
   return NextResponse.next();
