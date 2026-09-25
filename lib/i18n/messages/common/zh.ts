@@ -20,7 +20,7 @@ const zh: CommonMessages = {
     stepWalkingTools: "步数与步行工具",
     runningFitnessTools: "跑步与健身工具",
     stepsFor: "Steps 适用人群",
-    company: "公司",
+    company: "探索",
     about: "关于",
     blog: "博客",
     press: "媒体报道",

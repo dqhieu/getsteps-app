@@ -5,7 +5,7 @@ import { AppStoreBadge } from "@/components/app-store-badge";
 import { SITE_CONFIG } from "@/lib/constants";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 import { docsPath, localizePath } from "@/lib/i18n/href";
-import { getCommonMessages, type CommonMessages } from "@/lib/i18n/messages/common";
+import { getCommonMessages } from "@/lib/i18n/messages/common";
 import { getToolsMessages, type ToolSlug } from "@/lib/i18n/messages/tools";
 
 const STEP_WALKING_TOOLS: ToolSlug[] = [
@@ -35,19 +35,6 @@ const RUNNING_FITNESS_TOOLS: ToolSlug[] = [
   "macro-calculator",
   "calorie-deficit-calculator",
   "water-intake-calculator",
-];
-
-const PERSONAS: (keyof CommonMessages["personas"])[] = [
-  "seniors",
-  "weight-loss",
-  "beginners",
-  "kids",
-  "runners",
-  "women",
-  "pregnancy",
-  "nurses",
-  "office-workers",
-  "heart-health",
 ];
 
 const LINK_CLASS =
@@ -84,8 +71,8 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
 
   return (
     <footer className="py-12 border-t border-neutral-200 dark:border-neutral-800">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1fr_auto_auto_auto_auto] gap-8 md:gap-12">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1fr_auto_auto_auto] gap-8 md:gap-12">
           {/* Brand column */}
           <div>
             <div className="flex items-center gap-3 mb-3">
@@ -111,22 +98,6 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
           {toolColumn(t.footer.stepWalkingTools, STEP_WALKING_TOOLS)}
           {toolColumn(t.footer.runningFitnessTools, RUNNING_FITNESS_TOOLS)}
 
-          {/* Steps For column */}
-          <div>
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
-              {t.footer.stepsFor}
-            </h3>
-            <ul className="space-y-2">
-              {PERSONAS.map((slug) => (
-                <li key={slug}>
-                  <Link href={`/for/${slug}`} className={LINK_CLASS}>
-                    {t.personas[slug]}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Company column */}
           <div>
             <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
@@ -141,6 +112,11 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
               <li>
                 <Link href="/blog" className={LINK_CLASS}>
                   {t.footer.blog}
+                </Link>
+              </li>
+              <li>
+                <Link href="/for" className={LINK_CLASS}>
+                  {t.footer.stepsFor}
                 </Link>
               </li>
               <li>

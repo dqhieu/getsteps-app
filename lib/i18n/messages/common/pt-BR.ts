@@ -20,7 +20,7 @@ const ptBR: CommonMessages = {
     stepWalkingTools: "Ferramentas de passos e caminhada",
     runningFitnessTools: "Ferramentas de corrida e fitness",
     stepsFor: "Steps para",
-    company: "Empresa",
+    company: "Explorar",
     about: "Sobre",
     blog: "Blog",
     press: "Imprensa",

@@ -18,7 +18,7 @@ const en = {
     stepWalkingTools: "Step & Walking Tools",
     runningFitnessTools: "Running & Fitness Tools",
     stepsFor: "Steps For",
-    company: "Company",
+    company: "Explore",
     about: "About",
     blog: "Blog",
     press: "Press",

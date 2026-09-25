@@ -20,7 +20,7 @@ const es: CommonMessages = {
     stepWalkingTools: "Herramientas de pasos y caminata",
     runningFitnessTools: "Herramientas de running y fitness",
     stepsFor: "Steps para",
-    company: "Empresa",
+    company: "Explorar",
     about: "Acerca de",
     blog: "Blog",
     press: "Prensa",
