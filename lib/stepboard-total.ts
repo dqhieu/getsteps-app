@@ -14,6 +14,6 @@ export function normalizeStepboardTotal(value: unknown): string | null {
   return value.replace(/^0+(?=\d)/, "");
 }
 
-export function formatStepboardTotal(total: string): string {
-  return total.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+export function formatStepboardTotal(total: string, separator = ","): string {
+  return total.replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 }

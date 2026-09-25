@@ -1,12 +1,15 @@
 import Link from "next/link";
 import type { PersonaLink } from "@/lib/internal-links";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 
 interface PersonaLinksProps {
   items: PersonaLink[];
+  /** Persona pages are English-only, so the block is hidden on other locales. */
+  locale?: Locale;
 }
 
-export function PersonaLinks({ items }: PersonaLinksProps) {
-  if (items.length === 0) return null;
+export function PersonaLinks({ items, locale = DEFAULT_LOCALE }: PersonaLinksProps) {
+  if (items.length === 0 || locale !== DEFAULT_LOCALE) return null;
 
   return (
     <div className="mt-4">

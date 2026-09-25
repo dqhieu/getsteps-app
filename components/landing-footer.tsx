@@ -1,39 +1,86 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactLink } from "@/components/contact-link";
+import { AppStoreBadge } from "@/components/app-store-badge";
 import { SITE_CONFIG } from "@/lib/constants";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { docsPath, localizePath } from "@/lib/i18n/href";
+import { getCommonMessages, type CommonMessages } from "@/lib/i18n/messages/common";
+import { getToolsMessages, type ToolSlug } from "@/lib/i18n/messages/tools";
 
-const STEP_WALKING_LINKS = [
-  { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
-  { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
-  { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
-  { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
-  { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
-  { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
-  { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
-  { title: "Activity to Steps Converter", href: "/tools/activity-to-steps-converter" },
-  { title: "Distance Equivalent Calculator", href: "/tools/distance-equivalent-calculator" },
+const STEP_WALKING_TOOLS: ToolSlug[] = [
+  "step-distance-calculator",
+  "steps-to-calories-calculator",
+  "steps-per-mile-calculator",
+  "walking-calories-calculator",
+  "walking-time-calculator",
+  "daily-step-goal-calculator",
+  "weight-loss-walking-calculator",
+  "activity-to-steps-converter",
+  "distance-equivalent-calculator",
 ];
 
-const RUNNING_FITNESS_LINKS = [
-  { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
-  { title: "Marathon Pace Predictor", href: "/tools/marathon-pace-predictor" },
-  { title: "Race Time Predictor", href: "/tools/race-time-predictor" },
-  { title: "Training Pace Zones", href: "/tools/training-pace-zones" },
-  { title: "Pace to Speed Converter", href: "/tools/pace-to-speed-converter" },
-  { title: "VO2 Max Calculator", href: "/tools/vo2-max-calculator" },
-  { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
-  { title: "Resting Heart Rate Calculator", href: "/tools/resting-heart-rate-calculator" },
-  { title: "BMI Calculator", href: "/tools/bmi-calculator" },
-  { title: "Body Fat Calculator", href: "/tools/body-fat-calculator" },
-  { title: "TDEE Calculator", href: "/tools/tdee-calculator" },
-  { title: "Macro Calculator", href: "/tools/macro-calculator" },
-  { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
-  { title: "Water Intake Calculator", href: "/tools/water-intake-calculator" },
+const RUNNING_FITNESS_TOOLS: ToolSlug[] = [
+  "running-pace-calculator",
+  "marathon-pace-predictor",
+  "race-time-predictor",
+  "training-pace-zones",
+  "pace-to-speed-converter",
+  "vo2-max-calculator",
+  "heart-rate-zones-calculator",
+  "resting-heart-rate-calculator",
+  "bmi-calculator",
+  "body-fat-calculator",
+  "tdee-calculator",
+  "macro-calculator",
+  "calorie-deficit-calculator",
+  "water-intake-calculator",
 ];
 
-export function LandingFooter() {
+const PERSONAS: (keyof CommonMessages["personas"])[] = [
+  "seniors",
+  "weight-loss",
+  "beginners",
+  "kids",
+  "runners",
+  "women",
+  "pregnancy",
+  "nurses",
+  "office-workers",
+  "heart-health",
+];
+
+const LINK_CLASS =
+  "text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors";
+
+// The English footer uses shorter labels than the directory titles for these.
+const ENGLISH_TOOL_LABELS: Partial<Record<ToolSlug, string>> = {
+  "body-fat-calculator": "Body Fat Calculator",
+  "marathon-pace-predictor": "Marathon Pace Predictor",
+};
+
+export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
   const currentYear = new Date().getFullYear();
+  const t = getCommonMessages(locale);
+  const tools = getToolsMessages(locale).tools;
+
+  const toolLabel = (slug: ToolSlug) =>
+    (locale === DEFAULT_LOCALE && ENGLISH_TOOL_LABELS[slug]) || tools[slug].title;
+
+  const toolColumn = (title: string, slugs: ToolSlug[]) => (
+    <div>
+      <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">{title}</h3>
+      <ul className="space-y-2">
+        {slugs.map((slug) => (
+          <li key={slug}>
+            <Link href={localizePath(locale, `/tools/${slug}`)} className={LINK_CLASS}>
+              {toolLabel(slug)}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 
   return (
     <footer className="py-12 border-t border-neutral-200 dark:border-neutral-800">
@@ -54,75 +101,26 @@ export function LandingFooter() {
               </span>
             </div>
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
-              Track your daily steps and reach your fitness goals.
+              {t.footer.tagline}
             </p>
             <p className="text-sm text-neutral-500 dark:text-neutral-500">
-              © {currentYear} {SITE_CONFIG.shortName} · Built by runners 🏃
+              © {currentYear} {SITE_CONFIG.shortName} · {t.footer.builtBy}
             </p>
           </div>
 
-          {/* Step & Walking Tools column */}
-          <div>
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
-              Step & Walking Tools
-            </h3>
-            <ul className="space-y-2">
-              {STEP_WALKING_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Running & Fitness Tools column */}
-          <div>
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
-              Running & Fitness Tools
-            </h3>
-            <ul className="space-y-2">
-              {RUNNING_FITNESS_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {toolColumn(t.footer.stepWalkingTools, STEP_WALKING_TOOLS)}
+          {toolColumn(t.footer.runningFitnessTools, RUNNING_FITNESS_TOOLS)}
 
           {/* Steps For column */}
           <div>
             <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
-              Steps For
+              {t.footer.stepsFor}
             </h3>
             <ul className="space-y-2">
-              {[
-                { title: "Seniors", href: "/for/seniors" },
-                { title: "Weight Loss", href: "/for/weight-loss" },
-                { title: "Beginners", href: "/for/beginners" },
-                { title: "Kids", href: "/for/kids" },
-                { title: "Runners", href: "/for/runners" },
-                { title: "Women", href: "/for/women" },
-                { title: "Pregnancy", href: "/for/pregnancy" },
-                { title: "Nurses", href: "/for/nurses" },
-                { title: "Office Workers", href: "/for/office-workers" },
-                { title: "Heart Health", href: "/for/heart-health" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                  >
-                    {link.title}
+              {PERSONAS.map((slug) => (
+                <li key={slug}>
+                  <Link href={`/for/${slug}`} className={LINK_CLASS}>
+                    {t.personas[slug]}
                   </Link>
                 </li>
               ))}
@@ -132,98 +130,56 @@ export function LandingFooter() {
           {/* Company column */}
           <div>
             <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
-              Company
+              {t.footer.company}
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/about"
-                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                >
-                  About
+                <Link href="/about" className={LINK_CLASS}>
+                  {t.footer.about}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/blog"
-                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                >
-                  Blog
+                <Link href="/blog" className={LINK_CLASS}>
+                  {t.footer.blog}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/press"
-                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                >
-                  Press
+                <Link href="/press" className={LINK_CLASS}>
+                  {t.footer.press}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/feedback"
-                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                >
-                  Feedback
+                <Link href="/feedback" className={LINK_CLASS}>
+                  {t.footer.feedback}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/docs"
-                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                >
-                  Docs
+                <Link href={docsPath(locale)} className={LINK_CLASS}>
+                  {t.footer.docs}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/privacy"
-                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                >
-                  Privacy Policy
+                <Link href="/privacy" className={LINK_CLASS}>
+                  {t.footer.privacy}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/terms"
-                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                >
-                  Terms of Service
+                <Link href="/terms" className={LINK_CLASS}>
+                  {t.footer.terms}
                 </Link>
               </li>
               <li>
-                <ContactLink
-                  email={SITE_CONFIG.supportEmail}
-                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
-                >
-                  Contact
+                <ContactLink email={SITE_CONFIG.supportEmail} className={LINK_CLASS}>
+                  {t.footer.contact}
                 </ContactLink>
               </li>
             </ul>
 
-            {/* App Store badge */}
-            <a
-              href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
-              target="_blank"
-              rel="noopener noreferrer"
+            <AppStoreBadge
+              locale={locale}
               className="inline-block mt-6 transition-transform duration-150 hover:scale-105 active:scale-[0.96]"
-              aria-label="Download on the App Store"
-            >
-              <Image
-                src="/badge_light_mode.svg"
-                alt="Download on the App Store"
-                width={120}
-                height={40}
-                className="h-10 w-auto dark:hidden"
-              />
-              <Image
-                src="/badge_dark_mode.svg"
-                alt="Download on the App Store"
-                width={120}
-                height={40}
-                className="h-10 w-auto hidden dark:block"
-              />
-            </a>
+              imageClassName="h-10 w-auto"
+            />
           </div>
         </div>
 

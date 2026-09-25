@@ -1,41 +1,28 @@
-import Image from "next/image";
-import { SITE_CONFIG } from "@/lib/constants";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { getLandingMessages } from "@/lib/i18n/messages/landing";
+import { AppStoreBadge } from "./app-store-badge";
 import { Reveal } from "./landing-reveal";
 
-export function LandingCTA() {
+export function LandingCTA({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  const t = getLandingMessages(locale).cta;
+
   return (
     <section className="py-20 md:py-28">
       <div className="container mx-auto px-4">
         <Reveal>
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-balance mb-7 text-neutral-900 dark:text-white">
-              Ready to track every step?
+              {t.title}
             </h2>
-            <a
-              href={SITE_CONFIG.appStoreUrl}
-              data-fast-goal="open-app-store"
-              target="_blank"
-              rel="noopener noreferrer"
+            <AppStoreBadge
+              locale={locale}
               className="inline-block mb-5 transition-transform duration-150 hover:scale-[1.04] active:scale-[0.97]"
-              aria-label="Download on the App Store"
-            >
-              <Image
-                src="/badge_light_mode.svg"
-                alt="Download on the App Store"
-                width={150}
-                height={50}
-                className="h-14 w-auto dark:hidden"
-              />
-              <Image
-                src="/badge_dark_mode.svg"
-                alt="Download on the App Store"
-                width={150}
-                height={50}
-                className="h-14 w-auto hidden dark:block"
-              />
-            </a>
+              imageClassName="h-14 w-auto"
+              width={150}
+              height={50}
+            />
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              Free forever · No account needed · Pro features available
+              {t.footnote}
             </p>
           </div>
         </Reveal>
