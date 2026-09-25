@@ -18,11 +18,9 @@ export type RiskLevel = "low" | "moderate" | "high";
 
 export interface RiskBand {
   level: RiskLevel;
-  label: string;
   /** Inclusive lower bound; upper bound is the next band's min. */
   min: number;
   max: number;
-  description: string;
   color: string;
 }
 
@@ -31,52 +29,40 @@ export const RISK_BANDS: Record<Gender, RiskBand[]> = {
   male: [
     {
       level: "low",
-      label: "Low risk",
       min: 0,
       max: 0.9,
-      description: "Fat distribution is not concentrated around the abdomen. This is the lowest-risk pattern for men.",
       color: "#22C55E",
     },
     {
       level: "moderate",
-      label: "Moderate risk",
       min: 0.9,
       max: 1.0,
-      description: "Some central fat accumulation. Associated with a measurable rise in cardiovascular and type 2 diabetes risk.",
       color: "#F59E0B",
     },
     {
       level: "high",
-      label: "High risk",
       min: 1.0,
       max: Infinity,
-      description: "Substantially elevated risk of cardiovascular disease and type 2 diabetes. Worth discussing with a doctor.",
       color: "#EF4444",
     },
   ],
   female: [
     {
       level: "low",
-      label: "Low risk",
       min: 0,
       max: 0.8,
-      description: "Fat distribution is not concentrated around the abdomen. This is the lowest-risk pattern for women.",
       color: "#22C55E",
     },
     {
       level: "moderate",
-      label: "Moderate risk",
       min: 0.8,
       max: 0.85,
-      description: "Some central fat accumulation. Associated with a measurable rise in cardiovascular and type 2 diabetes risk.",
       color: "#F59E0B",
     },
     {
       level: "high",
-      label: "High risk",
       min: 0.85,
       max: Infinity,
-      description: "Substantially elevated risk of cardiovascular disease and type 2 diabetes. Worth discussing with a doctor.",
       color: "#EF4444",
     },
   ],
@@ -97,7 +83,8 @@ export interface WaistHipResult {
   /** Waist circumference verdict, which can disagree with the ratio. */
   waistVerdict: {
     level: RiskLevel;
-    message: string;
+    waistCm: number;
+    thresholdCm: number;
   };
   /** Waist cm needed to reach the low-risk band at the current hip size. */
   targetWaistCm: number;
@@ -117,21 +104,25 @@ export function calculateWaistHipRatio(
   const scalePosition = Math.max(0, Math.min(100, ((ratio - 0.7) / (1.1 - 0.7)) * 100));
 
   const thresholds = WAIST_THRESHOLDS_CM[gender];
+  const roundedWaistCm = Math.round(waistCm);
   let waistVerdict: WaistHipResult["waistVerdict"];
   if (waistCm >= thresholds.substantial) {
     waistVerdict = {
       level: "high",
-      message: `A waist of ${Math.round(waistCm)} cm is at or above the ${thresholds.substantial} cm mark where the WHO flags substantially increased risk for ${gender === "male" ? "men" : "women"}.`,
+      waistCm: roundedWaistCm,
+      thresholdCm: thresholds.substantial,
     };
   } else if (waistCm >= thresholds.increased) {
     waistVerdict = {
       level: "moderate",
-      message: `A waist of ${Math.round(waistCm)} cm is above the ${thresholds.increased} cm mark where the WHO flags increased risk for ${gender === "male" ? "men" : "women"}.`,
+      waistCm: roundedWaistCm,
+      thresholdCm: thresholds.increased,
     };
   } else {
     waistVerdict = {
       level: "low",
-      message: `A waist of ${Math.round(waistCm)} cm is below the ${thresholds.increased} cm threshold the WHO uses for ${gender === "male" ? "men" : "women"}.`,
+      waistCm: roundedWaistCm,
+      thresholdCm: thresholds.increased,
     };
   }
 

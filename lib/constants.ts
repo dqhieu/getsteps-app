@@ -24,64 +24,44 @@ export const THEME = {
   cardRadius: "32px",
 } as const;
 
+// Landing copy lives in lib/i18n/messages/landing, keyed by `icon` / `key`.
 export const PERSONAL_RECORDS = [
-  { icon: "Zap", title: "Fastest Pace" },
-  { icon: "Flame", title: "Most Calories" },
-  { icon: "Sunrise", title: "Earliest Start" },
-  { icon: "Mountain", title: "Most Elevation" },
-  { icon: "Timer", title: "Longest Duration" },
-  { icon: "Ruler", title: "Farthest Distance" },
-  { icon: "Moon", title: "Latest Night" },
-  { icon: "HeartPulse", title: "Max Heart Rate" },
+  { icon: "Zap" },
+  { icon: "Flame" },
+  { icon: "Sunrise" },
+  { icon: "Mountain" },
+  { icon: "Timer" },
+  { icon: "Ruler" },
+  { icon: "Moon" },
+  { icon: "HeartPulse" },
 ] as const;
 
 export const WORKOUT_TYPES = [
-  { icon: "Footprints", name: "Running" },
-  { icon: "PersonStanding", name: "Walking" },
-  { icon: "Bike", name: "Cycling" },
-  { icon: "Mountain", name: "Hiking" },
-  { icon: "Waves", name: "Swimming" },
-  { icon: "Dumbbell", name: "Strength" },
-  { icon: "Flower2", name: "Yoga" },
-  { icon: "CircleDot", name: "Pickleball" },
+  { icon: "Footprints" },
+  { icon: "PersonStanding" },
+  { icon: "Bike" },
+  { icon: "Mountain" },
+  { icon: "Waves" },
+  { icon: "Dumbbell" },
+  { icon: "Flower2" },
+  { icon: "CircleDot" },
 ] as const;
 
 // Hero feature spotlights. `media` points at a caption-free asset in
 // public/spotlights/; a missing file degrades to the neutral media frame.
-export const SPOTLIGHTS: ReadonlyArray<{
-  key: string;
-  eyebrow: string;
-  title: string;
-  description: string;
-  media: string;
-  mediaWidth?: number;
-  mediaHeight?: number;
-  icon: LandingIconName;
-}> = [
+export const SPOTLIGHTS = [
   {
     key: "route-3d",
-    eyebrow: "New in 1.27",
-    title: "3D Route Playback",
-    description:
-      "Replay your activity routes with a cinematic 3D follow camera. Pick your map style and adjust the playback speed to relive every workout your way.",
     media: "/spotlights/route-3d.mp4",
     icon: "Orbit",
   },
   {
     key: "ai-coach",
-    eyebrow: "Apple Intelligence",
-    title: "AI Coach",
-    description:
-      "Personalized feedback on every workout, plus chat about any activity — powered by on-device Apple Intelligence.",
     media: "/spotlights/ai-coach.mp4",
     icon: "Bot",
   },
   {
     key: "stepboard",
-    eyebrow: "Compete with friends",
-    title: "Stepboard",
-    description:
-      "Daily leaderboards with friends. Create private boards, invite with a getsteps.app/join link, and rank by steps or distance.",
     media: "/spotlights/stepboard.png",
     mediaWidth: 600,
     mediaHeight: 1252,
@@ -89,32 +69,30 @@ export const SPOTLIGHTS: ReadonlyArray<{
   },
   {
     key: "apple-watch",
-    eyebrow: "On your wrist",
-    title: "Apple Watch Workouts",
-    description:
-      "Start and track workouts from your wrist with GPS routes, live metrics, and real-time mirroring to your phone.",
     media: "/spotlights/apple-watch.png",
     mediaWidth: 600,
     mediaHeight: 1028,
     icon: "Watch",
   },
-];
+] as const satisfies ReadonlyArray<{
+  key: string;
+  media: string;
+  mediaWidth?: number;
+  mediaHeight?: number;
+  icon: LandingIconName;
+}>;
 
 // Secondary features ("everything else"). Spotlighted features, Yearly Insights
 // (own section), records and workout types (own sub-blocks) are intentionally
 // excluded to avoid duplication.
-export const FEATURE_GRID: ReadonlyArray<{
-  icon: LandingIconName;
-  title: string;
-  description: string;
-}> = [
-  { icon: "LineChart", title: "Clear Charts", description: "Hourly, weekly & monthly views" },
-  { icon: "Flame", title: "Goals & Streaks", description: "Stay motivated every day" },
-  { icon: "LayoutGrid", title: "Home Widgets", description: "10 widgets for your home screen" },
-  { icon: "Lock", title: "App Lock", description: "Block apps until you hit your goal" },
-  { icon: "Route", title: "GPX Export", description: "Export & share your workout routes" },
-  { icon: "HeartPulse", title: "Apple Health Sync", description: "Accurate, automatic tracking" },
-];
+export const FEATURE_GRID = [
+  { icon: "LineChart" },
+  { icon: "Flame" },
+  { icon: "LayoutGrid" },
+  { icon: "Lock" },
+  { icon: "Route" },
+  { icon: "HeartPulse" },
+] as const satisfies ReadonlyArray<{ icon: LandingIconName }>;
 
 // App Store reviews shown in the "Loved by thousands" section.
 // `country` is an ISO 3166-1 alpha-2 code, rendered as a flag emoji.

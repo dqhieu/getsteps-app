@@ -4,11 +4,20 @@ import { useState, useMemo, type ReactNode } from "react";
 import {
   calculateWeightLoss,
   TIMEFRAME_OPTIONS,
+  MAX_SAFE_WEEKLY_LOSS_KG,
+  MAX_SAFE_DAILY_DEFICIT,
   type TimeframeOption,
 } from "@/lib/weight-loss-calculator";
-import { lbsToKg, kgToLbs, formatNumber, formatTime } from "@/lib/unit-converter";
+import { lbsToKg, kgToLbs } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate, plural } from "@/lib/i18n/format";
+import { ToolAppCta } from "@/components/tool-app-cta";
+import en, {
+  type WeightLossWalkingMessages,
+} from "@/lib/i18n/messages/tool-pages/weight-loss-walking-calculator/en";
 
 type WeightUnit = "kg" | "lbs";
+type CalculatorMessages = WeightLossWalkingMessages["calculator"];
 
 const DEFAULT_VALUES = {
   currentWeight: 80,
@@ -17,19 +26,42 @@ const DEFAULT_VALUES = {
   daysPerWeek: 5,
 };
 
+function formatMeasure(value: number, locale: Locale): string {
+  return Number.isInteger(value)
+    ? formatNumber(value, locale)
+    : formatDecimal(value, locale, 1);
+}
+
+function formatWalkingTime(minutes: number, locale: Locale, t: CalculatorMessages): string {
+  if (minutes >= 60) {
+    const hours = Math.floor(minutes / 60);
+    const mins = Math.round(minutes % 60);
+    if (mins > 0) {
+      return interpolate(t.hoursMinutes, {
+        hours: formatNumber(hours, locale),
+        minutes: formatNumber(mins, locale),
+      });
+    }
+    return interpolate(t.hoursOnly, { hours: formatNumber(hours, locale) });
+  }
+  return interpolate(t.minutesOnly, { minutes: formatNumber(Math.round(minutes), locale) });
+}
+
 export function WeightLossWalkingCalculator({
+  t = en.calculator,
+  locale = DEFAULT_LOCALE,
   resultCta,
 }: {
+  t?: CalculatorMessages;
+  locale?: Locale;
   resultCta?: ReactNode;
 } = {}) {
-  // Input state
   const [currentWeight, setCurrentWeight] = useState<number>(DEFAULT_VALUES.currentWeight);
   const [targetWeight, setTargetWeight] = useState<number>(DEFAULT_VALUES.targetWeight);
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
   const [timeframe, setTimeframe] = useState<TimeframeOption>(DEFAULT_VALUES.timeframe);
   const [daysPerWeek, setDaysPerWeek] = useState<number>(DEFAULT_VALUES.daysPerWeek);
 
-  // Get weights in kg for calculations
   const currentWeightKg = useMemo(
     () => (weightUnit === "kg" ? currentWeight : lbsToKg(currentWeight)),
     [currentWeight, weightUnit]
@@ -40,7 +72,6 @@ export function WeightLossWalkingCalculator({
     [targetWeight, weightUnit]
   );
 
-  // Calculate results
   const results = useMemo(() => {
     return calculateWeightLoss({
       currentWeightKg,
@@ -50,7 +81,6 @@ export function WeightLossWalkingCalculator({
     });
   }, [currentWeightKg, targetWeightKg, timeframe, daysPerWeek]);
 
-  // Handle weight unit toggle
   const handleWeightUnitChange = (newUnit: WeightUnit) => {
     if (newUnit === weightUnit) return;
     if (newUnit === "lbs") {
@@ -63,38 +93,49 @@ export function WeightLossWalkingCalculator({
     setWeightUnit(newUnit);
   };
 
-  // Format weight display
   const formatWeightDisplay = (kg: number) => {
     if (weightUnit === "lbs") {
-      return `${Math.round(kgToLbs(kg))} lbs`;
+      return interpolate(t.weightLbs, { value: formatNumber(Math.round(kgToLbs(kg)), locale) });
     }
-    return `${Math.round(kg * 10) / 10} kg`;
+    return interpolate(t.weightKg, { value: formatMeasure(Math.round(kg * 10) / 10, locale) });
   };
+
+  const weeklyLoss = results.totalWeightToLose / (TIMEFRAME_OPTIONS[timeframe].days / 7);
+  let safetyText: string | null = null;
+  if (!results.isSafe) {
+    if (weeklyLoss > MAX_SAFE_WEEKLY_LOSS_KG) {
+      safetyText = interpolate(t.warningWeekly, {
+        max: formatNumber(MAX_SAFE_WEEKLY_LOSS_KG, locale),
+      });
+    } else if (results.dailyCalorieDeficit > MAX_SAFE_DAILY_DEFICIT) {
+      safetyText = interpolate(t.warningDeficit, {
+        deficit: formatNumber(results.dailyCalorieDeficit, locale),
+        max: formatNumber(MAX_SAFE_DAILY_DEFICIT, locale),
+      });
+    }
+  }
 
   return (
     <div className="space-y-8">
-      {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Weight Loss Goal
+          {t.goal}
         </h2>
 
         <div className="space-y-6">
-          {/* Weight Unit Toggle */}
           <div className="flex justify-end">
             <button
               onClick={() => handleWeightUnitChange(weightUnit === "kg" ? "lbs" : "kg")}
               className="py-2 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors"
             >
-              Switch to {weightUnit === "kg" ? "lbs" : "kg"}
+              {interpolate(t.switchUnit, { unit: weightUnit === "kg" ? "lbs" : "kg" })}
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Current Weight */}
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Current Weight
+                {t.currentWeight}
               </label>
               <div className="relative">
                 <input
@@ -109,10 +150,9 @@ export function WeightLossWalkingCalculator({
               </div>
             </div>
 
-            {/* Target Weight */}
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Target Weight
+                {t.targetWeight}
               </label>
               <div className="relative">
                 <input
@@ -128,34 +168,30 @@ export function WeightLossWalkingCalculator({
             </div>
           </div>
 
-          {/* Timeframe */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Timeframe
+              {t.timeframe}
             </label>
             <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
-              {(Object.entries(TIMEFRAME_OPTIONS) as [TimeframeOption, typeof TIMEFRAME_OPTIONS[TimeframeOption]][]).map(
-                ([key, value]) => (
-                  <button
-                    key={key}
-                    onClick={() => setTimeframe(key)}
-                    className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
-                      timeframe === key
-                        ? "bg-[#ED772F] text-white"
-                        : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-                    }`}
-                  >
-                    {value.label}
-                  </button>
-                )
-              )}
+              {(Object.keys(TIMEFRAME_OPTIONS) as TimeframeOption[]).map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setTimeframe(key)}
+                  className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
+                    timeframe === key
+                      ? "bg-[#ED772F] text-white"
+                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                  }`}
+                >
+                  {t.timeframes[key]}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Days Per Week */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Walking Days Per Week: {daysPerWeek}
+              {interpolate(t.walkingDays, { days: formatNumber(daysPerWeek, locale) })}
             </label>
             <input
               type="range"
@@ -166,78 +202,81 @@ export function WeightLossWalkingCalculator({
               className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-[#ED772F]"
             />
             <div className="flex justify-between text-xs text-neutral-500 dark:text-neutral-400 mt-1">
-              <span>1 day</span>
-              <span>7 days</span>
+              <span>{plural(locale, 1, t.days)}</span>
+              <span>{plural(locale, 7, t.days)}</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Safety Warning */}
-      {results.safetyWarning && (
+      {safetyText && (
         <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-6">
           <div className="flex items-start gap-3">
             <span className="text-2xl">⚠️</span>
             <div>
               <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-1">
-                Safety Warning
+                {t.safetyTitle}
               </h3>
               <p className="text-amber-700 dark:text-amber-300 text-sm">
-                {results.safetyWarning}
+                {safetyText}
               </p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Daily Walking Requirement
+            {t.dailyRequirement}
           </h3>
 
           <div className="space-y-4">
             <div>
               <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                {formatNumber(results.walkingDailySteps)} steps
+                {interpolate(t.stepsValue, {
+                  count: formatNumber(results.walkingDailySteps, locale),
+                })}
               </p>
               <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">
-                {results.walkingDailyKm} km ({results.walkingDailyMiles} miles) per
-                walking day
+                {interpolate(t.distancePerDay, {
+                  km: formatMeasure(results.walkingDailyKm, locale),
+                  miles: formatMeasure(results.walkingDailyMiles, locale),
+                })}
               </p>
             </div>
           </div>
 
-          {/* Additional Stats */}
           <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Walking Time
+                {t.walkingTime}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {formatTime(results.walkingDailyMinutes)}
+                {formatWalkingTime(results.walkingDailyMinutes, locale, t)}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Daily Calorie Burn
+                {t.dailyBurn}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {formatNumber(results.dailyCalorieDeficit)} kcal
+                {interpolate(t.kcalValue, {
+                  value: formatNumber(results.dailyCalorieDeficit, locale),
+                })}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Weekly Distance
+                {t.weeklyDistance}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {results.weeklyKm} km
+                {interpolate(t.kmValue, { value: formatMeasure(results.weeklyKm, locale) })}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Total to Lose
+                {t.totalToLose}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
                 {formatWeightDisplay(results.totalWeightToLose)}
@@ -247,16 +286,21 @@ export function WeightLossWalkingCalculator({
         </div>
       </div>
 
-      {resultCta}
+      {resultCta ?? (
+        <ToolAppCta
+          locale={locale}
+          headline={t.resultCta.headline}
+          description={t.resultCta.description}
+        />
+      )}
 
-      {/* Milestones Card */}
       {results.milestones.length > 0 && (
         <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-            Expected Progress
+            {t.progress}
           </h2>
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-            Your projected weight at each milestone (assuming consistent effort)
+            {t.progressHint}
           </p>
 
           <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
@@ -264,10 +308,10 @@ export function WeightLossWalkingCalculator({
               <thead>
                 <tr className="border-b border-neutral-200 dark:border-neutral-700">
                   <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                    Week
+                    {t.weekColumn}
                   </th>
                   <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                    Expected Weight
+                    {t.weightColumn}
                   </th>
                 </tr>
               </thead>
@@ -279,7 +323,7 @@ export function WeightLossWalkingCalculator({
                   >
                     <td className="py-3 px-2">
                       <span className="font-semibold text-neutral-900 dark:text-white">
-                        Week {milestone.week}
+                        {interpolate(t.week, { week: formatNumber(milestone.week, locale) })}
                       </span>
                     </td>
                     <td className="py-3 px-2">
@@ -295,41 +339,18 @@ export function WeightLossWalkingCalculator({
         </div>
       )}
 
-      {/* Info Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
-          Important Notes
+          {t.notesTitle}
         </h2>
 
         <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
-          <li className="flex items-start gap-3">
-            <span className="flex-shrink-0 text-[#ED772F]">•</span>
-            <span>
-              These calculations assume walking is your primary calorie-burning
-              activity. For best results, combine with a balanced diet.
-            </span>
-          </li>
-          <li className="flex items-start gap-3">
-            <span className="flex-shrink-0 text-[#ED772F]">•</span>
-            <span>
-              Safe weight loss is typically 0.5-1 kg (1-2 lbs) per week. Faster
-              weight loss may not be sustainable.
-            </span>
-          </li>
-          <li className="flex items-start gap-3">
-            <span className="flex-shrink-0 text-[#ED772F]">•</span>
-            <span>
-              Walking alone may not create a large enough calorie deficit for
-              significant weight loss. Consider combining with dietary changes.
-            </span>
-          </li>
-          <li className="flex items-start gap-3">
-            <span className="flex-shrink-0 text-[#ED772F]">•</span>
-            <span>
-              Consult a healthcare professional before starting any weight loss
-              program, especially if you have health conditions.
-            </span>
-          </li>
+          {t.notes.map((note) => (
+            <li key={note} className="flex items-start gap-3">
+              <span className="flex-shrink-0 text-[#ED772F]">•</span>
+              <span>{note}</span>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

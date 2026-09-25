@@ -6,7 +6,12 @@
  * Jack Daniels-inspired zone multipliers.
  */
 
+export type TrainingZoneId = "easy" | "aerobic" | "tempo" | "threshold" | "interval";
+
+export type RaceDistanceId = "5k" | "10k" | "half" | "marathon" | "custom";
+
 export interface PaceZone {
+  id: TrainingZoneId;
   zone: number;
   name: string;
   description: string;
@@ -18,6 +23,7 @@ export interface PaceZone {
 
 const ZONE_DEFS = [
   {
+    id: "easy",
     zone: 1,
     name: "Easy / Recovery",
     description: "Very light effort. Full conversation possible. Builds aerobic base and aids recovery.",
@@ -27,6 +33,7 @@ const ZONE_DEFS = [
     fastMult: 1.40,
   },
   {
+    id: "aerobic",
     zone: 2,
     name: "Aerobic Base",
     description: "Comfortable, sustainable pace. Breathing elevated but steady. Core long-run zone.",
@@ -36,6 +43,7 @@ const ZONE_DEFS = [
     fastMult: 1.25,
   },
   {
+    id: "tempo",
     zone: 3,
     name: "Tempo",
     description: "Comfortably hard. Breathing labored. Progression runs and marathon-pace work.",
@@ -45,6 +53,7 @@ const ZONE_DEFS = [
     fastMult: 1.10,
   },
   {
+    id: "threshold",
     zone: 4,
     name: "Threshold",
     description: "Hard sustained effort. Lactate threshold pace. 20-40 min tempo runs.",
@@ -54,6 +63,7 @@ const ZONE_DEFS = [
     fastMult: 1.03,
   },
   {
+    id: "interval",
     zone: 5,
     name: "Interval / VO2",
     description: "Near-maximum effort. Short intervals (400m-1600m). Develops VO2 max and speed.",
@@ -100,6 +110,7 @@ export function calculateTrainingPaces(
     const fastSecPerMi = fastSecPerKm * 1.60934;
 
     return {
+      id: def.id,
       zone: def.zone,
       name: def.name,
       description: def.description,
@@ -116,10 +127,10 @@ export function hmsToSeconds(hours: number, minutes: number, seconds: number): n
   return hours * 3600 + minutes * 60 + seconds;
 }
 
-export const RACE_DISTANCE_OPTIONS = [
-  { label: "5K", km: 5 },
-  { label: "10K", km: 10 },
-  { label: "Half Marathon", km: 21.0975 },
-  { label: "Marathon", km: 42.195 },
-  { label: "Custom", km: 0 },
-] as const;
+export const RACE_DISTANCE_OPTIONS: { id: RaceDistanceId; label: string; km: number }[] = [
+  { id: "5k", label: "5K", km: 5 },
+  { id: "10k", label: "10K", km: 10 },
+  { id: "half", label: "Half Marathon", km: 21.0975 },
+  { id: "marathon", label: "Marathon", km: 42.195 },
+  { id: "custom", label: "Custom", km: 0 },
+];

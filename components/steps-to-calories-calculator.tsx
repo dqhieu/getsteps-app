@@ -9,20 +9,23 @@ import {
   estimateDistanceFromSteps,
 } from "@/lib/calorie-calculator";
 import { calculateStepLength, type Gender } from "@/lib/step-calculator";
-import { lbsToKg, kgToLbs, formatNumber, formatTime } from "@/lib/unit-converter";
+import { lbsToKg, kgToLbs, formatTime } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatNumber, interpolate, plural } from "@/lib/i18n/format";
+import type { StepsToCaloriesMessages } from "@/lib/i18n/messages/tool-pages/steps-to-calories-calculator/en";
 
 type WeightUnit = "kg" | "lbs";
+type CalculatorMessages = StepsToCaloriesMessages["calculator"];
 
-// Emoji mapping for food equivalents
 const FOOD_EMOJIS: Record<string, string> = {
-  "Banana": "🍌",
-  "Apple": "🍎",
+  Banana: "🍌",
+  Apple: "🍎",
   "Slice of bread": "🍞",
-  "Egg": "🥚",
+  Egg: "🥚",
   "Cup of rice": "🍚",
   "Chocolate bar": "🍫",
   "Slice of pizza": "🍕",
-  "Cheeseburger": "🍔",
+  Cheeseburger: "🍔",
 };
 
 const DEFAULT_VALUES = {
@@ -33,21 +36,26 @@ const DEFAULT_VALUES = {
   heightCm: 170,
 };
 
-export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
-  // Input state
+export function StepsToCaloriesCalculator({
+  t,
+  locale = DEFAULT_LOCALE,
+  resultCta,
+}: {
+  t: CalculatorMessages;
+  locale?: Locale;
+  resultCta?: ReactNode;
+}) {
   const [steps, setSteps] = useState<number>(DEFAULT_VALUES.steps);
   const [weight, setWeight] = useState<number>(DEFAULT_VALUES.weightKg);
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
   const [gender, setGender] = useState<Gender>(DEFAULT_VALUES.gender);
   const [age, setAge] = useState<number>(DEFAULT_VALUES.age);
 
-  // Get weight in kg for calculations
   const weightKg = useMemo(
     () => (weightUnit === "kg" ? weight : lbsToKg(weight)),
     [weight, weightUnit]
   );
 
-  // Calculate step length based on profile
   const stepLengthCm = useMemo(() => {
     return calculateStepLength({
       gender,
@@ -56,7 +64,6 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
     });
   }, [gender, age]);
 
-  // Calculate results
   const results = useMemo(() => {
     const calories = calculateCaloriesFromSteps(steps, weightKg);
     const distanceKm = estimateDistanceFromSteps(steps, stepLengthCm);
@@ -73,13 +80,11 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
     };
   }, [steps, weightKg, stepLengthCm]);
 
-  // Generate reference table
   const referenceTable = useMemo(
     () => generateStepsCaloriesTable(weightKg),
     [weightKg]
   );
 
-  // Handle weight unit toggle
   const handleWeightUnitChange = (newUnit: WeightUnit) => {
     if (newUnit === weightUnit) return;
     if (newUnit === "lbs") {
@@ -90,43 +95,41 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
     setWeightUnit(newUnit);
   };
 
+  const foodName = (food: string) =>
+    t.foods[food as keyof typeof t.foods] ?? food;
+
   return (
     <div className="space-y-8">
-      {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Information
+          {t.yourInformation}
         </h2>
 
         <div className="space-y-6">
-          {/* Steps Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Number of Steps
+              {t.steps}
             </label>
             <input
               type="number"
               value={steps}
               onChange={(e) => setSteps(Number(e.target.value))}
               className="w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
-              placeholder="Enter number of steps"
+              placeholder={t.stepsPlaceholder}
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Weight Input */}
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Weight
+                {t.weight}
               </label>
               <div className="flex gap-2">
                 <div className="relative flex-1">
                   <input
                     type="number"
                     value={weight}
-                    onChange={(e) =>
-                      setWeight(Number(e.target.value))
-                    }
+                    onChange={(e) => setWeight(Number(e.target.value))}
                     className="w-full py-2 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                   />
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
@@ -134,9 +137,7 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                   </span>
                 </div>
                 <button
-                  onClick={() =>
-                    handleWeightUnitChange(weightUnit === "kg" ? "lbs" : "kg")
-                  }
+                  onClick={() => handleWeightUnitChange(weightUnit === "kg" ? "lbs" : "kg")}
                   className="py-2 px-3 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors"
                 >
                   {weightUnit === "kg" ? "lbs" : "kg"}
@@ -144,10 +145,9 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
               </div>
             </div>
 
-            {/* Gender Selection */}
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Gender
+                {t.gender}
               </label>
               <div className="flex gap-2">
                 <button
@@ -158,7 +158,7 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  Male
+                  {t.male}
                 </button>
                 <button
                   onClick={() => setGender("female")}
@@ -168,15 +168,14 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  Female
+                  {t.female}
                 </button>
               </div>
             </div>
 
-            {/* Age Input */}
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Age
+                {t.age}
               </label>
               <div className="relative">
                 <input
@@ -192,7 +191,7 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                   className="w-full py-2 px-4 pr-14 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
-                  years
+                  {t.years}
                 </span>
               </div>
             </div>
@@ -200,40 +199,48 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
         </div>
       </div>
 
-      {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Calories Burned
+            {t.caloriesBurned}
           </h3>
 
           <div className="space-y-4">
             <div>
               <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                {formatNumber(results.calories)} kcal
+                {formatNumber(results.calories, locale)} kcal
               </p>
               <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">
-                from {formatNumber(steps)} steps
+                {plural(locale, steps, t.fromSteps, {
+                  steps: formatNumber(steps, locale),
+                })}
               </p>
             </div>
           </div>
 
-          {/* Additional Stats */}
           <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Distance Walked
+                {t.distanceWalked}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {results.distanceKm} km
+                {interpolate(t.distanceKm, {
+                  distance: formatNumber(results.distanceKm, locale, {
+                    maximumFractionDigits: 2,
+                  }),
+                })}
               </p>
               <p className="text-sm text-neutral-500 dark:text-neutral-500">
-                ({results.distanceMiles} miles)
+                {interpolate(t.distanceMiles, {
+                  miles: formatNumber(results.distanceMiles, locale, {
+                    maximumFractionDigits: 2,
+                  }),
+                })}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Walking Time
+                {t.walkingTime}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
                 {formatTime(results.walkingMinutes)}
@@ -242,11 +249,10 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
           </div>
         </div>
 
-        {/* Food Equivalents */}
         {results.foodEquivalents.length > 0 && (
           <div className="mt-6">
             <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">
-              Equivalent To
+              {t.equivalentTo}
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {results.foodEquivalents.map((item) => (
@@ -256,10 +262,15 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                 >
                   <p className="text-2xl mb-1">{FOOD_EMOJIS[item.food] || "🍽️"}</p>
                   <p className="text-lg font-semibold text-neutral-900 dark:text-white">
-                    {item.amount}
+                    {item.amount === "½"
+                      ? item.amount
+                      : formatNumber(Number(item.amount), locale, {
+                          minimumFractionDigits: 1,
+                          maximumFractionDigits: 1,
+                        })}
                   </p>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    {item.food}
+                    {foodName(item.food)}
                   </p>
                 </div>
               ))}
@@ -270,14 +281,15 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
 
       {resultCta}
 
-      {/* Reference Table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-          Steps to Calories Reference
+          {t.referenceTitle}
         </h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-          Calories burned for common step counts based on your weight (
-          {weight} {weightUnit})
+          {interpolate(t.referenceIntro, {
+            weight: formatNumber(weight, locale),
+            unit: weightUnit,
+          })}
         </p>
 
         <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
@@ -285,10 +297,10 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
             <thead>
               <tr className="border-b border-neutral-200 dark:border-neutral-700">
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Steps
+                  {t.columns.steps}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Calories
+                  {t.columns.calories}
                 </th>
               </tr>
             </thead>
@@ -300,12 +312,14 @@ export function StepsToCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                 >
                   <td className="py-3 px-2">
                     <span className="font-semibold text-neutral-900 dark:text-white">
-                      {formatNumber(row.steps)}
+                      {formatNumber(row.steps, locale)}
                     </span>
                   </td>
                   <td className="py-3 px-2">
                     <span className="text-neutral-900 dark:text-white">
-                      {formatNumber(row.calories)} kcal
+                      {interpolate(t.kcal, {
+                        calories: formatNumber(row.calories, locale),
+                      })}
                     </span>
                   </td>
                 </tr>

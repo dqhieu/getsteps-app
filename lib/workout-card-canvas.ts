@@ -94,10 +94,23 @@ function drawStat(
   );
 }
 
+export interface WorkoutCardLabels {
+  distance: string;
+  pace: string;
+  time: string;
+}
+
+const DEFAULT_LABELS: WorkoutCardLabels = {
+  distance: "Distance",
+  pace: "Pace",
+  time: "Time",
+};
+
 export function drawWorkoutCard(
   ctx: CanvasRenderingContext2D,
   data: WorkoutCardData,
-  fontFamily: string = FALLBACK_FONT
+  fontFamily: string = FALLBACK_FONT,
+  labels: WorkoutCardLabels = DEFAULT_LABELS,
 ) {
   const family = fontFamily || FALLBACK_FONT;
 
@@ -109,7 +122,7 @@ export function drawWorkoutCard(
     drawStat(
       ctx,
       FIRST_LABEL_Y,
-      "Distance",
+      labels.distance,
       data.distanceValue,
       data.distanceUnit,
       family
@@ -117,7 +130,7 @@ export function drawWorkoutCard(
     drawStat(
       ctx,
       FIRST_LABEL_Y + BLOCK_PITCH,
-      "Pace",
+      labels.pace,
       data.paceValue,
       data.paceUnit,
       family
@@ -125,7 +138,7 @@ export function drawWorkoutCard(
     drawStat(
       ctx,
       FIRST_LABEL_Y + BLOCK_PITCH * 2,
-      "Time",
+      labels.time,
       data.durationValue,
       "",
       family

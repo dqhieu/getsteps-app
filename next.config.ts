@@ -4,6 +4,11 @@ import remarkGfm from "remark-gfm";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  experimental: {
+    // Two root layouts (localized and English-only) cannot render a shared
+    // not-found. Unmatched URLs use this document instead of returning 200.
+    globalNotFound: true,
+  },
   async headers() {
     return [
       {
@@ -19,36 +24,8 @@ const nextConfig: NextConfig = {
         destination: "/docs/features/:path*",
         permanent: true,
       },
-      {
-        source: "/zh/:path*",
-        destination: "/docs/zh/:path*",
-        permanent: true,
-      },
-      {
-        source: "/fr/:path*",
-        destination: "/docs/fr/:path*",
-        permanent: true,
-      },
-      {
-        source: "/de/:path*",
-        destination: "/docs/de/:path*",
-        permanent: true,
-      },
-      {
-        source: "/it/:path*",
-        destination: "/docs/it/:path*",
-        permanent: true,
-      },
-      {
-        source: "/pt-BR/:path*",
-        destination: "/docs/pt-BR/:path*",
-        permanent: true,
-      },
-      {
-        source: "/es/:path*",
-        destination: "/docs/es/:path*",
-        permanent: true,
-      },
+      // Locale-prefixed paths outside the localized site sections keep
+      // redirecting to the Mintlify docs; see resolveLocaleRoute().
     ];
   },
   async rewrites() {

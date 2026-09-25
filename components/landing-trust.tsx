@@ -1,5 +1,9 @@
 import Image from "next/image";
 import { PRESS_ARTICLES, REVIEWS, SITE_CONFIG } from "@/lib/constants";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { interpolate } from "@/lib/i18n/format";
+import { getCommonMessages } from "@/lib/i18n/messages/common";
+import { getLandingMessages } from "@/lib/i18n/messages/landing";
 import { Reveal } from "./landing-reveal";
 
 // Convert an ISO 3166-1 alpha-2 country code to its flag emoji.
@@ -32,7 +36,10 @@ function Laurel({ side }: { side: "left" | "right" }) {
   );
 }
 
-export function LandingTrust() {
+export function LandingTrust({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  const t = getLandingMessages(locale).trust;
+  const common = getCommonMessages(locale);
+
   return (
     <section className="py-16 md:py-24 bg-black text-white">
       <div className="container mx-auto px-4">
@@ -40,13 +47,13 @@ export function LandingTrust() {
         <Reveal>
           <div className="flex flex-col items-center text-center">
             <p className="text-sm md:text-base font-medium tracking-[0.3em] text-white/80">
-              FEATURED IN
+              {t.featuredIn}
             </p>
             <a
               href="https://www.youtube.com/watch?v=hx-JzOCNBbM"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Watch Appreciation, starring Erick the Architect, on YouTube"
+              aria-label={t.videoAria}
               className="mt-6 block w-full max-w-sm text-center"
             >
               <div className="rounded-3xl overflow-hidden bg-black">
@@ -61,10 +68,10 @@ export function LandingTrust() {
                 />
               </div>
               <p className="-mt-8 text-sm font-semibold tracking-[0.3em] text-white/80">
-                APPRECIATION
+                {t.videoTitle}
               </p>
               <p className="mt-1 text-xs font-medium text-white/50">
-                starring Erick the Architect
+                {t.videoCredit}
               </p>
             </a>
 
@@ -89,7 +96,7 @@ export function LandingTrust() {
           <div className="mt-20 flex items-center justify-center gap-3">
             <Laurel side="left" />
             <h2 className="text-sm md:text-base font-medium tracking-[0.3em] text-white/80">
-              LOVED BY 10,000+ WALKERS
+              {t.lovedBy}
             </h2>
             <Laurel side="right" />
           </div>
@@ -97,19 +104,23 @@ export function LandingTrust() {
             <span className="text-amber-500" aria-hidden>
               ★★★★★
             </span>
-            <span>
-              <span className="tabular-nums">{SITE_CONFIG.appStoreRating}</span>{" "}
-              on the App Store
+            <span className="tabular-nums">
+              {interpolate(common.appStore.ratingOnAppStore, {
+                rating: SITE_CONFIG.appStoreRating,
+              })}
             </span>
           </div>
         </Reveal>
 
-        {/* Reviews */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+        {/* Reviews are verbatim App Store quotes, so they stay in their original language. */}
+        <div
+          lang="en"
+          className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto"
+        >
           {REVIEWS.map((review, index) => (
             <Reveal key={review.title} delay={(index % 4) * 60}>
               <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                <div className="text-amber-500 mb-3" aria-label="5 out of 5 stars">
+                <div className="text-amber-500 mb-3" aria-label={t.fiveStars}>
                   ★★★★★
                 </div>
                 <h3 className="font-medium text-white mb-2">{review.title}</h3>

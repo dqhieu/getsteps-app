@@ -2,32 +2,65 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { parseGpx, type GpxData } from "@/lib/gpx-parser";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import {
+  formatDecimal,
+  formatNumber,
+  interpolate,
+  plural,
+  type PluralForms,
+} from "@/lib/i18n/format";
+import en, { type GpxViewerMessages } from "@/lib/i18n/messages/tool-pages/gpx-viewer/en";
 
-function formatDistance(meters: number): string {
-  if (meters >= 1000) return (meters / 1000).toFixed(2) + " km";
-  return Math.round(meters) + " m";
+type ToolCopy = GpxViewerMessages["tool"];
+
+function formatInt(n: number, locale: Locale): string {
+  const rounded = Math.round(n);
+  return locale === "en" ? String(rounded) : formatNumber(rounded, locale);
 }
 
-function formatDuration(seconds: number): string {
-  if (seconds <= 0) return "N/A";
+function formatDistance(meters: number, locale: Locale, t: ToolCopy): string {
+  if (meters >= 1000) {
+    return interpolate(t.distanceKm, { value: formatDecimal(meters / 1000, locale, 2) });
+  }
+  return interpolate(t.distanceM, { value: formatInt(meters, locale) });
+}
+
+function formatDuration(seconds: number, locale: Locale, t: ToolCopy): string {
+  if (seconds <= 0) return t.na;
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.floor(seconds % 60);
-  if (h > 0) return `${h}h ${m}m ${s}s`;
-  if (m > 0) return `${m}m ${s}s`;
-  return `${s}s`;
+  const vars = {
+    h: formatInt(h, locale),
+    m: formatInt(m, locale),
+    s: formatInt(s, locale),
+  };
+  if (h > 0) return interpolate(t.durationHms, vars);
+  if (m > 0) return interpolate(t.durationMs, vars);
+  return interpolate(t.durationS, vars);
 }
 
-function formatSpeed(kmh: number): string {
-  if (kmh <= 0) return "N/A";
-  return kmh.toFixed(1) + " km/h";
+function formatSpeed(kmh: number, locale: Locale, t: ToolCopy): string {
+  if (kmh <= 0) return t.na;
+  return interpolate(t.speed, { value: formatDecimal(kmh, locale, 1) });
 }
 
-function formatElevation(meters: number): string {
-  return Math.round(meters) + " m";
+function formatElevation(meters: number, locale: Locale, t: ToolCopy): string {
+  return interpolate(t.elevation, { value: formatInt(meters, locale) });
 }
 
-function ElevationChart({ points }: { points: { dist: number; ele: number }[] }) {
+function countText(locale: Locale, count: number, forms: PluralForms): string {
+  return plural(locale, count, forms, locale === "en" ? { count: String(count) } : {});
+}
+
+function ElevationChart({
+  points,
+  locale,
+}: {
+  points: { dist: number; ele: number }[];
+  locale: Locale;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -73,7 +106,7 @@ function ElevationChart({ points }: { points: { dist: number; ele: number }[] })
     for (let i = 0; i <= 4; i++) {
       const ele = minEle + (eleRange * i) / 4;
       const y = h - padding.bottom - (chartH * i) / 4;
-      ctx.fillText(Math.round(ele) + "m", padding.left - 6, y + 4);
+      ctx.fillText(formatInt(ele, locale) + "m", padding.left - 6, y + 4);
       if (i > 0) {
         ctx.strokeStyle = "#e5e5e5";
         ctx.beginPath();
@@ -88,7 +121,7 @@ function ElevationChart({ points }: { points: { dist: number; ele: number }[] })
     for (let i = 0; i <= 4; i++) {
       const dist = (maxDist * i) / 4;
       const x = padding.left + (chartW * i) / 4;
-      const label = dist >= 1000 ? (dist / 1000).toFixed(1) + "km" : Math.round(dist) + "m";
+      const label = dist >= 1000 ? formatDecimal(dist / 1000, locale, 1) + "km" : formatInt(dist, locale) + "m";
       ctx.fillText(label, x, h - padding.bottom + 18);
     }
 
@@ -120,7 +153,7 @@ function ElevationChart({ points }: { points: { dist: number; ele: number }[] })
       else ctx.lineTo(x, y);
     }
     ctx.stroke();
-  }, [points]);
+  }, [points, locale]);
 
   return (
     <canvas
@@ -131,7 +164,15 @@ function ElevationChart({ points }: { points: { dist: number; ele: number }[] })
   );
 }
 
-function MapView({ gpxData }: { gpxData: GpxData }) {
+function MapView({
+  gpxData,
+  startLabel,
+  endLabel,
+}: {
+  gpxData: GpxData;
+  startLabel: string;
+  endLabel: string;
+}) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<unknown>(null);
 
@@ -218,7 +259,7 @@ function MapView({ gpxData }: { gpxData: GpxData }) {
           color: "#fff",
           weight: 2,
           fillOpacity: 1,
-        }).addTo(map).bindPopup("Start");
+        }).addTo(map).bindPopup(startLabel);
 
         L.circleMarker([end.lat, end.lon], {
           radius: 8,
@@ -226,7 +267,7 @@ function MapView({ gpxData }: { gpxData: GpxData }) {
           color: "#fff",
           weight: 2,
           fillOpacity: 1,
-        }).addTo(map).bindPopup("End");
+        }).addTo(map).bindPopup(endLabel);
       }
 
       // Fit bounds
@@ -247,12 +288,18 @@ function MapView({ gpxData }: { gpxData: GpxData }) {
         mapInstanceRef.current = null;
       }
     };
-  }, [gpxData]);
+  }, [gpxData, startLabel, endLabel]);
 
   return <div ref={mapRef} className="w-full h-full rounded-xl" />;
 }
 
-export function GpxViewer() {
+export function GpxViewer({
+  t = en.tool,
+  locale = DEFAULT_LOCALE,
+}: {
+  t?: ToolCopy;
+  locale?: Locale;
+} = {}) {
   const [gpxData, setGpxData] = useState<GpxData | null>(null);
   const [fileName, setFileName] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -261,7 +308,7 @@ export function GpxViewer() {
 
   const handleFile = useCallback((file: File) => {
     if (!file.name.toLowerCase().endsWith(".gpx")) {
-      setError("Please upload a .gpx file");
+      setError(t.errors.notGpx);
       return;
     }
 
@@ -274,16 +321,16 @@ export function GpxViewer() {
         const xml = e.target?.result as string;
         const data = parseGpx(xml);
         if (data.allPoints.length === 0 && data.waypoints.length === 0) {
-          setError("No track data found in this GPX file");
+          setError(t.errors.noTrack);
           return;
         }
         setGpxData(data);
       } catch {
-        setError("Failed to parse GPX file. Please check the file format.");
+        setError(t.errors.parse);
       }
     };
     reader.readAsText(file);
-  }, []);
+  }, [t]);
 
   const onDrop = useCallback(
     (e: React.DragEvent) => {
@@ -351,13 +398,13 @@ export function GpxViewer() {
         >
           <div className="text-5xl mb-4">&#x1F5FA;&#xFE0F;</div>
           <p className="text-lg font-medium text-neutral-900 dark:text-white mb-2">
-            Drop your GPX file here
+            {t.dropTitle}
           </p>
           <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
-            or click to browse
+            {t.dropHint}
           </p>
           <p className="text-xs text-neutral-400 dark:text-neutral-500">
-            Supports .gpx files from Strava, Garmin, Apple Watch, and more
+            {t.dropFormats}
           </p>
           <input
             ref={fileInputRef}
@@ -390,8 +437,12 @@ export function GpxViewer() {
               {gpxData.name || fileName}
             </p>
             <p className="text-xs text-neutral-500">
-              {stats.totalPoints} points
-              {gpxData.waypoints.length > 0 && ` | ${gpxData.waypoints.length} waypoints`}
+              {gpxData.waypoints.length > 0
+                ? interpolate(t.fileMeta, {
+                    points: countText(locale, stats.totalPoints, t.points),
+                    waypoints: countText(locale, gpxData.waypoints.length, t.waypoints),
+                  })
+                : countText(locale, stats.totalPoints, t.points)}
             </p>
           </div>
         </div>
@@ -403,29 +454,29 @@ export function GpxViewer() {
           }}
           className="text-sm text-neutral-500 hover:text-[#ED772F] transition-colors px-3 py-1"
         >
-          New file
+          {t.newFile}
         </button>
       </div>
 
       {/* Map */}
       <div className="rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-700 h-[400px] md:h-[500px]">
-        <MapView gpxData={gpxData} />
+        <MapView gpxData={gpxData} startLabel={t.start} endLabel={t.end} />
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: "Distance", value: formatDistance(stats.totalDistance) },
-          { label: "Duration", value: formatDuration(stats.duration) },
-          { label: "Avg Speed", value: formatSpeed(stats.avgSpeed) },
-          { label: "Max Speed", value: formatSpeed(stats.maxSpeed) },
-          { label: "Elevation Gain", value: formatElevation(stats.elevationGain) },
-          { label: "Elevation Loss", value: formatElevation(stats.elevationLoss) },
-          { label: "Max Elevation", value: formatElevation(stats.maxElevation) },
-          { label: "Min Elevation", value: formatElevation(stats.minElevation) },
+          { id: "distance", label: t.stats.distance, value: formatDistance(stats.totalDistance, locale, t) },
+          { id: "duration", label: t.stats.duration, value: formatDuration(stats.duration, locale, t) },
+          { id: "avgSpeed", label: t.stats.avgSpeed, value: formatSpeed(stats.avgSpeed, locale, t) },
+          { id: "maxSpeed", label: t.stats.maxSpeed, value: formatSpeed(stats.maxSpeed, locale, t) },
+          { id: "elevationGain", label: t.stats.elevationGain, value: formatElevation(stats.elevationGain, locale, t) },
+          { id: "elevationLoss", label: t.stats.elevationLoss, value: formatElevation(stats.elevationLoss, locale, t) },
+          { id: "maxElevation", label: t.stats.maxElevation, value: formatElevation(stats.maxElevation, locale, t) },
+          { id: "minElevation", label: t.stats.minElevation, value: formatElevation(stats.minElevation, locale, t) },
         ].map((stat) => (
           <div
-            key={stat.label}
+            key={stat.id}
             className="bg-neutral-50 dark:bg-neutral-800/50 rounded-xl p-4 text-center"
           >
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
@@ -442,10 +493,10 @@ export function GpxViewer() {
       {elevationPoints.length >= 2 && (
         <div className="bg-white dark:bg-neutral-800/50 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-4 md:p-6">
           <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-4">
-            Elevation Profile
+            {t.elevationProfile}
           </h3>
           <div className="h-48 md:h-56">
-            <ElevationChart points={elevationPoints} />
+            <ElevationChart points={elevationPoints} locale={locale} />
           </div>
         </div>
       )}
@@ -454,7 +505,11 @@ export function GpxViewer() {
       {gpxData.waypoints.length > 0 && (
         <div className="bg-white dark:bg-neutral-800/50 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-4 md:p-6">
           <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-4">
-            Waypoints ({gpxData.waypoints.length})
+            {interpolate(t.waypointsTitle, {
+              count: locale === "en"
+                ? String(gpxData.waypoints.length)
+                : formatNumber(gpxData.waypoints.length, locale),
+            })}
           </h3>
           <div className="space-y-2 max-h-64 overflow-y-auto">
             {gpxData.waypoints.map((wpt, i) => (
@@ -464,7 +519,7 @@ export function GpxViewer() {
               >
                 <div>
                   <p className="text-sm font-medium text-neutral-900 dark:text-white">
-                    {wpt.name || `Waypoint ${i + 1}`}
+                    {wpt.name || interpolate(t.waypointFallback, { n: formatInt(i + 1, locale) })}
                   </p>
                   {wpt.desc && (
                     <p className="text-xs text-neutral-500">{wpt.desc}</p>
@@ -472,7 +527,7 @@ export function GpxViewer() {
                 </div>
                 <p className="text-xs text-neutral-500 font-mono">
                   {wpt.lat.toFixed(5)}, {wpt.lon.toFixed(5)}
-                  {wpt.ele !== undefined && ` | ${Math.round(wpt.ele)}m`}
+                  {wpt.ele !== undefined && ` | ${formatInt(wpt.ele, locale)}m`}
                 </p>
               </div>
             ))}

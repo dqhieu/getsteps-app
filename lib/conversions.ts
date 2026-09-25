@@ -21,6 +21,12 @@ import {
   WALKING_SPEEDS_KMH,
   type WalkingSpeed,
 } from "./calorie-calculator";
+import { DEFAULT_LOCALE, type Locale } from "./i18n/config";
+import {
+  formatDecimal,
+  formatNumber as formatLocalizedNumber,
+  interpolate,
+} from "./i18n/format";
 
 // ---------------------------------------------------------------------------
 // Canonical value lists (drive generateStaticParams)
@@ -223,29 +229,72 @@ export function buildWalkingTimeTable(distanceKm: number): WalkingTimeRow[] {
   });
 }
 
-export function formatMinutes(minutes: number): string {
-  if (minutes < 60) return `${Math.round(minutes)} min`;
+export interface DurationCopy {
+  minutes: string;
+  hours: string;
+  hoursMinutes: string;
+}
+
+export function formatMinutes(
+  minutes: number,
+  locale: Locale = DEFAULT_LOCALE,
+  copy?: DurationCopy,
+): string {
+  if (locale === DEFAULT_LOCALE || !copy) {
+    if (minutes < 60) return `${Math.round(minutes)} min`;
+    const h = Math.floor(minutes / 60);
+    const m = Math.round(minutes - h * 60);
+    if (m === 0) return `${h} h`;
+    return `${h} h ${m} min`;
+  }
+
+  const rounded = Math.round(minutes);
+  if (minutes < 60) {
+    return interpolate(copy.minutes, { count: formatLocalizedNumber(rounded, locale) });
+  }
   const h = Math.floor(minutes / 60);
   const m = Math.round(minutes - h * 60);
-  if (m === 0) return `${h} h`;
-  return `${h} h ${m} min`;
+  if (m === 0) {
+    return interpolate(copy.hours, { count: formatLocalizedNumber(h, locale) });
+  }
+  return interpolate(copy.hoursMinutes, {
+    hours: formatLocalizedNumber(h, locale),
+    minutes: formatLocalizedNumber(m, locale),
+  });
 }
 
 // ---------------------------------------------------------------------------
 // Real-world distance equivalents (puts the number in context)
 // ---------------------------------------------------------------------------
 
-const FAMILIAR_DISTANCES_MILES: Array<{ name: string; miles: number }> = [
-  { name: "an Olympic 400m track lap", miles: 0.249 },
-  { name: "the length of Central Park (NYC)", miles: 2.5 },
-  { name: "a 5K race", miles: 3.107 },
-  { name: "a 10K race", miles: 6.214 },
-  { name: "the Brooklyn Bridge crossing (round trip)", miles: 2.5 },
-  { name: "a half-marathon", miles: 13.109 },
-  { name: "a full marathon", miles: 26.219 },
+export const FAMILIAR_DISTANCE_KEYS = [
+  "olympic",
+  "centralPark",
+  "fiveK",
+  "tenK",
+  "brooklyn",
+  "half",
+  "marathon",
+] as const;
+
+export type FamiliarDistanceKey = (typeof FAMILIAR_DISTANCE_KEYS)[number];
+
+const FAMILIAR_DISTANCES_MILES: Array<{
+  key: FamiliarDistanceKey;
+  name: string;
+  miles: number;
+}> = [
+  { key: "olympic", name: "an Olympic 400m track lap", miles: 0.249 },
+  { key: "centralPark", name: "the length of Central Park (NYC)", miles: 2.5 },
+  { key: "fiveK", name: "a 5K race", miles: 3.107 },
+  { key: "tenK", name: "a 10K race", miles: 6.214 },
+  { key: "brooklyn", name: "the Brooklyn Bridge crossing (round trip)", miles: 2.5 },
+  { key: "half", name: "a half-marathon", miles: 13.109 },
+  { key: "marathon", name: "a full marathon", miles: 26.219 },
 ];
 
 export function findClosestFamiliarDistance(miles: number): {
+  key: FamiliarDistanceKey;
   name: string;
   miles: number;
   factor: number; // user's distance / familiar distance
@@ -259,27 +308,78 @@ export function findClosestFamiliarDistance(miles: number): {
       best = cand;
     }
   }
-  return { name: best.name, miles: best.miles, factor: miles / best.miles };
+  return { key: best.key, name: best.name, miles: best.miles, factor: miles / best.miles };
 }
 
 // ---------------------------------------------------------------------------
 // Formatting helpers
 // ---------------------------------------------------------------------------
 
-export function formatMiles(miles: number): string {
-  if (miles < 0.1) return miles.toFixed(3);
-  if (miles < 10) return miles.toFixed(2);
-  return miles.toFixed(1);
+function decimalDigits(value: number): number {
+  if (value < 0.1) return 3;
+  if (value < 10) return 2;
+  return 1;
 }
 
-export function formatKm(km: number): string {
-  if (km < 0.1) return km.toFixed(3);
-  if (km < 10) return km.toFixed(2);
-  return km.toFixed(1);
+export function formatFixed(
+  value: number,
+  digits: number,
+  locale: Locale = DEFAULT_LOCALE,
+): string {
+  if (locale === DEFAULT_LOCALE) return value.toFixed(digits);
+  return formatDecimal(value, locale, digits);
 }
 
-export function formatSteps(steps: number): string {
-  return formatNumber(Math.round(steps));
+export function formatMiles(miles: number, locale: Locale = DEFAULT_LOCALE): string {
+  const digits = decimalDigits(miles);
+  if (locale === DEFAULT_LOCALE) return miles.toFixed(digits);
+  return formatDecimal(miles, locale, digits);
+}
+
+export function formatKm(km: number, locale: Locale = DEFAULT_LOCALE): string {
+  const digits = decimalDigits(km);
+  if (locale === DEFAULT_LOCALE) return km.toFixed(digits);
+  return formatDecimal(km, locale, digits);
+}
+
+const ZH_DIGITS = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"] as const;
+
+function zhNumeral(n: number): string {
+  if (n < 10) return ZH_DIGITS[n];
+  if (n < 20) return `十${n % 10 === 0 ? "" : ZH_DIGITS[n % 10]}`;
+  if (n < 100) {
+    const ones = n % 10;
+    return `${ZH_DIGITS[Math.floor(n / 10)]}十${ones ? ZH_DIGITS[ones] : ""}`;
+  }
+  if (n < 1000) {
+    const rest = n % 100;
+    const head = `${n >= 200 && n < 300 ? "两" : ZH_DIGITS[Math.floor(n / 100)]}百`;
+    if (rest === 0) return head;
+    if (rest < 10) return `${head}零${ZH_DIGITS[rest]}`;
+    return head + zhNumeral(rest);
+  }
+  if (n < 10000) {
+    const rest = n % 1000;
+    const head = `${n >= 2000 && n < 3000 ? "两" : ZH_DIGITS[Math.floor(n / 1000)]}千`;
+    if (rest === 0) return head;
+    if (rest < 100) return `${head}零${zhNumeral(rest)}`;
+    return head + zhNumeral(rest);
+  }
+  const rest = n % 10000;
+  const wan = Math.floor(n / 10000);
+  const head = `${wan === 2 ? "两" : ZH_DIGITS[wan]}万`;
+  if (rest === 0) return head;
+  if (rest < 1000) return `${head}零${zhNumeral(rest)}`;
+  return head + zhNumeral(rest);
+}
+
+export function formatSteps(steps: number, locale: Locale = DEFAULT_LOCALE): string {
+  const rounded = Math.round(steps);
+  if (locale === DEFAULT_LOCALE) return formatNumber(rounded);
+  if (locale === "zh" && rounded > 0 && rounded % 100 === 0 && rounded < 100000) {
+    return zhNumeral(rounded);
+  }
+  return formatLocalizedNumber(rounded, locale);
 }
 
 // ---------------------------------------------------------------------------

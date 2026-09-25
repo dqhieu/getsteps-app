@@ -1,19 +1,28 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   calculateWaterIntake,
-  ACTIVITY_LABELS,
   type ActivityLevel,
   type Climate,
 } from "@/lib/water-intake-calculator";
-import { lbsToKg, kgToLbs } from "@/lib/unit-converter";
+import { kgToLbs, lbsToKg } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber } from "@/lib/i18n/format";
+import type { WaterIntakeCalculatorMessages } from "@/lib/i18n/messages/tool-pages/water-intake-calculator/en";
 
 type WeightUnit = "kg" | "lbs";
+type CalculatorCopy = WaterIntakeCalculatorMessages["calculator"];
 
 const ACTIVITY_LEVELS: ActivityLevel[] = ["sedentary", "moderate", "active", "very_active"];
 
-export function WaterIntakeCalculator() {
+export function WaterIntakeCalculator({
+  t,
+  locale = DEFAULT_LOCALE,
+}: {
+  t: CalculatorCopy;
+  locale?: Locale;
+}) {
   const [weight, setWeight] = useState<number>(70);
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
   const [activity, setActivity] = useState<ActivityLevel>("moderate");
@@ -21,12 +30,12 @@ export function WaterIntakeCalculator() {
 
   const weightKg = useMemo(
     () => (weightUnit === "kg" ? weight : lbsToKg(weight)),
-    [weight, weightUnit]
+    [weight, weightUnit],
   );
 
   const result = useMemo(
     () => calculateWaterIntake(weightKg, activity, climate),
-    [weightKg, activity, climate]
+    [weightKg, activity, climate],
   );
 
   const handleWeightUnitChange = (newUnit: WeightUnit) => {
@@ -41,17 +50,15 @@ export function WaterIntakeCalculator() {
 
   return (
     <div className="space-y-8">
-      {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Details
+          {t.yourDetails}
         </h2>
 
         <div className="space-y-6">
-          {/* Weight Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Body Weight
+              {t.bodyWeight}
             </label>
             <div className="flex gap-2">
               <div className="relative flex-1">
@@ -83,10 +90,9 @@ export function WaterIntakeCalculator() {
             </div>
           </div>
 
-          {/* Activity Level */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Activity Level
+              {t.activityLevel}
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               {ACTIVITY_LEVELS.map((level) => (
@@ -99,29 +105,28 @@ export function WaterIntakeCalculator() {
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  {ACTIVITY_LABELS[level]}
+                  {t.activities[level]}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Climate Toggle */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Climate
+              {t.climate}
             </label>
             <div className="flex rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-600 w-fit">
               {(["temperate", "hot"] as Climate[]).map((c) => (
                 <button
                   key={c}
                   onClick={() => setClimate(c)}
-                  className={`py-3 px-6 text-sm font-medium transition-colors capitalize ${
+                  className={`py-3 px-6 text-sm font-medium transition-colors ${
                     climate === c
                       ? "bg-[#ED772F] text-white"
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  {c === "temperate" ? "Temperate" : "Hot / Humid"}
+                  {t.climates[c]}
                 </button>
               ))}
             </div>
@@ -129,58 +134,50 @@ export function WaterIntakeCalculator() {
         </div>
       </div>
 
-      {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
-            Daily Water Intake
+            {t.dailyIntake}
           </h3>
 
-          {/* Primary Result */}
           <div className="flex items-baseline gap-3 mb-6">
             <p className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white">
-              {result.liters.toFixed(1)}
+              {formatDecimal(result.liters, locale, 1)}
             </p>
             <span className="text-2xl font-semibold text-neutral-500 dark:text-neutral-400">
-              L / day
+              {t.perDay}
             </span>
           </div>
 
-          {/* Secondary Stats Grid */}
           <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#ED772F]/20">
             <div className="text-center">
               <p className="text-2xl font-bold text-neutral-900 dark:text-white">
-                {result.ounces.toFixed(0)}
+                {formatNumber(Math.round(result.ounces), locale)}
               </p>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
-                oz / day
-              </p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">{t.ozPerDay}</p>
             </div>
             <div className="text-center border-x border-[#ED772F]/20">
               <p className="text-2xl font-bold text-neutral-900 dark:text-white">
-                {result.cups.toFixed(1)}
+                {formatDecimal(result.cups, locale, 1)}
               </p>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
-                cups / day
-              </p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">{t.cupsPerDay}</p>
             </div>
             <div className="text-center">
               <p className="text-2xl font-bold text-neutral-900 dark:text-white">
-                {result.glasses.toFixed(0)}
+                {formatNumber(Math.round(result.glasses), locale)}
               </p>
               <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
-                glasses / day
+                {t.glassesPerDay}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Personalized Tip */}
         <div className="mt-4 p-4 rounded-xl bg-neutral-50 dark:bg-neutral-700/30 border border-neutral-200 dark:border-neutral-600/50">
           <p className="text-xs font-semibold text-[#ED772F] uppercase tracking-wide mb-1">
-            Hydration Tip
+            {t.tipLabel}
           </p>
-          <p className="text-sm text-neutral-700 dark:text-neutral-300">{result.tip}</p>
+          <p className="text-sm text-neutral-700 dark:text-neutral-300">{t.tips[activity]}</p>
         </div>
       </div>
     </div>

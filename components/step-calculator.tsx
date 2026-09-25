@@ -12,9 +12,29 @@ import {
   milesToKm,
   feetInchesToCm,
   cmToFeetInches,
-  formatNumber,
-  formatDistance,
 } from "@/lib/step-calculator";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import { rich } from "@/lib/i18n/rich";
+import en, {
+  type StepDistanceCalculatorMessages,
+} from "@/lib/i18n/messages/tool-pages/step-distance-calculator/en";
+
+type CalculatorCopy = StepDistanceCalculatorMessages["calculator"];
+
+function formatDistanceAmount(distance: number, locale: Locale): string {
+  return formatDecimal(distance, locale, distance < 1 ? 2 : 1);
+}
+
+function formatWalkDuration(minutes: number, t: CalculatorCopy, locale: Locale): string {
+  if (minutes >= 60) {
+    return interpolate(t.hoursMinutes, {
+      hours: formatNumber(Math.floor(minutes / 60), locale),
+      minutes: formatNumber(minutes % 60, locale),
+    });
+  }
+  return interpolate(t.minutesOnly, { minutes: formatNumber(minutes, locale) });
+}
 
 type CalculationMode = "steps-to-distance" | "distance-to-steps";
 type DistanceUnit = "km" | "miles";
@@ -26,7 +46,15 @@ const DEFAULT_PROFILE: UserProfile = {
   heightCm: 170,
 };
 
-export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
+export function StepCalculator({
+  t = en.calculator,
+  locale = DEFAULT_LOCALE,
+  resultCta,
+}: {
+  t?: CalculatorCopy;
+  locale?: Locale;
+  resultCta?: ReactNode;
+} = {}) {
   // User profile state
   const [gender, setGender] = useState<Gender>(DEFAULT_PROFILE.gender);
   const [age, setAge] = useState<number>(DEFAULT_PROFILE.age);
@@ -87,14 +115,14 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
       {/* User Information Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Information
+          {t.yourInformation}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Gender Selection */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Gender
+              {t.gender}
             </label>
             <div className="flex gap-2">
               <button
@@ -105,7 +133,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
                     : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                 }`}
               >
-                Male
+                {t.male}
               </button>
               <button
                 onClick={() => setGender("female")}
@@ -115,7 +143,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
                     : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                 }`}
               >
-                Female
+                {t.female}
               </button>
             </div>
           </div>
@@ -123,7 +151,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
           {/* Age Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Age
+              {t.age}
             </label>
             <div className="relative">
               <input
@@ -143,7 +171,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
                 className="w-full py-2 px-4 pr-14 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
-                years
+                {t.years}
               </span>
             </div>
           </div>
@@ -151,7 +179,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
           {/* Height Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Height
+              {t.height}
             </label>
             <div className="flex gap-2">
               {heightUnit === "cm" ? (
@@ -225,13 +253,20 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
         {/* Step Length Display */}
         <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            Your estimated step length:{" "}
-            <span className="font-semibold text-neutral-900 dark:text-white">
-              {stepLength.toFixed(1)} cm
-            </span>
-            <span className="text-neutral-500 dark:text-neutral-500 ml-1">
-              ({(stepLength / 2.54).toFixed(1)} inches)
-            </span>
+            {rich(t.stepLength, {
+              cm: (
+                <span className="font-semibold text-neutral-900 dark:text-white">
+                  {interpolate(t.cmUnit, { value: formatDecimal(stepLength, locale, 1) })}
+                </span>
+              ),
+              inches: (
+                <span className="text-neutral-500 dark:text-neutral-500 ml-1">
+                  {interpolate(t.inchesUnit, {
+                    value: formatDecimal(stepLength / 2.54, locale, 1),
+                  })}
+                </span>
+              ),
+            })}
           </p>
         </div>
       </div>
@@ -248,7 +283,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
                 : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
             }`}
           >
-            Steps to Distance
+            {t.stepsToDistance}
           </button>
           <button
             onClick={() => setMode("distance-to-steps")}
@@ -258,7 +293,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
                 : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
             }`}
           >
-            Distance to Steps
+            {t.distanceToSteps}
           </button>
         </div>
 
@@ -267,7 +302,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
           {mode === "steps-to-distance" ? (
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Number of Steps
+                {t.numberOfSteps}
               </label>
               <input
                 type="number"
@@ -276,13 +311,13 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
                   setSteps(Number(e.target.value))
                 }
                 className="w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
-                placeholder="Enter number of steps"
+                placeholder={t.stepsPlaceholder}
               />
             </div>
           ) : (
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Distance
+                {t.distance}
               </label>
               <div className="flex gap-2">
                 <input
@@ -291,7 +326,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
                   onChange={(e) => setDistance(Number(e.target.value))}
                   step={0.1}
                   className="flex-1 py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
-                  placeholder="Enter distance"
+                  placeholder={t.distancePlaceholder}
                 />
                 <select
                   value={distanceUnit}
@@ -301,7 +336,7 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
                   className="py-3 pl-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent appearance-none bg-[length:16px_16px] bg-[position:right_0.75rem_center] bg-no-repeat bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23737373%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')]"
                 >
                   <option value="km">km</option>
-                  <option value="miles">miles</option>
+                  <option value="miles">{t.miles}</option>
                 </select>
               </div>
             </div>
@@ -311,24 +346,28 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
         {/* Result Section */}
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Result
+            {t.result}
           </h3>
 
           {mode === "steps-to-distance" ? (
             <div className="space-y-4">
               <div>
                 <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                  {formatDistance(result.distanceKm, "km")} km
+                  {interpolate(t.kmValue, {
+                    distance: formatDistanceAmount(result.distanceKm, locale),
+                  })}
                 </p>
                 <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">
-                  ({formatDistance(result.distanceMiles, "miles")} miles)
+                  {interpolate(t.milesParen, {
+                    distance: formatDistanceAmount(result.distanceMiles, locale),
+                  })}
                 </p>
               </div>
             </div>
           ) : (
             <div>
               <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                {formatNumber(result.steps)} steps
+                {interpolate(t.stepsValue, { steps: formatNumber(result.steps, locale) })}
               </p>
             </div>
           )}
@@ -337,20 +376,20 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
           <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Estimated Calories
+                {t.estimatedCalories}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {formatNumber(result.caloriesBurned)} kcal
+                {interpolate(t.kcalValue, {
+                  calories: formatNumber(result.caloriesBurned, locale),
+                })}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Walking Time
+                {t.walkingTime}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {result.walkingTimeMinutes >= 60
-                  ? `${Math.floor(result.walkingTimeMinutes / 60)}h ${result.walkingTimeMinutes % 60}m`
-                  : `${result.walkingTimeMinutes} min`}
+                {formatWalkDuration(result.walkingTimeMinutes, t, locale)}
               </p>
             </div>
           </div>
@@ -360,21 +399,29 @@ export function StepCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
       {resultCta}
 
       {/* Reference Table */}
-      <ReferenceTable profile={profile} />
+      <ReferenceTable profile={profile} t={t} locale={locale} />
     </div>
   );
 }
 
-function ReferenceTable({ profile }: { profile: UserProfile }) {
+function ReferenceTable({
+  profile,
+  t,
+  locale,
+}: {
+  profile: UserProfile;
+  t: CalculatorCopy;
+  locale: Locale;
+}) {
   const tableData = useMemo(() => generateReferenceTable(profile), [profile]);
 
   return (
     <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
       <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-        Quick Reference Table
+        {t.referenceTitle}
       </h2>
       <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-        Common step goals and their equivalent distances based on your profile
+        {t.referenceSubtitle}
       </p>
 
       <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
@@ -382,16 +429,16 @@ function ReferenceTable({ profile }: { profile: UserProfile }) {
           <thead>
             <tr className="border-b border-neutral-200 dark:border-neutral-700">
               <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                Steps
+                {t.colSteps}
               </th>
               <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                Distance
+                {t.colDistance}
               </th>
               <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                Calories
+                {t.colCalories}
               </th>
               <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                Time
+                {t.colTime}
               </th>
             </tr>
           </thead>
@@ -403,28 +450,30 @@ function ReferenceTable({ profile }: { profile: UserProfile }) {
               >
                 <td className="py-3 px-2">
                   <span className="font-semibold text-neutral-900 dark:text-white">
-                    {formatNumber(row.steps)}
+                    {formatNumber(row.steps, locale)}
                   </span>
                 </td>
                 <td className="py-3 px-2">
                   <span className="text-neutral-900 dark:text-white">
-                    {formatDistance(row.distanceKm, "km")} km
+                    {interpolate(t.kmValue, {
+                      distance: formatDistanceAmount(row.distanceKm, locale),
+                    })}
                   </span>
                   <span className="text-neutral-500 dark:text-neutral-500 text-sm ml-1 hidden sm:inline">
-                    ({formatDistance(row.distanceMiles, "miles")} mi)
+                    {interpolate(t.miParen, {
+                      distance: formatDistanceAmount(row.distanceMiles, locale),
+                    })}
                   </span>
                 </td>
                 <td className="py-3 px-2">
                   <span className="text-neutral-900 dark:text-white">
-                    {formatNumber(row.caloriesBurned)}
+                    {formatNumber(row.caloriesBurned, locale)}
                   </span>
-                  <span className="hidden sm:inline"> kcal</span>
+                  <span className="hidden sm:inline">{t.kcalSuffix}</span>
                 </td>
                 <td className="py-3 px-2">
                   <span className="text-neutral-900 dark:text-white">
-                    {row.walkingTimeMinutes >= 60
-                      ? `${Math.floor(row.walkingTimeMinutes / 60)}h ${row.walkingTimeMinutes % 60}m`
-                      : `${row.walkingTimeMinutes} min`}
+                    {formatWalkDuration(row.walkingTimeMinutes, t, locale)}
                   </span>
                 </td>
               </tr>

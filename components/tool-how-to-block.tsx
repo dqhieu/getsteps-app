@@ -1,11 +1,14 @@
-import { TOOL_HOW_TO } from "@/lib/tool-how-to";
+import { TOOL_HOW_TO, type ToolHowToData } from "@/lib/tool-how-to";
 
 interface Props {
-  slug: string;
+  /** English data from `TOOL_HOW_TO`; ignored when `data` is passed. */
+  slug?: string;
+  /** Localized how-to content, usually `t.howTo` from the tool's messages. */
+  data?: ToolHowToData;
 }
 
-export function ToolHowToBlock({ slug }: Props) {
-  const data = TOOL_HOW_TO[slug];
+export function ToolHowToBlock({ slug, data: dataProp }: Props) {
+  const data = dataProp ?? (slug ? TOOL_HOW_TO[slug] : undefined);
   if (!data) return null;
 
   const schema = {

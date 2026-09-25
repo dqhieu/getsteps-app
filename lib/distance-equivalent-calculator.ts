@@ -1,4 +1,15 @@
-// Pure TS logic for distance unit conversion
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber } from "@/lib/i18n/format";
+
+function formatFixed(n: number, digits: number, locale: Locale): string {
+  if (locale === DEFAULT_LOCALE) return n.toFixed(digits);
+  return formatDecimal(n, locale, digits);
+}
+
+function formatCalories(n: number, locale: Locale): string {
+  const value = locale === DEFAULT_LOCALE ? String(n) : formatNumber(n, locale);
+  return `${value} kcal`;
+}
 
 export interface DistanceResult {
   km: string;
@@ -45,7 +56,11 @@ function calcCalories(distKm: number, speedKmh: number, met: number): number {
   return Math.round(met * KCAL_PER_MET_MIN * minutes);
 }
 
-export function convertDistance(value: number, unit: DistanceUnit): DistanceResult {
+export function convertDistance(
+  value: number,
+  unit: DistanceUnit,
+  locale: Locale = DEFAULT_LOCALE,
+): DistanceResult {
   if (!isFinite(value) || value <= 0) {
     return {
       km: "—", miles: "—", meters: "—", yards: "—", feet: "—",
@@ -84,7 +99,7 @@ export function convertDistance(value: number, unit: DistanceUnit): DistanceResu
   const calJog = calcCalories(distKm, jogSpeedKmh, 7);
   const calRun = calcCalories(distKm, runSpeedKmh, 11);
 
-  const fmt = (n: number, d = 2) => n.toFixed(d);
+  const fmt = (n: number, d = 2) => formatFixed(n, d, locale);
 
   return {
     km: `${fmt(distKm)} km`,
@@ -92,19 +107,24 @@ export function convertDistance(value: number, unit: DistanceUnit): DistanceResu
     meters: meters >= 1000 ? `${fmt(meters, 0)} m` : `${fmt(meters, 1)} m`,
     yards: `${fmt(yards, 0)} yd`,
     feet: `${fmt(feet, 0)} ft`,
-    steps: steps.toLocaleString(),
+    steps: formatNumber(steps, locale),
     timeWalking: secsToHMMSS(timeWalkSec),
     timeJogging: secsToHMMSS(timeJogSec),
     timeRunning: secsToHMMSS(timeRunSec),
-    calWalking: `${calWalk} kcal`,
-    calJogging: `${calJog} kcal`,
-    calRunning: `${calRun} kcal`,
+    calWalking: formatCalories(calWalk, locale),
+    calJogging: formatCalories(calJog, locale),
+    calRunning: formatCalories(calRun, locale),
   };
 }
 
-export const QUICK_DISTANCES: { label: string; value: number; unit: DistanceUnit }[] = [
-  { label: "5K", value: 5, unit: "km" },
-  { label: "10K", value: 10, unit: "km" },
-  { label: "Half Marathon", value: 21.0975, unit: "km" },
-  { label: "Marathon", value: 42.195, unit: "km" },
+export const QUICK_DISTANCES: {
+  id: "5k" | "10k" | "half" | "marathon";
+  label: string;
+  value: number;
+  unit: DistanceUnit;
+}[] = [
+  { id: "5k", label: "5K", value: 5, unit: "km" },
+  { id: "10k", label: "10K", value: 10, unit: "km" },
+  { id: "half", label: "Half Marathon", value: 21.0975, unit: "km" },
+  { id: "marathon", label: "Marathon", value: 42.195, unit: "km" },
 ];

@@ -1,7 +1,11 @@
 import { ShieldCheck } from "lucide-react";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { getLandingMessages } from "@/lib/i18n/messages/landing";
 import { Reveal } from "./landing-reveal";
 
-export function LandingPrivacy() {
+export function LandingPrivacy({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  const t = getLandingMessages(locale).privacy;
+
   return (
     <section className="py-12 md:py-16">
       <div className="container mx-auto px-4">
@@ -12,12 +16,10 @@ export function LandingPrivacy() {
               aria-hidden
             />
             <h3 className="mt-4 text-xl font-medium tracking-tight text-balance text-neutral-900 dark:text-white">
-              Your data stays on your device by default
+              {t.title}
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-pretty text-neutral-600 dark:text-neutral-400">
-              Health data is stored locally and accessed securely through Apple
-              HealthKit with your permission. If you opt into the Stepboard
-              leaderboard, selected metrics are synced to power the rankings.
+              {t.body}
             </p>
           </div>
         </Reveal>

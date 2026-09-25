@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useMemo, type ReactNode } from "react";
-import {
-  calculateTreadmillSession,
-  generateInclineTable,
-} from "@/lib/treadmill-calculator";
-import { lbsToKg, kgToLbs, kmToMiles, formatNumber } from "@/lib/unit-converter";
+import { useMemo, useState, type ReactNode } from "react";
+import { calculateTreadmillSession, generateInclineTable } from "@/lib/treadmill-calculator";
+import { kgToLbs, kmToMiles, lbsToKg } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import { rich } from "@/lib/i18n/rich";
+import type { TreadmillCalorieCalculatorMessages } from "@/lib/i18n/messages/tool-pages/treadmill-calorie-calculator/en";
 
 type WeightUnit = "kg" | "lbs";
 type SpeedUnit = "kmh" | "mph";
+type CalculatorCopy = TreadmillCalorieCalculatorMessages["calculator"];
 
 const MPH_TO_KMH = 1.60934;
 const INCLINE_PRESETS = [0, 1, 3, 5, 8, 10, 12, 15];
@@ -21,8 +23,14 @@ const labelClass =
   "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2";
 
 export function TreadmillCalorieCalculator({
+  t,
+  locale = DEFAULT_LOCALE,
   resultCta,
-}: { resultCta?: ReactNode } = {}) {
+}: {
+  t: CalculatorCopy;
+  locale?: Locale;
+  resultCta?: ReactNode;
+}) {
   const [weight, setWeight] = useState(70);
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
   const [speed, setSpeed] = useState(5);
@@ -41,12 +49,12 @@ export function TreadmillCalorieCalculator({
         inclinePercent: incline,
         durationMinutes: duration,
       }),
-    [weightKg, speedKmh, incline, duration]
+    [weightKg, speedKmh, incline, duration],
   );
 
   const inclineTable = useMemo(
     () => generateInclineTable(weightKg, speedKmh, duration),
-    [weightKg, speedKmh, duration]
+    [weightKg, speedKmh, duration],
   );
 
   const extraFromIncline = results.calories - results.caloriesAtZeroIncline;
@@ -71,16 +79,19 @@ export function TreadmillCalorieCalculator({
     }
   };
 
+  const percentText = (value: number) =>
+    formatNumber(value, locale, { maximumFractionDigits: 1 });
+
   return (
     <div className="space-y-8">
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Treadmill Session
+          {t.session}
         </h2>
 
         <div className="space-y-6">
           <div>
-            <label className={labelClass}>Weight</label>
+            <label className={labelClass}>{t.weight}</label>
             <div className="flex gap-2">
               <div className="relative flex-1">
                 <input
@@ -100,7 +111,7 @@ export function TreadmillCalorieCalculator({
           </div>
 
           <div>
-            <label className={labelClass}>Speed</label>
+            <label className={labelClass}>{t.speed}</label>
             <div className="flex gap-2">
               <div className="relative flex-1">
                 <input
@@ -121,7 +132,9 @@ export function TreadmillCalorieCalculator({
           </div>
 
           <div>
-            <label className={labelClass}>Incline: {incline}%</label>
+            <label className={labelClass}>
+              {interpolate(t.incline, { percent: percentText(incline) })}
+            </label>
             <input
               type="range"
               min={0}
@@ -142,14 +155,14 @@ export function TreadmillCalorieCalculator({
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  {preset}%
+                  {formatNumber(preset, locale)}%
                 </button>
               ))}
             </div>
           </div>
 
           <div>
-            <label className={labelClass}>Duration</label>
+            <label className={labelClass}>{t.duration}</label>
             <div className="relative">
               <input
                 type="number"
@@ -158,7 +171,7 @@ export function TreadmillCalorieCalculator({
                 className={inputClass}
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
-                minutes
+                {t.minutes}
               </span>
             </div>
           </div>
@@ -168,34 +181,43 @@ export function TreadmillCalorieCalculator({
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Calories Burned
+            {t.caloriesBurned}
           </h3>
           <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-            {formatNumber(results.calories)} kcal
+            {interpolate(t.kcalValue, { value: formatNumber(results.calories, locale) })}
           </p>
           {incline > 0 && (
             <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
-              The {incline}% incline adds{" "}
-              <strong className="text-[#ED772F]">
-                {formatNumber(extraFromIncline)} kcal
-              </strong>{" "}
-              versus the same session on the flat (
-              {formatNumber(results.caloriesAtZeroIncline)} kcal).
+              {rich(t.inclineAdds, {
+                grade: percentText(incline),
+                extra: (
+                  <strong className="text-[#ED772F]">
+                    {formatNumber(extraFromIncline, locale)}
+                  </strong>
+                ),
+                flat: formatNumber(results.caloriesAtZeroIncline, locale),
+              })}
             </p>
           )}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
           {[
-            { label: "MET", value: results.met.toFixed(1) },
+            { label: t.met, value: formatDecimal(results.met, locale, 1) },
             {
-              label: "Distance",
-              value: `${results.distanceKm.toFixed(2)} km / ${kmToMiles(
-                results.distanceKm
-              ).toFixed(2)} mi`,
+              label: t.distance,
+              value: interpolate(t.distanceValue, {
+                km: formatDecimal(results.distanceKm, locale, 2),
+                mi: formatDecimal(kmToMiles(results.distanceKm), locale, 2),
+              }),
             },
-            { label: "Est. steps", value: formatNumber(results.steps) },
-            { label: "Fat burned", value: `${results.fatGrams.toFixed(1)} g` },
+            { label: t.estSteps, value: formatNumber(results.steps, locale) },
+            {
+              label: t.fatBurned,
+              value: interpolate(t.grams, {
+                value: formatDecimal(results.fatGrams, locale, 1),
+              }),
+            },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -212,8 +234,10 @@ export function TreadmillCalorieCalculator({
         </div>
 
         <p className="mt-4 text-xs text-neutral-500 dark:text-neutral-400">
-          Using the ACSM {results.isRunning ? "running" : "walking"} metabolic
-          equation ({results.vo2.toFixed(1)} ml/kg/min VO₂).
+          {interpolate(t.equation, {
+            gait: results.isRunning ? t.gaitRunning : t.gaitWalking,
+            vo2: formatDecimal(results.vo2, locale, 1),
+          })}
         </p>
 
         {resultCta}
@@ -221,19 +245,17 @@ export function TreadmillCalorieCalculator({
 
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
-          Calories by Incline
+          {t.tableTitle}
         </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-          Same weight, speed and duration. Only the grade changes.
-        </p>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">{t.tableSubtitle}</p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-neutral-500 dark:text-neutral-400 border-b border-neutral-200 dark:border-neutral-700">
-                <th className="py-2 pr-4 font-medium">Incline</th>
-                <th className="py-2 pr-4 font-medium">MET</th>
-                <th className="py-2 pr-4 font-medium">Calories</th>
-                <th className="py-2 font-medium">vs flat</th>
+                <th className="py-2 pr-4 font-medium">{t.colIncline}</th>
+                <th className="py-2 pr-4 font-medium">{t.colMet}</th>
+                <th className="py-2 pr-4 font-medium">{t.colCalories}</th>
+                <th className="py-2 font-medium">{t.colVsFlat}</th>
               </tr>
             </thead>
             <tbody>
@@ -245,19 +267,22 @@ export function TreadmillCalorieCalculator({
                   }`}
                 >
                   <td className="py-2 pr-4 text-neutral-900 dark:text-white">
-                    {row.incline}%
+                    {formatNumber(row.incline, locale)}%
                   </td>
                   <td className="py-2 pr-4 text-neutral-600 dark:text-neutral-400">
-                    {row.met.toFixed(1)}
+                    {formatDecimal(row.met, locale, 1)}
                   </td>
                   <td className="py-2 pr-4 text-neutral-900 dark:text-white font-medium">
-                    {formatNumber(row.calories)}
+                    {formatNumber(row.calories, locale)}
                   </td>
                   <td className="py-2 text-neutral-600 dark:text-neutral-400">
                     {inclineTable[0].calories > 0
-                      ? `+${Math.round(
-                          (row.calories / inclineTable[0].calories - 1) * 100
-                        )}%`
+                      ? interpolate(t.vsFlat, {
+                          percent: formatNumber(
+                            Math.round((row.calories / inclineTable[0].calories - 1) * 100),
+                            locale,
+                          ),
+                        })
                       : "—"}
                   </td>
                 </tr>

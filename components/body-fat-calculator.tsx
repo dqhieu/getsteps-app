@@ -14,14 +14,22 @@ import {
   cmToFeetInches,
   cmToInches,
   inchesToCm,
-  formatNumber,
 } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import en, { type BodyFatCalculatorMessages } from "@/lib/i18n/messages/tool-pages/body-fat-calculator/en";
 
 type WeightUnit = "kg" | "lbs";
 type HeightUnit = "cm" | "ft";
 type MeasurementUnit = "cm" | "in";
 
-export function BodyFatCalculator() {
+export function BodyFatCalculator({
+  t = en.calculator,
+  locale = DEFAULT_LOCALE,
+}: {
+  t?: BodyFatCalculatorMessages["calculator"];
+  locale?: Locale;
+} = {}) {
   const [gender, setGender] = useState<Gender>("male");
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
   const [heightUnit, setHeightUnit] = useState<HeightUnit>("cm");
@@ -123,28 +131,28 @@ export function BodyFatCalculator() {
     setter(measUnit === "cm" ? val : inchesToCm(val));
   };
 
-  const fatMassDisplay = useMemo(() => {
-    if (weightUnit === "kg") return `${result.fatMassKg} kg`;
-    return `${Math.round(kgToLbs(result.fatMassKg) * 10) / 10} lbs`;
-  }, [result.fatMassKg, weightUnit]);
+  const formatMass = (kg: number) => {
+    const amount = weightUnit === "kg" ? kg : Math.round(kgToLbs(kg) * 10) / 10;
+    return interpolate(weightUnit === "kg" ? t.massKg : t.massLbs, {
+      value: formatNumber(amount, locale, { maximumFractionDigits: 1 }),
+    });
+  };
 
-  const leanMassDisplay = useMemo(() => {
-    if (weightUnit === "kg") return `${result.leanMassKg} kg`;
-    return `${Math.round(kgToLbs(result.leanMassKg) * 10) / 10} lbs`;
-  }, [result.leanMassKg, weightUnit]);
+  const fatMassDisplay = formatMass(result.fatMassKg);
+  const leanMassDisplay = formatMass(result.leanMassKg);
 
   return (
     <div className="space-y-8">
       {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Measurements
+          {t.measurements}
         </h2>
 
         {/* Gender Toggle */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-            Gender
+            {t.gender}
           </label>
           <div className="flex rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700">
             <button
@@ -155,7 +163,7 @@ export function BodyFatCalculator() {
                   : "py-3 px-4 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors flex-1"
               }
             >
-              Male
+              {t.male}
             </button>
             <button
               onClick={() => setGender("female")}
@@ -165,7 +173,7 @@ export function BodyFatCalculator() {
                   : "py-3 px-4 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors flex-1"
               }
             >
-              Female
+              {t.female}
             </button>
           </div>
         </div>
@@ -174,7 +182,7 @@ export function BodyFatCalculator() {
           {/* Height */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Height
+              {t.height}
             </label>
             <div className="flex gap-2">
               {heightUnit === "cm" ? (
@@ -245,7 +253,7 @@ export function BodyFatCalculator() {
           {/* Weight */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Weight
+              {t.weight}
             </label>
             <div className="flex gap-2">
               <div className="relative flex-1">
@@ -274,7 +282,7 @@ export function BodyFatCalculator() {
         {/* Measurement unit toggle */}
         <div className="mt-6 mb-4 flex items-center justify-between">
           <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-            Circumference Unit
+            {t.circumferenceUnit}
           </span>
           <div className="flex rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700">
             <button
@@ -304,7 +312,7 @@ export function BodyFatCalculator() {
           {/* Waist */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Waist Circumference
+              {t.waist}
             </label>
             <div className="relative">
               <input
@@ -322,7 +330,7 @@ export function BodyFatCalculator() {
           {/* Neck */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Neck Circumference
+              {t.neck}
             </label>
             <div className="relative">
               <input
@@ -341,7 +349,7 @@ export function BodyFatCalculator() {
           {gender === "female" && (
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Hip Circumference
+                {t.hip}
               </label>
               <div className="relative">
                 <input
@@ -359,7 +367,7 @@ export function BodyFatCalculator() {
         </div>
 
         <p className="mt-4 text-xs text-neutral-500 dark:text-neutral-400">
-          All measurements should be taken at the narrowest point.
+          {t.measurementHint}
         </p>
       </div>
 
@@ -368,21 +376,23 @@ export function BodyFatCalculator() {
         {!result.isValid ? (
           <div className="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-6 text-center">
             <p className="text-red-700 dark:text-red-400 font-medium">
-              Please check your measurements
+              {t.invalidTitle}
             </p>
             <p className="text-sm text-red-600 dark:text-red-500 mt-1">
-              Waist must be greater than neck circumference.
+              {t.invalidDetail}
             </p>
           </div>
         ) : (
           <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
             <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-              Your Body Fat
+              {t.yourBodyFat}
             </h3>
 
             <div className="flex items-baseline gap-4 mb-4">
               <p className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white">
-                {result.bodyFatPercent.toFixed(1)}%
+                {interpolate(t.percent, {
+                  value: formatDecimal(result.bodyFatPercent, locale, 1),
+                })}
               </p>
               <span
                 className="text-lg font-semibold px-3 py-1 rounded-full"
@@ -391,7 +401,7 @@ export function BodyFatCalculator() {
                   color: result.categoryColor,
                 }}
               >
-                {result.categoryLabel}
+                {t.categories[result.category]}
               </span>
             </div>
 
@@ -428,7 +438,7 @@ export function BodyFatCalculator() {
             <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-2 gap-4">
               <div>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  Fat Mass
+                  {t.fatMass}
                 </p>
                 <p className="text-xl font-semibold text-neutral-900 dark:text-white">
                   {fatMassDisplay}
@@ -436,7 +446,7 @@ export function BodyFatCalculator() {
               </div>
               <div>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  Lean Mass
+                  {t.leanMass}
                 </p>
                 <p className="text-xl font-semibold text-neutral-900 dark:text-white">
                   {leanMassDisplay}
@@ -447,10 +457,10 @@ export function BodyFatCalculator() {
             {/* Recommended Steps */}
             <div className="mt-4 pt-4 border-t border-[#ED772F]/20">
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Recommended Daily Steps
+                {t.recommendedSteps}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {formatNumber(result.recommendedSteps)}
+                {formatNumber(result.recommendedSteps, locale)}
               </p>
             </div>
           </div>
@@ -460,11 +470,10 @@ export function BodyFatCalculator() {
       {/* Reference Table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-          Body Fat Categories
+          {t.categoriesTitle}
         </h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-          American Council on Exercise (ACE) classification for{" "}
-          {gender === "male" ? "men" : "women"}
+          {gender === "male" ? t.categoriesSubtitleMale : t.categoriesSubtitleFemale}
         </p>
 
         <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
@@ -472,10 +481,10 @@ export function BodyFatCalculator() {
             <thead>
               <tr className="border-b border-neutral-200 dark:border-neutral-700">
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Category
+                  {t.categoryColumn}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Body Fat Range
+                  {t.rangeColumn}
                 </th>
               </tr>
             </thead>
@@ -502,7 +511,7 @@ export function BodyFatCalculator() {
                             : "text-neutral-700 dark:text-neutral-300"
                         }`}
                       >
-                        {cat.label}
+                        {t.categories[cat.category]}
                       </span>
                     </span>
                   </td>

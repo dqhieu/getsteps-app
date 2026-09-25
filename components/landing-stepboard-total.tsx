@@ -6,7 +6,12 @@ import {
   normalizeStepboardTotal,
 } from "../lib/stepboard-total";
 import { getSupabase } from "../lib/supabase";
+import { DEFAULT_LOCALE, type Locale } from "../lib/i18n/config";
+import { groupSeparator, interpolate } from "../lib/i18n/format";
+import enLanding, { type LandingMessages } from "../lib/i18n/messages/landing/en";
 import { Reveal } from "./landing-reveal";
+
+type StepboardLabels = LandingMessages["stepboard"];
 
 type TotalState =
   | { status: "loading" }
@@ -31,27 +36,42 @@ function FlipTile({ character, index }: { character: string; index: number }) {
   );
 }
 
-function FlipCounter({ total }: { total: string }) {
-  const formatted = formatStepboardTotal(total);
+function FlipCounter({
+  total,
+  locale,
+  labels,
+}: {
+  total: string;
+  locale: Locale;
+  labels: StepboardLabels;
+}) {
+  const separator = groupSeparator(locale);
+  // Whitespace separators (fr) read better as a gap than as a blank tile.
+  const tileSeparator = separator.trim() ? separator : "";
+  const groups = formatStepboardTotal(total, "\u0000").split("\u0000");
   let characterIndex = 0;
 
   return (
     <div
       role="img"
-      aria-label={`${formatted} steps walked by the Steps community`}
+      aria-label={interpolate(labels.counterLabel, {
+        total: formatStepboardTotal(total, separator),
+      })}
       className="flex items-center justify-center"
     >
       <span
         aria-hidden="true"
         data-testid="flip-counter-visual"
-        className="flex max-w-full flex-wrap justify-center gap-y-2"
+        className={`flex max-w-full flex-wrap justify-center gap-y-2 ${
+          tileSeparator ? "" : "gap-x-3"
+        }`}
       >
-        {formatted.split(",").map((group, groupIndex, groups) => (
+        {groups.map((group, groupIndex) => (
           <span
             key={`${group}-${groupIndex}`}
             className="inline-flex items-center"
           >
-            {(groupIndex < groups.length - 1 ? `${group},` : group)
+            {(groupIndex < groups.length - 1 ? `${group}${tileSeparator}` : group)
               .split("")
               .map((character) => {
                 const index = characterIndex++;
@@ -71,7 +91,13 @@ function FlipCounter({ total }: { total: string }) {
   );
 }
 
-function BoardFrame({ children }: { children: ReactNode }) {
+function BoardFrame({
+  children,
+  footer,
+}: {
+  children: ReactNode;
+  footer: string;
+}) {
   return (
     <div className="mx-auto w-full max-w-3xl">
       <div className="relative overflow-hidden rounded-lg border border-black/70 bg-gradient-to-b from-neutral-700 via-neutral-800 to-neutral-950 p-4 shadow-[0_2px_4px_rgba(0,0,0,0.4),0_8px_16px_-4px_rgba(0,0,0,0.45),0_30px_60px_-20px_rgba(0,0,0,0.65),inset_0_1px_0_rgba(255,255,255,0.18),inset_0_-1px_0_rgba(0,0,0,0.5)]">
@@ -99,7 +125,7 @@ function BoardFrame({ children }: { children: ReactNode }) {
           </div>
           <div className="border-t border-white/10 px-5 py-3 text-center sm:px-8">
             <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#F8EAD8]/45 sm:text-xs">
-              Total steps walked by Stepboard members
+              {footer}
             </p>
           </div>
         </div>
@@ -124,7 +150,13 @@ function CounterPlaceholder() {
   );
 }
 
-export function LandingStepboardTotal() {
+export function LandingStepboardTotal({
+  locale = DEFAULT_LOCALE,
+  labels = enLanding.stepboard,
+}: {
+  locale?: Locale;
+  labels?: StepboardLabels;
+}) {
   const [state, setState] = useState<TotalState>({ status: "loading" });
   const requestRef = useRef<Promise<string | null> | null>(null);
 
@@ -168,12 +200,12 @@ export function LandingStepboardTotal() {
   return (
     <section
       className="relative z-10 -mt-8 px-4 pb-16 md:-mt-14 md:pb-20"
-      aria-label="Stepboard community step total"
+      aria-label={labels.sectionLabel}
     >
       <Reveal>
-        <BoardFrame>
+        <BoardFrame footer={labels.footer}>
           {state.status === "loaded" ? (
-            <FlipCounter total={state.total} />
+            <FlipCounter total={state.total} locale={locale} labels={labels} />
           ) : (
             <CounterPlaceholder />
           )}

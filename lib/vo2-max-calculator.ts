@@ -9,8 +9,11 @@
 export type VO2Method = "heart_rate" | "cooper";
 export type Gender = "male" | "female";
 
+export type VO2CategoryId = "superior" | "excellent" | "good" | "fair" | "poor";
+
 export interface VO2MaxResult {
   vo2max: number;
+  categoryId: VO2CategoryId;
   category: string;
   categoryColor: string;
   description: string;
@@ -18,6 +21,7 @@ export interface VO2MaxResult {
 }
 
 interface CategoryDef {
+  id: VO2CategoryId;
   label: string;
   color: string;
   description: string;
@@ -28,6 +32,7 @@ interface CategoryDef {
 
 const CATEGORIES: CategoryDef[] = [
   {
+    id: "superior",
     label: "Superior",
     color: "green",
     maleMin: 55,
@@ -36,6 +41,7 @@ const CATEGORIES: CategoryDef[] = [
     tip: "Maintain with periodized training: mix long runs, tempo sessions, and recovery weeks to avoid overtraining.",
   },
   {
+    id: "excellent",
     label: "Excellent",
     color: "teal",
     maleMin: 51,
@@ -44,6 +50,7 @@ const CATEGORIES: CategoryDef[] = [
     tip: "Add one VO2max interval session per week (e.g., 5×3 min at hard effort) to push into Superior range.",
   },
   {
+    id: "good",
     label: "Good",
     color: "blue",
     maleMin: 43,
@@ -52,6 +59,7 @@ const CATEGORIES: CategoryDef[] = [
     tip: "Aim for 3-4 cardio sessions per week. Include one tempo run and one longer easy run to build your base.",
   },
   {
+    id: "fair",
     label: "Fair",
     color: "yellow",
     maleMin: 35,
@@ -60,6 +68,7 @@ const CATEGORIES: CategoryDef[] = [
     tip: "Start with 30-minute Zone 2 runs 3× per week. Add one HIIT session weekly after 4 weeks of base training.",
   },
   {
+    id: "poor",
     label: "Poor",
     color: "red",
     maleMin: 0,
@@ -117,6 +126,7 @@ export function calculateVO2Max(
 
   return {
     vo2max,
+    categoryId: cat.id,
     category: cat.label,
     categoryColor: cat.color,
     description: cat.description,

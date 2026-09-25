@@ -1,33 +1,7 @@
-import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
-
-function AppStoreBadge() {
-  return (
-    <a
-      href={SITE_CONFIG.appStoreUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      data-fast-goal="open-app-store"
-      className="transition-transform hover:scale-105 active:scale-95 inline-block"
-      aria-label="Download on the App Store"
-    >
-      <Image
-        src="/badge_light_mode.svg"
-        alt="Download on the App Store"
-        width={120}
-        height={40}
-        className="h-12 w-auto dark:hidden"
-      />
-      <Image
-        src="/badge_dark_mode.svg"
-        alt="Download on the App Store"
-        width={120}
-        height={40}
-        className="h-12 w-auto hidden dark:block"
-      />
-    </a>
-  );
-}
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { getCommonMessages } from "@/lib/i18n/messages/common";
+import { AppStoreBadge } from "./app-store-badge";
 
 /**
  * Result-anchored CTA shown immediately below a calculator's output, while the
@@ -36,9 +10,11 @@ function AppStoreBadge() {
 export function ToolAppCta({
   headline,
   description,
+  locale = DEFAULT_LOCALE,
 }: {
   headline: string;
   description: string;
+  locale?: Locale;
 }) {
   return (
     <div className="mt-8 rounded-2xl border border-[#ED772F]/30 bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 p-6 md:p-8">
@@ -52,9 +28,9 @@ export function ToolAppCta({
           </p>
         </div>
         <div className="flex-shrink-0 flex flex-col md:items-end gap-2">
-          <AppStoreBadge />
+          <AppStoreBadge locale={locale} />
           <p className="text-sm text-neutral-500 dark:text-neutral-400">
-            Free on the App Store
+            {getCommonMessages(locale).appStore.freeOnAppStore}
           </p>
         </div>
       </div>
@@ -68,7 +44,14 @@ export function ToolAppCta({
  * the bulk of App Store clicks, so it stays on the free download — pointing it
  * at a paid upgrade instead cut tool-page App Store clicks by ~73%.
  */
-export function ToolStickyCta({ label }: { label: string }) {
+export function ToolStickyCta({
+  label,
+  locale = DEFAULT_LOCALE,
+}: {
+  label: string;
+  locale?: Locale;
+}) {
+  const t = getCommonMessages(locale).appStore;
   return (
     <div className="fixed bottom-0 inset-x-0 z-50 md:hidden flex items-center justify-between gap-3 border-t border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur px-4 py-3">
       <div className="min-w-0">
@@ -76,7 +59,7 @@ export function ToolStickyCta({ label }: { label: string }) {
           {label}
         </p>
         <p className="text-xs text-neutral-500 dark:text-neutral-400">
-          Free on the App Store
+          {t.freeOnAppStore}
         </p>
       </div>
       <a
@@ -84,10 +67,10 @@ export function ToolStickyCta({ label }: { label: string }) {
         target="_blank"
         rel="noopener noreferrer"
         data-fast-goal="open-app-store"
-        aria-label="Download on the App Store"
+        aria-label={t.badgeAlt}
         className="flex-shrink-0 rounded-full bg-[#ED772F] text-white text-sm font-semibold px-5 py-2.5 active:scale-95 transition-transform"
       >
-        Get Steps
+        {t.getSteps}
       </a>
     </div>
   );

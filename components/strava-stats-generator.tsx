@@ -5,6 +5,7 @@ import {
   buildWorkoutCardData,
   CARD_FILE_NAME,
   convertDistanceInput,
+  EMPTY_VALUE,
   type CardDistanceUnit,
 } from "@/lib/workout-card";
 import {
@@ -14,8 +15,19 @@ import {
   FALLBACK_FONT,
 } from "@/lib/workout-card-canvas";
 import { canvasToPngFile, downloadFile } from "@/lib/canvas-png-export";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, interpolate } from "@/lib/i18n/format";
+import en, {
+  type StravaStatsGeneratorMessages,
+} from "@/lib/i18n/messages/tool-pages/strava-stats-generator/en";
 
-export function StravaStatsGenerator() {
+export function StravaStatsGenerator({
+  t = en.tool,
+  locale = DEFAULT_LOCALE,
+}: {
+  t?: StravaStatsGeneratorMessages["tool"];
+  locale?: Locale;
+} = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [distance, setDistance] = useState("10");
@@ -43,11 +55,21 @@ export function StravaStatsGenerator() {
     [distance, unit, duration]
   );
 
+  const displayData = useMemo(() => {
+    if (data.distanceValue === EMPTY_VALUE) return data;
+    const parsed = Number(data.distanceValue);
+    if (!Number.isFinite(parsed)) return data;
+    return {
+      ...data,
+      distanceValue: formatDecimal(parsed, locale, 2),
+    };
+  }, [data, locale]);
+
   useEffect(() => {
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
-    drawWorkoutCard(ctx, data, fontFamily);
-  }, [data, fontFamily]);
+    drawWorkoutCard(ctx, displayData, fontFamily, t.canvas);
+  }, [displayData, fontFamily, t.canvas]);
 
   const handleUnitToggle = () => {
     const next: CardDistanceUnit = unit === "km" ? "mile" : "km";
@@ -79,13 +101,13 @@ export function StravaStatsGenerator() {
       {/* Inputs */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Workout
+          {t.workout}
         </h2>
 
         <div className="space-y-4">
           <div>
             <label htmlFor="card-distance" className={labelCls}>
-              Distance
+              {t.distance}
             </label>
             <div className="flex gap-2">
               <input
@@ -102,7 +124,7 @@ export function StravaStatsGenerator() {
                 type="button"
                 onClick={handleUnitToggle}
                 className={toggleBtnCls}
-                aria-label={`Switch to ${unit === "km" ? "miles" : "kilometers"}`}
+                aria-label={unit === "km" ? t.switchToMiles : t.switchToKilometers}
               >
                 {unit === "km" ? "km" : "mi"}
               </button>
@@ -111,18 +133,18 @@ export function StravaStatsGenerator() {
 
           <div>
             <label htmlFor="card-duration" className={labelCls}>
-              Moving Time (MM:SS or H:MM:SS)
+              {t.movingTime}
             </label>
             <input
               id="card-duration"
               type="text"
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
-              placeholder="52:30"
+              placeholder={t.durationPlaceholder}
               className={inputCls}
             />
             <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
-              Pace is calculated for you from distance and time.
+              {t.paceHint}
             </p>
           </div>
         </div>
@@ -131,7 +153,7 @@ export function StravaStatsGenerator() {
       {/* Preview */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50 flex flex-col">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Overlay
+          {t.overlay}
         </h2>
 
         {/* Checkerboard reads as "transparent" — the PNG has no background of
@@ -151,7 +173,13 @@ export function StravaStatsGenerator() {
             width={CARD_WIDTH}
             height={CARD_HEIGHT}
             role="img"
-            aria-label={`Workout stats overlay: ${data.distanceValue} ${data.distanceUnit}, ${data.durationValue}, ${data.paceValue} ${data.paceUnit}`}
+            aria-label={interpolate(t.overlayAria, {
+              distance: displayData.distanceValue,
+              distanceUnit: displayData.distanceUnit,
+              time: displayData.durationValue,
+              pace: displayData.paceValue,
+              paceUnit: displayData.paceUnit,
+            })}
             className="block w-full h-auto"
           />
         </div>
@@ -161,13 +189,11 @@ export function StravaStatsGenerator() {
           onClick={handleSave}
           className="mt-6 w-full bg-[#ED772F] hover:bg-[#d4651f] text-white font-semibold py-3.5 px-4 rounded-xl transition-colors"
         >
-          {saved ? "Saved!" : "Download Transparent PNG"}
+          {saved ? t.saved : t.download}
         </button>
 
         <p className="mt-3 text-xs text-neutral-500 dark:text-neutral-400 text-center">
-          1080×1080 with a transparent background — drop it straight over your
-          photo in Instagram Stories. Everything runs in your browser; nothing is
-          uploaded.
+          {t.downloadHint}
         </p>
       </div>
     </div>

@@ -3,13 +3,50 @@
 import { useState, useMemo, type ReactNode } from "react";
 import {
   calculateStepGoal,
-  ACTIVITY_LEVELS,
-  HEALTH_GOALS,
   type ActivityLevel,
   type HealthGoal,
   type Gender,
 } from "@/lib/step-goal-calculator";
-import { formatNumber } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import en, {
+  type DailyStepGoalCalculatorMessages,
+} from "@/lib/i18n/messages/tool-pages/daily-step-goal-calculator/en";
+
+type CalculatorCopy = DailyStepGoalCalculatorMessages["calculator"];
+
+const ACTIVITY_ORDER: ActivityLevel[] = ["sedentary", "lightly_active", "active", "very_active"];
+const GOAL_ORDER: HealthGoal[] = ["maintain", "lose_weight", "improve_fitness", "train_event"];
+
+function formatLoose(value: number, locale: Locale): string {
+  return Number.isInteger(value) ? formatNumber(value, locale) : formatDecimal(value, locale, 1);
+}
+
+function stepsRange(level: ActivityLevel, locale: Locale): string {
+  if (level === "sedentary") return `< ${formatNumber(5000, locale)}`;
+  if (level === "lightly_active") {
+    return `${formatNumber(5000, locale)} - ${formatNumber(7499, locale)}`;
+  }
+  if (level === "active") {
+    return `${formatNumber(7500, locale)} - ${formatNumber(9999, locale)}`;
+  }
+  return `${formatNumber(10000, locale)}+`;
+}
+
+function buildTips(
+  activityLevel: ActivityLevel,
+  healthGoal: HealthGoal,
+  tips: CalculatorCopy["tips"],
+): string[] {
+  const list: string[] = [];
+  if (activityLevel === "sedentary") list.push(...tips.sedentary);
+  else if (activityLevel === "lightly_active") list.push(...tips.lightlyActive);
+  if (healthGoal === "lose_weight") list.push(...tips.loseWeight);
+  else if (healthGoal === "improve_fitness") list.push(...tips.improveFitness);
+  else if (healthGoal === "train_event") list.push(...tips.trainEvent);
+  list.push(...tips.general);
+  return list.slice(0, 5);
+}
 
 const DEFAULT_VALUES = {
   age: 30,
@@ -19,7 +56,15 @@ const DEFAULT_VALUES = {
   currentSteps: undefined as number | undefined,
 };
 
-export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
+export function DailyStepGoalCalculator({
+  t = en.calculator,
+  locale = DEFAULT_LOCALE,
+  resultCta,
+}: {
+  t?: CalculatorCopy;
+  locale?: Locale;
+  resultCta?: ReactNode;
+} = {}) {
   // Input state
   const [age, setAge] = useState<number>(DEFAULT_VALUES.age);
   const [gender, setGender] = useState<Gender>(DEFAULT_VALUES.gender);
@@ -40,12 +85,17 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
     });
   }, [age, gender, activityLevel, healthGoal, currentSteps]);
 
+  const tips = useMemo(
+    () => buildTips(activityLevel, healthGoal, t.tips),
+    [activityLevel, healthGoal, t.tips],
+  );
+
   return (
     <div className="space-y-8">
       {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Profile
+          {t.yourProfile}
         </h2>
 
         <div className="space-y-6">
@@ -53,7 +103,7 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
             {/* Age Input */}
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Age
+                {t.age}
               </label>
               <div className="relative">
                 <input
@@ -69,7 +119,7 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
                   className="w-full py-3 px-4 pr-14 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
-                  years
+                  {t.years}
                 </span>
               </div>
             </div>
@@ -77,7 +127,7 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
             {/* Gender Selection */}
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Gender
+                {t.gender}
               </label>
               <div className="flex gap-2">
                 <button
@@ -88,7 +138,7 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  Male
+                  {t.male}
                 </button>
                 <button
                   onClick={() => setGender("female")}
@@ -98,7 +148,7 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  Female
+                  {t.female}
                 </button>
               </div>
             </div>
@@ -107,74 +157,70 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
           {/* Activity Level */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Current Activity Level
+              {t.activityLevel}
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {(Object.entries(ACTIVITY_LEVELS) as [ActivityLevel, typeof ACTIVITY_LEVELS[ActivityLevel]][]).map(
-                ([key, value]) => (
-                  <button
-                    key={key}
-                    onClick={() => setActivityLevel(key)}
-                    className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
+              {ACTIVITY_ORDER.map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setActivityLevel(key)}
+                  className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
+                    activityLevel === key
+                      ? "bg-[#ED772F] text-white"
+                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                  }`}
+                >
+                  <span className="block">{t.activity[key]}</span>
+                  <span
+                    className={`block text-xs mt-0.5 ${
                       activityLevel === key
-                        ? "bg-[#ED772F] text-white"
-                        : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                        ? "text-white/80"
+                        : "text-neutral-500 dark:text-neutral-400"
                     }`}
                   >
-                    <span className="block">{value.label}</span>
-                    <span
-                      className={`block text-xs mt-0.5 ${
-                        activityLevel === key
-                          ? "text-white/80"
-                          : "text-neutral-500 dark:text-neutral-400"
-                      }`}
-                    >
-                      {value.stepsRange}
-                    </span>
-                  </button>
-                )
-              )}
+                    {stepsRange(key, locale)}
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
 
           {/* Health Goal */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Health Goal
+              {t.healthGoal}
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {(Object.entries(HEALTH_GOALS) as [HealthGoal, typeof HEALTH_GOALS[HealthGoal]][]).map(
-                ([key, value]) => (
-                  <button
-                    key={key}
-                    onClick={() => setHealthGoal(key)}
-                    className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
-                      healthGoal === key
-                        ? "bg-[#ED772F] text-white"
-                        : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-                    }`}
-                  >
-                    {value.label}
-                  </button>
-                )
-              )}
+              {GOAL_ORDER.map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setHealthGoal(key)}
+                  className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
+                    healthGoal === key
+                      ? "bg-[#ED772F] text-white"
+                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                  }`}
+                >
+                  {t.goals[key]}
+                </button>
+              ))}
             </div>
           </div>
 
           {/* Current Steps (Optional) */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Current Daily Steps (Optional)
+              {t.currentSteps}
             </label>
             <input
               type="number"
               value={currentSteps}
               onChange={(e) => setCurrentSteps(e.target.value)}
-              placeholder="e.g., 5000"
+              placeholder={t.currentStepsPlaceholder}
               className="w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent placeholder:text-neutral-400"
             />
             <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
-              Enter your average daily steps for a more personalized recommendation
+              {t.currentStepsHint}
             </p>
           </div>
         </div>
@@ -184,16 +230,16 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Your Recommended Daily Step Goal
+            {t.resultTitle}
           </h3>
 
           <div className="space-y-4">
             <div>
               <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                {formatNumber(results.dailyGoal)} steps
+                {interpolate(t.stepsValue, { steps: formatNumber(results.dailyGoal, locale) })}
               </p>
               <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">
-                per day
+                {t.perDay}
               </p>
             </div>
           </div>
@@ -202,26 +248,28 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
           <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-3 gap-4">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Weekly Goal
+                {t.weeklyGoal}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {formatNumber(results.weeklyGoal)}
+                {formatNumber(results.weeklyGoal, locale)}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Distance/Day
+                {t.distancePerDay}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {results.distancePerDayKm} km
+                {interpolate(t.kmValue, { distance: formatLoose(results.distancePerDayKm, locale) })}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Calories/Day
+                {t.caloriesPerDay}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                ~{formatNumber(results.caloriesPerDay)}
+                {interpolate(t.approxCalories, {
+                  calories: formatNumber(results.caloriesPerDay, locale),
+                })}
               </p>
             </div>
           </div>
@@ -233,10 +281,10 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
       {/* Milestones Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-          8-Week Progression Plan
+          {t.planTitle}
         </h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-          Gradually build up to your goal with weekly milestones
+          {t.planSubtitle}
         </p>
 
         <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
@@ -246,10 +294,10 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
               className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center"
             >
               <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
-                Week {milestone.week}
+                {interpolate(t.weekLabel, { week: formatNumber(milestone.week, locale) })}
               </p>
               <p className="text-sm font-semibold text-neutral-900 dark:text-white">
-                {formatNumber(milestone.steps)}
+                {formatNumber(milestone.steps, locale)}
               </p>
             </div>
           ))}
@@ -259,11 +307,11 @@ export function DailyStepGoalCalculator({ resultCta }: { resultCta?: ReactNode }
       {/* Tips Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
-          Tips to Reach Your Goal
+          {t.tipsTitle}
         </h2>
 
         <ul className="space-y-3">
-          {results.tips.map((tip, index) => (
+          {tips.map((tip, index) => (
             <li key={index} className="flex items-start gap-3">
               <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#ED772F]/10 dark:bg-[#ED772F]/20 flex items-center justify-center">
                 <span className="text-[#ED772F] text-sm font-semibold">

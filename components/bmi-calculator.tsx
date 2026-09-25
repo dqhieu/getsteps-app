@@ -13,8 +13,11 @@ import {
   kgToLbs,
   feetInchesToCm,
   cmToFeetInches,
-  formatNumber,
 } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, localizeNumerals } from "@/lib/i18n/format";
+import { rich } from "@/lib/i18n/rich";
+import type { BmiCalculatorMessages } from "@/lib/i18n/messages/tool-pages/bmi-calculator/en";
 
 type WeightUnit = "kg" | "lbs";
 type HeightUnit = "cm" | "ft";
@@ -26,7 +29,13 @@ const DEFAULT_VALUES = {
   heightInches: 7,
 };
 
-export function BMICalculator() {
+export function BMICalculator({
+  t,
+  locale = DEFAULT_LOCALE,
+}: {
+  t: BmiCalculatorMessages["calculator"];
+  locale?: Locale;
+}) {
   // Input state
   const [weight, setWeight] = useState<number>(DEFAULT_VALUES.weight);
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
@@ -87,26 +96,29 @@ export function BMICalculator() {
   // Get healthy weight range in current unit
   const healthyRangeDisplay = useMemo(() => {
     if (weightUnit === "kg") {
-      return `${result.healthyWeightRange.min} - ${result.healthyWeightRange.max} kg`;
+      return `${formatNumber(result.healthyWeightRange.min, locale)} - ${formatNumber(
+        result.healthyWeightRange.max,
+        locale
+      )} kg`;
     }
     return `${Math.round(kgToLbs(result.healthyWeightRange.min))} - ${Math.round(
       kgToLbs(result.healthyWeightRange.max)
     )} lbs`;
-  }, [result.healthyWeightRange, weightUnit]);
+  }, [result.healthyWeightRange, weightUnit, locale]);
 
   return (
     <div className="space-y-8">
       {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Measurements
+          {t.measurements}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Weight Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Weight
+              {t.weight}
             </label>
             <div className="flex gap-2">
               <div className="relative flex-1">
@@ -132,7 +144,7 @@ export function BMICalculator() {
           {/* Height Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Height
+              {t.height}
             </label>
             <div className="flex gap-2">
               {heightUnit === "cm" ? (
@@ -206,12 +218,12 @@ export function BMICalculator() {
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Your BMI
+            {t.yourBmi}
           </h3>
 
           <div className="flex items-baseline gap-4 mb-4">
             <p className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white">
-              {result.bmi.toFixed(1)}
+              {formatDecimal(result.bmi, locale, 1)}
             </p>
             <span
               className="text-lg font-semibold px-3 py-1 rounded-full"
@@ -220,7 +232,7 @@ export function BMICalculator() {
                 color: result.categoryColor,
               }}
             >
-              {result.categoryLabel}
+              {t.categories[result.category]}
             </span>
           </div>
 
@@ -246,7 +258,7 @@ export function BMICalculator() {
             {/* Scale Labels */}
             <div className="flex justify-between mt-3 text-xs text-neutral-500 dark:text-neutral-400">
               <span>15</span>
-              <span>18.5</span>
+              <span>{localizeNumerals("18.5", locale)}</span>
               <span>25</span>
               <span>30</span>
               <span>35</span>
@@ -258,7 +270,7 @@ export function BMICalculator() {
           <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Healthy Weight Range
+                {t.healthyRange}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
                 {healthyRangeDisplay}
@@ -266,10 +278,10 @@ export function BMICalculator() {
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Recommended Daily Steps
+                {t.recommendedSteps}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {formatNumber(result.recommendedSteps)}
+                {formatNumber(result.recommendedSteps, locale)}
               </p>
             </div>
           </div>
@@ -278,27 +290,15 @@ export function BMICalculator() {
           {result.weightToHealthyRange !== 0 && (
             <div className="mt-4 p-4 rounded-lg bg-white/50 dark:bg-neutral-900/30">
               <p className="text-sm text-neutral-700 dark:text-neutral-300">
-                {result.weightToHealthyRange > 0 ? (
-                  <>
-                    You are{" "}
+                {rich(result.weightToHealthyRange > 0 ? t.aboveRange : t.belowRange, {
+                  amount: (
                     <span className="font-semibold">
                       {weightUnit === "kg"
-                        ? `${result.weightToHealthyRange} kg`
-                        : `${Math.round(kgToLbs(result.weightToHealthyRange))} lbs`}
-                    </span>{" "}
-                    above the healthy weight range for your height.
-                  </>
-                ) : (
-                  <>
-                    You are{" "}
-                    <span className="font-semibold">
-                      {weightUnit === "kg"
-                        ? `${Math.abs(result.weightToHealthyRange)} kg`
+                        ? `${formatNumber(Math.abs(result.weightToHealthyRange), locale)} kg`
                         : `${Math.round(kgToLbs(Math.abs(result.weightToHealthyRange)))} lbs`}
-                    </span>{" "}
-                    below the healthy weight range for your height.
-                  </>
-                )}
+                    </span>
+                  ),
+                })}
               </p>
             </div>
           )}
@@ -308,10 +308,10 @@ export function BMICalculator() {
       {/* BMI Categories Table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-          BMI Categories
+          {t.categoriesTitle}
         </h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-          World Health Organization BMI classification for adults
+          {t.categoriesSubtitle}
         </p>
 
         <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
@@ -319,10 +319,10 @@ export function BMICalculator() {
             <thead>
               <tr className="border-b border-neutral-200 dark:border-neutral-700">
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Category
+                  {t.categoryColumn}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  BMI Range
+                  {t.rangeColumn}
                 </th>
               </tr>
             </thead>
@@ -349,12 +349,12 @@ export function BMICalculator() {
                             : "text-neutral-700 dark:text-neutral-300"
                         }`}
                       >
-                        {cat.label}
+                        {t.categories[cat.category]}
                       </span>
                     </span>
                   </td>
                   <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                    {cat.range}
+                    {localizeNumerals(cat.range, locale)}
                   </td>
                 </tr>
               ))}

@@ -1,16 +1,25 @@
 import Link from "next/link";
-import Image from "next/image";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
-import { SITE_CONFIG } from "@/lib/constants";
-import { formatNumber } from "@/lib/step-calculator";
+import { AppStoreBadge } from "@/components/app-store-badge";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import { absoluteUrl, localizePath } from "@/lib/i18n/href";
+import { rich } from "@/lib/i18n/rich";
+import enMessages, {
+  type ConversionValuesMessages,
+} from "@/lib/i18n/messages/conversion-values/en";
+import { buildBreadcrumbList } from "@/lib/schema/breadcrumb";
+import { buildFaqPage } from "@/lib/schema/faq";
 import {
-  WALKING_PACES,
+  formatFixed,
   formatKm,
   formatMiles,
-  type StepsByHeightRow,
-  type DistanceByHeightRow,
+  formatMinutes,
+  formatSteps,
   type CaloriesByWeightRow,
+  type DistanceByHeightRow,
+  type StepsByHeightRow,
   type WalkingTimeRow,
 } from "@/lib/conversions";
 
@@ -25,36 +34,27 @@ export interface ConversionBreadcrumb {
 }
 
 export interface ConversionValuePageProps {
-  /** Browser title and OG title come from page.tsx metadata; this is the visible H1 */
   h1: string;
-  /** Sub-heading directly under H1, e.g. "Convert 10,000 steps to miles" */
   subheading?: string;
-  /** Big primary answer (e.g. "4.72 miles") */
   primaryAnswer: string;
-  /** Secondary answer line under the headline (e.g. "≈ 7.60 km · about 1 h 31 min walking") */
   secondaryAnswer?: string;
-  /** Short intro paragraph below the hero (1–2 sentences, computed per-page) */
   intro: string;
-  /** Breadcrumbs (rendered + JSON-LD) */
   breadcrumbs: ConversionBreadcrumb[];
-
-  /** Tables — at least one of stepsByHeight or distanceByHeight should be present */
   stepsByHeightTable?: StepsByHeightRow[];
   distanceByHeightTable?: DistanceByHeightRow[];
   caloriesByWeightTable?: CaloriesByWeightRow[];
   walkingTimeTable?: WalkingTimeRow[];
-
-  /** Real-world equivalent string (e.g. "about the length of a 5K race × 1.5") */
   realWorldEquivalent?: string;
-
-  /** Related conversion links shown at the bottom */
   relatedLinks: Array<{ label: string; href: string }>;
-
-  /** FAQ section + JSON-LD */
   faq: ConversionFAQItem[];
-
-  /** Canonical URL for breadcrumb JSON-LD (full URL) */
   canonicalUrl: string;
+  locale?: Locale;
+  copy?: ConversionValuesMessages["ui"];
+}
+
+function speedValue(mph: number, locale: Locale): string {
+  if (locale === DEFAULT_LOCALE) return String(mph);
+  return Number.isInteger(mph) ? formatNumber(mph, locale) : formatDecimal(mph, locale, 1);
 }
 
 export function ConversionValuePage(props: ConversionValuePageProps) {
@@ -73,34 +73,19 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
     relatedLinks,
     faq,
     canonicalUrl,
+    locale,
+    copy = enMessages.ui,
   } = props;
+  const lang = locale ?? DEFAULT_LOCALE;
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: breadcrumbs.map((b, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
+  const breadcrumbSchema = buildBreadcrumbList(
+    breadcrumbs.map((b) => ({
       name: b.label,
-      ...(b.href ? { item: `${SITE_CONFIG.baseUrl}${b.href}` } : {}),
+      path: b.href ? absoluteUrl(lang, b.href) : canonicalUrl,
     })),
-  };
+  );
 
-  const faqSchema =
-    faq.length > 0
-      ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faq.map((f) => ({
-            "@type": "Question",
-            name: f.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: f.answer,
-            },
-          })),
-        }
-      : null;
+  const faqSchema = faq.length > 0 ? buildFaqPage(faq) : null;
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
@@ -115,20 +100,19 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
         />
       )}
 
-      <LandingNavbar />
+      {locale ? <LandingNavbar locale={locale} /> : <LandingNavbar />}
 
       <main className="pt-20 md:pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          {/* Breadcrumbs */}
           <nav
-            aria-label="Breadcrumb"
+            aria-label={copy.breadcrumb}
             className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 flex flex-wrap gap-x-2 gap-y-1"
           >
             {breadcrumbs.map((b, i) => (
               <span key={i} className="flex items-center gap-2">
                 {b.href ? (
                   <Link
-                    href={b.href}
+                    href={localizePath(lang, b.href)}
                     className="hover:text-[#ED772F] transition-colors"
                   >
                     {b.label}
@@ -145,7 +129,6 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
             ))}
           </nav>
 
-          {/* Hero — H1 + primary answer */}
           <header className="mb-8">
             <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-3">
               {h1}
@@ -159,7 +142,7 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
 
           <section className="rounded-3xl bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 border border-[#ED772F]/20 p-6 md:p-10 mb-8">
             <p className="text-sm font-medium text-[#ED772F] uppercase tracking-wide mb-2">
-              Quick answer
+              {copy.quickAnswer}
             </p>
             <p className="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-2">
               {primaryAnswer}
@@ -171,63 +154,60 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
             )}
           </section>
 
-          {/* Intro */}
           <section className="prose dark:prose-invert max-w-none mb-10">
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
               {intro}
             </p>
             {realWorldEquivalent && (
               <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                <strong>For context:</strong> {realWorldEquivalent}
+                <strong>{copy.forContext}</strong> {realWorldEquivalent}
               </p>
             )}
           </section>
 
-          {/* By-height table — for steps-to-distance */}
           {stepsByHeightTable && stepsByHeightTable.length > 0 && (
             <section className="mb-10">
               <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
-                Distance depends on your height
+                {copy.distanceByHeightTitle}
               </h2>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-                Your stride length is roughly 0.41 × your height — so a shorter
-                walker covers less ground per step.
+                {copy.distanceByHeightBody}
               </p>
               <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
                 <table className="w-full text-sm">
                   <thead className="bg-neutral-50 dark:bg-neutral-900/50">
                     <tr>
                       <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Your height
+                        {copy.heightColumn}
                       </th>
                       <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Stride
+                        {copy.strideColumn}
                       </th>
                       <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Miles
+                        {copy.milesColumn}
                       </th>
                       <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Kilometers
+                        {copy.kilometersColumn}
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {stepsByHeightTable.map((r) => (
+                    {stepsByHeightTable.map((r, i) => (
                       <tr
                         key={r.height}
                         className="border-t border-neutral-200 dark:border-neutral-800"
                       >
                         <td className="p-3 text-neutral-900 dark:text-white">
-                          {r.height}
+                          {copy.heights[i] ?? r.height}
                         </td>
                         <td className="p-3 text-right text-neutral-600 dark:text-neutral-400 tabular-nums">
-                          {r.stepLengthCm.toFixed(1)} cm
+                          {interpolate(copy.cm, { value: formatFixed(r.stepLengthCm, 1, lang) })}
                         </td>
                         <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium">
-                          {formatMiles(r.miles)} mi
+                          {interpolate(copy.mi, { value: formatMiles(r.miles, lang) })}
                         </td>
                         <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium">
-                          {formatKm(r.km)} km
+                          {interpolate(copy.km, { value: formatKm(r.km, lang) })}
                         </td>
                       </tr>
                     ))}
@@ -237,44 +217,43 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
             </section>
           )}
 
-          {/* By-height table — for distance-to-steps */}
           {distanceByHeightTable && distanceByHeightTable.length > 0 && (
             <section className="mb-10">
               <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
-                Steps required depend on your height
+                {copy.stepsRequiredTitle}
               </h2>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-                Shorter walkers take more steps to cover the same distance.
+                {copy.stepsRequiredBody}
               </p>
               <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
                 <table className="w-full text-sm">
                   <thead className="bg-neutral-50 dark:bg-neutral-900/50">
                     <tr>
                       <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Your height
+                        {copy.heightColumn}
                       </th>
                       <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Stride
+                        {copy.strideColumn}
                       </th>
                       <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Steps
+                        {copy.stepsColumn}
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {distanceByHeightTable.map((r) => (
+                    {distanceByHeightTable.map((r, i) => (
                       <tr
                         key={r.height}
                         className="border-t border-neutral-200 dark:border-neutral-800"
                       >
                         <td className="p-3 text-neutral-900 dark:text-white">
-                          {r.height}
+                          {copy.heights[i] ?? r.height}
                         </td>
                         <td className="p-3 text-right text-neutral-600 dark:text-neutral-400 tabular-nums">
-                          {r.stepLengthCm.toFixed(1)} cm
+                          {interpolate(copy.cm, { value: formatFixed(r.stepLengthCm, 1, lang) })}
                         </td>
                         <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium">
-                          {formatNumber(r.steps)}
+                          {formatSteps(r.steps, lang)}
                         </td>
                       </tr>
                     ))}
@@ -284,48 +263,46 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
             </section>
           )}
 
-          {/* Calories table */}
           {caloriesByWeightTable && caloriesByWeightTable.length > 0 && (
             <section className="mb-10">
               <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
-                Calories burned by weight and pace
+                {copy.caloriesTitle}
               </h2>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-                Calories scale linearly with body weight. Faster paces burn more
-                — but only modestly more for walking.
+                {copy.caloriesBody}
               </p>
               <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
                 <table className="w-full text-sm">
                   <thead className="bg-neutral-50 dark:bg-neutral-900/50">
                     <tr>
                       <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Your weight
+                        {copy.weightColumn}
                       </th>
-                      {WALKING_PACES.map((p) => (
+                      {copy.paces.map((label) => (
                         <th
-                          key={p.label}
+                          key={label}
                           className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300"
                         >
-                          {p.label}
+                          {label}
                         </th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
-                    {caloriesByWeightTable.map((r) => (
+                    {caloriesByWeightTable.map((r, row) => (
                       <tr
                         key={r.weight}
                         className="border-t border-neutral-200 dark:border-neutral-800"
                       >
                         <td className="p-3 text-neutral-900 dark:text-white">
-                          {r.weight}
+                          {copy.weights[row] ?? r.weight}
                         </td>
                         {r.calories.map((c, i) => (
                           <td
                             key={i}
                             className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium"
                           >
-                            {formatNumber(c)} cal
+                            {interpolate(copy.cal, { value: formatNumber(c, lang) })}
                           </td>
                         ))}
                       </tr>
@@ -336,45 +313,43 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
             </section>
           )}
 
-          {/* Walking time table */}
           {walkingTimeTable && walkingTimeTable.length > 0 && (
             <section className="mb-10">
               <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
-                How long will it take?
+                {copy.timeTitle}
               </h2>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-                Time depends on your walking pace. Most adults walk at a normal
-                pace of about 3 mph.
+                {copy.timeBody}
               </p>
               <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
                 <table className="w-full text-sm">
                   <thead className="bg-neutral-50 dark:bg-neutral-900/50">
                     <tr>
                       <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Pace
+                        {copy.paceColumn}
                       </th>
                       <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Speed
+                        {copy.speedColumn}
                       </th>
                       <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
-                        Time
+                        {copy.timeColumn}
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {walkingTimeTable.map((r) => (
+                    {walkingTimeTable.map((r, i) => (
                       <tr
                         key={r.pace}
                         className="border-t border-neutral-200 dark:border-neutral-800"
                       >
                         <td className="p-3 text-neutral-900 dark:text-white">
-                          {r.pace}
+                          {copy.paces[i] ?? r.pace}
                         </td>
                         <td className="p-3 text-right text-neutral-600 dark:text-neutral-400 tabular-nums">
-                          {r.mph} mph
+                          {interpolate(copy.mph, { value: speedValue(r.mph, lang) })}
                         </td>
                         <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium">
-                          {r.display}
+                          {formatMinutes(r.minutes, lang, copy.duration)}
                         </td>
                       </tr>
                     ))}
@@ -384,51 +359,31 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
             </section>
           )}
 
-          {/* App CTA */}
           <section className="rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-6 md:p-10 mb-10">
             <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
-              Track your real numbers with Steps
+              {copy.ctaTitle}
             </h2>
             <p className="text-neutral-600 dark:text-neutral-400 mb-6 max-w-2xl">
-              These conversions use averages. The Steps app tracks your{" "}
-              <em>actual</em> step length, calories, and walking time — synced
-              from your iPhone and Apple Watch.
+              {rich(copy.ctaBody, { actual: <em>{copy.ctaActual}</em> })}
             </p>
-            <a
-              href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download Steps on the App Store"
-              className="inline-block transition-transform hover:scale-105 active:scale-95"
-            >
-              <Image
-                src="/badge_light_mode.svg"
-                alt="Download on the App Store"
-                width={140}
-                height={47}
-                className="h-12 w-auto dark:hidden"
-              />
-              <Image
-                src="/badge_dark_mode.svg"
-                alt="Download on the App Store"
-                width={140}
-                height={47}
-                className="h-12 w-auto hidden dark:block"
-              />
-            </a>
+            <AppStoreBadge
+              locale={lang}
+              width={140}
+              height={47}
+              imageClassName="h-12 w-auto"
+            />
           </section>
 
-          {/* Related conversions */}
           {relatedLinks.length > 0 && (
             <section className="mb-10">
               <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-4">
-                Related conversions
+                {copy.relatedTitle}
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {relatedLinks.map((l) => (
                   <Link
                     key={l.href}
-                    href={l.href}
+                    href={localizePath(lang, l.href)}
                     className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 text-sm text-neutral-700 dark:text-neutral-300 hover:border-[#ED772F] hover:text-[#ED772F] transition-colors"
                   >
                     {l.label}
@@ -438,11 +393,10 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
             </section>
           )}
 
-          {/* FAQ */}
           {faq.length > 0 && (
             <section className="mb-10">
               <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-4">
-                Frequently asked questions
+                {copy.faqTitle}
               </h2>
               <div className="space-y-3">
                 {faq.map((f) => (
@@ -467,8 +421,7 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
         </div>
       </main>
 
-      <LandingFooter />
+      <LandingFooter locale={lang} />
     </div>
   );
 }
-

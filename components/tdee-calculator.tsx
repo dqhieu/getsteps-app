@@ -3,10 +3,12 @@
 import { useState } from "react";
 import {
   calculateTDEE,
-  ACTIVITY_LABELS,
   type Gender,
   type ActivityLevel,
 } from "@/lib/tdee-calculator";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatNumber, localizeNumerals } from "@/lib/i18n/format";
+import type { TdeeCalculatorMessages } from "@/lib/i18n/messages/tool-pages/tdee-calculator/en";
 
 const ACTIVITY_LEVELS: ActivityLevel[] = ["sedentary", "light", "moderate", "active", "very_active"];
 
@@ -15,7 +17,13 @@ function lbsToKg(lbs: number) { return lbs / 2.20462; }
 function cmToFtIn(cm: number) { const totalIn = cm / 2.54; const ft = Math.floor(totalIn / 12); return { ft, inch: Math.round(totalIn % 12) }; }
 function ftInToCm(ft: number, inch: number) { return (ft * 12 + inch) * 2.54; }
 
-export function TDEECalculator() {
+export function TDEECalculator({
+  t,
+  locale = DEFAULT_LOCALE,
+}: {
+  t: TdeeCalculatorMessages["calculator"];
+  locale?: Locale;
+}) {
   const [gender, setGender] = useState<Gender>("male");
   const [age, setAge] = useState<number>(30);
   const [weightKg, setWeightKg] = useState<number>(75);
@@ -39,42 +47,39 @@ export function TDEECalculator() {
 
   const displayWeight = weightUnit === "kg" ? Math.round(weightKg) : kgToLbs(weightKg);
   const { ft: displayFt, inch: displayIn } = cmToFtIn(heightCm);
+  const genderLabel: Record<Gender, string> = { male: t.male, female: t.female };
 
   return (
     <div className="space-y-6">
-      {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">Your Details</h2>
+        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">{t.details}</h2>
 
         <div className="space-y-5">
-          {/* Gender */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Gender</label>
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.gender}</label>
             <div className="flex gap-2">
               {(["male", "female"] as Gender[]).map((g) => (
                 <button key={g} onClick={() => setGender(g)}
-                  className={`flex-1 py-2.5 rounded-xl font-medium text-sm transition-colors capitalize ${gender === g ? "bg-[#ED772F] text-white" : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"}`}>
-                  {g}
+                  className={`flex-1 py-2.5 rounded-xl font-medium text-sm transition-colors ${gender === g ? "bg-[#ED772F] text-white" : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"}`}>
+                  {genderLabel[g]}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Age */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Age</label>
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.age}</label>
             <div className="relative max-w-xs">
               <input type="number" value={age}
                 onChange={(e) => setAge(Number(e.target.value))}
                 className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg" />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">years</span>
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">{t.years}</span>
             </div>
           </div>
 
-          {/* Weight */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Weight</label>
+              <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">{t.weight}</label>
               <div className="flex gap-1">
                 {(["kg", "lbs"] as const).map((u) => (
                   <button key={u} onClick={() => setWeightUnit(u)}
@@ -92,10 +97,9 @@ export function TDEECalculator() {
             </div>
           </div>
 
-          {/* Height */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Height</label>
+              <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">{t.height}</label>
               <div className="flex gap-1">
                 {(["cm", "ftin"] as const).map((u) => (
                   <button key={u} onClick={() => setHeightUnit(u)}
@@ -159,14 +163,13 @@ export function TDEECalculator() {
             )}
           </div>
 
-          {/* Activity Level */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Activity Level</label>
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.activityLevel}</label>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {ACTIVITY_LEVELS.map((level) => (
                 <button key={level} onClick={() => setActivity(level)}
                   className={`py-2 px-3 rounded-xl text-xs font-medium transition-colors text-center ${activity === level ? "bg-[#ED772F] text-white" : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"}`}>
-                  {ACTIVITY_LABELS[level]}
+                  {t.activity[level]}
                 </button>
               ))}
             </div>
@@ -174,45 +177,45 @@ export function TDEECalculator() {
 
           <button onClick={() => setCalculated(true)}
             className="w-full bg-[#ED772F] hover:bg-[#d4651f] text-white font-semibold py-3 px-6 rounded-xl transition-colors">
-            Calculate TDEE
+            {t.calculate}
           </button>
         </div>
       </div>
 
-      {/* Results */}
       {calculated && (
         <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Your Results</h2>
+          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">{t.results}</h2>
 
-          {/* BMR + TDEE stat cards */}
           <div className="grid grid-cols-2 gap-3 mb-6">
             <div className="rounded-xl p-4 bg-neutral-50 dark:bg-neutral-700/30 text-center">
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">BMR</p>
-              <p className="text-2xl font-bold text-neutral-900 dark:text-white">{result.bmr}</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">cal/day at rest</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.bmr}</p>
+              <p className="text-2xl font-bold text-neutral-900 dark:text-white">{formatNumber(result.bmr, locale)}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.bmrUnit}</p>
             </div>
             <div className="rounded-xl p-4 bg-[#ED772F]/10 dark:bg-[#ED772F]/20 border border-[#ED772F]/30 text-center">
-              <p className="text-xs text-[#ED772F] font-medium mb-1">TDEE</p>
-              <p className="text-2xl font-bold text-neutral-900 dark:text-white">{result.tdee}</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">cal/day total</p>
+              <p className="text-xs text-[#ED772F] font-medium mb-1">{t.tdee}</p>
+              <p className="text-2xl font-bold text-neutral-900 dark:text-white">{formatNumber(result.tdee, locale)}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.tdeeUnit}</p>
             </div>
           </div>
 
-          {/* Calorie Goals Table */}
           <div className="space-y-2">
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">Calorie Goals</p>
-            {result.goals.map((goal) => (
-              <div key={goal.label}
-                className={`flex items-center justify-between p-3 rounded-xl ${goal.isMaintenance ? "border-2 border-[#ED772F] bg-[#ED772F]/5 dark:bg-[#ED772F]/10" : "bg-neutral-50 dark:bg-neutral-700/30"}`}>
-                <div>
-                  <span className="text-sm font-medium text-neutral-900 dark:text-white">{goal.label}</span>
-                  {goal.isMaintenance && <span className="ml-2 text-xs text-[#ED772F] font-semibold">Maintenance</span>}
-                  {goal.warn && <span className="ml-2 text-xs text-red-500">Below minimum</span>}
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400">{goal.weeklyGoal}</p>
+            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">{t.calorieGoals}</p>
+            {result.goals.map((goal) => {
+              const copy = t.goals[goal.id];
+              return (
+                <div key={goal.id}
+                  className={`flex items-center justify-between p-3 rounded-xl ${goal.isMaintenance ? "border-2 border-[#ED772F] bg-[#ED772F]/5 dark:bg-[#ED772F]/10" : "bg-neutral-50 dark:bg-neutral-700/30"}`}>
+                  <div>
+                    <span className="text-sm font-medium text-neutral-900 dark:text-white">{copy.label}</span>
+                    {goal.isMaintenance && <span className="ml-2 text-xs text-[#ED772F] font-semibold">{t.maintenanceBadge}</span>}
+                    {goal.warn && <span className="ml-2 text-xs text-red-500">{t.belowMinimum}</span>}
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{localizeNumerals(copy.weekly, locale)}</p>
+                  </div>
+                  <span className="text-sm font-bold text-neutral-900 dark:text-white">{formatNumber(Math.max(0, goal.calories), locale)} {t.cal}</span>
                 </div>
-                <span className="text-sm font-bold text-neutral-900 dark:text-white">{Math.max(0, goal.calories).toLocaleString()} cal</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}

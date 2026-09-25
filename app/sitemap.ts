@@ -10,6 +10,30 @@ import {
   STEPS_TO_TIME_VALUES,
   MILES_TO_TIME_VALUES,
 } from "@/lib/conversions";
+import { TOOLS } from "@/lib/tools";
+import { LOCALES } from "@/lib/i18n/config";
+import { absoluteUrl, languageAlternates } from "@/lib/i18n/href";
+
+type LocalizedEntry = {
+  path: string;
+  changeFrequency: NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
+  priority: number;
+};
+
+/** One sitemap entry per locale, each carrying the full hreflang set. */
+function expandLocales(entries: LocalizedEntry[]): MetadataRoute.Sitemap {
+  const lastModified = new Date();
+  return entries.flatMap(({ path, changeFrequency, priority }) => {
+    const languages = languageAlternates(path);
+    return LOCALES.map((locale) => ({
+      url: absoluteUrl(locale, path),
+      lastModified,
+      changeFrequency,
+      priority,
+      alternates: { languages },
+    }));
+  });
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://getsteps.app";
@@ -23,304 +47,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const conversionHubUrls: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/conversions`,
-      lastModified: new Date(),
+  const valueEntries = (type: string, values: readonly (number | string)[]): LocalizedEntry[] =>
+    values.map((value) => ({
+      path: `/conversions/${type}/${value}`,
       changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/conversions/steps-to-miles`,
-      lastModified: new Date(),
+      priority: 0.7,
+    }));
+
+  const localizedUrls = expandLocales([
+    { path: "/", changeFrequency: "monthly", priority: 1 },
+    { path: "/tools", changeFrequency: "monthly", priority: 0.9 },
+    ...TOOLS.map((tool): LocalizedEntry => ({
+      path: tool.href,
       changeFrequency: "monthly",
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/conversions/miles-to-steps`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/conversions/steps-to-calories`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    ...STEPS_TO_MILES_VALUES.map((steps) => ({
-      url: `${baseUrl}/conversions/steps-to-miles/${steps}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
     })),
-    ...MILES_TO_STEPS_VALUES.map((miles) => ({
-      url: `${baseUrl}/conversions/miles-to-steps/${miles}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-    ...STEPS_TO_CALORIES_VALUES.map((steps) => ({
-      url: `${baseUrl}/conversions/steps-to-calories/${steps}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-    {
-      url: `${baseUrl}/conversions/steps-to-km`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/conversions/km-to-steps`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/conversions/steps-to-time`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/conversions/miles-to-time`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    ...STEPS_TO_KM_VALUES.map((steps) => ({
-      url: `${baseUrl}/conversions/steps-to-km/${steps}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-    ...KM_TO_STEPS_VALUES.map((km) => ({
-      url: `${baseUrl}/conversions/km-to-steps/${km}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-    ...STEPS_TO_TIME_VALUES.map((steps) => ({
-      url: `${baseUrl}/conversions/steps-to-time/${steps}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-    ...MILES_TO_TIME_VALUES.map((miles) => ({
-      url: `${baseUrl}/conversions/miles-to-time/${miles}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-  ];
+    { path: "/conversions", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/conversions/steps-to-miles", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/conversions/miles-to-steps", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/conversions/steps-to-calories", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/conversions/steps-to-km", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/conversions/km-to-steps", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/conversions/steps-to-time", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/conversions/miles-to-time", changeFrequency: "monthly", priority: 0.8 },
+    ...valueEntries("steps-to-miles", STEPS_TO_MILES_VALUES),
+    ...valueEntries("miles-to-steps", MILES_TO_STEPS_VALUES),
+    ...valueEntries("steps-to-calories", STEPS_TO_CALORIES_VALUES),
+    ...valueEntries("steps-to-km", STEPS_TO_KM_VALUES),
+    ...valueEntries("km-to-steps", KM_TO_STEPS_VALUES),
+    ...valueEntries("steps-to-time", STEPS_TO_TIME_VALUES),
+    ...valueEntries("miles-to-time", MILES_TO_TIME_VALUES),
+  ]);
 
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/tools`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/step-distance-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/steps-to-calories-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/walking-calories-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/treadmill-calorie-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/treadmill-incline-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/rucking-calorie-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/bmr-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/weight-loss-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/calories-burned-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/ideal-weight-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/waist-to-hip-ratio-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/steps-per-mile-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/walking-time-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/daily-step-goal-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/weight-loss-walking-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/bmi-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/heart-rate-zones-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/running-pace-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/body-fat-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/water-intake-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/activity-to-steps-converter`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/calorie-deficit-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/resting-heart-rate-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/tdee-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/macro-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/marathon-pace-predictor`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/vo2-max-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/training-pace-zones`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/pace-to-speed-converter`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/race-time-predictor`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/distance-equivalent-calculator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/strava-stats-generator`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+    ...localizedUrls,
     {
       url: `${baseUrl}/for`,
       lastModified: new Date(),
@@ -411,6 +171,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.5,
     },
-    ...conversionHubUrls,
   ];
 }
