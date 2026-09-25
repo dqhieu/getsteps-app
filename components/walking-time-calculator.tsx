@@ -6,7 +6,36 @@ import {
   WALKING_SPEEDS_KMH,
   calculateCaloriesFromDistance,
 } from "@/lib/calorie-calculator";
-import { milesToKm, kmToMiles, formatNumber, formatTime } from "@/lib/unit-converter";
+import { milesToKm } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import en, {
+  type WalkingTimeCalculatorMessages,
+} from "@/lib/i18n/messages/tool-pages/walking-time-calculator/en";
+
+type CalculatorCopy = WalkingTimeCalculatorMessages["calculator"];
+
+const SPEED_ORDER: WalkingSpeed[] = ["slow", "normal", "brisk", "fast"];
+
+function formatSpeed(value: number, locale: Locale): string {
+  return Number.isInteger(value) ? formatNumber(value, locale) : formatDecimal(value, locale, 1);
+}
+
+function formatWalkDuration(minutes: number, t: CalculatorCopy, locale: Locale): string {
+  const rounded = Math.round(minutes);
+  if (rounded >= 60) {
+    const hours = Math.floor(rounded / 60);
+    const mins = rounded % 60;
+    if (mins > 0) {
+      return interpolate(t.hoursMinutes, {
+        hours: formatNumber(hours, locale),
+        minutes: formatNumber(mins, locale),
+      });
+    }
+    return interpolate(t.hoursOnly, { hours: formatNumber(hours, locale) });
+  }
+  return interpolate(t.minutesOnly, { minutes: formatNumber(rounded, locale) });
+}
 
 type DistanceUnit = "km" | "miles";
 
@@ -16,26 +45,17 @@ const DEFAULT_VALUES = {
   includeBreaks: false,
 };
 
-const SPEED_OPTIONS: { value: WalkingSpeed; label: string; description: string }[] = [
-  { value: "slow", label: "Slow", description: "3.2 km/h" },
-  { value: "normal", label: "Normal", description: "5.0 km/h" },
-  { value: "brisk", label: "Brisk", description: "6.4 km/h" },
-  { value: "fast", label: "Fast", description: "7.2 km/h" },
-];
+const COMMON_DISTANCES = [1, 1.60934, 2, 3, 5, 8.0467, 10, 21.0975];
 
-// Common distances for reference
-const COMMON_DISTANCES = [
-  { label: "1 km", km: 1 },
-  { label: "1 mile", km: 1.60934 },
-  { label: "2 km", km: 2 },
-  { label: "3 km", km: 3 },
-  { label: "5 km", km: 5 },
-  { label: "5 miles", km: 8.0467 },
-  { label: "10 km", km: 10 },
-  { label: "Half Marathon", km: 21.0975 },
-];
-
-export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
+export function WalkingTimeCalculator({
+  t = en.calculator,
+  locale = DEFAULT_LOCALE,
+  resultCta,
+}: {
+  t?: CalculatorCopy;
+  locale?: Locale;
+  resultCta?: ReactNode;
+} = {}) {
   // Input state
   const [distance, setDistance] = useState<number>(DEFAULT_VALUES.distance);
   const [distanceUnit, setDistanceUnit] = useState<DistanceUnit>("km");
@@ -80,28 +100,25 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
   // Generate reference table for current speed
   const referenceTable = useMemo(() => {
     const speedKmh = WALKING_SPEEDS_KMH[speed];
-    return COMMON_DISTANCES.map((d) => {
-      const minutes = (d.km / speedKmh) * 60;
-      return {
-        label: d.label,
-        minutes: Math.round(minutes),
-      };
-    });
-  }, [speed]);
+    return COMMON_DISTANCES.map((km, index) => ({
+      label: t.distances[index],
+      minutes: Math.round((km / speedKmh) * 60),
+    }));
+  }, [speed, t.distances]);
 
   return (
     <div className="space-y-8">
       {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Calculate Walking Time
+          {t.title}
         </h2>
 
         <div className="space-y-6">
           {/* Distance Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Distance
+              {t.distance}
             </label>
             <div className="flex gap-2">
               <input
@@ -117,7 +134,7 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
                 className="py-3 pl-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent appearance-none bg-[length:16px_16px] bg-[position:right_0.75rem_center] bg-no-repeat bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23737373%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')]"
               >
                 <option value="km">km</option>
-                <option value="miles">miles</option>
+                <option value="miles">{t.miles}</option>
               </select>
             </div>
           </div>
@@ -125,28 +142,28 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
           {/* Walking Speed */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Walking Speed
+              {t.walkingSpeed}
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {SPEED_OPTIONS.map((option) => (
+              {SPEED_ORDER.map((value) => (
                 <button
-                  key={option.value}
-                  onClick={() => setSpeed(option.value)}
+                  key={value}
+                  onClick={() => setSpeed(value)}
                   className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
-                    speed === option.value
+                    speed === value
                       ? "bg-[#ED772F] text-white"
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  <span className="block">{option.label}</span>
+                  <span className="block">{t.speeds[value].label}</span>
                   <span
                     className={`block text-xs mt-0.5 ${
-                      speed === option.value
+                      speed === value
                         ? "text-white/80"
                         : "text-neutral-500 dark:text-neutral-400"
                     }`}
                   >
-                    {option.description}
+                    {t.speeds[value].description}
                   </span>
                 </button>
               ))}
@@ -163,7 +180,7 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
                 className="w-5 h-5 rounded border-neutral-300 dark:border-neutral-600 text-[#ED772F] focus:ring-[#ED772F] focus:ring-offset-0"
               />
               <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                Include rest breaks (5 min every 30 min)
+                {t.includeBreaks}
               </span>
             </label>
           </div>
@@ -174,18 +191,20 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Walking Time
+            {t.walkingTime}
           </h3>
 
           <div className="space-y-4">
             <div>
               <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                {formatTime(results.totalMinutes)}
+                {formatWalkDuration(results.totalMinutes, t, locale)}
               </p>
               {includeBreaks && results.breakMinutes > 0 && (
                 <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">
-                  {formatTime(results.walkingMinutes)} walking + {results.breakMinutes}{" "}
-                  min breaks
+                  {interpolate(t.breaksDetail, {
+                    walking: formatWalkDuration(results.walkingMinutes, t, locale),
+                    breaks: formatNumber(results.breakMinutes, locale),
+                  })}
                 </p>
               )}
             </div>
@@ -195,28 +214,28 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
           <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-3 gap-4">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Distance
+                {t.distanceLabel}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
                 {distanceUnit === "km"
-                  ? `${distanceKm.toFixed(1)} km`
-                  : `${distance.toFixed(1)} mi`}
+                  ? interpolate(t.kmValue, { distance: formatDecimal(distanceKm, locale, 1) })
+                  : interpolate(t.miValue, { distance: formatDecimal(distance, locale, 1) })}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Steps
+                {t.stepsLabel}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {formatNumber(results.steps)}
+                {formatNumber(results.steps, locale)}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Calories
+                {t.caloriesLabel}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                ~{formatNumber(results.calories)}
+                {interpolate(t.approxCalories, { calories: formatNumber(results.calories, locale) })}
               </p>
             </div>
           </div>
@@ -228,11 +247,13 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
       {/* Reference Table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-          Walking Time Reference
+          {t.referenceTitle}
         </h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-          Time to walk common distances at {SPEED_OPTIONS.find((s) => s.value === speed)?.label.toLowerCase()}{" "}
-          pace ({results.speedKmh} km/h)
+          {interpolate(t.referenceSubtitle, {
+            pace: t.speeds[speed].inline,
+            speed: formatSpeed(results.speedKmh, locale),
+          })}
         </p>
 
         <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
@@ -240,10 +261,10 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
             <thead>
               <tr className="border-b border-neutral-200 dark:border-neutral-700">
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Distance
+                  {t.colDistance}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Time
+                  {t.colTime}
                 </th>
               </tr>
             </thead>
@@ -260,7 +281,7 @@ export function WalkingTimeCalculator({ resultCta }: { resultCta?: ReactNode } =
                   </td>
                   <td className="py-3 px-2">
                     <span className="text-neutral-900 dark:text-white">
-                      {formatTime(row.minutes)}
+                      {formatWalkDuration(row.minutes, t, locale)}
                     </span>
                   </td>
                 </tr>

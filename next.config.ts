@@ -4,6 +4,11 @@ import remarkGfm from "remark-gfm";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  experimental: {
+    // Two root layouts (localized and English-only) cannot render a shared
+    // not-found. Unmatched URLs use this document instead of returning 200.
+    globalNotFound: true,
+  },
   async headers() {
     return [
       {

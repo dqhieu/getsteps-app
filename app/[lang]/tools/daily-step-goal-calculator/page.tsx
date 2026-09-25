@@ -1,276 +1,120 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
 import { RelatedBlogPosts } from "@/components/related-blog-posts";
 import { PersonaLinks } from "@/components/persona-links";
+import { RelatedTools } from "@/components/related-tools";
 import { ToolHowToBlock } from "@/components/tool-how-to-block";
+import { AppDownloadSection } from "@/components/app-store-badge";
+import { ToolStickyCta } from "@/components/tool-app-cta";
 import { DailyStepGoalCalculatorClient } from "./client";
-import { ToolAppCta, ToolStickyCta } from "@/components/tool-app-cta";
-import { TOOL_RELATED_TOOLS, TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
-import { SITE_CONFIG } from "@/lib/constants";
+import { TOOL_RELATED_BLOGS, TOOL_RELATED_PERSONAS } from "@/lib/internal-links";
+import { buildFaqPage } from "@/lib/schema/faq";
+import { loadDailyStepGoalCalculatorMessages } from "@/lib/i18n/messages/tool-pages/daily-step-goal-calculator";
+import { buildPageMetadata, getLocale, type LangPageProps } from "@/lib/i18n/page";
 
-export const metadata: Metadata = {
-  title: "Daily Step Goal Calculator - Personalized Step Recommendations",
-  description:
-    "Get a personalized daily step goal based on your age, activity level, and health goals. Find out how many steps you should walk each day.",
-  keywords: [
-    "daily step goal",
-    "how many steps should I walk",
-    "step goal by age",
-    "recommended steps per day",
-    "personalized step goal",
-    "step goal calculator",
-    "daily walking goal",
-    "steps for weight loss",
-  ],
-  openGraph: {
-    title: "Daily Step Goal Calculator",
-    description:
-      "Get a personalized daily step goal based on your age, activity level, and health goals.",
-    type: "website",
-    url: `${SITE_CONFIG.baseUrl}/tools/daily-step-goal-calculator`,
-    images: [
-      {
-        url: "/og/daily-step-goal-calculator.png",
-        width: 1200,
-        height: 630,
-        alt: "Daily Step Goal Calculator",
-      },
-    ],
-  },
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/tools/daily-step-goal-calculator`,
-  },
-};
+const SLUG = "daily-step-goal-calculator";
+const PATH = `/tools/${SLUG}`;
 
-export default function DailyStepGoalCalculatorPage() {
+export async function generateMetadata({ params }: LangPageProps): Promise<Metadata> {
+  const locale = await getLocale(params);
+  const t = await loadDailyStepGoalCalculatorMessages(locale);
+  return buildPageMetadata({
+    locale,
+    path: PATH,
+    meta: t.meta,
+    ogImage: "/og/daily-step-goal-calculator.png",
+  });
+}
+
+export default async function DailyStepGoalCalculatorPage({ params }: LangPageProps) {
+  const locale = await getLocale(params);
+  const t = await loadDailyStepGoalCalculatorMessages(locale);
+
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
-      <LandingNavbar />
+      <LandingNavbar locale={locale} />
 
-      {/* Hero Section */}
       <section className="pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
-            Daily Step Goal Calculator
+            {t.hero.title}
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Get a personalized daily step goal recommendation based on your age,
-            current activity level, and health objectives.
+            {t.hero.subtitle}
           </p>
         </div>
       </section>
 
-      {/* Main Calculator Section */}
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4 max-w-3xl">
           <DailyStepGoalCalculatorClient
-            resultCta={
-              <ToolAppCta
-                headline="Hit your daily step goal — automatically"
-                description="Steps tracks your steps in the background, no manual logging, so you actually reach the goal above and build a lasting habit."
-              />
-            }
+            t={{ calculator: t.calculator, resultCta: t.resultCta }}
+            locale={locale}
           />
         </div>
       </section>
 
-      {/* Info Section */}
       <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
             <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-6">
-              Understanding Step Goals
+              {t.info.title}
             </h2>
 
             <div className="space-y-6 text-neutral-600 dark:text-neutral-400">
-              <p>
-                The right step goal depends on your individual circumstances. While
-                10,000 steps is a popular target, research shows that health
-                benefits can be achieved with different amounts depending on your
-                age and fitness level.
-              </p>
+              <p>{t.info.intro}</p>
 
               <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
                 <h3 className="font-medium text-neutral-900 dark:text-white mb-2">
-                  Recommended Steps by Age
+                  {t.info.ageTitle}
                 </h3>
                 <ul className="space-y-2 text-sm">
-                  <li>
-                    <strong>Children & Teens (under 18):</strong> 12,000-15,000
-                    steps/day
-                  </li>
-                  <li>
-                    <strong>Adults (18-64):</strong> 10,000-12,000 steps/day
-                  </li>
-                  <li>
-                    <strong>Seniors (65+):</strong> 7,000-10,000 steps/day
-                  </li>
+                  {t.info.ages.map((row) => (
+                    <li key={row.label}>
+                      <strong>{row.label}</strong> {row.steps}
+                    </li>
+                  ))}
                 </ul>
               </div>
 
               <div className="border-t border-neutral-200 dark:border-neutral-700 pt-6">
                 <h3 className="font-medium text-neutral-900 dark:text-white mb-3">
-                  Common Questions
+                  {t.info.faqTitle}
                 </h3>
 
                 <div className="space-y-4">
-                  <details className="group">
-                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
-                      Is 10,000 steps a day necessary?
-                    </summary>
-                    <p className="mt-2 text-sm">
-                      No, 10,000 steps isn&apos;t a magic number. Recent studies show
-                      significant health benefits start at around 7,000-8,000 steps
-                      per day. The key is to be more active than you currently are.
-                    </p>
-                  </details>
-
-                  <details className="group">
-                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
-                      How many steps for weight loss?
-                    </summary>
-                    <p className="mt-2 text-sm">
-                      For weight loss, aim for 12,000+ steps daily combined with a
-                      balanced diet. This can burn an extra 400-600 calories per
-                      day. Remember, consistency matters more than hitting a perfect
-                      number every day.
-                    </p>
-                  </details>
-
-                  <details className="group">
-                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
-                      How do I increase my daily steps?
-                    </summary>
-                    <p className="mt-2 text-sm">
-                      Start by adding 1,000 steps per week to your current average.
-                      Take walking meetings, park farther away, use stairs instead
-                      of elevators, and schedule short walking breaks throughout the
-                      day.
-                    </p>
-                  </details>
-
-                  <details className="group">
-                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
-                      What if I can&apos;t reach my goal?
-                    </summary>
-                    <p className="mt-2 text-sm">
-                      Any increase in activity is beneficial. If your goal feels too
-                      ambitious, adjust it to something more achievable. The best
-                      goal is one you can maintain consistently. Focus on progress,
-                      not perfection.
-                    </p>
-                  </details>
+                  {t.faq.map((item) => (
+                    <details key={item.question} className="group">
+                      <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                        {item.question}
+                      </summary>
+                      <p className="mt-2 text-sm">{item.answer}</p>
+                    </details>
+                  ))}
                 </div>
               </div>
             </div>
 
-            <div className="mt-6">
-              <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">Related Calculators</p>
-              <div className="flex flex-wrap gap-2">
-                {TOOL_RELATED_TOOLS["daily-step-goal-calculator"]?.map((tool) => (
-                  <a key={tool.href} href={tool.href} className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">{tool.title}</a>
-                ))}
-              </div>
-            </div>
-
-            <RelatedBlogPosts items={TOOL_RELATED_BLOGS["daily-step-goal-calculator"] || []} />
-            <PersonaLinks items={TOOL_RELATED_PERSONAS["daily-step-goal-calculator"] || []} />
-            <ToolHowToBlock slug="daily-step-goal-calculator" />
+            <RelatedTools locale={locale} slug={SLUG} />
+            <RelatedBlogPosts locale={locale} items={TOOL_RELATED_BLOGS[SLUG] || []} />
+            <PersonaLinks locale={locale} items={TOOL_RELATED_PERSONAS[SLUG] || []} />
+            <ToolHowToBlock data={t.howTo} />
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-neutral-900 dark:text-white">
-            Track Your Step Goals
-          </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
-            Download the Steps app to set daily goals, track your progress, and
-            build healthy walking habits.
-          </p>
-
-          <a
-            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-transform hover:scale-105 active:scale-95 inline-block"
-            aria-label="Download on the App Store"
-          >
-            <Image
-              src="/badge_light_mode.svg"
-              alt="Download on the App Store"
-              width={120}
-              height={40}
-              className="h-12 w-auto dark:hidden"
-            />
-            <Image
-              src="/badge_dark_mode.svg"
-              alt="Download on the App Store"
-              width={120}
-              height={40}
-              className="h-12 w-auto hidden dark:block"
-            />
-          </a>
-
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">
-            Free on the App Store
-          </p>
-        </div>
-      </section>
+      <AppDownloadSection locale={locale} title={t.cta.title} description={t.cta.description} />
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Is 10,000 steps a day necessary?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No, 10,000 steps isn't a magic number. Recent studies show significant health benefits start at around 7,000-8,000 steps per day. The key is to be more active than you currently are."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How many steps for weight loss?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "For weight loss, aim for 12,000+ steps daily combined with a balanced diet. This can burn an extra 400-600 calories per day. Remember, consistency matters more than hitting a perfect number every day."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How do I increase my daily steps?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Start by adding 1,000 steps per week to your current average. Take walking meetings, park farther away, use stairs instead of elevators, and schedule short walking breaks throughout the day."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if I can't reach my goal?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Any increase in activity is beneficial. If your goal feels too ambitious, adjust it to something more achievable. The best goal is one you can maintain consistently. Focus on progress, not perfection."
-                }
-              }
-            ]
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqPage(t.faq)) }}
       />
 
-      <LandingFooter />
+      <LandingFooter locale={locale} />
 
-      {/* Mobile spacer so the sticky bar never covers footer content */}
       <div aria-hidden className="h-20 md:hidden" />
-      <ToolStickyCta label="Track your steps with Steps" />
+      <ToolStickyCta locale={locale} label={t.stickyCta} />
     </div>
   );
 }

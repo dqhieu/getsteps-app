@@ -5,15 +5,17 @@ import {
   calculateFromDistance,
   calculateFromDuration,
   type WalkingSpeed,
-  WALKING_SPEEDS_KMH,
   WALKING_MET_VALUES,
-  calculateFatBurned,
 } from "@/lib/calorie-calculator";
-import { lbsToKg, kgToLbs, milesToKm, formatNumber, formatTime } from "@/lib/unit-converter";
+import { lbsToKg, kgToLbs, milesToKm, formatTime } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber } from "@/lib/i18n/format";
+import type { WalkingCaloriesMessages } from "@/lib/i18n/messages/tool-pages/walking-calories-calculator/en";
 
 type WeightUnit = "kg" | "lbs";
 type DistanceUnit = "km" | "miles";
 type CalculationMode = "distance" | "time";
+type CalculatorMessages = WalkingCaloriesMessages["calculator"];
 
 const DEFAULT_VALUES = {
   weight: 70,
@@ -22,15 +24,30 @@ const DEFAULT_VALUES = {
   speed: "normal" as WalkingSpeed,
 };
 
-const SPEED_OPTIONS: { value: WalkingSpeed; label: string; description: string }[] = [
-  { value: "slow", label: "Slow", description: `${WALKING_SPEEDS_KMH.slow} km/h (2 mph)` },
-  { value: "normal", label: "Normal", description: `${WALKING_SPEEDS_KMH.normal} km/h (3.1 mph)` },
-  { value: "brisk", label: "Brisk", description: `${WALKING_SPEEDS_KMH.brisk} km/h (4 mph)` },
-  { value: "fast", label: "Fast", description: `${WALKING_SPEEDS_KMH.fast} km/h (4.5 mph)` },
+const SPEED_ORDER: WalkingSpeed[] = ["slow", "normal", "brisk", "fast"];
+
+const PACE_ROWS: { id: WalkingSpeed; kmh: number; mph: number; met: number }[] = [
+  { id: "slow", kmh: 3.2, mph: 2, met: 2.5 },
+  { id: "normal", kmh: 5, mph: 3.1, met: 3.5 },
+  { id: "brisk", kmh: 6.4, mph: 4, met: 4.5 },
+  { id: "fast", kmh: 7.2, mph: 4.5, met: 5 },
 ];
 
-export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
-  // Input state
+function formatMeasure(value: number, locale: Locale): string {
+  return Number.isInteger(value)
+    ? formatNumber(value, locale)
+    : formatDecimal(value, locale, 1);
+}
+
+export function WalkingCaloriesCalculator({
+  t,
+  locale = DEFAULT_LOCALE,
+  resultCta,
+}: {
+  t: CalculatorMessages;
+  locale?: Locale;
+  resultCta?: ReactNode;
+}) {
   const [mode, setMode] = useState<CalculationMode>("distance");
   const [weight, setWeight] = useState<number>(DEFAULT_VALUES.weight);
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
@@ -39,28 +56,23 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
   const [duration, setDuration] = useState<number>(DEFAULT_VALUES.duration);
   const [speed, setSpeed] = useState<WalkingSpeed>(DEFAULT_VALUES.speed);
 
-  // Get weight in kg for calculations
   const weightKg = useMemo(
     () => (weightUnit === "kg" ? weight : lbsToKg(weight)),
     [weight, weightUnit]
   );
 
-  // Get distance in km for calculations
   const distanceKm = useMemo(
     () => (distanceUnit === "km" ? distance : milesToKm(distance)),
     [distance, distanceUnit]
   );
 
-  // Calculate results
   const results = useMemo(() => {
     if (mode === "distance") {
       return calculateFromDistance(distanceKm, weightKg, speed);
-    } else {
-      return calculateFromDuration(duration, weightKg, speed);
     }
+    return calculateFromDuration(duration, weightKg, speed);
   }, [mode, distanceKm, duration, weightKg, speed]);
 
-  // Handle weight unit toggle
   const handleWeightUnitChange = (newUnit: WeightUnit) => {
     if (newUnit === weightUnit) return;
     if (newUnit === "lbs") {
@@ -73,13 +85,11 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
 
   return (
     <div className="space-y-8">
-      {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Calculate By
+          {t.calculateBy}
         </h2>
 
-        {/* Mode Toggle */}
         <div className="flex gap-2 mb-6">
           <button
             onClick={() => setMode("distance")}
@@ -89,7 +99,7 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                 : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
             }`}
           >
-            Distance
+            {t.distance}
           </button>
           <button
             onClick={() => setMode("time")}
@@ -99,15 +109,14 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                 : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
             }`}
           >
-            Time
+            {t.time}
           </button>
         </div>
 
         <div className="space-y-6">
-          {/* Weight Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Weight
+              {t.weight}
             </label>
             <div className="flex gap-2">
               <div className="relative flex-1">
@@ -130,11 +139,10 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
             </div>
           </div>
 
-          {/* Distance or Duration Input */}
           {mode === "distance" ? (
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Distance
+                {t.distance}
               </label>
               <div className="flex gap-2">
                 <input
@@ -150,14 +158,14 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                   className="py-3 pl-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent appearance-none bg-[length:16px_16px] bg-[position:right_0.75rem_center] bg-no-repeat bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23737373%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')]"
                 >
                   <option value="km">km</option>
-                  <option value="miles">miles</option>
+                  <option value="miles">{t.miles}</option>
                 </select>
               </div>
             </div>
           ) : (
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Duration
+                {t.duration}
               </label>
               <div className="relative">
                 <input
@@ -167,94 +175,94 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
                   className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
-                  minutes
+                  {t.minutes}
                 </span>
               </div>
             </div>
           )}
 
-          {/* Walking Speed */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Walking Speed
+              {t.walkingSpeed}
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {SPEED_OPTIONS.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setSpeed(option.value)}
-                  className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
-                    speed === option.value
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
-                  }`}
-                >
-                  <span className="block">{option.label}</span>
-                  <span
-                    className={`block text-xs mt-0.5 ${
-                      speed === option.value
-                        ? "text-white/80"
-                        : "text-neutral-500 dark:text-neutral-400"
+              {SPEED_ORDER.map((id) => {
+                const option = t.speeds[id];
+                return (
+                  <button
+                    key={id}
+                    onClick={() => setSpeed(id)}
+                    className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
+                      speed === id
+                        ? "bg-[#ED772F] text-white"
+                        : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                     }`}
                   >
-                    {option.description}
-                  </span>
-                </button>
-              ))}
+                    <span className="block">{option.label}</span>
+                    <span
+                      className={`block text-xs mt-0.5 ${
+                        speed === id
+                          ? "text-white/80"
+                          : "text-neutral-500 dark:text-neutral-400"
+                      }`}
+                    >
+                      {option.description}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Calories Burned
+            {t.caloriesBurned}
           </h3>
 
           <div className="space-y-4">
             <div>
               <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                {formatNumber(results.caloriesBurned)} kcal
+                {formatNumber(results.caloriesBurned, locale)} kcal
               </p>
             </div>
           </div>
 
-          {/* Additional Stats */}
           <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                {mode === "distance" ? "Walking Time" : "Distance"}
+                {mode === "distance" ? t.walkingTime : t.distanceResult}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
                 {mode === "distance"
                   ? formatTime(results.durationMinutes)
-                  : `${results.distanceKm.toFixed(1)} km`}
+                  : `${formatDecimal(results.distanceKm, locale, 1)} km`}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Steps
+                {t.steps}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {formatNumber(results.steps)}
+                {formatNumber(results.steps, locale)}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Fat Burned
+                {t.fatBurned}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {results.fatBurnedGrams.toFixed(1)} g
+                {formatDecimal(results.fatBurnedGrams, locale, 1)} g
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                MET Value
+                {t.metValue}
               </p>
               <p className="text-xl font-semibold text-neutral-900 dark:text-white">
-                {WALKING_MET_VALUES[speed]}
+                {formatMeasure(WALKING_MET_VALUES[speed], locale)}
               </p>
             </div>
           </div>
@@ -263,14 +271,12 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
 
       {resultCta}
 
-      {/* MET Info Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
-          Walking Speed & MET Values
+          {t.metTableTitle}
         </h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-          MET (Metabolic Equivalent of Task) represents the energy cost of
-          activities. Higher MET means more calories burned.
+          {t.metTableIntro}
         </p>
 
         <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
@@ -278,91 +284,42 @@ export function WalkingCaloriesCalculator({ resultCta }: { resultCta?: ReactNode
             <thead>
               <tr className="border-b border-neutral-200 dark:border-neutral-700">
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Speed
+                  {t.columns.speed}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  km/h
+                  {t.columns.kmh}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  mph
+                  {t.columns.mph}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  MET
+                  {t.columns.met}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Description
+                  {t.columns.description}
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-neutral-100 dark:border-neutral-700/50">
-                <td className="py-3 px-2 font-semibold text-neutral-900 dark:text-white">
-                  Slow
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  3.2
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  2.0
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  2.5
-                </td>
-                <td className="py-3 px-2 text-neutral-600 dark:text-neutral-400">
-                  Leisurely stroll
-                </td>
-              </tr>
-              <tr className="border-b border-neutral-100 dark:border-neutral-700/50">
-                <td className="py-3 px-2 font-semibold text-neutral-900 dark:text-white">
-                  Normal
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  5.0
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  3.1
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  3.5
-                </td>
-                <td className="py-3 px-2 text-neutral-600 dark:text-neutral-400">
-                  Average pace
-                </td>
-              </tr>
-              <tr className="border-b border-neutral-100 dark:border-neutral-700/50">
-                <td className="py-3 px-2 font-semibold text-neutral-900 dark:text-white">
-                  Brisk
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  6.4
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  4.0
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  4.5
-                </td>
-                <td className="py-3 px-2 text-neutral-600 dark:text-neutral-400">
-                  Fast walking
-                </td>
-              </tr>
-              <tr className="border-b border-neutral-100 dark:border-neutral-700/50">
-                <td className="py-3 px-2 font-semibold text-neutral-900 dark:text-white">
-                  Fast
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  7.2
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  4.5
-                </td>
-                <td className="py-3 px-2 text-neutral-900 dark:text-white">
-                  5.0
-                </td>
-                <td className="py-3 px-2 text-neutral-600 dark:text-neutral-400">
-                  Power walking
-                </td>
-              </tr>
+              {PACE_ROWS.map((row) => (
+                <tr key={row.id} className="border-b border-neutral-100 dark:border-neutral-700/50">
+                  <td className="py-3 px-2 font-semibold text-neutral-900 dark:text-white">
+                    {t.speeds[row.id].label}
+                  </td>
+                  <td className="py-3 px-2 text-neutral-900 dark:text-white">
+                    {formatDecimal(row.kmh, locale, 1)}
+                  </td>
+                  <td className="py-3 px-2 text-neutral-900 dark:text-white">
+                    {formatDecimal(row.mph, locale, 1)}
+                  </td>
+                  <td className="py-3 px-2 text-neutral-900 dark:text-white">
+                    {formatDecimal(row.met, locale, 1)}
+                  </td>
+                  <td className="py-3 px-2 text-neutral-600 dark:text-neutral-400">
+                    {t.paceDescriptions[row.id]}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

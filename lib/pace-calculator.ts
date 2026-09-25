@@ -11,11 +11,13 @@ export type SpeedUnit = "kmh" | "mph";
 const MILES_PER_KM = 0.621371;
 const KM_PER_MILE = 1.60934;
 
-export const RACE_DISTANCES: Array<{ distance: string; distanceKm: number }> = [
-  { distance: "5K",            distanceKm: 5 },
-  { distance: "10K",           distanceKm: 10 },
-  { distance: "Half Marathon", distanceKm: 21.0975 },
-  { distance: "Marathon",      distanceKm: 42.195 },
+export type RaceDistanceId = "5k" | "10k" | "half" | "marathon";
+
+export const RACE_DISTANCES: Array<{ id: RaceDistanceId; distance: string; distanceKm: number }> = [
+  { id: "5k", distance: "5K", distanceKm: 5 },
+  { id: "10k", distance: "10K", distanceKm: 10 },
+  { id: "half", distance: "Half Marathon", distanceKm: 21.0975 },
+  { id: "marathon", distance: "Marathon", distanceKm: 42.195 },
 ];
 
 export interface PaceResult {
@@ -25,7 +27,7 @@ export interface PaceResult {
   paceMileFormatted: string;
   speedKmh: number;
   speedMph: number;
-  racePredictions: Array<{ distance: string; distanceKm: number; finishTime: string }>;
+  racePredictions: Array<{ id: RaceDistanceId; distance: string; distanceKm: number; finishTime: string }>;
 }
 
 /** Format seconds-per-km into "M:SS /km" or "M:SS /mi" */
@@ -95,6 +97,7 @@ function buildResult(paceSecPerKm: number): PaceResult {
   const speedMph = Math.round(speedKmh * MILES_PER_KM * 10) / 10;
 
   const racePredictions = RACE_DISTANCES.map((r) => ({
+    id: r.id,
     distance: r.distance,
     distanceKm: r.distanceKm,
     finishTime: formatDuration(paceSecPerKm * r.distanceKm),

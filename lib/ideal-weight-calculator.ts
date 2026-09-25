@@ -25,7 +25,6 @@ interface FormulaSpec {
   year: string;
   base: Record<Gender, number>;
   perInch: Record<Gender, number>;
-  note: string;
 }
 
 const FORMULA_SPECS: FormulaSpec[] = [
@@ -35,7 +34,6 @@ const FORMULA_SPECS: FormulaSpec[] = [
     year: "1974",
     base: { male: 50.0, female: 45.5 },
     perInch: { male: 2.3, female: 2.3 },
-    note: "The most widely cited formula and still the default for drug dosing. Written for medication calculations, not body goals.",
   },
   {
     key: "robinson",
@@ -43,7 +41,6 @@ const FORMULA_SPECS: FormulaSpec[] = [
     year: "1983",
     base: { male: 52.0, female: 49.0 },
     perInch: { male: 1.9, female: 1.7 },
-    note: "A revision of Devine using a larger sample. Reads lower than Devine at tall heights.",
   },
   {
     key: "miller",
@@ -51,7 +48,6 @@ const FORMULA_SPECS: FormulaSpec[] = [
     year: "1983",
     base: { male: 56.2, female: 53.1 },
     perInch: { male: 1.41, female: 1.36 },
-    note: "The flattest of the four: height changes the result least, so it reads highest for short people and lowest for tall.",
   },
   {
     key: "hamwi",
@@ -59,7 +55,6 @@ const FORMULA_SPECS: FormulaSpec[] = [
     year: "1964",
     base: { male: 48.0, female: 45.5 },
     perInch: { male: 2.7, female: 2.2 },
-    note: "The oldest of the four, developed for diabetes care. The steepest per-inch increase, so it reads highest at tall heights.",
   },
 ];
 
@@ -68,7 +63,6 @@ export interface FormulaEstimate {
   name: string;
   year: string;
   weightKg: number;
-  note: string;
 }
 
 export interface IdealWeightResult {
@@ -84,7 +78,6 @@ export interface IdealWeightResult {
     currentWeightKg: number;
     differenceKg: number;
     withinHealthyBmiRange: boolean;
-    verdict: string;
   } | null;
 }
 
@@ -102,7 +95,6 @@ export function calculateIdealWeight(
     year: spec.year,
     weightKg:
       Math.round((spec.base[gender] + spec.perInch[gender] * inchesOverBase) * 10) / 10,
-    note: spec.note,
   }));
 
   const weights = estimates.map((e) => e.weightKg);
@@ -122,21 +114,10 @@ export function calculateIdealWeight(
       currentWeightKg >= healthyBmiRangeKg.min &&
       currentWeightKg <= healthyBmiRangeKg.max;
 
-    let verdict: string;
-    if (withinHealthyBmiRange) {
-      verdict =
-        "Your weight sits inside the healthy BMI range for your height. The formula average is a single point inside that band, not a target you need to hit.";
-    } else if (currentWeightKg > healthyBmiRangeKg.max) {
-      verdict = `Your weight is ${Math.round((currentWeightKg - healthyBmiRangeKg.max) * 10) / 10} kg above the healthy BMI range for your height.`;
-    } else {
-      verdict = `Your weight is ${Math.round((healthyBmiRangeKg.min - currentWeightKg) * 10) / 10} kg below the healthy BMI range for your height.`;
-    }
-
     comparison = {
       currentWeightKg,
       differenceKg,
       withinHealthyBmiRange,
-      verdict,
     };
   }
 

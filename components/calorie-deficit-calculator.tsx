@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import {
   calculateCalorieDeficit,
-  ACTIVITY_LABELS,
   type Gender,
   type ActivityLevel,
 } from "@/lib/calorie-deficit-calculator";
@@ -12,8 +11,12 @@ import {
   kgToLbs,
   feetInchesToCm,
   cmToFeetInches,
-  formatNumber,
 } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatNumber, interpolate } from "@/lib/i18n/format";
+import en, {
+  type CalorieDeficitMessages,
+} from "@/lib/i18n/messages/tool-pages/calorie-deficit-calculator/en";
 
 type WeightUnit = "kg" | "lbs";
 type HeightUnit = "cm" | "ft";
@@ -26,8 +29,15 @@ const ACTIVITY_LEVELS: ActivityLevel[] = [
   "active",
   "very_active",
 ];
+const UNSAFE_DEFICIT = 1000;
 
-export function CalorieDeficitCalculator() {
+export function CalorieDeficitCalculator({
+  t = en.calculator,
+  locale = DEFAULT_LOCALE,
+}: {
+  t?: CalorieDeficitMessages["calculator"];
+  locale?: Locale;
+} = {}) {
   const [gender, setGender] = useState<Gender>("male");
   const [age, setAge] = useState<number>(30);
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
@@ -35,11 +45,9 @@ export function CalorieDeficitCalculator() {
   const [activityLevel, setActivityLevel] = useState<ActivityLevel>("moderate");
   const [weeks, setWeeks] = useState<number>(12);
 
-  // Weight state
   const [weight, setWeight] = useState<number>(80);
   const [goalWeight, setGoalWeight] = useState<number>(75);
 
-  // Height state
   const [heightCm, setHeightCm] = useState<number>(175);
   const [heightFeet, setHeightFeet] = useState<number>(5);
   const [heightInches, setHeightInches] = useState<number>(9);
@@ -103,16 +111,14 @@ export function CalorieDeficitCalculator() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Inputs Card */}
         <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-            Your Details
+            {t.details}
           </h2>
 
-          {/* Gender Toggle */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Gender
+              {t.gender}
             </label>
             <div className="flex rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700">
               <button
@@ -123,7 +129,7 @@ export function CalorieDeficitCalculator() {
                     : "py-3 px-4 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors flex-1"
                 }
               >
-                Male
+                {t.male}
               </button>
               <button
                 onClick={() => setGender("female")}
@@ -133,15 +139,14 @@ export function CalorieDeficitCalculator() {
                     : "py-3 px-4 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors flex-1"
                 }
               >
-                Female
+                {t.female}
               </button>
             </div>
           </div>
 
-          {/* Age */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Age
+              {t.age}
             </label>
             <div className="relative">
               <input
@@ -151,15 +156,14 @@ export function CalorieDeficitCalculator() {
                 className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
-                years
+                {t.years}
               </span>
             </div>
           </div>
 
-          {/* Current Weight */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Current Weight
+              {t.currentWeight}
             </label>
             <div className="flex gap-2">
               <div className="relative flex-1">
@@ -184,10 +188,9 @@ export function CalorieDeficitCalculator() {
             </div>
           </div>
 
-          {/* Height */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Height
+              {t.height}
             </label>
             <div className="flex gap-2">
               {heightUnit === "cm" ? (
@@ -257,10 +260,9 @@ export function CalorieDeficitCalculator() {
             </div>
           </div>
 
-          {/* Activity Level */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Activity Level
+              {t.activity}
             </label>
             <div className="flex flex-wrap gap-2">
               {ACTIVITY_LEVELS.map((level) => (
@@ -273,16 +275,15 @@ export function CalorieDeficitCalculator() {
                       : "py-2 px-3 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-xs font-medium rounded-lg transition-colors"
                   }
                 >
-                  {ACTIVITY_LABELS[level]}
+                  {t.activityLevels[level]}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Goal Weight */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Goal Weight
+              {t.goalWeight}
             </label>
             <div className="relative">
               <input
@@ -297,10 +298,9 @@ export function CalorieDeficitCalculator() {
             </div>
           </div>
 
-          {/* Timeframe */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Timeframe
+              {t.timeframe}
             </label>
             <div className="flex rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700">
               {TIMEFRAME_OPTIONS.map((w) => (
@@ -313,82 +313,76 @@ export function CalorieDeficitCalculator() {
                       : "py-2 px-3 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-xs font-medium transition-colors flex-1"
                   }
                 >
-                  {w}w
+                  {interpolate(t.weeks, { count: formatNumber(w, locale) })}
                 </button>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Results Card */}
         <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-            Your Plan
+            {t.plan}
           </h2>
 
           {result.alreadyAtGoal ? (
             <div className="rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-6 text-center">
               <p className="text-green-700 dark:text-green-400 font-medium text-lg">
-                You&apos;re already at your goal!
+                {t.atGoalTitle}
               </p>
               <p className="text-sm text-green-600 dark:text-green-500 mt-2">
-                Focus on maintaining your weight with a balanced diet and regular activity.
+                {t.atGoalBody}
               </p>
             </div>
           ) : (
             <div className="space-y-4">
-              {/* TDEE */}
               <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  Your TDEE (maintenance)
+                  {t.tdee}
                 </p>
                 <p className="text-2xl font-bold text-neutral-900 dark:text-white">
-                  {formatNumber(result.tdee)}{" "}
-                  <span className="text-sm font-normal text-neutral-500">cal/day</span>
+                  {formatNumber(result.tdee, locale)}{" "}
+                  <span className="text-sm font-normal text-neutral-500">{t.calPerDay}</span>
                 </p>
               </div>
 
-              {/* Daily Deficit */}
               <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-4">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  Daily deficit needed
+                  {t.deficit}
                 </p>
                 <p className="text-3xl font-bold text-neutral-900 dark:text-white">
-                  {formatNumber(result.dailyDeficit)}{" "}
-                  <span className="text-sm font-normal text-neutral-500">cal/day</span>
+                  {formatNumber(result.dailyDeficit, locale)}{" "}
+                  <span className="text-sm font-normal text-neutral-500">{t.calPerDay}</span>
                 </p>
               </div>
 
-              {/* Target Calories */}
               <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-4">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  Target daily calories
+                  {t.target}
                 </p>
                 <p className="text-3xl font-bold text-neutral-900 dark:text-white">
-                  {formatNumber(result.targetCalories)}{" "}
-                  <span className="text-sm font-normal text-neutral-500">cal/day</span>
+                  {formatNumber(result.targetCalories, locale)}{" "}
+                  <span className="text-sm font-normal text-neutral-500">{t.calPerDay}</span>
                 </p>
               </div>
 
-              {/* Steps to Add */}
               <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  Extra steps to add
+                  {t.extraSteps}
                 </p>
                 <p className="text-2xl font-bold text-neutral-900 dark:text-white">
-                  {formatNumber(result.stepsToAdd)}{" "}
-                  <span className="text-sm font-normal text-neutral-500">steps/day</span>
+                  {formatNumber(result.stepsToAdd, locale)}{" "}
+                  <span className="text-sm font-normal text-neutral-500">{t.stepsPerDay}</span>
                 </p>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
-                  to burn deficit through walking
+                  {t.stepsHint}
                 </p>
               </div>
 
-              {/* Safety Warnings */}
               {!result.isSafe && (
                 <div className="rounded-xl bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 p-4">
                   <p className="text-sm text-orange-700 dark:text-orange-400 font-medium">
-                    Warning: This deficit exceeds 1,000 cal/day. Consider extending your timeline for safer results.
+                    {interpolate(t.unsafe, { max: formatNumber(UNSAFE_DEFICIT, locale) })}
                   </p>
                 </div>
               )}
@@ -396,7 +390,9 @@ export function CalorieDeficitCalculator() {
               {!result.isAboveMinimum && (
                 <div className="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4">
                   <p className="text-sm text-red-700 dark:text-red-400 font-medium">
-                    Warning: Your target calories fall below the recommended minimum of {formatNumber(result.minimumCalories)} cal/day. Please consult a healthcare professional.
+                    {interpolate(t.belowMin, {
+                      min: formatNumber(result.minimumCalories, locale),
+                    })}
                   </p>
                 </div>
               )}
@@ -404,7 +400,7 @@ export function CalorieDeficitCalculator() {
               {result.isSafe && result.isAboveMinimum && (
                 <div className="rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-4">
                   <p className="text-sm text-green-700 dark:text-green-400 font-medium">
-                    This is a safe, sustainable deficit.
+                    {t.safe}
                   </p>
                 </div>
               )}

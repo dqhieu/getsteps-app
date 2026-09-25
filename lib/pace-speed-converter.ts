@@ -91,7 +91,10 @@ export function convertFromSpeedMph(speed: number): PaceSpeedResult {
   return buildResult(speed * 1.60934);
 }
 
+export type PaceActivityId = "walking" | "jogging" | "running" | "fast" | "sprint";
+
 export interface PaceReference {
+  id: PaceActivityId;
   label: string;
   speedKmh: number;
   paceKm: string;
@@ -99,9 +102,9 @@ export interface PaceReference {
 }
 
 export const PACE_REFERENCE: PaceReference[] = [
-  { label: "Walking", speedKmh: 5, paceKm: "12:00/km", paceMile: "19:18/mi" },
-  { label: "Jogging", speedKmh: 8, paceKm: "7:30/km", paceMile: "12:04/mi" },
-  { label: "Running", speedKmh: 11, paceKm: "5:27/km", paceMile: "8:46/mi" },
-  { label: "Fast Running", speedKmh: 14, paceKm: "4:17/km", paceMile: "6:53/mi" },
-  { label: "Sprint", speedKmh: 20, paceKm: "3:00/km", paceMile: "4:50/mi" },
+  { id: "walking", label: "Walking", speedKmh: 5, paceKm: "12:00/km", paceMile: "19:18/mi" },
+  { id: "jogging", label: "Jogging", speedKmh: 8, paceKm: "7:30/km", paceMile: "12:04/mi" },
+  { id: "running", label: "Running", speedKmh: 11, paceKm: "5:27/km", paceMile: "8:46/mi" },
+  { id: "fast", label: "Fast Running", speedKmh: 14, paceKm: "4:17/km", paceMile: "6:53/mi" },
+  { id: "sprint", label: "Sprint", speedKmh: 20, paceKm: "3:00/km", paceMile: "4:50/mi" },
 ];

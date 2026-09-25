@@ -6,11 +6,11 @@ import {
   convertFromPaceMile,
   convertFromSpeedKmh,
   convertFromSpeedMph,
-  parsePaceStr,
-  toMMSS,
   PACE_REFERENCE,
   type PaceSpeedResult,
 } from "@/lib/pace-speed-converter";
+import type { Locale } from "@/lib/i18n/config";
+import type { PaceToSpeedConverterMessages } from "@/lib/i18n/messages/tool-pages/pace-to-speed-converter/en";
 
 type ActiveField = "paceKm" | "paceMile" | "speedKmh" | "speedMph";
 
@@ -20,7 +20,12 @@ const EMPTY: PaceSpeedResult = {
   time5kFormatted: "—", time10kFormatted: "—",
 };
 
-export function PaceSpeedConverter() {
+export function PaceSpeedConverter({
+  t,
+}: {
+  t: PaceToSpeedConverterMessages["calculator"];
+  locale: Locale;
+}) {
   const [paceKm, setPaceKm] = useState("5:30");
   const [paceMile, setPaceMile] = useState("");
   const [speedKmh, setSpeedKmh] = useState("");
@@ -36,7 +41,6 @@ export function PaceSpeedConverter() {
     else if (active === "speedMph" && speedMph) res = convertFromSpeedMph(parseFloat(speedMph));
     setResult(res);
 
-    // Sync other fields
     if (res.paceKm !== "—") {
       const pkm = res.paceKm.replace("/km", "");
       const pmi = res.paceMile.replace("/mi", "");
@@ -62,15 +66,14 @@ export function PaceSpeedConverter() {
 
   return (
     <div className="space-y-6">
-      {/* Input Grid */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
-          Enter any value to convert
+          {t.title}
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
-              Pace (min/km)
+              {t.paceKm}
             </label>
             <input
               type="text"
@@ -82,7 +85,7 @@ export function PaceSpeedConverter() {
           </div>
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
-              Pace (min/mile)
+              {t.paceMile}
             </label>
             <input
               type="text"
@@ -94,7 +97,7 @@ export function PaceSpeedConverter() {
           </div>
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
-              Speed (km/h)
+              {t.speedKmh}
             </label>
             <input
               type="number"
@@ -107,7 +110,7 @@ export function PaceSpeedConverter() {
           </div>
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
-              Speed (mph)
+              {t.speedMph}
             </label>
             <input
               type="number"
@@ -121,51 +124,48 @@ export function PaceSpeedConverter() {
         </div>
       </div>
 
-      {/* Distance cards */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
         <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-4">
-          Distance Covered
+          {t.distanceTitle}
         </h3>
         <div className="grid grid-cols-2 gap-3">
-          {statCard("30 min", result.dist30minKm)}
-          {statCard("60 min", result.dist60minKm)}
+          {statCard(t.min30, result.dist30minKm)}
+          {statCard(t.min60, result.dist60minKm)}
         </div>
       </div>
 
-      {/* Race time cards */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
         <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-4">
-          Race Finish Times
+          {t.raceTitle}
         </h3>
         <div className="grid grid-cols-2 gap-3">
-          {statCard("5K", result.time5kFormatted)}
-          {statCard("10K", result.time10kFormatted)}
+          {statCard(t.races["5k"], result.time5kFormatted)}
+          {statCard(t.races["10k"], result.time10kFormatted)}
         </div>
       </div>
 
-      {/* Reference table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
         <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-4">
-          Reference Paces
+          {t.referenceTitle}
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-neutral-200 dark:border-neutral-700">
-                <th className="text-left py-2 text-neutral-600 dark:text-neutral-400 font-medium">Activity</th>
-                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">km/h</th>
-                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">min/km</th>
-                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">min/mi</th>
+                <th className="text-left py-2 text-neutral-600 dark:text-neutral-400 font-medium">{t.activityColumn}</th>
+                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">{t.kmhColumn}</th>
+                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">{t.minKmColumn}</th>
+                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">{t.minMiColumn}</th>
               </tr>
             </thead>
             <tbody>
               {PACE_REFERENCE.map((r) => (
                 <tr
-                  key={r.label}
+                  key={r.id}
                   className="border-b border-neutral-100 dark:border-neutral-700/50 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-700/30"
                   onClick={() => { setActive("speedKmh"); setSpeedKmh(r.speedKmh.toString()); }}
                 >
-                  <td className="py-2.5 font-medium text-neutral-900 dark:text-white">{r.label}</td>
+                  <td className="py-2.5 font-medium text-neutral-900 dark:text-white">{t.activities[r.id]}</td>
                   <td className="py-2.5 text-right text-neutral-700 dark:text-neutral-300">{r.speedKmh}</td>
                   <td className="py-2.5 text-right text-neutral-700 dark:text-neutral-300 font-mono">{r.paceKm}</td>
                   <td className="py-2.5 text-right text-neutral-700 dark:text-neutral-300 font-mono">{r.paceMile}</td>
@@ -174,7 +174,7 @@ export function PaceSpeedConverter() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-2">Click a row to load that pace</p>
+        <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-2">{t.clickHint}</p>
       </div>
     </div>
   );

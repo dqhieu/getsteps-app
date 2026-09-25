@@ -7,7 +7,18 @@ import {
   cmToFeetInches,
   type Gender,
 } from "@/lib/step-calculator";
-import { formatNumber, kmToMiles } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import { rich } from "@/lib/i18n/rich";
+import en, {
+  type StepsPerMileCalculatorMessages,
+} from "@/lib/i18n/messages/tool-pages/steps-per-mile-calculator/en";
+
+type CalculatorCopy = StepsPerMileCalculatorMessages["calculator"];
+
+function formatLoose(value: number, locale: Locale): string {
+  return Number.isInteger(value) ? formatNumber(value, locale) : formatDecimal(value, locale, 1);
+}
 
 type HeightUnit = "cm" | "ft";
 
@@ -19,17 +30,17 @@ const DEFAULT_VALUES = {
 };
 
 // Common distances for reference table
-const REFERENCE_DISTANCES = [
-  { label: "1 km", km: 1 },
-  { label: "1 mile", km: 1.60934 },
-  { label: "5 km", km: 5 },
-  { label: "5 miles", km: 8.0467 },
-  { label: "10 km", km: 10 },
-  { label: "Half Marathon", km: 21.0975 },
-  { label: "Marathon", km: 42.195 },
-];
+const REFERENCE_DISTANCES = [1, 1.60934, 5, 8.0467, 10, 21.0975, 42.195];
 
-export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } = {}) {
+export function StepsPerMileCalculator({
+  t = en.calculator,
+  locale = DEFAULT_LOCALE,
+  resultCta,
+}: {
+  t?: CalculatorCopy;
+  locale?: Locale;
+  resultCta?: ReactNode;
+} = {}) {
   // Input state
   const [gender, setGender] = useState<Gender>(DEFAULT_VALUES.gender);
   const [heightCm, setHeightCm] = useState<number>(DEFAULT_VALUES.heightCm);
@@ -68,11 +79,11 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
 
   // Generate reference table
   const referenceTable = useMemo(() => {
-    return REFERENCE_DISTANCES.map((distance) => ({
-      label: distance.label,
-      steps: Math.round((distance.km * 100000) / stepLengthCm),
+    return REFERENCE_DISTANCES.map((km, index) => ({
+      label: t.distances[index],
+      steps: Math.round((km * 100000) / stepLengthCm),
     }));
-  }, [stepLengthCm]);
+  }, [stepLengthCm, t.distances]);
 
   // Handle height unit toggle
   const handleHeightUnitChange = (unit: HeightUnit) => {
@@ -93,14 +104,14 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
       {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Your Information
+          {t.yourInformation}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Height Input */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Height
+              {t.height}
             </label>
             <div className="flex gap-2">
               {heightUnit === "cm" ? (
@@ -171,7 +182,7 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
           {/* Gender Selection */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Gender
+              {t.gender}
             </label>
             <div className="flex gap-2">
               <button
@@ -182,7 +193,7 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
                     : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                 }`}
               >
-                Male
+                {t.male}
               </button>
               <button
                 onClick={() => setGender("female")}
@@ -192,7 +203,7 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
                     : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                 }`}
               >
-                Female
+                {t.female}
               </button>
             </div>
           </div>
@@ -201,13 +212,22 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
         {/* Step Length Display */}
         <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            Your estimated step length:{" "}
-            <span className="font-semibold text-neutral-900 dark:text-white">
-              {results.stepLengthCm} cm
-            </span>
-            <span className="text-neutral-500 dark:text-neutral-500 ml-1">
-              ({results.stepLengthInches} inches)
-            </span>
+            {rich(t.stepLength, {
+              cm: (
+                <span className="font-semibold text-neutral-900 dark:text-white">
+                  {interpolate(t.cmUnit, {
+                    value: formatLoose(results.stepLengthCm, locale),
+                  })}
+                </span>
+              ),
+              inches: (
+                <span className="text-neutral-500 dark:text-neutral-500 ml-1">
+                  {interpolate(t.inchesUnit, {
+                    value: formatLoose(results.stepLengthInches, locale),
+                  })}
+                </span>
+              ),
+            })}
           </p>
         </div>
       </div>
@@ -218,24 +238,24 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
-                Steps per Mile
+                {t.stepsPerMile}
               </h3>
               <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                {formatNumber(results.stepsPerMile)}
+                {formatNumber(results.stepsPerMile, locale)}
               </p>
               <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-1">
-                steps
+                {t.stepsUnit}
               </p>
             </div>
             <div>
               <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
-                Steps per Kilometer
+                {t.stepsPerKm}
               </h3>
               <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-                {formatNumber(results.stepsPerKm)}
+                {formatNumber(results.stepsPerKm, locale)}
               </p>
               <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-1">
-                steps
+                {t.stepsUnit}
               </p>
             </div>
           </div>
@@ -247,10 +267,10 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
       {/* Reference Table */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-          Distance Reference Table
+          {t.referenceTitle}
         </h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-          Steps needed for common distances based on your step length
+          {t.referenceSubtitle}
         </p>
 
         <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
@@ -258,10 +278,10 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
             <thead>
               <tr className="border-b border-neutral-200 dark:border-neutral-700">
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Distance
+                  {t.colDistance}
                 </th>
                 <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  Steps
+                  {t.colSteps}
                 </th>
               </tr>
             </thead>
@@ -278,7 +298,7 @@ export function StepsPerMileCalculator({ resultCta }: { resultCta?: ReactNode } 
                   </td>
                   <td className="py-3 px-2">
                     <span className="text-neutral-900 dark:text-white">
-                      {formatNumber(row.steps)}
+                      {formatNumber(row.steps, locale)}
                     </span>
                   </td>
                 </tr>

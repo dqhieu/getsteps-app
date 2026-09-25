@@ -1,24 +1,32 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ConversionValuePage } from "@/components/conversion-value-page";
-import { SITE_CONFIG } from "@/lib/constants";
-import { formatNumber } from "@/lib/step-calculator";
 import {
   STEPS_TO_TIME_VALUES,
-  stepsToKmDefault,
-  stepsToMilesDefault,
-  stepsToCaloriesDefault,
-  walkingTimeMinutesDefault,
+  buildCaloriesByWeightTable,
   buildStepsByHeightTable,
   buildWalkingTimeTable,
-  buildCaloriesByWeightTable,
-  formatMinutes,
-  formatMiles,
   formatKm,
+  formatMiles,
+  formatMinutes,
+  formatSteps,
+  stepsToCaloriesDefault,
+  stepsToKmDefault,
+  stepsToMilesDefault,
+  walkingTimeMinutesDefault,
 } from "@/lib/conversions";
+import type { Locale } from "@/lib/i18n/config";
+import { formatNumber, interpolate } from "@/lib/i18n/format";
+import { absoluteUrl } from "@/lib/i18n/href";
+import { getCommonMessages } from "@/lib/i18n/messages/common";
+import {
+  loadConversionValuesMessages,
+  type ConversionValuesMessages,
+} from "@/lib/i18n/messages/conversion-values";
+import { buildPageMetadata, getLocale } from "@/lib/i18n/page";
 
-interface Params {
-  params: Promise<{ steps: string }>;
+interface PageProps {
+  params: Promise<{ lang: string; steps: string }>;
 }
 
 export function generateStaticParams() {
@@ -34,60 +42,61 @@ function parseSteps(raw: string): number | null {
   return n;
 }
 
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
+function pagePath(steps: number) {
+  return `/conversions/steps-to-time/${steps}`;
+}
+
+function values(locale: Locale, steps: number, t: ConversionValuesMessages) {
+  const km = stepsToKmDefault(steps);
+  const miles = stepsToMilesDefault(steps);
+  const minutes = walkingTimeMinutesDefault(km, "normal");
+  const calories = stepsToCaloriesDefault(steps);
+  return {
+    kmDistance: km,
+    steps: formatSteps(steps, locale),
+    miles: formatMiles(miles, locale),
+    km: formatKm(km, locale),
+    time: formatMinutes(minutes, locale, t.ui.duration),
+    brisk: formatMinutes(walkingTimeMinutesDefault(km, "brisk"), locale, t.ui.duration),
+    slow: formatMinutes(walkingTimeMinutesDefault(km, "slow"), locale, t.ui.duration),
+    calories: formatNumber(calories, locale),
+  };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const locale = await getLocale(params);
   const { steps: raw } = await params;
   const steps = parseSteps(raw);
   if (steps === null) return {};
 
-  const km = stepsToKmDefault(steps);
-  const minutes = walkingTimeMinutesDefault(km, "normal");
-  const stepsStr = formatNumber(steps);
+  const t = await loadConversionValuesMessages(locale);
+  const vars = values(locale, steps, t);
+  const meta = t.stepsToTime.meta;
 
-  const title = `How Long Does It Take to Walk ${stepsStr} Steps?`;
-  const description = `${stepsStr} steps takes about ${formatMinutes(minutes)} at a normal pace. See walking time at 5 paces, distance, and calorie burn.`;
-
-  return {
-    title,
-    description,
-    keywords: [
-      `how long does it take to walk ${stepsStr} steps`,
-      `how long to walk ${stepsStr} steps`,
-      `${stepsStr} steps in minutes`,
-      `${stepsStr} steps walking time`,
-      `${stepsStr} steps how long`,
-    ],
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      url: `${SITE_CONFIG.baseUrl}/conversions/steps-to-time/${steps}`,
-      images: [{ url: "/meta.png", width: 1200, height: 630, alt: `Walking time for ${stepsStr} steps` }],
+  return buildPageMetadata({
+    locale,
+    path: pagePath(steps),
+    meta: {
+      title: interpolate(meta.title, vars),
+      description: interpolate(meta.description, vars),
+      keywords: meta.keywords.map((keyword) => interpolate(keyword, vars)),
+      ogImageAlt: interpolate(meta.ogImageAlt, vars),
     },
-    alternates: { canonical: `${SITE_CONFIG.baseUrl}/conversions/steps-to-time/${steps}` },
-  };
+  });
 }
 
-export default async function Page({ params }: Params) {
+export default async function Page({ params }: PageProps) {
+  const locale = await getLocale(params);
   const { steps: raw } = await params;
   const steps = parseSteps(raw);
   if (steps === null) notFound();
 
-  const km = stepsToKmDefault(steps);
-  const miles = stepsToMilesDefault(steps);
-  const minutes = walkingTimeMinutesDefault(km, "normal");
-  const briskMin = walkingTimeMinutesDefault(km, "brisk");
-  const slowMin = walkingTimeMinutesDefault(km, "slow");
-  const calories = stepsToCaloriesDefault(steps);
-  const stepsStr = formatNumber(steps);
-
-  const intro =
-    `Walking ${stepsStr} steps takes about ${formatMinutes(minutes)} at a normal pace of 3 mph (5 km/h). ` +
-    `A brisk 4 mph pace cuts that to ${formatMinutes(briskMin)}; a slow 2 mph stroll stretches it to ${formatMinutes(slowMin)}. ` +
-    `You'll cover ${formatMiles(miles)} miles (${formatKm(km)} km) and burn about ${formatNumber(calories)} calories.`;
-
-  const stepsByHeight = buildStepsByHeightTable(steps);
-  const walkingTime = buildWalkingTimeTable(km);
-  const caloriesByWeight = buildCaloriesByWeightTable(steps);
+  const t = await loadConversionValuesMessages(locale);
+  const common = getCommonMessages(locale);
+  const copy = t.stepsToTime;
+  const vars = values(locale, steps, t);
+  const fill = (template: string) => interpolate(template, vars);
+  const spread = steps >= 10000 ? copy.spread.high : copy.spread.low;
 
   const related = [...STEPS_TO_TIME_VALUES]
     .filter((s) => s !== steps)
@@ -97,60 +106,46 @@ export default async function Page({ params }: Params) {
 
   const relatedLinks = [
     ...related.map((s) => ({
-      label: `${formatNumber(s)} steps — walking time`,
+      label: interpolate(copy.related, { steps: formatSteps(s, locale) }),
       href: `/conversions/steps-to-time/${s}`,
     })),
-    { label: `${stepsStr} steps to miles`, href: `/conversions/steps-to-miles/${steps}` },
-    { label: "Walking time calculator", href: "/tools/walking-time-calculator" },
+    { label: fill(copy.relatedMiles), href: `/conversions/steps-to-miles/${steps}` },
+    { label: copy.relatedTool, href: "/tools/walking-time-calculator" },
   ];
 
   const faq = [
+    ...copy.faq.slice(0, 3).map((item) => ({
+      question: fill(item.question),
+      answer: fill(item.answer),
+    })),
+    { question: fill(copy.spread.question), answer: fill(spread) },
     {
-      question: `How long does it take to walk ${stepsStr} steps?`,
-      answer: `About ${formatMinutes(minutes)} at a normal walking pace of 3 mph. Faster brisk pace (4 mph): ${formatMinutes(briskMin)}. Slow stroll (2 mph): ${formatMinutes(slowMin)}.`,
+      question: fill(copy.faq[3].question),
+      answer: fill(copy.faq[3].answer),
     },
-    {
-      question: `Does walking time change with my height?`,
-      answer: `Time stays roughly the same — what changes is how many steps you take. Taller walkers take fewer steps to cover the same distance, but most people walk at a similar cadence (about 100 steps per minute). So time depends mostly on your pace, not your height.`,
-    },
-    {
-      question: `How far is ${stepsStr} steps?`,
-      answer: `${stepsStr} steps covers about ${formatMiles(miles)} miles (${formatKm(km)} km) for an average adult.`,
-    },
-    {
-      question: `Can I spread ${stepsStr} steps throughout the day?`,
-      answer:
-        steps >= 10000
-          ? `Absolutely — most people who hit ${stepsStr} steps a day accumulate them across walks, errands, and incidental movement. Three 15-minute walks plus normal daily activity typically gets there.`
-          : `Yes — even a single 20-30 minute walk + normal daily activity (walking to your car, around the office, etc.) will usually get you to ${stepsStr} steps without a dedicated long walk.`,
-    },
-    {
-      question: `How is walking time calculated?`,
-      answer: `Time = distance ÷ pace. We compute distance from your step count using a 76 cm average stride, then divide by your walking speed. Normal pace (3 mph / 5 km/h) is the default — the table on this page shows all three paces.`,
-    },
-  ];
-
-  const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Conversions", href: "/conversions" },
-    { label: "Walking Time", href: "/conversions/steps-to-time" },
-    { label: `${stepsStr} steps` },
   ];
 
   return (
     <ConversionValuePage
-      h1={`How long does it take to walk ${stepsStr} steps?`}
-      subheading={`Walking time, distance, and calories for ${stepsStr} steps.`}
-      primaryAnswer={`≈ ${formatMinutes(minutes)}`}
-      secondaryAnswer={`At a normal 3 mph pace · covers ${formatMiles(miles)} mi / ${formatKm(km)} km · ${formatNumber(calories)} calories`}
-      intro={intro}
-      breadcrumbs={breadcrumbs}
-      walkingTimeTable={walkingTime}
-      stepsByHeightTable={stepsByHeight}
-      caloriesByWeightTable={caloriesByWeight}
+      locale={locale}
+      copy={t.ui}
+      h1={fill(copy.h1)}
+      subheading={fill(copy.subheading)}
+      primaryAnswer={fill(copy.primary)}
+      secondaryAnswer={fill(copy.secondary)}
+      intro={fill(copy.intro)}
+      breadcrumbs={[
+        { label: common.breadcrumbs.home, href: "/" },
+        { label: common.breadcrumbs.conversions, href: "/conversions" },
+        { label: copy.crumb, href: "/conversions/steps-to-time" },
+        { label: fill(copy.crumbValue) },
+      ]}
+      walkingTimeTable={buildWalkingTimeTable(vars.kmDistance)}
+      stepsByHeightTable={buildStepsByHeightTable(steps)}
+      caloriesByWeightTable={buildCaloriesByWeightTable(steps)}
       relatedLinks={relatedLinks}
       faq={faq}
-      canonicalUrl={`${SITE_CONFIG.baseUrl}/conversions/steps-to-time/${steps}`}
+      canonicalUrl={absoluteUrl(locale, pagePath(steps))}
     />
   );
 }

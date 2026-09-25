@@ -1,22 +1,31 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ConversionValuePage } from "@/components/conversion-value-page";
-import { SITE_CONFIG } from "@/lib/constants";
-import { formatNumber } from "@/lib/step-calculator";
+import { calculateCaloriesFromDistance } from "@/lib/calorie-calculator";
 import {
+  KM_PER_MILE,
   MILES_TO_STEPS_VALUES,
+  buildCaloriesByWeightTableForDistance,
+  buildDistanceByHeightTable,
+  buildWalkingTimeTable,
+  formatFixed,
+  formatMinutes,
+  formatSteps,
   milesToStepsDefault,
   walkingTimeMinutesDefault,
-  buildDistanceByHeightTable,
-  buildCaloriesByWeightTableForDistance,
-  buildWalkingTimeTable,
-  formatMinutes,
-  KM_PER_MILE,
 } from "@/lib/conversions";
-import { calculateCaloriesFromDistance } from "@/lib/calorie-calculator";
+import type { Locale } from "@/lib/i18n/config";
+import { formatNumber, interpolate, plural } from "@/lib/i18n/format";
+import { absoluteUrl } from "@/lib/i18n/href";
+import { getCommonMessages } from "@/lib/i18n/messages/common";
+import {
+  loadConversionValuesMessages,
+  type ConversionValuesMessages,
+} from "@/lib/i18n/messages/conversion-values";
+import { buildPageMetadata, getLocale } from "@/lib/i18n/page";
 
-interface Params {
-  params: Promise<{ miles: string }>;
+interface PageProps {
+  params: Promise<{ lang: string; miles: string }>;
 }
 
 export function generateStaticParams() {
@@ -32,74 +41,71 @@ function parseMiles(raw: string): number | null {
   return n;
 }
 
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { miles: raw } = await params;
-  const miles = parseMiles(raw);
-  if (miles === null) return {};
-
-  const steps = milesToStepsDefault(miles);
-  const stepsStr = formatNumber(steps);
-  const milesLabel = miles === 1 ? "1 mile" : `${miles} miles`;
-
-  const title = `How Many Steps in ${milesLabel}? — ${stepsStr} Steps`;
-  const description = `${milesLabel} ≈ ${stepsStr} steps for an average adult. See exact step count by your height, calories burned, and walking time.`;
-
-  return {
-    title,
-    description,
-    keywords: [
-      `${miles} mile${miles === 1 ? "" : "s"} in steps`,
-      `${miles} mile${miles === 1 ? "" : "s"} to steps`,
-      `how many steps in ${miles} mile${miles === 1 ? "" : "s"}`,
-      `how many steps is ${miles} mile${miles === 1 ? "" : "s"}`,
-      `${miles} mile walk steps`,
-    ],
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      url: `${SITE_CONFIG.baseUrl}/conversions/miles-to-steps/${miles}`,
-      images: [
-        {
-          url: "/meta.png",
-          width: 1200,
-          height: 630,
-          alt: `${milesLabel} in steps`,
-        },
-      ],
-    },
-    alternates: {
-      canonical: `${SITE_CONFIG.baseUrl}/conversions/miles-to-steps/${miles}`,
-    },
-  };
+function pagePath(miles: number) {
+  return `/conversions/miles-to-steps/${miles}`;
 }
 
-export default async function Page({ params }: Params) {
-  const { miles: raw } = await params;
-  const miles = parseMiles(raw);
-  if (miles === null) notFound();
-
+function values(locale: Locale, miles: number, t: ConversionValuesMessages) {
   const steps = milesToStepsDefault(miles);
   const km = miles * KM_PER_MILE;
   const minutes = walkingTimeMinutesDefault(km, "normal");
   const calories = Math.round(calculateCaloriesFromDistance(70, km, "normal"));
+  return {
+    kmValue: km,
+    miles: plural(locale, miles, t.plurals.mile),
+    milesArticle: plural(locale, miles, t.plurals.mileArticle),
+    steps: formatSteps(steps, locale),
+    stepsRounded: Math.round(steps / 1000) * 1000,
+    km: formatFixed(km, 2, locale),
+    meters: formatFixed(miles * 1609.34, 0, locale),
+    time: formatMinutes(minutes, locale, t.ui.duration),
+    brisk: formatMinutes(walkingTimeMinutesDefault(km, "brisk"), locale, t.ui.duration),
+    slow: formatMinutes(walkingTimeMinutesDefault(km, "slow"), locale, t.ui.duration),
+    calories: formatNumber(calories, locale),
+  };
+}
 
-  const stepsStr = formatNumber(steps);
-  const milesLabel = miles === 1 ? "1 mile" : `${miles} miles`;
-  const milesArticle = miles === 1 ? "a mile" : `${miles} miles`;
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const locale = await getLocale(params);
+  const { miles: raw } = await params;
+  const miles = parseMiles(raw);
+  if (miles === null) return {};
 
-  const intro =
-    `Walking ${milesLabel} takes about ${stepsStr} steps for an average adult, ` +
-    `using a typical 76 cm (2.5 ft) stride. At a normal walking pace of 3 mph that takes about ${formatMinutes(
-      minutes
-    )}, and burns roughly ${formatNumber(
-      calories
-    )} calories for a 155 lb (70 kg) person. ` +
-    `Your exact step count depends on your height — shorter walkers take more steps for the same distance. See the table below.`;
+  const t = await loadConversionValuesMessages(locale);
+  const vars = values(locale, miles, t);
+  const meta = t.milesToSteps.meta;
 
-  const distanceByHeight = buildDistanceByHeightTable(km);
-  const caloriesByWeight = buildCaloriesByWeightTableForDistance(km);
-  const walkingTime = buildWalkingTimeTable(km);
+  return buildPageMetadata({
+    locale,
+    path: pagePath(miles),
+    meta: {
+      title: interpolate(meta.title, vars),
+      description: interpolate(meta.description, vars),
+      keywords: [
+        plural(locale, miles, t.plurals.mileInSteps),
+        plural(locale, miles, t.plurals.mileToSteps),
+        plural(locale, miles, t.plurals.howManyStepsInMile),
+        plural(locale, miles, t.plurals.howManyStepsIsMile),
+        interpolate(t.plurals.mileWalkSteps, { count: formatNumber(miles, locale) }),
+      ],
+      ogImageAlt: interpolate(meta.ogImageAlt, vars),
+    },
+  });
+}
+
+export default async function Page({ params }: PageProps) {
+  const locale = await getLocale(params);
+  const { miles: raw } = await params;
+  const miles = parseMiles(raw);
+  if (miles === null) notFound();
+
+  const t = await loadConversionValuesMessages(locale);
+  const common = getCommonMessages(locale);
+  const copy = t.milesToSteps;
+  const vars = values(locale, miles, t);
+  const fill = (template: string) => interpolate(template, vars);
+  const exercise =
+    miles >= 3 ? copy.exercise.yes : miles >= 1 ? copy.exercise.start : copy.exercise.below;
 
   const related = [...MILES_TO_STEPS_VALUES]
     .filter((m) => m !== miles)
@@ -109,76 +115,49 @@ export default async function Page({ params }: Params) {
 
   const relatedLinks = [
     ...related.map((m) => ({
-      label: `${m} mile${m === 1 ? "" : "s"} in steps`,
+      label: plural(locale, m, t.plurals.mileInSteps),
       href: `/conversions/miles-to-steps/${m}`,
     })),
+    { label: copy.relatedHub, href: "/conversions/steps-to-miles" },
     {
-      label: "Steps to miles converter",
-      href: "/conversions/steps-to-miles",
-    },
-    {
-      label: `${stepsStr} steps to calories`,
-      href: `/conversions/steps-to-calories/${Math.round(steps / 1000) * 1000}`,
+      label: fill(copy.relatedCalories),
+      href: `/conversions/steps-to-calories/${vars.stepsRounded}`,
     },
   ];
 
   const faq = [
+    ...copy.faq.slice(0, 3).map((item) => ({
+      question: fill(item.question),
+      answer: fill(item.answer),
+    })),
+    { question: fill(copy.exercise.question), answer: fill(exercise) },
     {
-      question: `How many steps is ${milesLabel}?`,
-      answer: `${milesLabel} is about ${stepsStr} steps for an average adult with a 76 cm stride length. Shorter walkers take more steps to cover the same distance — see the height table on this page for your specific number.`,
+      question: fill(copy.faq[3].question),
+      answer: fill(copy.faq[3].answer),
     },
-    {
-      question: `How long does it take to walk ${milesLabel}?`,
-      answer: `At a normal walking pace of 3 mph, ${milesLabel} takes about ${formatMinutes(
-        minutes
-      )}. At a brisk 4 mph pace it takes about ${formatMinutes(
-        walkingTimeMinutesDefault(km, "brisk")
-      )}. At a slower 2 mph stroll it takes about ${formatMinutes(
-        walkingTimeMinutesDefault(km, "slow")
-      )}.`,
-    },
-    {
-      question: `How many calories does ${milesArticle} burn?`,
-      answer: `Walking ${milesLabel} burns roughly ${formatNumber(calories)} calories for a 155 lb (70 kg) person at a normal walking pace. Lighter people burn less; heavier people burn more — see the calorie table on this page.`,
-    },
-    {
-      question: `Is walking ${milesLabel} a day enough exercise?`,
-      answer:
-        miles >= 3
-          ? `Yes — walking ${milesLabel} a day (${stepsStr} steps) easily meets the CDC's recommended 150 minutes of moderate aerobic activity per week if done at a normal-to-brisk pace.`
-          : miles >= 1
-            ? `Walking ${milesLabel} a day is a solid start. It puts you in the active range and contributes to the CDC's recommended 150 minutes of weekly aerobic activity, but adding a second daily walk would get you to a stronger health benefit.`
-            : `Walking less than ${milesLabel} a day is below the CDC's minimum recommendation. Build up gradually — even an extra 1,000 steps per day improves cardiovascular health.`,
-    },
-    {
-      question: `How is the miles-to-steps conversion calculated?`,
-      answer: `We multiply the distance in meters by 100 (cm/m) and divide by an average stride length of 76 cm. So ${milesLabel} = ${(miles * 1609.34).toFixed(0)} m × 100 ÷ 76 ≈ ${stepsStr} steps. Your actual stride length is roughly 0.41 × your height.`,
-    },
-  ];
-
-  const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "Conversions", href: "/conversions" },
-    { label: "Miles to Steps", href: "/conversions/miles-to-steps" },
-    { label: milesLabel },
   ];
 
   return (
     <ConversionValuePage
-      h1={`How many steps in ${milesArticle}?`}
-      subheading={`The answer — for an average adult — and how it changes with your height.`}
-      primaryAnswer={`${stepsStr} steps`}
-      secondaryAnswer={`${milesLabel} · ${km.toFixed(2)} km · about ${formatMinutes(
-        minutes
-      )} at a normal pace · ${formatNumber(calories)} calories for a 155 lb (70 kg) walker`}
-      intro={intro}
-      breadcrumbs={breadcrumbs}
-      distanceByHeightTable={distanceByHeight}
-      caloriesByWeightTable={caloriesByWeight}
-      walkingTimeTable={walkingTime}
+      locale={locale}
+      copy={t.ui}
+      h1={fill(copy.h1)}
+      subheading={fill(copy.subheading)}
+      primaryAnswer={fill(copy.primary)}
+      secondaryAnswer={fill(copy.secondary)}
+      intro={fill(copy.intro)}
+      breadcrumbs={[
+        { label: common.breadcrumbs.home, href: "/" },
+        { label: common.breadcrumbs.conversions, href: "/conversions" },
+        { label: copy.crumb, href: "/conversions/miles-to-steps" },
+        { label: vars.miles },
+      ]}
+      distanceByHeightTable={buildDistanceByHeightTable(vars.kmValue)}
+      caloriesByWeightTable={buildCaloriesByWeightTableForDistance(vars.kmValue)}
+      walkingTimeTable={buildWalkingTimeTable(vars.kmValue)}
       relatedLinks={relatedLinks}
       faq={faq}
-      canonicalUrl={`${SITE_CONFIG.baseUrl}/conversions/miles-to-steps/${miles}`}
+      canonicalUrl={absoluteUrl(locale, pagePath(miles))}
     />
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { RootDocument, buildRootMetadata, rootViewport } from "@/components/root-document";
+import { isLocale } from "@/lib/i18n/config";
 import { getCommonMessages } from "@/lib/i18n/messages/common";
 import { getLocale, localeStaticParams, type LangParams } from "@/lib/i18n/page";
 
@@ -10,7 +11,9 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: LangParams }): Promise<Metadata> {
-  const locale = await getLocale(params);
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const locale = lang;
   const { site } = getCommonMessages(locale);
   return buildRootMetadata({
     locale,

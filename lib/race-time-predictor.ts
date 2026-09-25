@@ -11,11 +11,13 @@ export interface RaceTimeResult {
 
 export type RaceMode = "time_from_pace" | "pace_from_time";
 
-export const RACE_DISTANCES: { label: string; km: number }[] = [
-  { label: "5K", km: 5 },
-  { label: "10K", km: 10 },
-  { label: "Half Marathon", km: 21.0975 },
-  { label: "Marathon", km: 42.195 },
+export type RaceDistanceId = "5k" | "10k" | "half" | "marathon";
+
+export const RACE_DISTANCES: { id: RaceDistanceId; label: string; km: number }[] = [
+  { id: "5k", label: "5K", km: 5 },
+  { id: "10k", label: "10K", km: 10 },
+  { id: "half", label: "Half Marathon", km: 21.0975 },
+  { id: "marathon", label: "Marathon", km: 42.195 },
 ];
 
 /** Parse "M:SS" or "H:MM:SS" → total seconds. Returns 0 if invalid. */

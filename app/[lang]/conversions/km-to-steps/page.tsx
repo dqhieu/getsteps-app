@@ -2,120 +2,171 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingFooter } from "@/components/landing-footer";
-import { SITE_CONFIG } from "@/lib/constants";
-import { formatNumber } from "@/lib/step-calculator";
-import {
-  KM_TO_STEPS_VALUES,
-  kmToStepsDefault,
-  HEIGHT_RANGE,
-} from "@/lib/conversions";
+import { buildFaqPage } from "@/lib/schema/faq";
+import { buildBreadcrumbList } from "@/lib/schema/breadcrumb";
 import { calculateStepLength, distanceToSteps } from "@/lib/step-calculator";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import { absoluteUrl, localizePath } from "@/lib/i18n/href";
+import { rich } from "@/lib/i18n/rich";
+import { getCommonMessages } from "@/lib/i18n/messages/common";
+import { loadConversionHubsMessages, withMetaVars } from "@/lib/i18n/messages/conversion-hubs";
+import { buildPageMetadata, getLocale, type LangPageProps } from "@/lib/i18n/page";
+import { HEIGHT_RANGE, KM_TO_STEPS_VALUES, kmToStepsDefault } from "@/lib/conversions";
 
-export const metadata: Metadata = {
-  title: "How Many Steps in a KM? — 1,316 Steps (Plus Conversion Table)",
-  description:
-    "1 km ≈ 1,316 steps for an average adult. Full conversion table 1–15 km plus height-adjusted calculator for your exact step count.",
-  keywords: [
-    "how many steps in a km",
-    "km to steps",
-    "kilometers to steps",
-    "1 km in steps",
-    "5 km in steps",
-    "convert km to steps",
-  ],
-  openGraph: {
-    title: "How Many Steps in a KM? — 1,316 Steps",
-    description: "1 km ≈ 1,316 steps for an average adult. Full conversion table.",
-    type: "website",
-    url: `${SITE_CONFIG.baseUrl}/conversions/km-to-steps`,
-    images: [{ url: "/meta.png", width: 1200, height: 630, alt: "KM to Steps" }],
-  },
-  alternates: { canonical: `${SITE_CONFIG.baseUrl}/conversions/km-to-steps` },
-};
+const PATH = "/conversions/km-to-steps";
+const CALCULATOR = "/tools/step-distance-calculator";
 
-export default function KmToStepsCategoryPage() {
+export async function generateMetadata({ params }: LangPageProps): Promise<Metadata> {
+  const locale = await getLocale(params);
+  const t = await loadConversionHubsMessages(locale);
+  const num = (value: number) => formatNumber(value, locale);
+  return buildPageMetadata({
+    locale,
+    path: PATH,
+    meta: withMetaVars(t.kmToSteps.meta, {
+      one: num(1),
+      steps: num(kmToStepsDefault(1)),
+      from: num(1),
+      to: num(15),
+    }),
+  });
+}
+
+export default async function KmToStepsCategoryPage({ params }: LangPageProps) {
+  const locale = await getLocale(params);
+  const t = await loadConversionHubsMessages(locale);
+  const page = t.kmToSteps;
+  const common = getCommonMessages(locale);
+  const num = (value: number) => formatNumber(value, locale);
+  const feet = formatDecimal(2.5, locale, 1);
+  const stepsPerKm = kmToStepsDefault(1);
   const rows = KM_TO_STEPS_VALUES.map((km) => ({
     km,
     steps: kmToStepsDefault(km),
   }));
-
-  const oneKmByHeight = HEIGHT_RANGE.map(({ label, cm, gender }) => {
+  const oneKmByHeight = HEIGHT_RANGE.map(({ cm, gender }, index) => {
     const stepLengthCm = calculateStepLength({ gender, age: 30, heightCm: cm });
-    const steps = distanceToSteps(1, stepLengthCm);
-    return { height: label, stepLengthCm, steps };
+    return {
+      label: t.heights[index],
+      stepLengthCm,
+      steps: distanceToSteps(1, stepLengthCm),
+    };
   });
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_CONFIG.baseUrl },
-      { "@type": "ListItem", position: 2, name: "Conversions", item: `${SITE_CONFIG.baseUrl}/conversions` },
-      { "@type": "ListItem", position: 3, name: "KM to Steps" },
-    ],
-  };
+  const faq = [
+    {
+      ...page.faq[0],
+      answer: interpolate(page.faq[0].answer, {
+        steps: num(stepsPerKm),
+        stride: num(76),
+        tall: num(1160),
+        petite: num(1710),
+      }),
+    },
+    {
+      ...page.faq[1],
+      answer: interpolate(page.faq[1].answer, { steps: num(kmToStepsDefault(5)) }),
+    },
+    {
+      ...page.faq[2],
+      answer: interpolate(page.faq[2].answer, {
+        steps: num(kmToStepsDefault(10)),
+        daily: num(10000),
+      }),
+    },
+  ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      { "@type": "Question", name: "How many steps are in a kilometer?", acceptedAnswer: { "@type": "Answer", text: "About 1,316 steps for an average adult using a 76 cm stride. Ranges roughly 1,160 (tall walker) to 1,710 (petite walker)." } },
-      { "@type": "Question", name: "How many steps in 5 km?", acceptedAnswer: { "@type": "Answer", text: "About 6,579 steps for an average adult — a typical 5K race." } },
-      { "@type": "Question", name: "How many steps in 10 km?", acceptedAnswer: { "@type": "Answer", text: "About 13,158 steps — exceeding the standard 10,000-step daily target." } },
-    ],
-  };
+  const breadcrumbSchema = buildBreadcrumbList([
+    { name: common.breadcrumbs.home, path: absoluteUrl(locale, "/") },
+    { name: common.breadcrumbs.conversions, path: absoluteUrl(locale, "/conversions") },
+    { name: page.crumb, path: absoluteUrl(locale, PATH) },
+  ]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <LandingNavbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqPage(faq)) }}
+      />
+      <LandingNavbar locale={locale} />
       <main className="pt-20 md:pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <nav aria-label="Breadcrumb" className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 flex flex-wrap gap-x-2">
-            <Link href="/" className="hover:text-[#ED772F]">Home</Link>
+          <nav
+            aria-label={t.breadcrumbLabel}
+            className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 flex flex-wrap gap-x-2"
+          >
+            <Link href={localizePath(locale, "/")} className="hover:text-[#ED772F]">
+              {common.breadcrumbs.home}
+            </Link>
             <span aria-hidden>/</span>
-            <Link href="/conversions" className="hover:text-[#ED772F]">Conversions</Link>
+            <Link href={localizePath(locale, "/conversions")} className="hover:text-[#ED772F]">
+              {common.breadcrumbs.conversions}
+            </Link>
             <span aria-hidden>/</span>
-            <span className="text-neutral-700 dark:text-neutral-300">KM to Steps</span>
+            <span className="text-neutral-700 dark:text-neutral-300">{page.crumb}</span>
           </nav>
 
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-4">
-            How many steps are in a kilometer?
+            {page.title}
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl">
-            Short answer: about <strong>1,316 steps</strong> for an average
-            adult. Full number depends on your height — see the table.
+            {rich(page.intro, {
+              highlight: <strong>{interpolate(t.units.steps, { count: num(stepsPerKm) })}</strong>,
+            })}
           </p>
 
           <section className="rounded-3xl bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 border border-[#ED772F]/20 p-6 md:p-10 mb-10">
-            <p className="text-sm font-medium text-[#ED772F] uppercase tracking-wide mb-2">Quick answer</p>
-            <p className="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-2">≈ 1,316 steps</p>
+            <p className="text-sm font-medium text-[#ED772F] uppercase tracking-wide mb-2">
+              {page.quickLabel}
+            </p>
+            <p className="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-2">
+              {interpolate(page.heroFigure, {
+                steps: interpolate(t.units.steps, { count: num(stepsPerKm) }),
+              })}
+            </p>
             <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400">
-              Average adult, 76 cm (2.5 ft) stride. Your number depends on your height.
+              {interpolate(page.heroNote, { stride: num(76), feet })}
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white mb-3">Steps per km by height</h2>
+            <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white mb-3">
+              {page.heightTitle}
+            </h2>
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-              Stride length is roughly 0.41 × your height. Shorter walkers take more steps for the same distance.
+              {interpolate(page.heightIntro, { ratio: formatDecimal(0.41, locale, 2) })}
             </p>
             <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
               <table className="w-full text-sm">
                 <thead className="bg-neutral-50 dark:bg-neutral-900/50">
                   <tr>
-                    <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">Height</th>
-                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">Stride</th>
-                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">Steps per km</th>
+                    <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      {page.heightColumns.height}
+                    </th>
+                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      {page.heightColumns.stride}
+                    </th>
+                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      {page.heightColumns.steps}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {oneKmByHeight.map((r) => (
-                    <tr key={r.height} className="border-t border-neutral-200 dark:border-neutral-800">
-                      <td className="p-3 text-neutral-900 dark:text-white">{r.height}</td>
-                      <td className="p-3 text-right text-neutral-600 dark:text-neutral-400 tabular-nums">{r.stepLengthCm.toFixed(1)} cm</td>
-                      <td className="p-3 text-right text-neutral-900 dark:text-white font-medium tabular-nums">{formatNumber(r.steps)}</td>
+                  {oneKmByHeight.map((row) => (
+                    <tr key={row.label} className="border-t border-neutral-200 dark:border-neutral-800">
+                      <td className="p-3 text-neutral-900 dark:text-white">{row.label}</td>
+                      <td className="p-3 text-right text-neutral-600 dark:text-neutral-400 tabular-nums">
+                        {interpolate(t.units.strideCm, {
+                          stride: formatDecimal(row.stepLengthCm, locale, 1),
+                        })}
+                      </td>
+                      <td className="p-3 text-right text-neutral-900 dark:text-white font-medium tabular-nums">
+                        {num(row.steps)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -124,33 +175,62 @@ export default function KmToStepsCategoryPage() {
           </section>
 
           <section className="rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-6 md:p-8 mb-10">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">The conversion formula</h2>
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
+              {page.formulaTitle}
+            </h2>
             <p className="text-neutral-700 dark:text-neutral-300 mb-2">
-              <code className="px-2 py-1 rounded bg-white/60 dark:bg-black/30 font-mono text-sm">steps ≈ km × 1,316</code>
+              <code className="px-2 py-1 rounded bg-white/60 dark:bg-black/30 font-mono text-sm">
+                {interpolate(page.formula, { steps: num(stepsPerKm) })}
+              </code>
             </p>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              Or: 1 km = 100,000 cm ÷ 76 cm stride ≈ 1,316 steps.
+              {interpolate(page.formulaNote, {
+                one: num(1),
+                cm: num(100000),
+                stride: num(76),
+                steps: num(stepsPerKm),
+              })}
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white mb-4">KM → steps conversion table</h2>
+            <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white mb-4">
+              {page.tableTitle}
+            </h2>
             <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
               <table className="w-full text-sm">
                 <thead className="bg-neutral-50 dark:bg-neutral-900/50">
                   <tr>
-                    <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">Kilometers</th>
-                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">Steps (avg adult)</th>
-                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">Detail page</th>
+                    <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      {page.columns.kilometers}
+                    </th>
+                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      {page.columns.steps}
+                    </th>
+                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      {page.columns.detail}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {rows.map((r) => (
-                    <tr key={r.km} className="border-t border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900/30">
-                      <td className="p-3 text-neutral-900 dark:text-white font-medium tabular-nums">{r.km} km</td>
-                      <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums">{formatNumber(r.steps)}</td>
+                  {rows.map((row) => (
+                    <tr
+                      key={row.km}
+                      className="border-t border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900/30"
+                    >
+                      <td className="p-3 text-neutral-900 dark:text-white font-medium tabular-nums">
+                        {interpolate(t.units.km, { count: num(row.km) })}
+                      </td>
+                      <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums">
+                        {num(row.steps)}
+                      </td>
                       <td className="p-3 text-right">
-                        <Link href={`/conversions/km-to-steps/${r.km}`} className="text-[#ED772F] hover:underline">{r.km} km →</Link>
+                        <Link
+                          href={localizePath(locale, `/conversions/km-to-steps/${row.km}`)}
+                          className="text-[#ED772F] hover:underline"
+                        >
+                          {interpolate(t.units.detailKm, { count: num(row.km) })}
+                        </Link>
                       </td>
                     </tr>
                   ))}
@@ -160,17 +240,20 @@ export default function KmToStepsCategoryPage() {
           </section>
 
           <section className="rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-6 md:p-8">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">Want exact numbers for your height?</h2>
-            <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-              Use the step distance calculator — enter your height once and get your personal steps-per-km number.
-            </p>
-            <Link href="/tools/step-distance-calculator" className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#ED772F] text-white font-medium hover:bg-[#d8651f] transition-colors">
-              Open the calculator →
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+              {page.exactTitle}
+            </h2>
+            <p className="text-neutral-600 dark:text-neutral-400 mb-4">{page.exactBody}</p>
+            <Link
+              href={localizePath(locale, CALCULATOR)}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#ED772F] text-white font-medium hover:bg-[#d8651f] transition-colors"
+            >
+              {t.openCalculator}
             </Link>
           </section>
         </div>
       </main>
-      <LandingFooter />
+      <LandingFooter locale={locale} />
     </div>
   );
 }

@@ -15,14 +15,6 @@ export type ActivityLevel =
   | "active"
   | "very_active";
 
-export const ACTIVITY_LABELS: Record<ActivityLevel, string> = {
-  sedentary: "Sedentary",
-  light: "Lightly Active",
-  moderate: "Moderately Active",
-  active: "Active",
-  very_active: "Very Active",
-};
-
 const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
   sedentary: 1.2,
   light: 1.375,
@@ -31,9 +23,16 @@ const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
   very_active: 1.9,
 };
 
+export type CalorieGoalId =
+  | "aggressive_loss"
+  | "moderate_loss"
+  | "mild_loss"
+  | "maintenance"
+  | "mild_gain"
+  | "muscle_gain";
+
 export interface CalorieGoal {
-  label: string;
-  weeklyGoal: string;
+  id: CalorieGoalId;
   calories: number;
   isMaintenance: boolean;
   warn?: boolean;
@@ -59,39 +58,33 @@ export function calculateTDEE(
 
   const goals: CalorieGoal[] = [
     {
-      label: "Aggressive Loss",
-      weeklyGoal: "-1 kg / week",
+      id: "aggressive_loss",
       calories: tdee - 1000,
       isMaintenance: false,
       warn: tdee - 1000 < minCalories,
     },
     {
-      label: "Moderate Loss",
-      weeklyGoal: "-0.5 kg / week",
+      id: "moderate_loss",
       calories: tdee - 500,
       isMaintenance: false,
     },
     {
-      label: "Mild Loss",
-      weeklyGoal: "-0.25 kg / week",
+      id: "mild_loss",
       calories: tdee - 250,
       isMaintenance: false,
     },
     {
-      label: "Maintenance",
-      weeklyGoal: "0 kg / week",
+      id: "maintenance",
       calories: tdee,
       isMaintenance: true,
     },
     {
-      label: "Mild Gain",
-      weeklyGoal: "+0.25 kg / week",
+      id: "mild_gain",
       calories: tdee + 250,
       isMaintenance: false,
     },
     {
-      label: "Muscle Gain",
-      weeklyGoal: "+0.5 kg / week",
+      id: "muscle_gain",
       calories: tdee + 500,
       isMaintenance: false,
     },

@@ -9,36 +9,37 @@ import {
   parseDurationInput,
   type PaceResult,
 } from "@/lib/pace-calculator";
-import { milesToKm, kmToMiles } from "@/lib/unit-converter";
+import { milesToKm } from "@/lib/unit-converter";
+import type { Locale } from "@/lib/i18n/config";
+import type { RunningPaceCalculatorMessages } from "@/lib/i18n/messages/tool-pages/running-pace-calculator/en";
 
 type InputMode = "pace" | "speed" | "time-distance";
 type DistanceUnit = "km" | "mile";
 
 const EMPTY_RESULT_CHECK = (r: PaceResult) => r.paceSecPerKm <= 0;
 
-export function RunningPaceCalculator() {
-  // Tab state
+export function RunningPaceCalculator({
+  t,
+}: {
+  t: RunningPaceCalculatorMessages["calculator"];
+  locale: Locale;
+}) {
   const [mode, setMode] = useState<InputMode>("pace");
 
-  // Pace tab state
   const [paceInput, setPaceInput] = useState("5:30");
   const [paceUnit, setPaceUnit] = useState<DistanceUnit>("km");
 
-  // Speed tab state
   const [speedInput, setSpeedInput] = useState("10.9");
   const [speedUnit, setSpeedUnit] = useState<"kmh" | "mph">("kmh");
 
-  // Time + Distance tab state
   const [distanceInput, setDistanceInput] = useState("5");
   const [distanceUnit, setDistanceUnit] = useState<DistanceUnit>("km");
   const [timeInput, setTimeInput] = useState("27:30");
 
-  // Compute result based on active mode
   const result = useMemo(() => {
     if (mode === "pace") {
       let sec = parsePaceInput(paceInput);
       if (sec <= 0) return calculateFromPace(0);
-      // Convert to sec/km if input is per mile
       if (paceUnit === "mile") sec = sec / 1.60934;
       return calculateFromPace(sec);
     }
@@ -50,7 +51,6 @@ export function RunningPaceCalculator() {
       return calculateFromSpeed(speedKmh);
     }
 
-    // time-distance mode
     const dist = parseFloat(distanceInput);
     const totalSec = parseDurationInput(timeInput);
     const distKm = distanceUnit === "mile" ? milesToKm(dist) : dist;
@@ -59,7 +59,6 @@ export function RunningPaceCalculator() {
 
   const invalid = EMPTY_RESULT_CHECK(result);
 
-  // Handle pace unit toggle — convert the displayed value
   const handlePaceUnitToggle = () => {
     const newUnit: DistanceUnit = paceUnit === "km" ? "mile" : "km";
     const sec = parsePaceInput(paceInput);
@@ -72,7 +71,6 @@ export function RunningPaceCalculator() {
     setPaceUnit(newUnit);
   };
 
-  // Handle speed unit toggle — convert the displayed value
   const handleSpeedUnitToggle = () => {
     const newUnit = speedUnit === "kmh" ? "mph" : "kmh";
     const val = parseFloat(speedInput);
@@ -83,9 +81,9 @@ export function RunningPaceCalculator() {
     setSpeedUnit(newUnit);
   };
 
-  const tabClass = (t: InputMode) =>
+  const tabClass = (tab: InputMode) =>
     `flex-1 py-2.5 text-sm font-medium transition-colors ${
-      mode === t
+      mode === tab
         ? "bg-[#ED772F] text-white"
         : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
     }`;
@@ -98,26 +96,23 @@ export function RunningPaceCalculator() {
 
   return (
     <div className="space-y-6">
-      {/* Input Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
-          Calculate Pace
+          {t.title}
         </h2>
 
-        {/* Mode tabs */}
         <div className="flex rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 mb-6">
-          <button onClick={() => setMode("pace")} className={tabClass("pace")}>Pace</button>
-          <button onClick={() => setMode("speed")} className={tabClass("speed")}>Speed</button>
+          <button onClick={() => setMode("pace")} className={tabClass("pace")}>{t.tabs.pace}</button>
+          <button onClick={() => setMode("speed")} className={tabClass("speed")}>{t.tabs.speed}</button>
           <button onClick={() => setMode("time-distance")} className={tabClass("time-distance")}>
-            Time + Distance
+            {t.tabs.timeDistance}
           </button>
         </div>
 
-        {/* Pace tab */}
         {mode === "pace" && (
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Pace (MM:SS)
+              {t.paceLabel}
             </label>
             <div className="flex gap-2">
               <input
@@ -132,16 +127,15 @@ export function RunningPaceCalculator() {
               </button>
             </div>
             <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
-              Enter pace in minutes:seconds format (e.g., 5:30)
+              {t.paceHint}
             </p>
           </div>
         )}
 
-        {/* Speed tab */}
         {mode === "speed" && (
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Speed
+              {t.speedLabel}
             </label>
             <div className="flex gap-2">
               <input
@@ -158,12 +152,11 @@ export function RunningPaceCalculator() {
           </div>
         )}
 
-        {/* Time + Distance tab */}
         {mode === "time-distance" && (
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Distance
+                {t.distanceLabel}
               </label>
               <div className="flex gap-2">
                 <input
@@ -183,7 +176,7 @@ export function RunningPaceCalculator() {
             </div>
             <div>
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Finish Time (MM:SS or H:MM:SS)
+                {t.finishTimeLabel}
               </label>
               <input
                 type="text"
@@ -197,33 +190,32 @@ export function RunningPaceCalculator() {
         )}
       </div>
 
-      {/* Results Card */}
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6 mb-6">
           <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Your Running Stats
+            {t.statsTitle}
           </p>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Pace /km</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.pacePerKm}</p>
               <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                 {invalid ? "—" : result.paceKmFormatted}
               </p>
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Pace /mi</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.pacePerMi}</p>
               <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                 {invalid ? "—" : result.paceMileFormatted}
               </p>
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Speed km/h</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.speedKmh}</p>
               <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                 {invalid ? "—" : `${result.speedKmh} km/h`}
               </p>
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Speed mph</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.speedMph}</p>
               <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                 {invalid ? "—" : `${result.speedMph} mph`}
               </p>
@@ -231,31 +223,30 @@ export function RunningPaceCalculator() {
           </div>
         </div>
 
-        {/* Race predictions table */}
         <div>
           <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-3">
-            Race Time Predictions
+            {t.predictionsTitle}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-neutral-200 dark:border-neutral-700">
                   <th className="text-left py-2 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                    Distance
+                    {t.distanceColumn}
                   </th>
                   <th className="text-right py-2 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                    Finish Time
+                    {t.finishTimeColumn}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {result.racePredictions.map((r) => (
                   <tr
-                    key={r.distance}
+                    key={r.id}
                     className="border-b border-neutral-100 dark:border-neutral-700/50"
                   >
                     <td className="py-3 px-2 font-medium text-neutral-900 dark:text-white">
-                      {r.distance}
+                      {t.races[r.id]}
                     </td>
                     <td className="py-3 px-2 text-right text-neutral-900 dark:text-white font-mono">
                       {r.finishTime}

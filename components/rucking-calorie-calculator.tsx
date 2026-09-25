@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useMemo, type ReactNode } from "react";
-import {
-  calculateRuck,
-  generateLoadTable,
-  TERRAINS,
-} from "@/lib/rucking-calculator";
-import { lbsToKg, kgToLbs, kmToMiles, formatNumber } from "@/lib/unit-converter";
+import { useMemo, useState, type ReactNode } from "react";
+import { calculateRuck, generateLoadTable, TERRAINS } from "@/lib/rucking-calculator";
+import { kgToLbs, kmToMiles, lbsToKg } from "@/lib/unit-converter";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
+import { formatDecimal, formatNumber, interpolate } from "@/lib/i18n/format";
+import { rich } from "@/lib/i18n/rich";
+import type { RuckingCalorieCalculatorMessages } from "@/lib/i18n/messages/tool-pages/rucking-calorie-calculator/en";
 
 type Unit = "metric" | "imperial";
+type CalculatorCopy = RuckingCalorieCalculatorMessages["calculator"];
+type TerrainId = keyof CalculatorCopy["terrains"];
 
 const MPH_TO_KMH = 1.60934;
 
@@ -18,8 +20,14 @@ const labelClass =
   "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2";
 
 export function RuckingCalorieCalculator({
+  t,
+  locale = DEFAULT_LOCALE,
   resultCta,
-}: { resultCta?: ReactNode } = {}) {
+}: {
+  t: CalculatorCopy;
+  locale?: Locale;
+  resultCta?: ReactNode;
+}) {
   const [unit, setUnit] = useState<Unit>("metric");
   const [weight, setWeight] = useState(70);
   const [load, setLoad] = useState(15);
@@ -28,7 +36,8 @@ export function RuckingCalorieCalculator({
   const [duration, setDuration] = useState(60);
   const [terrainId, setTerrainId] = useState(TERRAINS[0].id);
 
-  const terrain = TERRAINS.find((t) => t.id === terrainId) ?? TERRAINS[0];
+  const terrain = TERRAINS.find((item) => item.id === terrainId) ?? TERRAINS[0];
+  const terrainCopy = t.terrains[terrain.id as TerrainId];
 
   const weightKg = unit === "metric" ? weight : lbsToKg(weight);
   const loadKg = unit === "metric" ? load : lbsToKg(load);
@@ -45,13 +54,13 @@ export function RuckingCalorieCalculator({
   const results = useMemo(
     () => calculateRuck({ ...base, loadKg }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [weightKg, loadKg, speedKmh, grade, duration, terrain.factor]
+    [weightKg, loadKg, speedKmh, grade, duration, terrain.factor],
   );
 
   const loadTable = useMemo(
     () => generateLoadTable(base),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [weightKg, speedKmh, grade, duration, terrain.factor]
+    [weightKg, speedKmh, grade, duration, terrain.factor],
   );
 
   const toggleUnit = () => {
@@ -71,29 +80,30 @@ export function RuckingCalorieCalculator({
   const weightLabel = unit === "metric" ? "kg" : "lbs";
   const speedLabel = unit === "metric" ? "km/h" : "mph";
   const showLoad = (kg: number) =>
-    unit === "metric"
-      ? `${kg.toFixed(0)} kg`
-      : `${kgToLbs(kg).toFixed(0)} lbs`;
+    interpolate(t.loadValue, {
+      value: formatNumber(Math.round(unit === "metric" ? kg : kgToLbs(kg)), locale),
+      unit: weightLabel,
+    });
 
   return (
     <div className="space-y-8">
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">
-            Your Ruck
+            {t.yourRuck}
           </h2>
           <button
             onClick={toggleUnit}
             className="py-2 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors"
           >
-            {unit === "metric" ? "Switch to lbs / mph" : "Switch to kg / km/h"}
+            {unit === "metric" ? t.switchImperial : t.switchMetric}
           </button>
         </div>
 
         <div className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label className={labelClass}>Body weight</label>
+              <label className={labelClass}>{t.bodyWeight}</label>
               <div className="relative">
                 <input
                   type="number"
@@ -108,7 +118,7 @@ export function RuckingCalorieCalculator({
             </div>
 
             <div>
-              <label className={labelClass}>Pack weight</label>
+              <label className={labelClass}>{t.packWeight}</label>
               <div className="relative">
                 <input
                   type="number"
@@ -125,7 +135,7 @@ export function RuckingCalorieCalculator({
 
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label className={labelClass}>Pace</label>
+              <label className={labelClass}>{t.pace}</label>
               <div className="relative">
                 <input
                   type="number"
@@ -141,7 +151,7 @@ export function RuckingCalorieCalculator({
             </div>
 
             <div>
-              <label className={labelClass}>Duration</label>
+              <label className={labelClass}>{t.duration}</label>
               <div className="relative">
                 <input
                   type="number"
@@ -150,14 +160,16 @@ export function RuckingCalorieCalculator({
                   className={inputClass}
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
-                  minutes
+                  {t.minutes}
                 </span>
               </div>
             </div>
           </div>
 
           <div>
-            <label className={labelClass}>Grade: {grade}%</label>
+            <label className={labelClass}>
+              {interpolate(t.grade, { percent: formatNumber(grade, locale) })}
+            </label>
             <input
               type="range"
               min={0}
@@ -170,24 +182,27 @@ export function RuckingCalorieCalculator({
           </div>
 
           <div>
-            <label className={labelClass}>Terrain</label>
+            <label className={labelClass}>{t.terrain}</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-              {TERRAINS.map((t) => (
+              {TERRAINS.map((item) => (
                 <button
-                  key={t.id}
-                  onClick={() => setTerrainId(t.id)}
+                  key={item.id}
+                  onClick={() => setTerrainId(item.id)}
                   className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors text-left ${
-                    terrainId === t.id
+                    terrainId === item.id
                       ? "bg-[#ED772F] text-white"
                       : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                   }`}
                 >
-                  {t.label}
+                  {t.terrains[item.id as TerrainId].label}
                 </button>
               ))}
             </div>
             <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
-              {terrain.description} Terrain factor {terrain.factor.toFixed(1)}.
+              {interpolate(t.terrainFactor, {
+                description: terrainCopy.description,
+                factor: formatDecimal(terrain.factor, locale, 1),
+              })}
             </p>
           </div>
         </div>
@@ -196,19 +211,22 @@ export function RuckingCalorieCalculator({
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
           <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-            Calories Burned
+            {t.caloriesBurned}
           </h3>
           <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
-            {formatNumber(results.calories)} kcal
+            {formatNumber(results.calories, locale)} kcal
           </p>
           {loadKg > 0 && (
             <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
-              The {showLoad(loadKg)} pack adds{" "}
-              <strong className="text-[#ED772F]">
-                {formatNumber(results.caloriesFromLoad)} kcal
-              </strong>{" "}
-              over the same walk carrying nothing (
-              {formatNumber(results.caloriesUnloaded)} kcal).
+              {rich(t.packAdds, {
+                load: showLoad(loadKg),
+                extra: (
+                  <strong className="text-[#ED772F]">
+                    {formatNumber(results.caloriesFromLoad, locale)}
+                  </strong>
+                ),
+                unloaded: formatNumber(results.caloriesUnloaded, locale),
+              })}
             </p>
           )}
         </div>
@@ -216,25 +234,31 @@ export function RuckingCalorieCalculator({
         {results.loadIsHeavy && (
           <div className="mt-4 rounded-xl border border-amber-300 dark:border-amber-700/60 bg-amber-50 dark:bg-amber-900/20 p-4">
             <p className="text-sm text-amber-900 dark:text-amber-200">
-              That pack is {(results.loadRatio * 100).toFixed(0)}% of your body
-              weight. Loads above about a third of body weight raise injury risk
-              sharply, and the Pandolf model is least reliable there. Build up
-              gradually rather than jumping to this load.
+              {interpolate(t.heavyLoad, {
+                percent: formatNumber(Math.round(results.loadRatio * 100), locale),
+              })}
             </p>
           </div>
         )}
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
           {[
-            { label: "MET", value: results.met.toFixed(1) },
-            { label: "kcal / min", value: results.kcalPerMinute.toFixed(1) },
+            { label: t.met, value: formatDecimal(results.met, locale, 1) },
             {
-              label: "Distance",
-              value: `${results.distanceKm.toFixed(2)} km / ${kmToMiles(
-                results.distanceKm
-              ).toFixed(2)} mi`,
+              label: t.kcalPerMin,
+              value: formatDecimal(results.kcalPerMinute, locale, 1),
             },
-            { label: "Pack / body weight", value: `${(results.loadRatio * 100).toFixed(0)}%` },
+            {
+              label: t.distance,
+              value: interpolate(t.distanceValue, {
+                km: formatDecimal(results.distanceKm, locale, 2),
+                mi: formatDecimal(kmToMiles(results.distanceKm), locale, 2),
+              }),
+            },
+            {
+              label: t.packRatio,
+              value: `${formatNumber(Math.round(results.loadRatio * 100), locale)}%`,
+            },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -251,8 +275,11 @@ export function RuckingCalorieCalculator({
         </div>
 
         <p className="mt-4 text-xs text-neutral-500 dark:text-neutral-400">
-          Pandolf load-carriage equation at {results.watts} watts, {terrain.label.toLowerCase()},{" "}
-          {grade}% grade.
+          {interpolate(t.equation, {
+            watts: formatNumber(results.watts, locale),
+            terrain: terrainCopy.inline,
+            grade: formatNumber(grade, locale),
+          })}
         </p>
 
         {resultCta}
@@ -260,18 +287,16 @@ export function RuckingCalorieCalculator({
 
       <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
         <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-1">
-          Calories by Pack Weight
+          {t.tableTitle}
         </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-          Same pace, grade, terrain and duration. Only the load changes.
-        </p>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">{t.tableSubtitle}</p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-neutral-500 dark:text-neutral-400 border-b border-neutral-200 dark:border-neutral-700">
-                <th className="py-2 pr-4 font-medium">Pack</th>
-                <th className="py-2 pr-4 font-medium">Calories</th>
-                <th className="py-2 font-medium">vs unloaded</th>
+                <th className="py-2 pr-4 font-medium">{t.colPack}</th>
+                <th className="py-2 pr-4 font-medium">{t.colCalories}</th>
+                <th className="py-2 font-medium">{t.colVsUnloaded}</th>
               </tr>
             </thead>
             <tbody>
@@ -284,12 +309,14 @@ export function RuckingCalorieCalculator({
                     {showLoad(row.loadKg)}
                   </td>
                   <td className="py-2 pr-4 text-neutral-900 dark:text-white font-medium">
-                    {formatNumber(row.calories)}
+                    {formatNumber(row.calories, locale)}
                   </td>
                   <td className="py-2 text-neutral-600 dark:text-neutral-400">
                     {row.loadKg === 0
                       ? "—"
-                      : `+${row.percentOverUnloaded.toFixed(0)}%`}
+                      : interpolate(t.vsUnloaded, {
+                          percent: formatNumber(Math.round(row.percentOverUnloaded), locale),
+                        })}
                   </td>
                 </tr>
               ))}

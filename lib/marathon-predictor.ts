@@ -5,14 +5,17 @@
  * T2 = T1 × (D2 / D1)^1.06
  */
 
-export const RACE_DISTANCES = [
-  { name: "5K", km: 5 },
-  { name: "10K", km: 10 },
-  { name: "Half Marathon", km: 21.0975 },
-  { name: "Marathon", km: 42.195 },
-] as const;
+export type RaceDistanceId = "5k" | "10k" | "half" | "marathon";
+
+export const RACE_DISTANCES: { id: RaceDistanceId; name: string; km: number }[] = [
+  { id: "5k", name: "5K", km: 5 },
+  { id: "10k", name: "10K", km: 10 },
+  { id: "half", name: "Half Marathon", km: 21.0975 },
+  { id: "marathon", name: "Marathon", km: 42.195 },
+];
 
 export interface RacePrediction {
+  id: RaceDistanceId;
   distance: string;
   km: number;
   time: string;      // "H:MM:SS"
@@ -46,13 +49,14 @@ export function predictRaceTimes(
   inputDistanceKm: number,
   inputTimeSeconds: number
 ): RacePrediction[] {
-  return RACE_DISTANCES.map(({ name, km }) => {
+  return RACE_DISTANCES.map(({ id, name, km }) => {
     const predictedSeconds = riegelPredict(inputTimeSeconds, inputDistanceKm, km);
     const paceSecondsPerKm = predictedSeconds / km;
     const paceSecondsPerMile = paceSecondsPerKm * 1.60934;
     const speedKmh = km / (predictedSeconds / 3600);
 
     return {
+      id,
       distance: name,
       km,
       time: formatTime(predictedSeconds),
