@@ -23,6 +23,7 @@ const en = {
     blog: "Blog",
     press: "Press",
     feedback: "Feedback",
+    troubleshooting: "Troubleshooting",
     docs: "Docs",
     privacy: "Privacy Policy",
     terms: "Terms of Service",

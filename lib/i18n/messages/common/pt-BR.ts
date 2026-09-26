@@ -25,6 +25,7 @@ const ptBR: CommonMessages = {
     blog: "Blog",
     press: "Imprensa",
     feedback: "Sugestões",
+    troubleshooting: "Solução de problemas",
     docs: "Ajuda",
     privacy: "Política de Privacidade",
     terms: "Termos de Serviço",
