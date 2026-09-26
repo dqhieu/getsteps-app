@@ -130,6 +130,11 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
                 </Link>
               </li>
               <li>
+                <Link href="/troubleshooting" className={LINK_CLASS}>
+                  {t.footer.troubleshooting}
+                </Link>
+              </li>
+              <li>
                 <Link href={docsPath(locale)} className={LINK_CLASS}>
                   {t.footer.docs}
                 </Link>

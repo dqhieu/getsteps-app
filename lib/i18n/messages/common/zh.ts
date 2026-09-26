@@ -25,6 +25,7 @@ const zh: CommonMessages = {
     blog: "博客",
     press: "媒体报道",
     feedback: "反馈",
+    troubleshooting: "故障排除",
     docs: "文档",
     privacy: "隐私政策",
     terms: "服务条款",

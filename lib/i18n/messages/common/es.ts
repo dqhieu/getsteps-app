@@ -25,6 +25,7 @@ const es: CommonMessages = {
     blog: "Blog",
     press: "Prensa",
     feedback: "Sugerencias",
+    troubleshooting: "Solución de problemas",
     docs: "Ayuda",
     privacy: "Política de privacidad",
     terms: "Términos del servicio",
