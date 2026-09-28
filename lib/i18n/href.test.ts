@@ -42,6 +42,9 @@ describe("alternatesFor", () => {
       it: "https://getsteps.app/it/tools/bmi-calculator",
       "pt-BR": "https://getsteps.app/pt-BR/tools/bmi-calculator",
       es: "https://getsteps.app/es/tools/bmi-calculator",
+      ru: "https://getsteps.app/ru/tools/bmi-calculator",
+      ja: "https://getsteps.app/ja/tools/bmi-calculator",
+      ko: "https://getsteps.app/ko/tools/bmi-calculator",
       "x-default": "https://getsteps.app/tools/bmi-calculator",
     });
   });
@@ -57,5 +60,8 @@ describe("docsPath", () => {
   it("links to the localized docs", () => {
     expect(docsPath("en")).toBe("/docs");
     expect(docsPath("pt-BR")).toBe("/docs/pt-BR");
+    expect(docsPath("ru")).toBe("/docs/ru");
+    expect(docsPath("ja")).toBe("/docs/ja");
+    expect(docsPath("ko")).toBe("/docs/ko");
   });
 });

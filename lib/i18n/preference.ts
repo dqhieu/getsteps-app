@@ -64,6 +64,9 @@ function matchLanguage(tag: string): Locale | null {
   if (primary === "fr") return "fr";
   if (primary === "it") return "it";
   if (primary === "es") return "es";
+  if (primary === "ru") return "ru";
+  if (primary === "ja") return "ja";
+  if (primary === "ko") return "ko";
   if (primary === "en") return "en";
   return null;
 }

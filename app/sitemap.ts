@@ -11,7 +11,7 @@ import {
   MILES_TO_TIME_VALUES,
 } from "@/lib/conversions";
 import { TOOLS } from "@/lib/tools";
-import { LOCALES } from "@/lib/i18n/config";
+import { LOCALES, PREFIXED_LOCALES } from "@/lib/i18n/config";
 import { absoluteUrl, languageAlternates } from "@/lib/i18n/href";
 
 type LocalizedEntry = {
@@ -99,7 +99,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    ...["zh", "fr", "de", "it", "pt-BR", "es"].map((lang) => ({
+    ...PREFIXED_LOCALES.map((lang) => ({
       url: `${baseUrl}/docs/${lang}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
@@ -126,7 +126,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "siri-shortcuts",
       "sharing",
     ].flatMap((page) => {
-      const languages = ["", "zh/", "fr/", "de/", "it/", "pt-BR/", "es/"];
+      const languages = ["", ...PREFIXED_LOCALES.map((lang) => `${lang}/`)];
       return languages.map((lang) => ({
         url: `${baseUrl}/docs/${lang}features/${page}`,
         lastModified: new Date(),

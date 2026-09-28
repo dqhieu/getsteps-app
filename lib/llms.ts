@@ -129,7 +129,7 @@ const FEATURE_DOCS: ReadonlyArray<{ slug: string; name: string }> = [
 
 export const DOCS_SECTION = `## Documentation
 
-English docs are canonical. Translations: Chinese (zh), French (fr), German (de), Italian (it), Portuguese Brazil (pt-BR), Spanish (es). Example: ${BASE_URL}/docs/fr/features/getting-started.
+English docs are canonical. Translations: Chinese (zh), French (fr), German (de), Italian (it), Portuguese Brazil (pt-BR), Spanish (es), Russian (ru), Japanese (ja), Korean (ko). Example: ${BASE_URL}/docs/fr/features/getting-started.
 
 - [Docs home](${BASE_URL}/docs)
 ${FEATURE_DOCS.map((doc) =>
