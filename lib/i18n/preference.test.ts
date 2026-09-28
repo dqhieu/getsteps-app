@@ -9,8 +9,14 @@ describe("negotiateLocale", () => {
 
   it("keeps English when the browser prefers English or an unsupported language", () => {
     expect(negotiateLocale("en-US,en;q=0.9")).toBe("en");
-    expect(negotiateLocale("ja,en;q=0.5")).toBe("en");
+    expect(negotiateLocale("sv,en;q=0.5")).toBe("en");
     expect(negotiateLocale(null)).toBe("en");
+  });
+
+  it("picks Russian, Japanese, and Korean", () => {
+    expect(negotiateLocale("ru-RU,ru;q=0.9,en;q=0.8")).toBe("ru");
+    expect(negotiateLocale("ja,en;q=0.5")).toBe("ja");
+    expect(negotiateLocale("ko-KR,ko;q=0.9,en;q=0.8")).toBe("ko");
   });
 
   it("maps Chinese and Portuguese tags onto the locales we ship", () => {

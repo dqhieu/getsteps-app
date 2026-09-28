@@ -11,4 +11,7 @@ export const loadMacroCalculatorMessages = defineMessages<MacroCalculatorMessage
   it: () => import("./it"),
   "pt-BR": () => import("./pt-BR"),
   es: () => import("./es"),
+  ru: () => import("./ru"),
+  ja: () => import("./ja"),
+  ko: () => import("./ko"),
 });

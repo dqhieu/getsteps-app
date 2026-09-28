@@ -1,4 +1,4 @@
-export const LOCALES = ["en", "zh", "fr", "de", "it", "pt-BR", "es"] as const;
+export const LOCALES = ["en", "zh", "fr", "de", "it", "pt-BR", "es", "ru", "ja", "ko"] as const;
 
 export type Locale = (typeof LOCALES)[number];
 
@@ -21,6 +21,9 @@ export const HREFLANG: Record<Locale, string> = {
   it: "it",
   "pt-BR": "pt-BR",
   es: "es",
+  ru: "ru",
+  ja: "ja",
+  ko: "ko",
 };
 
 /** BCP 47 tag passed to `Intl` formatters. */
@@ -32,6 +35,9 @@ export const INTL_LOCALE: Record<Locale, string> = {
   it: "it-IT",
   "pt-BR": "pt-BR",
   es: "es-ES",
+  ru: "ru-RU",
+  ja: "ja-JP",
+  ko: "ko-KR",
 };
 
 export const OG_LOCALE: Record<Locale, string> = {
@@ -42,6 +48,9 @@ export const OG_LOCALE: Record<Locale, string> = {
   it: "it_IT",
   "pt-BR": "pt_BR",
   es: "es_ES",
+  ru: "ru_RU",
+  ja: "ja_JP",
+  ko: "ko_KR",
 };
 
 /** Each language's name written in that language, for the switcher. */
@@ -53,4 +62,7 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   it: "Italiano",
   "pt-BR": "Português (Brasil)",
   es: "Español",
+  ru: "Русский",
+  ja: "日本語",
+  ko: "한국어",
 };

@@ -6,6 +6,9 @@ import de from "./de";
 import it from "./it";
 import ptBR from "./pt-BR";
 import es from "./es";
+import ru from "./ru";
+import ja from "./ja";
+import ko from "./ko";
 
 export type { LandingMessages };
 
@@ -17,6 +20,9 @@ const LANDING: Record<Locale, LandingMessages> = {
   it,
   "pt-BR": ptBR,
   es,
+  ru,
+  ja,
+  ko,
 };
 
 export function getLandingMessages(locale: Locale): LandingMessages {
