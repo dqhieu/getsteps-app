@@ -269,41 +269,6 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
-  "walking-10-miles-a-day": [
-    { title: "How Many Steps in a Marathon?", href: "/blog/how-many-steps-in-a-marathon" },
-    { title: "Is 10,000 Steps a Day Enough?", href: "/blog/is-10000-steps-a-day-enough" },
-    { title: "How Long Does It Take to Walk 10 Miles?", href: "/blog/how-long-does-it-take-to-walk-10-miles" },
-  ],
-  "does-walking-help-digestion": [
-    { title: "Benefits of Walking 10 Minutes a Day", href: "/blog/benefits-of-walking-10-minutes-a-day" },
-    { title: "Walking After Eating Benefits", href: "/blog/walking-after-eating-benefits" },
-    { title: "Does Walking Help Anxiety?", href: "/blog/does-walking-help-anxiety" },
-  ],
-  "walking-cadence": [
-    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
-    { title: "Benefits of Walking 10 Minutes a Day", href: "/blog/benefits-of-walking-10-minutes-a-day" },
-    { title: "Is 10,000 Steps a Day Enough?", href: "/blog/is-10000-steps-a-day-enough" },
-  ],
-  "benefits-of-walking-10-minutes-a-day": [
-    { title: "Walking Cadence: Steps per Minute That Count", href: "/blog/walking-cadence" },
-    { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
-    { title: "Does Walking Help Digestion?", href: "/blog/does-walking-help-digestion" },
-  ],
-  "does-walking-help-anxiety": [
-    { title: "Mental Benefits of Walking", href: "/blog/mental-benefits-of-walking" },
-    { title: "Benefits of Walking 10 Minutes a Day", href: "/blog/benefits-of-walking-10-minutes-a-day" },
-    { title: "Does Walking Help You Sleep?", href: "/blog/does-walking-help-you-sleep" },
-  ],
-  "how-many-steps-in-a-marathon": [
-    { title: "How Many Steps in a Half Marathon?", href: "/blog/how-many-steps-in-a-half-marathon" },
-    { title: "Walking 10 Miles a Day", href: "/blog/walking-10-miles-a-day" },
-    { title: "Walking Cadence: Steps per Minute That Count", href: "/blog/walking-cadence" },
-  ],
-  "is-10000-steps-a-day-enough": [
-    { title: "Is 7,000 Steps a Day Enough?", href: "/blog/is-7000-steps-a-day-enough" },
-    { title: "Walking Cadence: Steps per Minute That Count", href: "/blog/walking-cadence" },
-    { title: "Benefits of Walking 10 Minutes a Day", href: "/blog/benefits-of-walking-10-minutes-a-day" },
-  ],
   "is-20000-steps-a-day-good": [
     { title: "Is 14,000 Steps a Day Good?", href: "/blog/is-14000-steps-a-day-good" },
     { title: "Is 3,000 Steps a Day Enough?", href: "/blog/is-3000-steps-a-day-enough" },
@@ -1551,34 +1516,6 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
-  "walking-10-miles-a-day": [
-    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
-    { title: "Weight Loss Walking Calculator", href: "/tools/weight-loss-walking-calculator" },
-  ],
-  "does-walking-help-digestion": [
-    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
-    { title: "Water Intake Calculator", href: "/tools/water-intake-calculator" },
-  ],
-  "walking-cadence": [
-    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
-    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
-  ],
-  "benefits-of-walking-10-minutes-a-day": [
-    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
-    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
-  ],
-  "does-walking-help-anxiety": [
-    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
-    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
-  ],
-  "how-many-steps-in-a-marathon": [
-    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
-    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
-  ],
-  "is-10000-steps-a-day-enough": [
-    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
-    { title: "Steps to Calories Calculator", href: "/tools/steps-to-calories-calculator" },
-  ],
   "is-20000-steps-a-day-good": [
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
