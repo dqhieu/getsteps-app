@@ -56,6 +56,12 @@ const ptBR: CommonMessages = {
     articles: "Artigos relacionados",
     stepsFor: "Steps para",
   },
+  qr: {
+    label: "Escaneie o tênis",
+    caption: "Conta cada passo por você.",
+    imageAlt: "QR code do Steps na App Store",
+    ariaLabel: "Escanear para baixar o Steps",
+  },
   site: {
     description:
       "Acompanhe seus passos, treinos e dados de saúde com o Steps, o companheiro de fitness definitivo para o seu dispositivo Apple.",

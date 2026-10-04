@@ -56,6 +56,12 @@ const ru: CommonMessages = {
     articles: "Похожие статьи",
     stepsFor: "Steps для",
   },
+  qr: {
+    label: "Сканируйте кроссовок",
+    caption: "Считает каждый шаг за вас.",
+    imageAlt: "QR-код Steps в App Store",
+    ariaLabel: "Сканируйте, чтобы скачать Steps",
+  },
   site: {
     description:
       "Считайте ежедневные шаги, тренировки и данные о здоровье с Steps — фитнес-компаньоном для устройств Apple.",

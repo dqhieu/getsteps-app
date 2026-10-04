@@ -56,6 +56,12 @@ const ja: CommonMessages = {
     articles: "関連記事",
     stepsFor: "Steps の活用シーン",
   },
+  qr: {
+    label: "靴をスキャン",
+    caption: "一歩ずつ、自動で記録。",
+    imageAlt: "App Store の Steps への QR コード",
+    ariaLabel: "スキャンして Steps をダウンロード",
+  },
   site: {
     description:
       "Steps で毎日の歩数、ワークアウト、健康データを記録。Apple デバイスのためのフィットネスアプリです。",

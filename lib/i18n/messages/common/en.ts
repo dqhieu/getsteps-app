@@ -54,6 +54,12 @@ const en = {
     articles: "Related Articles",
     stepsFor: "Steps For",
   },
+  qr: {
+    label: "Scan the shoe",
+    caption: "It counts every step for you.",
+    imageAlt: "QR code linking to Steps on the App Store",
+    ariaLabel: "Scan to download Steps",
+  },
   site: {
     description:
       "Track your daily steps, workouts, and health data with Steps - the ultimate fitness companion for your Apple device.",

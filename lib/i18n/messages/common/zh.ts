@@ -56,6 +56,12 @@ const zh: CommonMessages = {
     articles: "相关文章",
     stepsFor: "Steps 适用人群",
   },
+  qr: {
+    label: "扫一扫这只鞋",
+    caption: "每一步，都帮你记下。",
+    imageAlt: "指向 App Store 上 Steps 的二维码",
+    ariaLabel: "扫码下载 Steps",
+  },
   site: {
     description:
       "使用 Steps 记录你的每日步数、锻炼和健康数据——你的 Apple 设备的终极健身伙伴。",

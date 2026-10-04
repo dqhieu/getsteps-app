@@ -56,6 +56,12 @@ const ko: CommonMessages = {
     articles: "관련 글",
     stepsFor: "Steps 활용",
   },
+  qr: {
+    label: "신발을 스캔",
+    caption: "걸음 수를 대신 세어 드려요.",
+    imageAlt: "App Store의 Steps로 연결되는 QR 코드",
+    ariaLabel: "스캔해서 Steps 다운로드",
+  },
   site: {
     description:
       "Steps로 매일의 걸음, 운동, 건강 데이터를 기록하세요. Apple 기기를 위한 피트니스 앱입니다.",

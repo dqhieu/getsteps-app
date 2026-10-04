@@ -56,6 +56,12 @@ const de: CommonMessages = {
     articles: "Ähnliche Artikel",
     stepsFor: "Steps für",
   },
+  qr: {
+    label: "Schuh scannen",
+    caption: "Zählt jeden Schritt für dich.",
+    imageAlt: "QR-Code zu Steps im App Store",
+    ariaLabel: "Steps per Scan herunterladen",
+  },
   site: {
     description:
       "Erfasse deine täglichen Schritte, Workouts und Gesundheitsdaten mit Steps – dem idealen Fitnessbegleiter für dein Apple-Gerät.",

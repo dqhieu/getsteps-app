@@ -56,6 +56,12 @@ const es: CommonMessages = {
     articles: "Artículos relacionados",
     stepsFor: "Steps para",
   },
+  qr: {
+    label: "Escanea la zapatilla",
+    caption: "Cuenta cada paso por ti.",
+    imageAlt: "Código QR de Steps en el App Store",
+    ariaLabel: "Escanear para descargar Steps",
+  },
   site: {
     description:
       "Registra tus pasos, entrenamientos y datos de salud con Steps, el compañero de fitness definitivo para tu dispositivo Apple.",
