@@ -81,7 +81,7 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
                 alt="Steps"
                 width={32}
                 height={32}
-                className="rounded-lg ring-1 ring-border"
+                className="rounded-lg"
               />
               <span className="text-lg font-semibold text-foreground">
                 {SITE_CONFIG.name}

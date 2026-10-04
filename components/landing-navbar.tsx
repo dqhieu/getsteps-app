@@ -30,7 +30,7 @@ export function LandingNavbar({ locale }: { locale?: Locale }) {
             alt="Steps"
             width={32}
             height={32}
-            className="size-8 shrink-0 rounded-lg ring-1 ring-border"
+            className="size-8 shrink-0 rounded-lg"
           />
           <span className="hidden truncate font-semibold text-foreground sm:inline">
             Steps: Workout & Pedometer

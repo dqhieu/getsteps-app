@@ -15,7 +15,7 @@ export function LandingHero({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
     <section className="relative pt-28 pb-16 md:pt-36 md:pb-24">
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         <Reveal>
-          <div className="relative w-20 h-20 md:w-24 md:h-24 mb-7 rounded-[22px] overflow-hidden shadow-sm ring-1 ring-border">
+          <div className="relative w-20 h-20 md:w-24 md:h-24 mb-7 rounded-[22px] overflow-hidden">
             <Image
               src="/app_icon.png"
               alt={t.iconAlt}
