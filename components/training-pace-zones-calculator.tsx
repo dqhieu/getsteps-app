@@ -42,9 +42,9 @@ export function TrainingPaceZonesCalculator({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
         <div className="mb-5">
-          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.distanceLabel}</p>
+          <p className="text-sm font-medium text-muted-soft mb-2">{t.distanceLabel}</p>
           <div className="flex flex-wrap gap-2">
             {RACE_DISTANCE_OPTIONS.map((opt, i) => (
               <button
@@ -52,8 +52,8 @@ export function TrainingPaceZonesCalculator({
                 onClick={() => setDistanceIndex(i)}
                 className={`py-2 px-4 rounded-xl text-sm font-semibold transition-colors ${
                   distanceIndex === i
-                    ? "bg-[#ED772F] text-white"
-                    : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                    ? "bg-accent text-white"
+                    : "bg-surface text-muted hover:bg-ghost-hover"
                 }`}
               >
                 {t.races[opt.id]}
@@ -64,7 +64,7 @@ export function TrainingPaceZonesCalculator({
 
         {selectedOption.id === "custom" && (
           <div className="mb-5">
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+            <label className="block text-sm font-medium text-muted-soft mb-1">
               {t.customDistanceLabel}
             </label>
             <div className="relative max-w-xs">
@@ -73,47 +73,47 @@ export function TrainingPaceZonesCalculator({
                 value={customKm}
                 step={0.1}
                 onChange={(e) => setCustomKm(Number(e.target.value))}
-                className="w-full py-3 px-4 pr-12 rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                className="w-full py-3 px-4 pr-12 rounded-xl bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-neutral-500 dark:text-neutral-400 pointer-events-none">km</span>
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-muted pointer-events-none">km</span>
             </div>
           </div>
         )}
 
         <div className="mb-5">
-          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.finishTimeLabel}</p>
+          <p className="text-sm font-medium text-muted-soft mb-2">{t.finishTimeLabel}</p>
           <div className="flex items-center gap-2 max-w-xs">
             <div className="flex-1">
               <input
                 type="number"
                 value={hours}
                 onChange={(e) => setHours(Number(e.target.value))}
-                className="w-full py-3 px-3 text-center rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                className="w-full py-3 px-3 text-center rounded-xl bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                 placeholder="0"
               />
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mt-1">{t.hour}</p>
+              <p className="text-xs text-muted text-center mt-1">{t.hour}</p>
             </div>
-            <span className="text-neutral-400 font-bold pb-4">:</span>
+            <span className="text-muted font-bold pb-4">:</span>
             <div className="flex-1">
               <input
                 type="number"
                 value={minutes}
                 onChange={(e) => setMinutes(Number(e.target.value))}
-                className="w-full py-3 px-3 text-center rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                className="w-full py-3 px-3 text-center rounded-xl bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                 placeholder="25"
               />
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mt-1">{t.minute}</p>
+              <p className="text-xs text-muted text-center mt-1">{t.minute}</p>
             </div>
-            <span className="text-neutral-400 font-bold pb-4">:</span>
+            <span className="text-muted font-bold pb-4">:</span>
             <div className="flex-1">
               <input
                 type="number"
                 value={seconds}
                 onChange={(e) => setSeconds(Number(e.target.value))}
-                className="w-full py-3 px-3 text-center rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                className="w-full py-3 px-3 text-center rounded-xl bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                 placeholder="00"
               />
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mt-1">{t.second}</p>
+              <p className="text-xs text-muted text-center mt-1">{t.second}</p>
             </div>
           </div>
         </div>
@@ -124,7 +124,7 @@ export function TrainingPaceZonesCalculator({
 
         <button
           onClick={handleCalculate}
-          className="w-full bg-[#ED772F] hover:bg-[#d4651f] text-white font-semibold py-3 px-6 rounded-xl transition-colors"
+          className="inline-flex h-12 w-full items-center justify-center rounded-[12px] bg-[image:var(--gradient-button-primary),var(--gradient-button-primary-rim)] bg-origin-border px-6 text-[15px] font-semibold text-[var(--button-primary-text)] shadow-[var(--shadow-button-primary)] [background-clip:padding-box,border-box] [text-shadow:var(--button-primary-text-shadow)] transition-[transform,box-shadow] duration-[var(--duration-1)] hover:-translate-y-px hover:bg-[image:var(--gradient-button-primary-hover),var(--gradient-button-primary-rim-hover)] hover:shadow-[var(--shadow-button-primary-hover)]"
         >
           {t.calculate}
         </button>
@@ -137,7 +137,7 @@ export function TrainingPaceZonesCalculator({
             return (
               <div
                 key={zone.id}
-                className="bg-white dark:bg-neutral-800/50 rounded-2xl p-5 border border-neutral-200 dark:border-neutral-700/50 flex gap-4"
+                className="rounded-[20px] bg-card p-5 shadow-[var(--shadow-border)] flex gap-4"
                 style={{ borderLeftWidth: 4, borderLeftColor: zone.color }}
               >
                 <div
@@ -149,7 +149,7 @@ export function TrainingPaceZonesCalculator({
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between flex-wrap gap-2 mb-1">
-                    <p className="font-semibold text-neutral-900 dark:text-white">{copy.name}</p>
+                    <p className="font-semibold text-foreground">{copy.name}</p>
                     <span
                       className="text-xs font-medium px-2 py-0.5 rounded-full"
                       style={{ backgroundColor: `${zone.color}25`, color: zone.color }}
@@ -157,12 +157,12 @@ export function TrainingPaceZonesCalculator({
                       {copy.usage}
                     </span>
                   </div>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-2">{copy.description}</p>
+                  <p className="text-xs text-muted mb-2">{copy.description}</p>
                   <div className="flex flex-wrap gap-3">
-                    <span className="text-sm font-mono font-semibold text-neutral-900 dark:text-white">
+                    <span className="text-sm font-mono font-semibold text-foreground">
                       {zone.paceKmMin}
                     </span>
-                    <span className="text-sm font-mono text-neutral-500 dark:text-neutral-400">
+                    <span className="text-sm font-mono text-muted">
                       {zone.paceMileMin}
                     </span>
                   </div>
@@ -171,7 +171,7 @@ export function TrainingPaceZonesCalculator({
             );
           })}
 
-          <p className="text-xs text-neutral-400 dark:text-neutral-500 text-center pt-1 px-2">
+          <p className="text-xs text-muted text-center pt-1 px-2">
             {t.footnote}
           </p>
         </div>

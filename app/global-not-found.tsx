@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Bricolage_Grotesque } from "next/font/google";
 import "@/app/globals.css";
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  variable: "--font-bricolage",
+});
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -9,16 +16,16 @@ export const metadata: Metadata = {
 
 export default function GlobalNotFound() {
   return (
-    <html lang="en">
-      <body className="bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-white">
+    <html lang="en" className={bricolage.variable}>
+      <body className={`${bricolage.className} min-h-screen bg-background text-foreground antialiased`}>
         <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-          <p className="text-sm font-medium text-neutral-500">404</p>
+          <p className="text-sm font-medium text-muted">404</p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-balance">
             This page could not be found.
           </h1>
           <Link
             href="/"
-            className="mt-8 inline-flex min-h-[44px] items-center justify-center rounded-full bg-orange-500 px-6 py-3 font-medium text-white transition-[background-color,transform] duration-150 hover:bg-orange-600 active:scale-[0.96]"
+            className="mt-8 inline-flex min-h-[44px] items-center justify-center rounded-full bg-accent px-6 py-3 font-medium text-white transition-[background-color,transform] duration-150 hover:opacity-90 active:scale-[0.96]"
           >
             Back to getsteps.app
           </Link>

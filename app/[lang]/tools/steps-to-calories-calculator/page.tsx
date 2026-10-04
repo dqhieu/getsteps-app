@@ -69,15 +69,15 @@ export default async function StepsToCaloriesCalculatorPage({ params }: LangPage
   const calCell = (value: number) => `${formatNumber(value, locale)} ${t.table.cal}`;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <LandingNavbar locale={locale} />
 
       <section className="pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t.hero.title}
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted max-w-2xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>
@@ -99,18 +99,18 @@ export default async function StepsToCaloriesCalculatorPage({ params }: LangPage
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-12 md:py-16 bg-surface">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-6">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-6">
               {t.info.title}
             </h2>
 
-            <div className="space-y-6 text-neutral-600 dark:text-neutral-400">
+            <div className="space-y-6 text-muted">
               <p>{t.info.intro}</p>
 
-              <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
-                <h3 className="font-medium text-neutral-900 dark:text-white mb-2">
+              <div className="bg-surface rounded-xl p-4">
+                <h3 className="font-medium text-foreground mb-2">
                   {t.info.formulaTitle}
                 </h3>
                 <ul className="space-y-2 text-sm">
@@ -128,15 +128,15 @@ export default async function StepsToCaloriesCalculatorPage({ params }: LangPage
 
               <p>{t.info.heavier}</p>
 
-              <div className="border-t border-neutral-200 dark:border-neutral-700 pt-6">
-                <h3 className="font-medium text-neutral-900 dark:text-white mb-3">
+              <div className="border-t border-border pt-6">
+                <h3 className="font-medium text-foreground mb-3">
                   {t.info.faqTitle}
                 </h3>
 
                 <div className="space-y-4">
                   {t.faq.map((item) => (
                     <details key={item.question} className="group">
-                      <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      <summary className="cursor-pointer font-medium text-foreground hover:text-accent transition-colors">
                         {item.question}
                       </summary>
                       <p className="mt-2 text-sm">{item.answer}</p>
@@ -159,31 +159,31 @@ export default async function StepsToCaloriesCalculatorPage({ params }: LangPage
 
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               {t.table.title}
             </h2>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+            <p className="text-sm text-muted mb-6">
               {t.table.intro}
             </p>
 
             <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
               <table className="w-full min-w-[500px]">
                 <thead>
-                  <tr className="border-b-2 border-neutral-200 dark:border-neutral-700">
-                    <th className="text-left py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                  <tr className="border-b-2 border-border">
+                    <th className="text-left py-3 px-2 text-sm font-semibold text-foreground">
                       {t.table.steps}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       55 kg
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       70 kg
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       85 kg
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       100 kg
                     </th>
                   </tr>
@@ -192,23 +192,23 @@ export default async function StepsToCaloriesCalculatorPage({ params }: LangPage
                   {STEP_ROWS.map((row) => (
                     <tr
                       key={row.steps}
-                      className={`border-b border-neutral-100 dark:border-neutral-700/50 ${
-                        row.highlight ? "bg-[#ED772F]/5 dark:bg-[#ED772F]/10" : ""
+                      className={`border-b border-border  ${
+                        row.highlight ? "bg-accent/5 dark:bg-chip" : ""
                       }`}
                     >
-                      <td className="py-3 px-2 text-sm font-medium text-neutral-900 dark:text-white">
+                      <td className="py-3 px-2 text-sm font-medium text-foreground">
                         {formatNumber(row.steps, locale)}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                      <td className="py-3 px-2 text-sm text-center text-muted-soft">
                         {calCell(row.w55)}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center font-semibold text-[#ED772F]">
+                      <td className="py-3 px-2 text-sm text-center font-semibold text-accent">
                         {calCell(row.w70)}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                      <td className="py-3 px-2 text-sm text-center text-muted-soft">
                         {calCell(row.w85)}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                      <td className="py-3 px-2 text-sm text-center text-muted-soft">
                         {calCell(row.w100)}
                       </td>
                     </tr>
@@ -217,7 +217,7 @@ export default async function StepsToCaloriesCalculatorPage({ params }: LangPage
               </table>
             </div>
 
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">
+            <p className="text-xs text-muted mt-4">
               {t.table.footnote}
             </p>
           </div>

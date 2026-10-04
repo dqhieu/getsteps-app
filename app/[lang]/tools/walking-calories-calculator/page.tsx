@@ -68,15 +68,15 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
   const oneDecimal = (value: number) => formatDecimal(value, locale, 1);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <LandingNavbar locale={locale} />
 
       <section className="pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t.hero.title}
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted max-w-2xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>
@@ -98,18 +98,18 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-12 md:py-16 bg-surface">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-6">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-6">
               {t.info.title}
             </h2>
 
-            <div className="space-y-6 text-neutral-600 dark:text-neutral-400">
+            <div className="space-y-6 text-muted">
               <p>{t.info.intro}</p>
 
-              <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
-                <h3 className="font-medium text-neutral-900 dark:text-white mb-2">
+              <div className="bg-surface rounded-xl p-4">
+                <h3 className="font-medium text-foreground mb-2">
                   {t.info.formulaTitle}
                 </h3>
                 <p className="text-sm mb-2">
@@ -125,15 +125,15 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
                 </ul>
               </div>
 
-              <div className="border-t border-neutral-200 dark:border-neutral-700 pt-6">
-                <h3 className="font-medium text-neutral-900 dark:text-white mb-3">
+              <div className="border-t border-border pt-6">
+                <h3 className="font-medium text-foreground mb-3">
                   {t.info.faqTitle}
                 </h3>
 
                 <div className="space-y-4">
                   {t.faq.map((item) => (
                     <details key={item.question} className="group">
-                      <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      <summary className="cursor-pointer font-medium text-foreground hover:text-accent transition-colors">
                         {item.question}
                       </summary>
                       <p className="mt-2 text-sm">{item.answer}</p>
@@ -153,23 +153,23 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
 
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
               {t.formula.title}
             </h2>
 
-            <div className="space-y-4 text-neutral-600 dark:text-neutral-400 mb-8">
+            <div className="space-y-4 text-muted mb-8">
               <p>
                 {rich(t.formula.intro, {
                   name: (
-                    <strong className="text-neutral-900 dark:text-white">{t.formula.name}</strong>
+                    <strong className="text-foreground">{t.formula.name}</strong>
                   ),
                   source: <em>{t.formula.source}</em>,
                 })}
               </p>
 
-              <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4 text-center">
-                <p className="text-lg font-semibold text-neutral-900 dark:text-white">
+              <div className="bg-surface rounded-xl p-4 text-center">
+                <p className="text-lg font-semibold text-foreground">
                   {t.formula.equation}
                 </p>
               </div>
@@ -178,11 +178,11 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {t.formula.highlights.map((item, index) => (
-                  <div key={item.phrase} className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3">
+                  <div key={item.phrase} className="bg-surface rounded-lg p-3">
                     <p className="text-sm">
-                      <strong className="text-neutral-900 dark:text-white">{item.phrase}</strong>{" "}
+                      <strong className="text-foreground">{item.phrase}</strong>{" "}
                       {item.detail}{" "}
-                      <span className="text-[#ED772F] font-bold">
+                      <span className="text-accent font-bold">
                         {oneDecimal(MET_HIGHLIGHTS[index])}
                       </span>
                     </p>
@@ -193,7 +193,7 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
               <p className="text-sm">
                 {rich(t.formula.chartNote, {
                   chart: (
-                    <a href={CHART_HREF} className="text-[#ED772F] hover:underline">
+                    <a href={CHART_HREF} className="text-accent hover:underline">
                       {t.formula.chartLabel}
                     </a>
                   ),
@@ -201,26 +201,26 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
               </p>
             </div>
 
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
               {t.understanding.title}
             </h2>
 
-            <div className="space-y-4 text-neutral-600 dark:text-neutral-400">
+            <div className="space-y-4 text-muted">
               <p>
                 {rich(t.understanding.body, {
                   term: (
-                    <strong className="text-neutral-900 dark:text-white">{t.understanding.term}</strong>
+                    <strong className="text-foreground">{t.understanding.term}</strong>
                   ),
                 })}
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {LEVELS.map((level) => (
-                  <div key={level.id} className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
-                    <p className="text-2xl font-bold text-[#ED772F] mb-1">
+                  <div key={level.id} className="bg-surface rounded-xl p-4">
+                    <p className="text-2xl font-bold text-accent mb-1">
                       {oneDecimal(level.min)}–{oneDecimal(level.max)}
                     </p>
-                    <p className="text-sm font-medium text-neutral-900 dark:text-white">
+                    <p className="text-sm font-medium text-foreground">
                       {t.understanding.levels[level.id].title}
                     </p>
                     <p className="text-xs mt-1">{t.understanding.levels[level.id].detail}</p>
@@ -236,31 +236,31 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
 
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               {t.metTable.title}
             </h2>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+            <p className="text-sm text-muted mb-6">
               {t.metTable.intro}
             </p>
 
             <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
               <table className="w-full min-w-[500px]">
                 <thead>
-                  <tr className="border-b-2 border-neutral-200 dark:border-neutral-700">
-                    <th className="text-left py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                  <tr className="border-b-2 border-border">
+                    <th className="text-left py-3 px-2 text-sm font-semibold text-foreground">
                       {t.metTable.columns.activity}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       {t.metTable.columns.kmh}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       {t.metTable.columns.mph}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       {t.metTable.columns.met}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       {t.metTable.columns.cal}
                     </th>
                   </tr>
@@ -269,23 +269,23 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
                   {MET_ROWS.map((row) => (
                     <tr
                       key={row.id}
-                      className={`border-b border-neutral-100 dark:border-neutral-700/50 ${
-                        row.highlight ? "bg-[#ED772F]/5 dark:bg-[#ED772F]/10" : ""
+                      className={`border-b border-border  ${
+                        row.highlight ? "bg-accent/5 dark:bg-chip" : ""
                       }`}
                     >
-                      <td className="py-3 px-2 text-sm font-medium text-neutral-900 dark:text-white">
+                      <td className="py-3 px-2 text-sm font-medium text-foreground">
                         {t.metTable.activities[row.id]}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                      <td className="py-3 px-2 text-sm text-center text-muted-soft">
                         {oneDecimal(row.kmh)}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                      <td className="py-3 px-2 text-sm text-center text-muted-soft">
                         {oneDecimal(row.mph)}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center font-semibold text-[#ED772F]">
+                      <td className="py-3 px-2 text-sm text-center font-semibold text-accent">
                         {oneDecimal(row.met)}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                      <td className="py-3 px-2 text-sm text-center text-muted-soft">
                         {formatNumber(row.cal, locale)}
                       </td>
                     </tr>
@@ -294,7 +294,7 @@ export default async function WalkingCaloriesCalculatorPage({ params }: LangPage
               </table>
             </div>
 
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">
+            <p className="text-xs text-muted mt-4">
               {t.metTable.footnote}
             </p>
           </div>

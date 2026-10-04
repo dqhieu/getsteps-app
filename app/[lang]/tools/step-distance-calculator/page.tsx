@@ -32,7 +32,7 @@ const CONVERSION_HREFS = [
 ];
 
 const chipClass =
-  "text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors";
+  "text-sm px-3 py-1.5 rounded-lg bg-surface text-muted-soft hover:text-accent transition-colors";
 
 export async function generateMetadata({ params }: LangPageProps): Promise<Metadata> {
   const locale = await getLocale(params);
@@ -50,15 +50,15 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
   const t = await loadStepDistanceCalculatorMessages(locale);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <LandingNavbar locale={locale} />
 
       <section className="pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t.hero.title}
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted max-w-2xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>
@@ -73,18 +73,18 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-12 md:py-16 bg-surface">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-6">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-6">
               {t.info.title}
             </h2>
 
-            <div className="space-y-6 text-neutral-600 dark:text-neutral-400">
+            <div className="space-y-6 text-muted">
               <p>{t.info.intro}</p>
 
-              <div className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4">
-                <h3 className="font-medium text-neutral-900 dark:text-white mb-2">
+              <div className="bg-surface rounded-xl p-4">
+                <h3 className="font-medium text-foreground mb-2">
                   {t.info.formulaTitle}
                 </h3>
                 <ul className="space-y-2 text-sm">
@@ -102,15 +102,15 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
 
               <p>{t.info.average}</p>
 
-              <div className="border-t border-neutral-200 dark:border-neutral-700 pt-6">
-                <h3 className="font-medium text-neutral-900 dark:text-white mb-3">
+              <div className="border-t border-border pt-6">
+                <h3 className="font-medium text-foreground mb-3">
                   {t.info.faqTitle}
                 </h3>
 
                 <div className="space-y-4">
                   {t.faq.map((item) => (
                     <details key={item.question} className="group">
-                      <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                      <summary className="cursor-pointer font-medium text-foreground hover:text-accent transition-colors">
                         {item.question}
                       </summary>
                       <p className="mt-2 text-sm">{item.answer}</p>
@@ -123,7 +123,7 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
             <RelatedTools locale={locale} slug={SLUG} />
 
             <div className="mt-6">
-              <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">
+              <p className="text-sm font-medium text-muted-soft mb-3">
                 {t.conversionsTitle}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -138,7 +138,7 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
                 ))}
                 <Link
                   href={localizePath(locale, "/conversions")}
-                  className="text-sm px-3 py-1.5 rounded-lg bg-[#ED772F]/10 text-[#ED772F] hover:bg-[#ED772F]/20 transition-colors font-medium"
+                  className="text-sm px-3 py-1.5 rounded-lg bg-chip text-accent hover:bg-accent/20 transition-colors font-medium"
                 >
                   {t.allConversions}
                 </Link>
@@ -154,22 +154,22 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
 
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
               {t.stepsToKm.title}
             </h2>
 
-            <div className="space-y-4 text-neutral-600 dark:text-neutral-400">
+            <div className="space-y-4 text-muted">
               <p>
                 {rich(t.stepsToKm.intro, {
                   phrase: (
-                    <strong className="text-neutral-900 dark:text-white">{t.stepsToKm.phrase}</strong>
+                    <strong className="text-foreground">{t.stepsToKm.phrase}</strong>
                   ),
                   ruleA: (
-                    <strong className="text-neutral-900 dark:text-white">{t.stepsToKm.ruleA}</strong>
+                    <strong className="text-foreground">{t.stepsToKm.ruleA}</strong>
                   ),
                   ruleB: (
-                    <strong className="text-neutral-900 dark:text-white">{t.stepsToKm.ruleB}</strong>
+                    <strong className="text-foreground">{t.stepsToKm.ruleB}</strong>
                   ),
                 })}
               </p>
@@ -178,10 +178,10 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
                 {t.stepsToKm.cards.map((card) => (
                   <div
                     key={card.label}
-                    className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center"
+                    className="bg-surface rounded-lg p-3 text-center"
                   >
-                    <p className="text-lg font-bold text-[#ED772F]">{card.value}</p>
-                    <p className="text-xs text-neutral-500">{card.label}</p>
+                    <p className="text-lg font-bold text-accent">{card.value}</p>
+                    <p className="text-xs text-muted">{card.label}</p>
                   </div>
                 ))}
               </div>
@@ -191,7 +191,7 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
                   link: (
                     <a
                       href="/blog/how-many-steps-in-a-kilometer"
-                      className="text-[#ED772F] hover:underline"
+                      className="text-accent hover:underline"
                     >
                       {t.stepsToKm.guideLink}
                     </a>
@@ -205,23 +205,23 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
 
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               {t.kmTable.title}
             </h2>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">{t.kmTable.intro}</p>
+            <p className="text-sm text-muted mb-6">{t.kmTable.intro}</p>
 
             <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
               <table className="w-full min-w-[400px]">
                 <thead>
-                  <tr className="border-b-2 border-neutral-200 dark:border-neutral-700">
-                    <th className="text-left py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                  <tr className="border-b-2 border-border">
+                    <th className="text-left py-3 px-2 text-sm font-semibold text-foreground">
                       {t.kmTable.colDistance}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       {t.kmTable.colSteps}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       {t.kmTable.colTime}
                     </th>
                   </tr>
@@ -230,17 +230,17 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
                   {t.kmTable.rows.map((row, index) => (
                     <tr
                       key={row.distance}
-                      className={`border-b border-neutral-100 dark:border-neutral-700/50 ${
-                        index === KM_HIGHLIGHT ? "bg-[#ED772F]/5 dark:bg-[#ED772F]/10" : ""
+                      className={`border-b border-border  ${
+                        index === KM_HIGHLIGHT ? "bg-accent/5 dark:bg-chip" : ""
                       }`}
                     >
-                      <td className="py-3 px-2 text-sm font-medium text-neutral-900 dark:text-white">
+                      <td className="py-3 px-2 text-sm font-medium text-foreground">
                         {row.distance}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center font-semibold text-[#ED772F]">
+                      <td className="py-3 px-2 text-sm text-center font-semibold text-accent">
                         {row.steps}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                      <td className="py-3 px-2 text-sm text-center text-muted-soft">
                         {row.time}
                       </td>
                     </tr>
@@ -249,30 +249,30 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
               </table>
             </div>
 
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">{t.kmTable.footnote}</p>
+            <p className="text-xs text-muted mt-4">{t.kmTable.footnote}</p>
           </div>
         </div>
       </section>
 
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               {t.stepsTable.title}
             </h2>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">{t.stepsTable.intro}</p>
+            <p className="text-sm text-muted mb-6">{t.stepsTable.intro}</p>
 
             <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
               <table className="w-full min-w-[400px]">
                 <thead>
-                  <tr className="border-b-2 border-neutral-200 dark:border-neutral-700">
-                    <th className="text-left py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                  <tr className="border-b-2 border-border">
+                    <th className="text-left py-3 px-2 text-sm font-semibold text-foreground">
                       {t.stepsTable.colSteps}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       {t.stepsTable.colKm}
                     </th>
-                    <th className="text-center py-3 px-2 text-sm font-semibold text-neutral-900 dark:text-white">
+                    <th className="text-center py-3 px-2 text-sm font-semibold text-foreground">
                       {t.stepsTable.colMiles}
                     </th>
                   </tr>
@@ -281,17 +281,17 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
                   {t.stepsTable.rows.map((row, index) => (
                     <tr
                       key={row.steps}
-                      className={`border-b border-neutral-100 dark:border-neutral-700/50 ${
-                        index === STEPS_HIGHLIGHT ? "bg-[#ED772F]/5 dark:bg-[#ED772F]/10" : ""
+                      className={`border-b border-border  ${
+                        index === STEPS_HIGHLIGHT ? "bg-accent/5 dark:bg-chip" : ""
                       }`}
                     >
-                      <td className="py-3 px-2 text-sm font-medium text-neutral-900 dark:text-white">
+                      <td className="py-3 px-2 text-sm font-medium text-foreground">
                         {row.steps}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center font-semibold text-[#ED772F]">
+                      <td className="py-3 px-2 text-sm text-center font-semibold text-accent">
                         {row.km}
                       </td>
-                      <td className="py-3 px-2 text-sm text-center text-neutral-700 dark:text-neutral-300">
+                      <td className="py-3 px-2 text-sm text-center text-muted-soft">
                         {row.miles}
                       </td>
                     </tr>
@@ -300,7 +300,7 @@ export default async function StepDistanceCalculatorPage({ params }: LangPagePro
               </table>
             </div>
 
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4">{t.stepsTable.footnote}</p>
+            <p className="text-xs text-muted mt-4">{t.stepsTable.footnote}</p>
           </div>
         </div>
       </section>

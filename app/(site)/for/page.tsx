@@ -36,15 +36,15 @@ export default function PersonaIndexPage() {
   const personas = getAllPersonas();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <LandingNavbar />
 
       <section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             Steps for Everyone
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted max-w-2xl mx-auto">
             No matter your age, goal, or lifestyle — Steps is built to help you
             move more. Find features tailored for you.
           </p>
@@ -58,13 +58,13 @@ export default function PersonaIndexPage() {
               <Link
                 key={persona.slug}
                 href={`/for/${persona.slug}`}
-                className="group p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50 hover:border-[#ED772F] dark:hover:border-[#ED772F] transition-colors"
+                className="group p-6 rounded-2xl bg-surface  border border-border hover:border-accent dark:hover:border-accent transition-colors"
               >
                 <span className="text-3xl mb-3 block">{persona.icon}</span>
-                <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-[#ED772F] transition-colors">
+                <h2 className="text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
                   {persona.headline}
                 </h2>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
+                <p className="text-sm text-muted line-clamp-2">
                   {persona.subheadline}
                 </p>
               </Link>
@@ -75,10 +75,10 @@ export default function PersonaIndexPage() {
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-neutral-900 dark:text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
             Ready to Start Walking?
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
+          <p className="text-muted mb-8 max-w-xl mx-auto">
             Download Steps for free and discover why thousands trust it as their
             daily fitness companion.
           </p>
@@ -104,7 +104,7 @@ export default function PersonaIndexPage() {
               className="h-12 w-auto hidden dark:block"
             />
           </a>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">
+          <p className="text-sm text-muted mt-4">
             Free on the App Store
           </p>
         </div>

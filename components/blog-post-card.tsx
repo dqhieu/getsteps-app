@@ -9,7 +9,7 @@ interface Props {
 export function BlogPostCard({ post }: Props) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
-      <article className="h-full border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden hover:border-orange-500 dark:hover:border-orange-500 transition-colors bg-white dark:bg-neutral-900">
+      <article className="h-full overflow-hidden rounded-[20px] bg-card shadow-[var(--shadow-border)] transition-[box-shadow,transform] duration-150 hover:-translate-y-px hover:shadow-[var(--shadow-border-hover)]">
         {post.image && (
           <div className="relative aspect-video overflow-hidden">
             <Image
@@ -21,13 +21,13 @@ export function BlogPostCard({ post }: Props) {
           </div>
         )}
         <div className="p-6">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-orange-500 transition-colors line-clamp-2">
+          <h2 className="text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors line-clamp-2">
             {post.title}
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-2">
+          <p className="text-muted text-sm mb-4 line-clamp-2">
             {post.description}
           </p>
-          <div className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-500">
+          <div className="flex items-center gap-3 text-sm text-muted">
             {post.author.avatar && (
               <Image
                 src={post.author.avatar}
@@ -38,7 +38,7 @@ export function BlogPostCard({ post }: Props) {
               />
             )}
             <span>{post.author.name}</span>
-            <span className="text-neutral-300 dark:text-neutral-700">•</span>
+            <span className="text-muted">•</span>
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",

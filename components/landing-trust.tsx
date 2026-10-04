@@ -82,7 +82,7 @@ export function LandingTrust({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
                   href={article.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-white/15 px-4 py-1.5 text-sm font-medium text-white/70 hover:border-[#ED772F]/50 hover:text-[#ED772F] transition-colors"
+                  className="rounded-full border border-white/15 px-4 py-1.5 text-sm font-medium text-white/70 hover:border-accent/50 hover:text-accent transition-colors"
                 >
                   {article.outlet}
                 </a>
@@ -119,7 +119,7 @@ export function LandingTrust({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         >
           {REVIEWS.map((review, index) => (
             <Reveal key={review.title} delay={(index % 4) * 60}>
-              <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+              <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-card/[0.04] p-6">
                 <div className="text-amber-500 mb-3" aria-label={t.fiveStars}>
                   ★★★★★
                 </div>

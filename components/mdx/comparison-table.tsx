@@ -38,17 +38,17 @@ export function ComparisonTable(props: Props) {
 
   return (
     <div className="not-prose my-8 overflow-x-auto">
-      <table className="min-w-full border-separate border-spacing-0 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 text-sm">
+      <table className="min-w-full border-separate border-spacing-0 overflow-hidden rounded-xl border border-border text-sm">
         {caption && (
-          <caption className="caption-top pb-3 text-left text-sm text-neutral-500 dark:text-neutral-400">
+          <caption className="caption-top pb-3 text-left text-sm text-muted">
             {caption}
           </caption>
         )}
-        <thead className="bg-neutral-50 dark:bg-neutral-900">
+        <thead className="bg-surface ">
           <tr>
             <th
               scope="col"
-              className="px-4 py-3 text-left font-semibold text-neutral-900 dark:text-white"
+              className="px-4 py-3 text-left font-semibold text-foreground"
             >
               {featureLabel}
             </th>
@@ -59,8 +59,8 @@ export function ComparisonTable(props: Props) {
                 className={[
                   "px-4 py-3 text-left font-semibold",
                   col.highlight
-                    ? "text-orange-600 dark:text-orange-400"
-                    : "text-neutral-900 dark:text-white",
+                    ? "text-chip-text"
+                    : "text-foreground",
                 ].join(" ")}
               >
                 {col.label}
@@ -74,13 +74,13 @@ export function ComparisonTable(props: Props) {
               key={i}
               className={
                 i % 2 === 0
-                  ? "bg-white dark:bg-neutral-950"
-                  : "bg-neutral-50/60 dark:bg-neutral-900/40"
+                  ? "bg-card "
+                  : "bg-surface/60 "
               }
             >
               <th
                 scope="row"
-                className="border-t border-neutral-200 dark:border-neutral-800 px-4 py-3 text-left font-medium text-neutral-900 dark:text-white"
+                className="border-t border-border px-4 py-3 text-left font-medium text-foreground"
               >
                 {row.label}
               </th>
@@ -88,8 +88,8 @@ export function ComparisonTable(props: Props) {
                 <td
                   key={col.key}
                   className={[
-                    "border-t border-neutral-200 dark:border-neutral-800 px-4 py-3 align-top text-neutral-700 dark:text-neutral-300",
-                    col.highlight ? "bg-orange-50/50 dark:bg-orange-500/5" : "",
+                    "border-t border-border px-4 py-3 align-top text-muted-soft",
+                    col.highlight ? "bg-chip" : "",
                   ].join(" ")}
                 >
                   {row.cells[col.key] ?? "—"}

@@ -47,7 +47,7 @@ export default async function StepsToCaloriesCategoryPage({ params }: LangPagePr
   ]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -57,56 +57,56 @@ export default async function StepsToCaloriesCategoryPage({ params }: LangPagePr
         <div className="container mx-auto px-4 max-w-4xl">
           <nav
             aria-label={t.breadcrumbLabel}
-            className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 flex flex-wrap gap-x-2"
+            className="text-sm text-muted mb-6 flex flex-wrap gap-x-2"
           >
-            <Link href={localizePath(locale, "/")} className="hover:text-[#ED772F]">
+            <Link href={localizePath(locale, "/")} className="hover:text-accent">
               {common.breadcrumbs.home}
             </Link>
             <span aria-hidden>/</span>
-            <Link href={localizePath(locale, "/conversions")} className="hover:text-[#ED772F]">
+            <Link href={localizePath(locale, "/conversions")} className="hover:text-accent">
               {common.breadcrumbs.conversions}
             </Link>
             <span aria-hidden>/</span>
-            <span className="text-neutral-700 dark:text-neutral-300">{page.crumb}</span>
+            <span className="text-muted-soft">{page.crumb}</span>
           </nav>
 
-          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
             {page.title}
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-10 max-w-2xl">{page.intro}</p>
+          <p className="text-lg text-muted mb-10 max-w-2xl">{page.intro}</p>
 
-          <section className="rounded-3xl bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 border border-[#ED772F]/20 p-6 md:p-8 mb-10">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
+          <section className="rounded-3xl bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 p-6 md:p-8 mb-10">
+            <h2 className="text-xl font-semibold text-foreground mb-3">
               {page.formulaTitle}
             </h2>
-            <p className="text-neutral-700 dark:text-neutral-300 mb-2">
-              <code className="px-2 py-1 rounded bg-white/60 dark:bg-black/30 font-mono text-sm">
+            <p className="text-muted-soft mb-2">
+              <code className="px-2 py-1 rounded bg-surface font-mono text-sm">
                 {interpolate(page.formula, {
                   factor: formatDecimal(0.04, locale, 2),
                   weight: num(70),
                 })}
               </code>
             </p>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-muted">
               {interpolate(page.formulaNote, { one: num(1), per: num(25) })}
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-semibold text-foreground mb-4">
               {interpolate(page.tableTitle, { lb: num(155), kg: num(70) })}
             </h2>
-            <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
+            <div className="overflow-x-auto rounded-[20px] bg-card shadow-[var(--shadow-border)]">
               <table className="w-full text-sm">
-                <thead className="bg-neutral-50 dark:bg-neutral-900/50">
+                <thead className="bg-surface">
                   <tr>
-                    <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                    <th className="text-left p-3 font-medium text-muted-soft">
                       {page.columns.steps}
                     </th>
-                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                    <th className="text-right p-3 font-medium text-muted-soft">
                       {page.columns.calories}
                     </th>
-                    <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                    <th className="text-right p-3 font-medium text-muted-soft">
                       {page.columns.detail}
                     </th>
                   </tr>
@@ -115,18 +115,18 @@ export default async function StepsToCaloriesCategoryPage({ params }: LangPagePr
                   {rows.map((row) => (
                     <tr
                       key={row.steps}
-                      className="border-t border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900/30"
+                      className="border-t border-border hover:bg-surface"
                     >
-                      <td className="p-3 text-neutral-900 dark:text-white font-medium tabular-nums">
+                      <td className="p-3 text-foreground font-medium tabular-nums">
                         {num(row.steps)}
                       </td>
-                      <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums">
+                      <td className="p-3 text-right text-foreground tabular-nums">
                         {interpolate(t.units.cal, { count: num(row.calories) })}
                       </td>
                       <td className="p-3 text-right">
                         <Link
                           href={localizePath(locale, `/conversions/steps-to-calories/${row.steps}`)}
-                          className="text-[#ED772F] hover:underline"
+                          className="text-accent hover:underline"
                         >
                           {interpolate(t.units.detailArrow, { count: num(row.steps) })}
                         </Link>
@@ -138,14 +138,14 @@ export default async function StepsToCaloriesCategoryPage({ params }: LangPagePr
             </div>
           </section>
 
-          <section className="rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-6 md:p-8">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+          <section className="rounded-[20px] bg-surface p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               {page.exactTitle}
             </h2>
-            <p className="text-neutral-600 dark:text-neutral-400 mb-4">{page.exactBody}</p>
+            <p className="text-muted mb-4">{page.exactBody}</p>
             <Link
               href={localizePath(locale, CALCULATOR)}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#ED772F] text-white font-medium hover:bg-[#d8651f] transition-colors"
+              className="inline-flex h-10 items-center gap-2 rounded-[10px] bg-[image:var(--gradient-button-primary),var(--gradient-button-primary-rim)] bg-origin-border px-5 text-sm font-semibold text-[var(--button-primary-text)] shadow-[var(--shadow-button-primary)] [background-clip:padding-box,border-box] transition-[transform,box-shadow] duration-[var(--duration-1)] hover:-translate-y-px hover:shadow-[var(--shadow-button-primary-hover)]"
             >
               {t.openCalculator}
             </Link>

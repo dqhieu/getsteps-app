@@ -49,11 +49,11 @@ export function HowTo(props: Props) {
 
   return (
     <section className="not-prose my-10">
-      <h2 className="mb-3 text-2xl font-semibold text-neutral-900 dark:text-white">
+      <h2 className="mb-3 text-2xl font-semibold text-foreground">
         {heading ?? name}
       </h2>
       {description && (
-        <p className="mb-5 text-neutral-700 dark:text-neutral-300 leading-relaxed">
+        <p className="mb-5 text-muted-soft leading-relaxed">
           {description}
         </p>
       )}
@@ -61,16 +61,16 @@ export function HowTo(props: Props) {
         {steps.map((s, i) => (
           <li
             key={i}
-            className="flex gap-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 p-4"
+            className="flex gap-4 rounded-xl bg-card shadow-[var(--shadow-border)] p-4"
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-500 text-sm font-semibold text-white">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white">
               {i + 1}
             </span>
             <div className="flex-1">
-              <p className="font-semibold text-neutral-900 dark:text-white">
+              <p className="font-semibold text-foreground">
                 {s.name}
               </p>
-              <p className="mt-1 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+              <p className="mt-1 text-sm leading-relaxed text-muted-soft">
                 {s.text}
               </p>
             </div>

@@ -26,7 +26,7 @@ export default async function BlogPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -34,10 +34,10 @@ export default async function BlogPage() {
       <LandingNavbar />
       <div className="container mx-auto px-4 pt-24 pb-12">
         <header className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Blog
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted max-w-2xl mx-auto">
             Tips, guides, and updates to help you stay active and reach your
             fitness goals.
           </p>
@@ -53,7 +53,7 @@ export default async function BlogPage() {
           </>
         ) : (
           <div className="text-center py-16">
-            <p className="text-neutral-500 dark:text-neutral-500">
+            <p className="text-muted">
               No blog posts yet. Check back soon!
             </p>
           </div>

@@ -102,15 +102,15 @@ export function StepsPerMileCalculator({
   return (
     <div className="space-y-8">
       {/* Input Card */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.yourInformation}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Height Input */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.height}
             </label>
             <div className="flex gap-2">
@@ -126,9 +126,9 @@ export function StepsPerMileCalculator({
                       if (val === "") return;
                       setHeightCm(Number(val));
                     }}
-                    className="w-full py-2 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                    className="w-full py-2 px-4 pr-12 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                     cm
                   </span>
                 </div>
@@ -145,9 +145,9 @@ export function StepsPerMileCalculator({
                         if (val === "") return;
                         setHeightFeet(Number(val));
                       }}
-                      className="w-full py-2 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                      className="w-full py-2 px-4 pr-10 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                       ft
                     </span>
                   </div>
@@ -162,9 +162,9 @@ export function StepsPerMileCalculator({
                         if (val === "") return;
                         setHeightInches(Number(val));
                       }}
-                      className="w-full py-2 px-4 pr-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                      className="w-full py-2 px-4 pr-10 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                       in
                     </span>
                   </div>
@@ -172,7 +172,7 @@ export function StepsPerMileCalculator({
               )}
               <button
                 onClick={() => handleHeightUnitChange(heightUnit === "cm" ? "ft" : "cm")}
-                className="py-2 px-3 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors"
+                className="py-2 px-3 rounded-lg bg-surface text-muted-soft hover:bg-ghost-hover text-sm font-medium transition-colors"
               >
                 {heightUnit === "cm" ? "ft" : "cm"}
               </button>
@@ -181,7 +181,7 @@ export function StepsPerMileCalculator({
 
           {/* Gender Selection */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.gender}
             </label>
             <div className="flex gap-2">
@@ -189,8 +189,8 @@ export function StepsPerMileCalculator({
                 onClick={() => setGender("male")}
                 className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
                   gender === "male"
-                    ? "bg-[#ED772F] text-white"
-                    : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                    ? "bg-accent text-white"
+                    : "bg-surface text-muted-soft hover:bg-ghost-hover"
                 }`}
               >
                 {t.male}
@@ -199,8 +199,8 @@ export function StepsPerMileCalculator({
                 onClick={() => setGender("female")}
                 className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
                   gender === "female"
-                    ? "bg-[#ED772F] text-white"
-                    : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                    ? "bg-accent text-white"
+                    : "bg-surface text-muted-soft hover:bg-ghost-hover"
                 }`}
               >
                 {t.female}
@@ -210,18 +210,18 @@ export function StepsPerMileCalculator({
         </div>
 
         {/* Step Length Display */}
-        <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <div className="mt-6 pt-6 border-t border-border">
+          <p className="text-sm text-muted">
             {rich(t.stepLength, {
               cm: (
-                <span className="font-semibold text-neutral-900 dark:text-white">
+                <span className="font-semibold text-foreground">
                   {interpolate(t.cmUnit, {
                     value: formatLoose(results.stepLengthCm, locale),
                   })}
                 </span>
               ),
               inches: (
-                <span className="text-neutral-500 dark:text-neutral-500 ml-1">
+                <span className="text-muted ml-1">
                   {interpolate(t.inchesUnit, {
                     value: formatLoose(results.stepLengthInches, locale),
                   })}
@@ -233,28 +233,28 @@ export function StepsPerMileCalculator({
       </div>
 
       {/* Results Card */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+              <h3 className="text-sm font-medium text-muted mb-2">
                 {t.stepsPerMile}
               </h3>
-              <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-4xl md:text-5xl font-bold text-foreground">
                 {formatNumber(results.stepsPerMile, locale)}
               </p>
-              <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-1">
+              <p className="text-sm text-muted mt-1">
                 {t.stepsUnit}
               </p>
             </div>
             <div>
-              <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+              <h3 className="text-sm font-medium text-muted mb-2">
                 {t.stepsPerKm}
               </h3>
-              <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-4xl md:text-5xl font-bold text-foreground">
                 {formatNumber(results.stepsPerKm, locale)}
               </p>
-              <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-1">
+              <p className="text-sm text-muted mt-1">
                 {t.stepsUnit}
               </p>
             </div>
@@ -265,22 +265,22 @@ export function StepsPerMileCalculator({
       {resultCta}
 
       {/* Reference Table */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-2">
           {t.referenceTitle}
         </h2>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+        <p className="text-sm text-muted mb-6">
           {t.referenceSubtitle}
         </p>
 
         <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
           <table className="w-full min-w-[300px]">
             <thead>
-              <tr className="border-b border-neutral-200 dark:border-neutral-700">
-                <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <tr className="border-b border-border">
+                <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                   {t.colDistance}
                 </th>
-                <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                   {t.colSteps}
                 </th>
               </tr>
@@ -289,15 +289,15 @@ export function StepsPerMileCalculator({
               {referenceTable.map((row) => (
                 <tr
                   key={row.label}
-                  className="border-b border-neutral-100 dark:border-neutral-700/50 hover:bg-neutral-50 dark:hover:bg-neutral-700/30 transition-colors"
+                  className="border-b border-border  hover:bg-surface  transition-colors"
                 >
                   <td className="py-3 px-2">
-                    <span className="font-semibold text-neutral-900 dark:text-white">
+                    <span className="font-semibold text-foreground">
                       {row.label}
                     </span>
                   </td>
                   <td className="py-3 px-2">
-                    <span className="text-neutral-900 dark:text-white">
+                    <span className="text-foreground">
                       {formatNumber(row.steps, locale)}
                     </span>
                   </td>

@@ -15,7 +15,7 @@ export function LandingHero({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
     <section className="relative pt-28 pb-16 md:pt-36 md:pb-24">
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         <Reveal>
-          <div className="relative w-20 h-20 md:w-24 md:h-24 mb-7 rounded-[22px] overflow-hidden shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+          <div className="relative w-20 h-20 md:w-24 md:h-24 mb-7 rounded-[22px] overflow-hidden shadow-sm ring-1 ring-border">
             <Image
               src="/app_icon.png"
               alt={t.iconAlt}
@@ -28,20 +28,20 @@ export function LandingHero({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
         </Reveal>
 
         <Reveal delay={60}>
-          <p className="text-sm font-medium tracking-tight text-neutral-500 dark:text-neutral-400 mb-4">
+          <p className="text-sm font-medium tracking-tight text-muted mb-4">
             {SITE_CONFIG.name}
           </p>
         </Reveal>
 
         <Reveal delay={120}>
-          <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-balance max-w-3xl text-neutral-900 dark:text-white">
+          <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-balance max-w-3xl text-foreground">
             {t.titleLead}{" "}
-            <span className="text-[#ED772F]">{t.titleAccent}</span>
+            <span className="text-accent">{t.titleAccent}</span>
           </h1>
         </Reveal>
 
         <Reveal delay={180}>
-          <p className="mt-5 text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl leading-relaxed text-pretty">
+          <p className="mt-5 text-lg md:text-xl text-muted max-w-xl leading-relaxed text-pretty">
             {t.subtitle}
           </p>
         </Reveal>
@@ -54,7 +54,7 @@ export function LandingHero({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
               width={150}
               height={50}
             />
-            <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
+            <div className="flex items-center gap-2 text-sm text-muted">
               <span className="text-amber-500" aria-hidden>
                 ★★★★★
               </span>
@@ -63,7 +63,7 @@ export function LandingHero({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
                   rating: SITE_CONFIG.appStoreRating,
                 })}
               </span>
-              <span className="text-neutral-300 dark:text-neutral-700">·</span>
+              <span className="text-muted">·</span>
               <span>{t.freeDownload}</span>
             </div>
           </div>

@@ -39,14 +39,14 @@ export function HeartRateZonesCalculator({
 
   return (
     <div className="space-y-8">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.yourDetails}
         </h2>
 
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.age}
             </label>
             <div className="relative max-w-xs">
@@ -54,16 +54,16 @@ export function HeartRateZonesCalculator({
                 type="number"
                 value={age}
                 onChange={(e) => setAge(Number(e.target.value))}
-                className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
+                className="w-full py-3 px-4 pr-16 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                 {plural(locale, age, t.years)}
               </span>
             </div>
           </div>
 
-          <div className="border-t border-neutral-200 dark:border-neutral-700 pt-6">
-            <p className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-4">
+          <div className="border-t border-border pt-6">
+            <p className="text-sm font-semibold text-muted-soft mb-4">
               {t.advanced}
             </p>
 
@@ -77,8 +77,8 @@ export function HeartRateZonesCalculator({
                     onClick={() => setUseRestingHR((v) => !v)}
                     className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0 ${
                       useRestingHR
-                        ? "bg-[#ED772F] border-[#ED772F]"
-                        : "border-neutral-400 dark:border-neutral-500 bg-transparent"
+                        ? "bg-accent border-accent"
+                        : "border-border bg-transparent"
                     }`}
                   >
                     {useRestingHR && (
@@ -87,7 +87,7 @@ export function HeartRateZonesCalculator({
                       </svg>
                     )}
                   </button>
-                  <span className="text-sm text-neutral-700 dark:text-neutral-300">
+                  <span className="text-sm text-muted-soft">
                     {t.knowResting}
                   </span>
                 </label>
@@ -99,13 +99,13 @@ export function HeartRateZonesCalculator({
                         type="number"
                         value={restingHR}
                         onChange={(e) => setRestingHR(Number(e.target.value))}
-                        className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                        className="w-full py-3 px-4 pr-16 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                       />
-                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                         {t.bpm}
                       </span>
                     </div>
-                    <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                    <p className="mt-1 text-xs text-muted">
                       {t.restingHint}
                     </p>
                   </div>
@@ -121,8 +121,8 @@ export function HeartRateZonesCalculator({
                     onClick={() => setUseCustomMaxHR((v) => !v)}
                     className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0 ${
                       useCustomMaxHR
-                        ? "bg-[#ED772F] border-[#ED772F]"
-                        : "border-neutral-400 dark:border-neutral-500 bg-transparent"
+                        ? "bg-accent border-accent"
+                        : "border-border bg-transparent"
                     }`}
                   >
                     {useCustomMaxHR && (
@@ -131,7 +131,7 @@ export function HeartRateZonesCalculator({
                       </svg>
                     )}
                   </button>
-                  <span className="text-sm text-neutral-700 dark:text-neutral-300">
+                  <span className="text-sm text-muted-soft">
                     {t.knowMax}
                   </span>
                 </label>
@@ -143,13 +143,13 @@ export function HeartRateZonesCalculator({
                         type="number"
                         value={customMaxHR}
                         onChange={(e) => setCustomMaxHR(Number(e.target.value))}
-                        className="w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                        className="w-full py-3 px-4 pr-16 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                       />
-                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                         {t.bpm}
                       </span>
                     </div>
-                    <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                    <p className="mt-1 text-xs text-muted">
                       {t.maxHint}
                     </p>
                   </div>
@@ -160,25 +160,25 @@ export function HeartRateZonesCalculator({
         </div>
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6 mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6 mb-6">
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div>
-              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-1">
+              <p className="text-sm font-medium text-muted mb-1">
                 {t.maxHeartRate}
               </p>
               <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-bold text-neutral-900 dark:text-white">
+                <span className="text-5xl font-bold text-foreground">
                   {formatNumber(result.maxHR, locale)}
                 </span>
-                <span className="text-xl text-neutral-500 dark:text-neutral-400">{t.bpm}</span>
+                <span className="text-xl text-muted">{t.bpm}</span>
               </div>
             </div>
             <span
               className={`px-3 py-1 rounded-full text-sm font-semibold ${
                 result.method === "karvonen"
-                  ? "bg-[#ED772F]/15 text-[#ED772F]"
-                  : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300"
+                  ? "bg-accent/15 text-accent"
+                  : "bg-surface text-muted dark:text-muted"
               }`}
             >
               {result.method === "karvonen" ? t.methodKarvonen : t.methodStandard}
@@ -198,7 +198,7 @@ export function HeartRateZonesCalculator({
           </div>
           <div className="flex justify-between mt-1">
             {result.zones.map((zone) => (
-              <span key={zone.zone} className="text-xs text-neutral-500 dark:text-neutral-400 flex-1 text-center">
+              <span key={zone.zone} className="text-xs text-muted flex-1 text-center">
                 {interpolate(t.zoneBadge, { n: zone.zone })}
               </span>
             ))}
@@ -211,7 +211,7 @@ export function HeartRateZonesCalculator({
             return (
               <div
                 key={zone.zone}
-                className="flex items-center gap-4 p-4 rounded-xl bg-neutral-50 dark:bg-neutral-700/30"
+                className="flex items-center gap-4 p-4 rounded-xl bg-surface"
               >
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
@@ -221,22 +221,22 @@ export function HeartRateZonesCalculator({
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-neutral-900 dark:text-white text-sm">
+                  <p className="font-semibold text-foreground text-sm">
                     {copy.name}
                   </p>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">
+                  <p className="text-xs text-muted truncate">
                     {copy.benefit}
                   </p>
                 </div>
 
                 <div className="text-right flex-shrink-0">
-                  <p className="font-bold text-neutral-900 dark:text-white text-sm">
+                  <p className="font-bold text-foreground text-sm">
                     {interpolate(t.bpmRange, {
                       min: formatNumber(zone.minBpm, locale),
                       max: formatNumber(zone.maxBpm, locale),
                     })}
                   </p>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                  <p className="text-xs text-muted">
                     {interpolate(t.pctRange, {
                       min: formatNumber(Math.round(zone.pctMin * 100), locale),
                       max: formatNumber(Math.round(zone.pctMax * 100), locale),

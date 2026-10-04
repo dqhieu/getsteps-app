@@ -26,7 +26,7 @@ export function FAQ({ items, heading = "Frequently Asked Questions" }: Props) {
     <section className="not-prose my-10" aria-labelledby="faq-heading">
       <h2
         id="faq-heading"
-        className="mb-5 text-2xl font-semibold text-neutral-900 dark:text-white"
+        className="mb-5 text-2xl font-semibold text-foreground"
       >
         {heading}
       </h2>
@@ -34,15 +34,15 @@ export function FAQ({ items, heading = "Frequently Asked Questions" }: Props) {
         {items.map((it, i) => (
           <details
             key={i}
-            className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 p-4 open:shadow-sm transition-shadow"
+            className="group rounded-xl bg-card shadow-[var(--shadow-border)] p-4 open:shadow-sm transition-shadow"
           >
-            <summary className="cursor-pointer list-none font-medium text-neutral-900 dark:text-white marker:hidden [&::-webkit-details-marker]:hidden flex items-start justify-between gap-3">
+            <summary className="cursor-pointer list-none font-medium text-foreground marker:hidden [&::-webkit-details-marker]:hidden flex items-start justify-between gap-3">
               <span>{it.q}</span>
-              <span aria-hidden className="text-neutral-400 group-open:rotate-45 transition-transform">
+              <span aria-hidden className="text-muted group-open:rotate-45 transition-transform">
                 +
               </span>
             </summary>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+            <p className="mt-3 text-sm leading-relaxed text-muted-soft">
               {it.a}
             </p>
           </details>

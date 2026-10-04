@@ -22,20 +22,20 @@ export function PersonaHero({ headline, subheadline }: PersonaHeroProps) {
         </div>
 
         {/* Headline */}
-        <h1 className="text-4xl md:text-6xl font-medium tracking-tight mb-4 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
+        <h1 className="text-4xl md:text-6xl font-medium tracking-tight mb-4 max-w-4xl text-foreground">
           {headline}
         </h1>
 
         {/* Subheadline */}
-        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mb-6 leading-relaxed">
+        <p className="text-lg md:text-xl text-muted max-w-2xl mb-6 leading-relaxed">
           {subheadline}
         </p>
 
         {/* Rating */}
-        <div className="flex items-center gap-2 mb-8 text-sm text-neutral-600 dark:text-neutral-400">
+        <div className="flex items-center gap-2 mb-8 text-sm text-muted">
           <span className="text-amber-500">★★★★★</span>
           <span>{SITE_CONFIG.appStoreRating} Rating</span>
-          <span className="text-neutral-300 dark:text-neutral-700">·</span>
+          <span className="text-muted">·</span>
           <span>Free Download</span>
         </div>
 

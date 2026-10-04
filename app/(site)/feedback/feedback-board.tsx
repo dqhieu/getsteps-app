@@ -9,10 +9,10 @@ type FilterTab = "all" | "pending" | "accepted" | "inprogress" | "done" | "rejec
 type SortOption = "votes" | "newest" | "oldest";
 
 const STATUS_CONFIG = {
-  pending: { label: "Pending", color: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400" },
+  pending: { label: "Pending", color: "bg-chip text-chip-text" },
   accepted: { label: "Accepted", color: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" },
   rejected: { label: "Rejected", color: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400" },
-  done: { label: "Done", color: "bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300" },
+  done: { label: "Done", color: "bg-surface text-muted-soft  dark:text-muted" },
   inprogress: { label: "In Progress", color: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400" },
 } as const;
 
@@ -94,15 +94,15 @@ function AppStoreDialog({ mode, onClose }: { mode: DialogMode; onClose: () => vo
       onClick={onClose}
     >
       <div
-        className={`w-full max-w-sm rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 shadow-xl transition-all duration-200 ${
+        className={`w-full max-w-sm rounded-2xl bg-card border border-border p-6 shadow-xl transition-all duration-200 ${
           visible ? "opacity-100 scale-100" : "opacity-0 scale-95"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+        <h3 className="text-lg font-semibold text-foreground mb-2">
           {title}
         </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+        <p className="text-sm text-muted mb-6">
           {description}
         </p>
         <div className="flex flex-col gap-3">
@@ -110,7 +110,7 @@ function AppStoreDialog({ mode, onClose }: { mode: DialogMode; onClose: () => vo
             href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-xl bg-[#ED772F] px-5 py-3 text-sm font-medium text-white hover:bg-[#d9691f] transition-colors"
+            className="flex items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-medium text-white hover:bg-[#d9691f] transition-colors"
           >
             <Image
               src="/app_icon.png"
@@ -123,7 +123,7 @@ function AppStoreDialog({ mode, onClose }: { mode: DialogMode; onClose: () => vo
           </a>
           <button
             onClick={onClose}
-            className="text-sm text-neutral-500 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+            className="text-sm text-muted hover:text-muted-soft dark:hover:text-muted transition-colors"
           >
             Maybe later
           </button>
@@ -173,12 +173,12 @@ export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
   return (
     <>
       {/* Stats bar */}
-      <div className="flex flex-wrap gap-4 mb-8 text-sm text-neutral-600 dark:text-neutral-400">
+      <div className="flex flex-wrap gap-4 mb-8 text-sm text-muted">
         <span>
-          <span className="font-semibold text-neutral-900 dark:text-white">{stats.total}</span> requests
+          <span className="font-semibold text-foreground">{stats.total}</span> requests
         </span>
         <span>
-          <span className="font-semibold text-orange-600 dark:text-orange-400">{stats.pending}</span> pending
+          <span className="font-semibold text-chip-text">{stats.pending}</span> pending
         </span>
         <span>
           <span className="font-semibold text-green-600 dark:text-green-400">{stats.accepted}</span> accepted
@@ -187,7 +187,7 @@ export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
           <span className="font-semibold text-purple-600 dark:text-purple-400">{stats.inprogress}</span> in progress
         </span>
         <span>
-          <span className="font-semibold text-neutral-700 dark:text-neutral-300">{stats.done}</span> done
+          <span className="font-semibold text-muted-soft">{stats.done}</span> done
         </span>
         <span>
           <span className="font-semibold text-red-600 dark:text-red-400">{stats.rejected}</span> rejected
@@ -197,15 +197,15 @@ export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
       {/* Controls */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         {/* Filter tabs */}
-        <div className="flex gap-1 rounded-xl bg-neutral-100 dark:bg-neutral-900 p-1">
+        <div className="flex gap-1 rounded-xl bg-surface  p-1">
           {FILTER_TABS.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setFilter(tab.key)}
               className={`px-3 py-1.5 text-sm rounded-lg font-medium transition-colors ${
                 filter === tab.key
-                  ? "bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white shadow-sm"
-                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                  ? "bg-card text-foreground shadow-sm"
+                  : "text-muted hover:text-foreground"
               }`}
             >
               {tab.label}
@@ -218,7 +218,7 @@ export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortOption)}
-            className="text-sm rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white pl-3 pr-9 py-1.5 appearance-none bg-[length:16px_16px] bg-[position:right_0.5rem_center] bg-no-repeat bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23737373%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')]"
+            className="text-sm rounded-lg border border-border bg-card text-foreground pl-3 pr-9 py-1.5 appearance-none bg-[length:16px_16px] bg-[position:right_0.5rem_center] bg-no-repeat bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23737373%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')]"
           >
             <option value="votes">Most Voted</option>
             <option value="newest">Newest</option>
@@ -228,7 +228,7 @@ export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
           {/* Submit feedback button */}
           <button
             onClick={() => setDialogMode("submit")}
-            className="text-sm rounded-lg bg-[#ED772F] px-4 py-1.5 font-medium text-white hover:bg-[#d9691f] transition-colors"
+            className="text-sm rounded-lg bg-accent px-4 py-1.5 font-medium text-white hover:bg-[#d9691f] transition-colors"
           >
             Submit Feedback
           </button>
@@ -237,7 +237,7 @@ export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
 
       {/* Feedback list */}
       {filtered.length === 0 ? (
-        <div className="text-center py-16 text-neutral-500 dark:text-neutral-500">
+        <div className="text-center py-16 text-muted">
           No feedback in this category yet.
         </div>
       ) : (
@@ -245,19 +245,19 @@ export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
           {filtered.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-[#ED772F]/50 dark:hover:border-[#ED772F]/50 transition-colors"
+              className="rounded-[20px] bg-card p-5 shadow-[var(--shadow-border)] hover:border-accent/50 dark:hover:border-accent/50 transition-colors"
             >
               <div className="flex gap-4">
                 {/* Upvote button */}
                 <button
                   onClick={() => setDialogMode("upvote")}
-                  className="flex flex-col items-center justify-start pt-0.5 shrink-0 rounded-lg px-1.5 py-1 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+                  className="flex flex-col items-center justify-start pt-0.5 shrink-0 rounded-lg px-1.5 py-1 hover:bg-ghost-hover transition-colors cursor-pointer"
                   title="Upvote this request"
                 >
-                  <span className="text-xs text-neutral-400 dark:text-neutral-500 group-hover:text-[#ED772F]">
+                  <span className="text-xs text-muted group-hover:text-accent">
                     ▲
                   </span>
-                  <span className="text-sm font-semibold text-neutral-900 dark:text-white">
+                  <span className="text-sm font-semibold text-foreground">
                     {item.upvotes}
                   </span>
                 </button>
@@ -270,17 +270,17 @@ export function FeedbackBoard({ items }: { items: FeatureRequest[] }) {
                     >
                       {STATUS_CONFIG[item.status].label}
                     </span>
-                    <span className="text-xs text-neutral-500 dark:text-neutral-500">
+                    <span className="text-xs text-muted">
                       {relativeTime(item.created_at)}
                     </span>
                   </div>
 
-                  <p className="text-sm text-neutral-800 dark:text-neutral-200 whitespace-pre-line">
+                  <p className="text-sm text-foreground whitespace-pre-line">
                     {item.content}
                   </p>
 
                   {item.response && (
-                    <blockquote className="mt-3 border-l-2 border-[#ED772F] pl-3 text-sm text-neutral-600 dark:text-neutral-400 italic">
+                    <blockquote className="mt-3 border-l-2 border-accent pl-3 text-sm text-muted italic">
                       {item.response}
                     </blockquote>
                   )}

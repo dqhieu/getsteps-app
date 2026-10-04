@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "@/app/globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 import { SITE_CONFIG } from "@/lib/constants";
 import { DEFAULT_LOCALE, HREFLANG, OG_LOCALE, type Locale } from "@/lib/i18n/config";
 
@@ -94,8 +95,8 @@ export const rootViewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0c0d" },
   ],
 };
 
@@ -109,7 +110,11 @@ export function RootDocument({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={HREFLANG[locale]}>
+    <html
+      lang={HREFLANG[locale]}
+      suppressHydrationWarning
+      className={`${bricolage.variable} h-full antialiased`}
+    >
       <head>
         <Script
           data-website-id="dfid_GHemojUg7quBdpkgDlIXS"
@@ -184,9 +189,11 @@ export function RootDocument({
           }}
         />
       </head>
-      <body className={`${bricolage.className} antialiased`}>
-        {children}
-        <Analytics />
+      <body className={`${bricolage.className} min-h-full bg-background text-foreground antialiased`}>
+        <ThemeProvider>
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

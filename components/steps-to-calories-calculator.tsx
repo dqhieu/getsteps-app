@@ -100,28 +100,28 @@ export function StepsToCaloriesCalculator({
 
   return (
     <div className="space-y-8">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.yourInformation}
         </h2>
 
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.steps}
             </label>
             <input
               type="number"
               value={steps}
               onChange={(e) => setSteps(Number(e.target.value))}
-              className="w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
+              className="w-full py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg"
               placeholder={t.stepsPlaceholder}
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.weight}
               </label>
               <div className="flex gap-2">
@@ -130,15 +130,15 @@ export function StepsToCaloriesCalculator({
                     type="number"
                     value={weight}
                     onChange={(e) => setWeight(Number(e.target.value))}
-                    className="w-full py-2 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                    className="w-full py-2 px-4 pr-12 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                     {weightUnit}
                   </span>
                 </div>
                 <button
                   onClick={() => handleWeightUnitChange(weightUnit === "kg" ? "lbs" : "kg")}
-                  className="py-2 px-3 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors"
+                  className="py-2 px-3 rounded-lg bg-surface text-muted-soft hover:bg-ghost-hover text-sm font-medium transition-colors"
                 >
                   {weightUnit === "kg" ? "lbs" : "kg"}
                 </button>
@@ -146,7 +146,7 @@ export function StepsToCaloriesCalculator({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.gender}
               </label>
               <div className="flex gap-2">
@@ -154,8 +154,8 @@ export function StepsToCaloriesCalculator({
                   onClick={() => setGender("male")}
                   className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
                     gender === "male"
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover"
                   }`}
                 >
                   {t.male}
@@ -164,8 +164,8 @@ export function StepsToCaloriesCalculator({
                   onClick={() => setGender("female")}
                   className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
                     gender === "female"
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover"
                   }`}
                 >
                   {t.female}
@@ -174,7 +174,7 @@ export function StepsToCaloriesCalculator({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.age}
               </label>
               <div className="relative">
@@ -188,9 +188,9 @@ export function StepsToCaloriesCalculator({
                     if (val === "") return;
                     setAge(Math.max(1, Math.min(120, Number(val))));
                   }}
-                  className="w-full py-2 px-4 pr-14 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                  className="w-full py-2 px-4 pr-14 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                   {t.years}
                 </span>
               </div>
@@ -199,18 +199,18 @@ export function StepsToCaloriesCalculator({
         </div>
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
-          <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6">
+          <h3 className="text-sm font-medium text-muted mb-4">
             {t.caloriesBurned}
           </h3>
 
           <div className="space-y-4">
             <div>
-              <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-4xl md:text-5xl font-bold text-foreground">
                 {formatNumber(results.calories, locale)} kcal
               </p>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">
+              <p className="text-lg text-muted mt-1">
                 {plural(locale, steps, t.fromSteps, {
                   steps: formatNumber(steps, locale),
                 })}
@@ -218,19 +218,19 @@ export function StepsToCaloriesCalculator({
             </div>
           </div>
 
-          <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-2 gap-4">
+          <div className="mt-6 pt-6 border-t border-accent/20 grid grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.distanceWalked}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {interpolate(t.distanceKm, {
                   distance: formatNumber(results.distanceKm, locale, {
                     maximumFractionDigits: 2,
                   }),
                 })}
               </p>
-              <p className="text-sm text-neutral-500 dark:text-neutral-500">
+              <p className="text-sm text-muted">
                 {interpolate(t.distanceMiles, {
                   miles: formatNumber(results.distanceMiles, locale, {
                     maximumFractionDigits: 2,
@@ -239,10 +239,10 @@ export function StepsToCaloriesCalculator({
               </p>
             </div>
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.walkingTime}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {formatTime(results.walkingMinutes)}
               </p>
             </div>
@@ -251,17 +251,17 @@ export function StepsToCaloriesCalculator({
 
         {results.foodEquivalents.length > 0 && (
           <div className="mt-6">
-            <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">
+            <h3 className="text-sm font-medium text-muted-soft mb-3">
               {t.equivalentTo}
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {results.foodEquivalents.map((item) => (
                 <div
                   key={item.food}
-                  className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center"
+                  className="bg-surface rounded-lg p-3 text-center"
                 >
                   <p className="text-2xl mb-1">{FOOD_EMOJIS[item.food] || "🍽️"}</p>
-                  <p className="text-lg font-semibold text-neutral-900 dark:text-white">
+                  <p className="text-lg font-semibold text-foreground">
                     {item.amount === "½"
                       ? item.amount
                       : formatNumber(Number(item.amount), locale, {
@@ -269,7 +269,7 @@ export function StepsToCaloriesCalculator({
                           maximumFractionDigits: 1,
                         })}
                   </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <p className="text-sm text-muted">
                     {foodName(item.food)}
                   </p>
                 </div>
@@ -281,11 +281,11 @@ export function StepsToCaloriesCalculator({
 
       {resultCta}
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-2">
           {t.referenceTitle}
         </h2>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+        <p className="text-sm text-muted mb-6">
           {interpolate(t.referenceIntro, {
             weight: formatNumber(weight, locale),
             unit: weightUnit,
@@ -295,11 +295,11 @@ export function StepsToCaloriesCalculator({
         <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
           <table className="w-full min-w-[300px]">
             <thead>
-              <tr className="border-b border-neutral-200 dark:border-neutral-700">
-                <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <tr className="border-b border-border">
+                <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                   {t.columns.steps}
                 </th>
-                <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                   {t.columns.calories}
                 </th>
               </tr>
@@ -308,15 +308,15 @@ export function StepsToCaloriesCalculator({
               {referenceTable.map((row) => (
                 <tr
                   key={row.steps}
-                  className="border-b border-neutral-100 dark:border-neutral-700/50 hover:bg-neutral-50 dark:hover:bg-neutral-700/30 transition-colors"
+                  className="border-b border-border  hover:bg-surface  transition-colors"
                 >
                   <td className="py-3 px-2">
-                    <span className="font-semibold text-neutral-900 dark:text-white">
+                    <span className="font-semibold text-foreground">
                       {formatNumber(row.steps, locale)}
                     </span>
                   </td>
                   <td className="py-3 px-2">
-                    <span className="text-neutral-900 dark:text-white">
+                    <span className="text-foreground">
                       {interpolate(t.kcal, {
                         calories: formatNumber(row.calories, locale),
                       })}

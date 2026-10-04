@@ -11,7 +11,7 @@ export function LandingCTA({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
       <div className="container mx-auto px-4">
         <Reveal>
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-balance mb-7 text-neutral-900 dark:text-white">
+            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-balance mb-7 text-foreground">
               {t.title}
             </h2>
             <AppStoreBadge
@@ -21,7 +21,7 @@ export function LandingCTA({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
               width={150}
               height={50}
             />
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            <p className="text-sm text-muted">
               {t.footnote}
             </p>
           </div>

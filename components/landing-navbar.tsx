@@ -4,10 +4,12 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 import { docsPath, localizePath } from "@/lib/i18n/href";
 import { getCommonMessages } from "@/lib/i18n/messages/common";
+import { ThemeToggle } from "./theme-toggle";
+import { Button } from "./ui/button";
 import { LanguageSwitcher } from "./language-switcher";
 
 const LINK_CLASS =
-  "text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors";
+  "text-sm font-medium text-foreground transition-opacity duration-150 hover:opacity-70";
 
 /**
  * Pass `locale` on pages that exist in every language; that also enables the
@@ -20,24 +22,22 @@ export function LandingNavbar({ locale }: { locale?: Locale }) {
   const secondaryClass = locale ? `${LINK_CLASS} hidden sm:inline` : LINK_CLASS;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-200 dark:border-neutral-800">
-      <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-        {/* Logo */}
-        <Link href={localizePath(lang, "/")} className="flex items-center gap-2">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 pt-3">
+      <div className="mx-auto flex h-11 w-full max-w-6xl items-center justify-between gap-3 rounded-full bg-background px-3 shadow-[var(--shadow-border)] sm:px-4">
+        <Link href={localizePath(lang, "/")} className="flex min-w-0 items-center gap-2">
           <Image
             src="/app_icon.png"
             alt="Steps"
-            width={32}
-            height={32}
-            className="rounded-lg ring-1 ring-black/10 dark:ring-white/10"
+            width={20}
+            height={20}
+            className="size-5 shrink-0 rounded-full ring-1 ring-border"
           />
-          <span className="font-semibold text-neutral-900 dark:text-white hidden sm:inline">
+          <span className="hidden truncate text-sm font-medium tracking-tight text-foreground sm:inline">
             Steps: Workout & Pedometer
           </span>
         </Link>
 
-        {/* Nav Links */}
-        <div className="flex items-center gap-4 sm:gap-6">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-5">
           <Link href={localizePath(lang, "/tools")} className={LINK_CLASS}>
             {t.nav.tools}
           </Link>
@@ -51,14 +51,17 @@ export function LandingNavbar({ locale }: { locale?: Locale }) {
             {t.nav.docs}
           </Link>
           {locale && <LanguageSwitcher locale={locale} label={t.language.label} />}
-          <a
-            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[40px] items-center justify-center text-sm font-medium px-4 py-1.5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 transition-[opacity,transform] duration-150 hover:opacity-90 active:scale-[0.96]"
-          >
-            {t.nav.download}
-          </a>
+          <ThemeToggle />
+          <Button asChild variant="primary" size="sm">
+            <a
+              href={SITE_CONFIG.appStoreUrl}
+              data-fast-goal="open-app-store"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t.nav.download}
+            </a>
+          </Button>
         </div>
       </div>
     </nav>

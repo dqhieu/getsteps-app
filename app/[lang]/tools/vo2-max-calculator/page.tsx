@@ -37,15 +37,15 @@ export default async function Vo2MaxCalculatorPage({ params }: LangPageProps) {
   const t = await loadVo2MaxCalculatorMessages(locale);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <LandingNavbar locale={locale} />
 
       <section className="pt-24 pb-8 md:pt-32 md:pb-12">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t.hero.title}
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted max-w-2xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>
@@ -53,7 +53,7 @@ export default async function Vo2MaxCalculatorPage({ params }: LangPageProps) {
 
       <section className="pb-4">
         <div className="container mx-auto px-4 max-w-3xl">
-          <p className="text-neutral-600 dark:text-neutral-400 text-center">{t.intro}</p>
+          <p className="text-muted text-center">{t.intro}</p>
         </div>
       </section>
 
@@ -63,20 +63,20 @@ export default async function Vo2MaxCalculatorPage({ params }: LangPageProps) {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-12 md:py-16 bg-surface">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-6">
+          <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+            <h2 className="text-xl font-semibold text-foreground mb-6">
               {t.info.title}
             </h2>
 
             <div className="space-y-4">
               {t.faq.map((item) => (
                 <details key={item.question} className="group">
-                  <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors">
+                  <summary className="cursor-pointer font-medium text-foreground hover:text-accent transition-colors">
                     {item.question}
                   </summary>
-                  <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{item.answer}</p>
+                  <p className="mt-2 text-sm text-muted">{item.answer}</p>
                 </details>
               ))}
             </div>

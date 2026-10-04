@@ -13,7 +13,7 @@ export function PersonaLinks({ items, locale = DEFAULT_LOCALE }: PersonaLinksPro
 
   return (
     <div className="mt-4">
-      <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">
+      <p className="text-sm font-medium text-muted-soft mb-3">
         Steps For
       </p>
       <div className="flex flex-wrap gap-2">
@@ -21,7 +21,7 @@ export function PersonaLinks({ items, locale = DEFAULT_LOCALE }: PersonaLinksPro
           <Link
             key={item.slug}
             href={`/for/${item.slug}`}
-            className="text-sm px-3 py-1.5 rounded-lg bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 hover:bg-orange-100 dark:hover:bg-orange-900/40 transition-colors"
+            className="text-sm px-3 py-1.5 rounded-lg bg-chip text-chip-text hover:bg-accent/15 transition-colors"
           >
             {item.title}
           </Link>

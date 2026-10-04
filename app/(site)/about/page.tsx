@@ -45,25 +45,25 @@ export default function AboutPage() {
   return (
     <>
       <LandingNavbar />
-      <main className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white selection:bg-orange-500/30">
+      <main className="min-h-screen bg-background text-foreground selection:bg-accent/30">
         <div className="pt-24 pb-16 md:pt-32 md:pb-20">
           <div className="container mx-auto px-4 max-w-4xl">
             {/* Hero */}
             <header className="mb-12">
-              <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
+              <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-3 text-foreground">
                 About Steps
               </h1>
-              <p className="text-neutral-600 dark:text-neutral-400">
+              <p className="text-muted">
                 Built by runners who wanted a step counter that felt right.
               </p>
             </header>
 
             {/* Our Story */}
             <section className="mb-16">
-              <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-6">
+              <h2 className="text-xl font-medium text-foreground mb-6">
                 Our Story
               </h2>
-              <div className="space-y-4 text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <div className="space-y-4 text-muted leading-relaxed">
                 <p>
                   My wife and I started running last year. Neither of us was
                   particularly athletic — we just wanted to move more and clear
@@ -92,7 +92,7 @@ export default function AboutPage() {
                 {PHOTOS.map((photo) => (
                   <div
                     key={photo.src}
-                    className={`relative ${photo.aspect} rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900`}
+                    className={`relative ${photo.aspect} rounded-2xl overflow-hidden bg-surface `}
                   >
                     <Image
                       src={photo.src}
@@ -108,14 +108,14 @@ export default function AboutPage() {
 
             {/* By the Numbers */}
             <section className="mb-16">
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 p-8">
+              <div className="rounded-2xl border border-border p-8">
                 <div className="grid grid-cols-3 gap-6 text-center">
                   {STATS.map((stat) => (
                     <div key={stat.label}>
-                      <p className="text-2xl md:text-3xl font-semibold text-neutral-900 dark:text-white mb-1">
+                      <p className="text-2xl md:text-3xl font-semibold text-foreground mb-1">
                         {stat.value}
                       </p>
-                      <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                      <p className="text-sm text-muted">
                         {stat.label}
                       </p>
                     </div>
@@ -126,31 +126,31 @@ export default function AboutPage() {
 
             {/* Related Reading */}
             <section className="mb-16">
-              <h2 className="text-xl font-medium text-neutral-900 dark:text-white mb-6">
+              <h2 className="text-xl font-medium text-foreground mb-6">
                 Related Reading
               </h2>
               <div className="grid sm:grid-cols-3 gap-4">
                 <Link
                   href="/blog/benefits-of-walking-everyday"
-                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                  className="block rounded-[20px] bg-card p-5 shadow-[var(--shadow-border)] transition-[box-shadow,transform] duration-150 hover:-translate-y-px hover:shadow-[var(--shadow-border-hover)]"
                 >
-                  <p className="font-medium text-neutral-900 dark:text-white">
+                  <p className="font-medium text-foreground">
                     Benefits of Walking Every Day
                   </p>
                 </Link>
                 <Link
                   href="/blog/10000-steps-a-day-benefits"
-                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                  className="block rounded-[20px] bg-card p-5 shadow-[var(--shadow-border)] transition-[box-shadow,transform] duration-150 hover:-translate-y-px hover:shadow-[var(--shadow-border-hover)]"
                 >
-                  <p className="font-medium text-neutral-900 dark:text-white">
+                  <p className="font-medium text-foreground">
                     10,000 Steps a Day Benefits
                   </p>
                 </Link>
                 <Link
                   href="/press"
-                  className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-orange-500/50 dark:hover:border-orange-500/50 transition-colors"
+                  className="block rounded-[20px] bg-card p-5 shadow-[var(--shadow-border)] transition-[box-shadow,transform] duration-150 hover:-translate-y-px hover:shadow-[var(--shadow-border-hover)]"
                 >
-                  <p className="font-medium text-neutral-900 dark:text-white">
+                  <p className="font-medium text-foreground">
                     In the Press
                   </p>
                 </Link>
@@ -159,7 +159,7 @@ export default function AboutPage() {
 
             {/* Download CTA */}
             <section className="text-center">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-neutral-900 dark:text-white">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
                 Ready to track every step?
               </h2>
               <a
@@ -184,7 +184,7 @@ export default function AboutPage() {
                   className="h-14 w-auto hidden dark:block"
                 />
               </a>
-              <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 Free forever · Pro features available
               </p>
             </section>

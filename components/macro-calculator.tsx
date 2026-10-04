@@ -51,9 +51,9 @@ export function MacroCalculator({
   };
 
   const btnBase = "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors";
-  const btnActive = `${btnBase} bg-[#ED772F] text-white`;
-  const btnInactive = `${btnBase} bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400`;
-  const inputCls = "w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent";
+  const btnActive = `${btnBase} bg-accent text-white`;
+  const btnInactive = `${btnBase} bg-surface text-muted`;
+  const inputCls = "w-full py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]";
 
   const macros = result
     ? [
@@ -65,9 +65,9 @@ export function MacroCalculator({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50 space-y-5">
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)] space-y-5">
         <div>
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.gender}</label>
+          <label className="block text-sm font-medium text-muted-soft mb-2">{t.gender}</label>
           <div className="flex gap-2">
             <button onClick={() => setGender("male")} className={gender === "male" ? btnActive : btnInactive}>{t.male}</button>
             <button onClick={() => setGender("female")} className={gender === "female" ? btnActive : btnInactive}>{t.female}</button>
@@ -75,12 +75,12 @@ export function MacroCalculator({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.age}</label>
+          <label className="block text-sm font-medium text-muted-soft mb-2">{t.age}</label>
           <input type="number" value={age} onChange={(e) => setAge(Number(e.target.value))} className={inputCls} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.weight}</label>
+          <label className="block text-sm font-medium text-muted-soft mb-2">{t.weight}</label>
           <div className="flex gap-2">
             <div className="relative flex-1">
               <input type="number" value={weight} onChange={(e) => {
@@ -88,16 +88,16 @@ export function MacroCalculator({
                     if (val === "") return;
                     setWeight(Number(val));
                   }} className={`${inputCls} pr-12`} />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-sm pointer-events-none">{weightUnit}</span>
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">{weightUnit}</span>
             </div>
-            <button onClick={handleWeightUnitToggle} className="py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors">
+            <button onClick={handleWeightUnitToggle} className="py-3 px-4 rounded-lg bg-surface text-muted-soft hover:bg-ghost-hover text-sm font-medium transition-colors">
               {weightUnit === "kg" ? "lbs" : "kg"}
             </button>
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.height}</label>
+          <label className="block text-sm font-medium text-muted-soft mb-2">{t.height}</label>
           <div className="relative">
             <input
               type="text"
@@ -110,12 +110,12 @@ export function MacroCalculator({
                 setHeightCm(Number(val));
               }}
               className={`${inputCls} pr-12`} />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-sm pointer-events-none">cm</span>
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">cm</span>
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.activityLevel}</label>
+          <label className="block text-sm font-medium text-muted-soft mb-2">{t.activityLevel}</label>
           <div className="flex flex-wrap gap-2">
             {ACTIVITY_LEVELS.map((level) => (
               <button key={level} onClick={() => setActivityLevel(level)} className={activityLevel === level ? btnActive : btnInactive}>
@@ -126,7 +126,7 @@ export function MacroCalculator({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.goal}</label>
+          <label className="block text-sm font-medium text-muted-soft mb-2">{t.goal}</label>
           <div className="flex gap-2">
             {GOALS.map((g) => (
               <button key={g} onClick={() => setGoal(g)} className={goal === g ? btnActive : btnInactive}>
@@ -136,17 +136,17 @@ export function MacroCalculator({
           </div>
         </div>
 
-        <button onClick={handleCalculate} className="w-full bg-[#ED772F] hover:bg-[#d4651f] text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+        <button onClick={handleCalculate} className="inline-flex h-12 w-full items-center justify-center rounded-[12px] bg-[image:var(--gradient-button-primary),var(--gradient-button-primary-rim)] bg-origin-border px-6 text-[15px] font-semibold text-[var(--button-primary-text)] shadow-[var(--shadow-button-primary)] [background-clip:padding-box,border-box] [text-shadow:var(--button-primary-text-shadow)] transition-[transform,box-shadow] duration-[var(--duration-1)] hover:-translate-y-px hover:bg-[image:var(--gradient-button-primary-hover),var(--gradient-button-primary-rim-hover)] hover:shadow-[var(--shadow-button-primary-hover)]">
           {t.calculate}
         </button>
       </div>
 
       {result && (
-        <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50 space-y-6">
+        <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)] space-y-6">
           <div className="text-center">
-            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-1">{t.dailyTarget}</p>
-            <p className="text-4xl font-bold text-neutral-900 dark:text-white">{formatNumber(result.targetCalories, locale)} <span className="text-xl font-normal">{t.cal}</span></p>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+            <p className="text-sm text-muted mb-1">{t.dailyTarget}</p>
+            <p className="text-4xl font-bold text-foreground">{formatNumber(result.targetCalories, locale)} <span className="text-xl font-normal">{t.cal}</span></p>
+            <p className="text-sm text-muted mt-1">
               {interpolate(t.bmrTdee, {
                 bmr: formatNumber(result.bmr, locale),
                 tdee: formatNumber(result.tdee, locale),
@@ -156,10 +156,10 @@ export function MacroCalculator({
 
           <div className="grid grid-cols-3 gap-3">
             {macros.map(({ key, label, data, color }) => (
-              <div key={key} className="bg-neutral-50 dark:bg-neutral-700/40 rounded-xl p-4 text-center">
-                <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-1">{label}</p>
-                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{interpolate(t.grams, { grams: formatNumber(data.grams, locale) })}</p>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400">{formatNumber(data.calories, locale)} {t.cal}</p>
+              <div key={key} className="bg-surface /40 rounded-xl p-4 text-center">
+                <p className="text-xs font-medium text-muted mb-1">{label}</p>
+                <p className="text-2xl font-bold text-foreground">{interpolate(t.grams, { grams: formatNumber(data.grams, locale) })}</p>
+                <p className="text-xs text-muted">{formatNumber(data.calories, locale)} {t.cal}</p>
                 <p className="text-xs font-semibold mt-1" style={{ color }}>{data.percent}%</p>
               </div>
             ))}
@@ -171,7 +171,7 @@ export function MacroCalculator({
               <div style={{ width: `${result.carbs.percent}%`, backgroundColor: "#3B82F6" }} />
               <div className="rounded-r-full" style={{ width: `${result.fat.percent}%`, backgroundColor: "#EAB308" }} />
             </div>
-            <div className="flex justify-between mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+            <div className="flex justify-between mt-2 text-xs text-muted">
               <span style={{ color: "#ED772F" }}>{t.protein} {result.protein.percent}%</span>
               <span style={{ color: "#3B82F6" }}>{t.carbs} {result.carbs.percent}%</span>
               <span style={{ color: "#EAB308" }}>{t.fat} {result.fat.percent}%</span>

@@ -67,14 +67,14 @@ export function LandingSpotlights({ locale = DEFAULT_LOCALE }: { locale?: Locale
                 }`}
               >
                 <div className="flex-1 max-w-md text-center md:text-left">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 dark:border-white/10 px-3 py-1 text-xs font-medium text-neutral-500 dark:text-neutral-400">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted">
                     <Icon className="h-3.5 w-3.5" aria-hidden />
                     {copy.eyebrow}
                   </span>
-                  <h2 className="mt-5 text-3xl md:text-4xl font-medium tracking-tight text-balance text-neutral-900 dark:text-white">
+                  <h2 className="mt-5 text-3xl md:text-4xl font-medium tracking-tight text-balance text-foreground">
                     {copy.title}
                   </h2>
-                  <p className="mt-4 text-base md:text-lg leading-relaxed text-pretty text-neutral-600 dark:text-neutral-400">
+                  <p className="mt-4 text-base md:text-lg leading-relaxed text-pretty text-muted">
                     {copy.description}
                   </p>
                 </div>

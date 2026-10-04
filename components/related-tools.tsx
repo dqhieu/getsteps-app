@@ -25,7 +25,7 @@ export function RelatedTools({
 
   return (
     <div className={className}>
-      <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">
+      <p className="text-sm font-medium text-muted-soft mb-3">
         {getCommonMessages(locale).related.calculators}
       </p>
       <div className="flex flex-wrap gap-2">
@@ -33,7 +33,7 @@ export function RelatedTools({
           <Link
             key={tool.href}
             href={localizePath(locale, tool.href)}
-            className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
+            className="text-sm px-3 py-1.5 rounded-lg bg-surface text-muted-soft hover:text-accent transition-colors"
           >
             {toolLinkTitle(locale, tool.href, tool.title)}
           </Link>

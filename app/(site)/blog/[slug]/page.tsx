@@ -135,7 +135,7 @@ export default async function BlogPostPage({ params }: Props) {
   ]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -154,19 +154,19 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="container mx-auto px-4 pt-24 pb-12 max-w-3xl">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-500 hover:text-orange-500 dark:hover:text-orange-500 transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors mb-8"
         >
           ← Back to Blog
         </Link>
 
         <header className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             {post.title}
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-6">
+          <p className="text-lg text-muted mb-6">
             {post.description}
           </p>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-neutral-500 dark:text-neutral-500">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
             {post.author.avatar && (
               <Image
                 src={post.author.avatar}
@@ -176,10 +176,10 @@ export default async function BlogPostPage({ params }: Props) {
                 className="rounded-full"
               />
             )}
-            <span className="font-medium text-neutral-700 dark:text-neutral-300">
+            <span className="font-medium text-muted-soft">
               {post.author.name}
             </span>
-            <span className="text-neutral-300 dark:text-neutral-700">•</span>
+            <span className="text-muted">•</span>
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -189,7 +189,7 @@ export default async function BlogPostPage({ params }: Props) {
             </time>
             {post.lastUpdated && post.lastUpdated !== post.date && (
               <>
-                <span className="text-neutral-300 dark:text-neutral-700">•</span>
+                <span className="text-muted">•</span>
                 <time dateTime={post.lastUpdated}>
                   Updated{" "}
                   {new Date(post.lastUpdated).toLocaleDateString("en-US", {
@@ -215,7 +215,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
+        <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
           {PostContent ? (
             <PostContent components={mdxComponents} />
           ) : (
@@ -233,19 +233,19 @@ export default async function BlogPostPage({ params }: Props) {
         />
         <PersonaLinks items={BLOG_RELATED_PERSONAS[slug] || []} />
 
-        <div className="mt-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <div className="mt-8 rounded-2xl border border-border p-6">
+          <p className="text-sm text-muted">
             Steps is built by runners who wanted a step counter that felt right.{" "}
-            <Link href="/about" className="text-orange-500 hover:underline">
+            <Link href="/about" className="text-accent hover:underline">
               Read our story
             </Link>
           </p>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
+        <div className="mt-12 pt-8 border-t border-border">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent transition-colors"
           >
             ← Back to all posts
           </Link>

@@ -117,8 +117,8 @@ export function WeightLossWalkingCalculator({
 
   return (
     <div className="space-y-8">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.goal}
         </h2>
 
@@ -126,7 +126,7 @@ export function WeightLossWalkingCalculator({
           <div className="flex justify-end">
             <button
               onClick={() => handleWeightUnitChange(weightUnit === "kg" ? "lbs" : "kg")}
-              className="py-2 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors"
+              className="py-2 px-4 rounded-lg bg-surface text-muted-soft hover:bg-ghost-hover text-sm font-medium transition-colors"
             >
               {interpolate(t.switchUnit, { unit: weightUnit === "kg" ? "lbs" : "kg" })}
             </button>
@@ -134,7 +134,7 @@ export function WeightLossWalkingCalculator({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.currentWeight}
               </label>
               <div className="relative">
@@ -142,16 +142,16 @@ export function WeightLossWalkingCalculator({
                   type="number"
                   value={currentWeight}
                   onChange={(e) => setCurrentWeight(Number(e.target.value))}
-                  className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
+                  className="w-full py-3 px-4 pr-12 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                   {weightUnit}
                 </span>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.targetWeight}
               </label>
               <div className="relative">
@@ -159,9 +159,9 @@ export function WeightLossWalkingCalculator({
                   type="number"
                   value={targetWeight}
                   onChange={(e) => setTargetWeight(Number(e.target.value))}
-                  className="w-full py-3 px-4 pr-12 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
+                  className="w-full py-3 px-4 pr-12 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                   {weightUnit}
                 </span>
               </div>
@@ -169,7 +169,7 @@ export function WeightLossWalkingCalculator({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.timeframe}
             </label>
             <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
@@ -179,8 +179,8 @@ export function WeightLossWalkingCalculator({
                   onClick={() => setTimeframe(key)}
                   className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
                     timeframe === key
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover"
                   }`}
                 >
                   {t.timeframes[key]}
@@ -190,7 +190,7 @@ export function WeightLossWalkingCalculator({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {interpolate(t.walkingDays, { days: formatNumber(daysPerWeek, locale) })}
             </label>
             <input
@@ -199,9 +199,9 @@ export function WeightLossWalkingCalculator({
               max={7}
               value={daysPerWeek}
               onChange={(e) => setDaysPerWeek(Number(e.target.value))}
-              className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-[#ED772F]"
+              className="w-full h-2 bg-surface  rounded-lg appearance-none cursor-pointer accent-accent"
             />
-            <div className="flex justify-between text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+            <div className="flex justify-between text-xs text-muted mt-1">
               <span>{plural(locale, 1, t.days)}</span>
               <span>{plural(locale, 7, t.days)}</span>
             </div>
@@ -225,20 +225,20 @@ export function WeightLossWalkingCalculator({
         </div>
       )}
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
-          <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6">
+          <h3 className="text-sm font-medium text-muted mb-4">
             {t.dailyRequirement}
           </h3>
 
           <div className="space-y-4">
             <div>
-              <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-4xl md:text-5xl font-bold text-foreground">
                 {interpolate(t.stepsValue, {
                   count: formatNumber(results.walkingDailySteps, locale),
                 })}
               </p>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">
+              <p className="text-lg text-muted mt-1">
                 {interpolate(t.distancePerDay, {
                   km: formatMeasure(results.walkingDailyKm, locale),
                   miles: formatMeasure(results.walkingDailyMiles, locale),
@@ -247,38 +247,38 @@ export function WeightLossWalkingCalculator({
             </div>
           </div>
 
-          <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="mt-6 pt-6 border-t border-accent/20 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.walkingTime}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {formatWalkingTime(results.walkingDailyMinutes, locale, t)}
               </p>
             </div>
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.dailyBurn}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {interpolate(t.kcalValue, {
                   value: formatNumber(results.dailyCalorieDeficit, locale),
                 })}
               </p>
             </div>
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.weeklyDistance}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {interpolate(t.kmValue, { value: formatMeasure(results.weeklyKm, locale) })}
               </p>
             </div>
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.totalToLose}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {formatWeightDisplay(results.totalWeightToLose)}
               </p>
             </div>
@@ -295,22 +295,22 @@ export function WeightLossWalkingCalculator({
       )}
 
       {results.milestones.length > 0 && (
-        <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+        <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+          <h2 className="text-lg font-semibold text-foreground mb-2">
             {t.progress}
           </h2>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+          <p className="text-sm text-muted mb-6">
             {t.progressHint}
           </p>
 
           <div className="overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8">
             <table className="w-full min-w-[300px]">
               <thead>
-                <tr className="border-b border-neutral-200 dark:border-neutral-700">
-                  <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                     {t.weekColumn}
                   </th>
-                  <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                  <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                     {t.weightColumn}
                   </th>
                 </tr>
@@ -319,15 +319,15 @@ export function WeightLossWalkingCalculator({
                 {results.milestones.map((milestone) => (
                   <tr
                     key={milestone.week}
-                    className="border-b border-neutral-100 dark:border-neutral-700/50 hover:bg-neutral-50 dark:hover:bg-neutral-700/30 transition-colors"
+                    className="border-b border-border  hover:bg-surface  transition-colors"
                   >
                     <td className="py-3 px-2">
-                      <span className="font-semibold text-neutral-900 dark:text-white">
+                      <span className="font-semibold text-foreground">
                         {interpolate(t.week, { week: formatNumber(milestone.week, locale) })}
                       </span>
                     </td>
                     <td className="py-3 px-2">
-                      <span className="text-neutral-900 dark:text-white">
+                      <span className="text-foreground">
                         {formatWeightDisplay(milestone.expectedWeight)}
                       </span>
                     </td>
@@ -339,15 +339,15 @@ export function WeightLossWalkingCalculator({
         </div>
       )}
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-4">
           {t.notesTitle}
         </h2>
 
-        <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
+        <ul className="space-y-3 text-sm text-muted">
           {t.notes.map((note) => (
             <li key={note} className="flex items-start gap-3">
-              <span className="flex-shrink-0 text-[#ED772F]">•</span>
+              <span className="flex-shrink-0 text-accent">•</span>
               <span>{note}</span>
             </li>
           ))}

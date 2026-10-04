@@ -74,16 +74,16 @@ export default async function PersonaPage({ params }: Props) {
   ]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <LandingNavbar />
 
       {/* Hero */}
       <PersonaHero headline={persona.headline} subheadline={persona.subheadline} />
 
       {/* Intro */}
-      <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-12 md:py-16 bg-surface">
         <div className="container mx-auto px-4 max-w-3xl">
-          <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p className="text-lg text-muted-soft leading-relaxed">
             {persona.introText}
           </p>
         </div>
@@ -92,14 +92,14 @@ export default async function PersonaPage({ params }: Props) {
       {/* Problem Points */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50 p-6 md:p-8">
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
+          <div className="rounded-2xl bg-surface  border border-border p-6 md:p-8">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
               Sound Familiar?
             </h2>
             <ul className="space-y-3">
               {persona.problemPoints.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 text-neutral-600 dark:text-neutral-400">
-                  <span className="text-[#ED772F] mt-0.5 shrink-0">✓</span>
+                <li key={i} className="flex items-start gap-3 text-muted">
+                  <span className="text-accent mt-0.5 shrink-0">✓</span>
                   <span>{point}</span>
                 </li>
               ))}
@@ -109,9 +109,9 @@ export default async function PersonaPage({ params }: Props) {
       </section>
 
       {/* Solution */}
-      <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-12 md:py-16 bg-surface">
         <div className="container mx-auto px-4 max-w-3xl">
-          <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p className="text-lg text-muted-soft leading-relaxed">
             {persona.solutionText}
           </p>
         </div>
@@ -121,9 +121,9 @@ export default async function PersonaPage({ params }: Props) {
       <PersonaFeatures features={persona.features} />
 
       {/* Screenshots */}
-      <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-12 md:py-16 bg-surface">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
             See It In Action
           </h2>
           <div className="flex gap-4 overflow-x-auto pb-4 justify-center">
@@ -139,19 +139,19 @@ export default async function PersonaPage({ params }: Props) {
       {/* Testimonials */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
             What People Are Saying
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
             {persona.testimonials.map((testimonial, i) => (
               <blockquote
                 key={i}
-                className="rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50 p-6"
+                className="rounded-2xl bg-surface  border border-border p-6"
               >
-                <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
+                <p className="text-muted-soft leading-relaxed mb-4">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
-                <footer className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
+                <footer className="flex items-center gap-2 text-sm text-muted">
                   <span className="text-amber-500">★★★★★</span>
                   <span>— {testimonial.author}</span>
                 </footer>
@@ -165,7 +165,7 @@ export default async function PersonaPage({ params }: Props) {
       <PersonaFaq faqs={persona.faqs} />
 
       {/* Related Content */}
-      <section className="py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-12 md:py-16 bg-surface">
         <div className="container mx-auto px-4 max-w-3xl">
           <RelatedContentSection
             relatedPosts={persona.relatedPosts}
@@ -178,7 +178,7 @@ export default async function PersonaPage({ params }: Props) {
       {persona.relatedPersonas && persona.relatedPersonas.length > 0 && (
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+            <h2 className="text-lg font-semibold text-foreground mb-4">
               More Fitness Guides
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -186,7 +186,7 @@ export default async function PersonaPage({ params }: Props) {
                 <Link
                   key={p.slug}
                   href={`/for/${p.slug}`}
-                  className="text-sm px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
+                  className="text-sm px-3 py-1.5 rounded-lg bg-surface text-muted-soft hover:text-accent transition-colors"
                 >
                   {p.title}
                 </Link>
@@ -197,12 +197,12 @@ export default async function PersonaPage({ params }: Props) {
       )}
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-16 md:py-24 bg-surface">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-neutral-900 dark:text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
             {persona.ctaHeadline}
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
+          <p className="text-muted mb-8 max-w-xl mx-auto">
             Free on the App Store. No subscriptions required to get started.
           </p>
           <a

@@ -93,8 +93,8 @@ export function DailyStepGoalCalculator({
   return (
     <div className="space-y-8">
       {/* Input Card */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.yourProfile}
         </h2>
 
@@ -102,7 +102,7 @@ export function DailyStepGoalCalculator({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Age Input */}
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.age}
               </label>
               <div className="relative">
@@ -116,9 +116,9 @@ export function DailyStepGoalCalculator({
                     if (val === "") return;
                     setAge(Math.max(1, Math.min(120, Number(val))));
                   }}
-                  className="w-full py-3 px-4 pr-14 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                  className="w-full py-3 px-4 pr-14 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                   {t.years}
                 </span>
               </div>
@@ -126,7 +126,7 @@ export function DailyStepGoalCalculator({
 
             {/* Gender Selection */}
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.gender}
               </label>
               <div className="flex gap-2">
@@ -134,8 +134,8 @@ export function DailyStepGoalCalculator({
                   onClick={() => setGender("male")}
                   className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
                     gender === "male"
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover"
                   }`}
                 >
                   {t.male}
@@ -144,8 +144,8 @@ export function DailyStepGoalCalculator({
                   onClick={() => setGender("female")}
                   className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
                     gender === "female"
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover"
                   }`}
                 >
                   {t.female}
@@ -156,7 +156,7 @@ export function DailyStepGoalCalculator({
 
           {/* Activity Level */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.activityLevel}
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -166,8 +166,8 @@ export function DailyStepGoalCalculator({
                   onClick={() => setActivityLevel(key)}
                   className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
                     activityLevel === key
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover"
                   }`}
                 >
                   <span className="block">{t.activity[key]}</span>
@@ -175,7 +175,7 @@ export function DailyStepGoalCalculator({
                     className={`block text-xs mt-0.5 ${
                       activityLevel === key
                         ? "text-white/80"
-                        : "text-neutral-500 dark:text-neutral-400"
+                        : "text-muted"
                     }`}
                   >
                     {stepsRange(key, locale)}
@@ -187,7 +187,7 @@ export function DailyStepGoalCalculator({
 
           {/* Health Goal */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.healthGoal}
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -197,8 +197,8 @@ export function DailyStepGoalCalculator({
                   onClick={() => setHealthGoal(key)}
                   className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
                     healthGoal === key
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover"
                   }`}
                 >
                   {t.goals[key]}
@@ -209,7 +209,7 @@ export function DailyStepGoalCalculator({
 
           {/* Current Steps (Optional) */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.currentSteps}
             </label>
             <input
@@ -217,9 +217,9 @@ export function DailyStepGoalCalculator({
               value={currentSteps}
               onChange={(e) => setCurrentSteps(e.target.value)}
               placeholder={t.currentStepsPlaceholder}
-              className="w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent placeholder:text-neutral-400"
+              className="w-full py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] placeholder:text-muted"
             />
-            <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+            <p className="mt-1 text-xs text-muted">
               {t.currentStepsHint}
             </p>
           </div>
@@ -227,46 +227,46 @@ export function DailyStepGoalCalculator({
       </div>
 
       {/* Results Card */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
-          <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6">
+          <h3 className="text-sm font-medium text-muted mb-4">
             {t.resultTitle}
           </h3>
 
           <div className="space-y-4">
             <div>
-              <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-4xl md:text-5xl font-bold text-foreground">
                 {interpolate(t.stepsValue, { steps: formatNumber(results.dailyGoal, locale) })}
               </p>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">
+              <p className="text-lg text-muted mt-1">
                 {t.perDay}
               </p>
             </div>
           </div>
 
           {/* Additional Stats */}
-          <div className="mt-6 pt-6 border-t border-[#ED772F]/20 grid grid-cols-3 gap-4">
+          <div className="mt-6 pt-6 border-t border-accent/20 grid grid-cols-3 gap-4">
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.weeklyGoal}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {formatNumber(results.weeklyGoal, locale)}
               </p>
             </div>
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.distancePerDay}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {interpolate(t.kmValue, { distance: formatLoose(results.distancePerDayKm, locale) })}
               </p>
             </div>
             <div>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-muted">
                 {t.caloriesPerDay}
               </p>
-              <p className="text-xl font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xl font-semibold text-foreground">
                 {interpolate(t.approxCalories, {
                   calories: formatNumber(results.caloriesPerDay, locale),
                 })}
@@ -279,11 +279,11 @@ export function DailyStepGoalCalculator({
       {resultCta}
 
       {/* Milestones Card */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-2">
           {t.planTitle}
         </h2>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+        <p className="text-sm text-muted mb-6">
           {t.planSubtitle}
         </p>
 
@@ -291,12 +291,12 @@ export function DailyStepGoalCalculator({
           {results.milestones.map((milestone) => (
             <div
               key={milestone.week}
-              className="bg-neutral-50 dark:bg-neutral-700/30 rounded-lg p-3 text-center"
+              className="bg-surface rounded-lg p-3 text-center"
             >
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
+              <p className="text-xs text-muted mb-1">
                 {interpolate(t.weekLabel, { week: formatNumber(milestone.week, locale) })}
               </p>
-              <p className="text-sm font-semibold text-neutral-900 dark:text-white">
+              <p className="text-sm font-semibold text-foreground">
                 {formatNumber(milestone.steps, locale)}
               </p>
             </div>
@@ -305,20 +305,20 @@ export function DailyStepGoalCalculator({
       </div>
 
       {/* Tips Card */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-4">
           {t.tipsTitle}
         </h2>
 
         <ul className="space-y-3">
           {tips.map((tip, index) => (
             <li key={index} className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#ED772F]/10 dark:bg-[#ED772F]/20 flex items-center justify-center">
-                <span className="text-[#ED772F] text-sm font-semibold">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-chip flex items-center justify-center">
+                <span className="text-accent text-sm font-semibold">
                   {index + 1}
                 </span>
               </span>
-              <span className="text-neutral-700 dark:text-neutral-300">{tip}</span>
+              <span className="text-muted-soft">{tip}</span>
             </li>
           ))}
         </ul>

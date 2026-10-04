@@ -47,7 +47,7 @@ export default async function Home({ params }: LangPageProps) {
   return (
     <>
       <LandingNavbar locale={locale} />
-      <main className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white overflow-hidden selection:bg-orange-500/30">
+      <main className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-accent/30">
         <LandingHero locale={locale} />
         <LandingTrust locale={locale} />
         <LandingSpotlights locale={locale} />

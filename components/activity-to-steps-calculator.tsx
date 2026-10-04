@@ -58,13 +58,13 @@ export function ActivityToStepsCalculator({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.yourActivity}
         </h2>
 
         <div className="mb-6">
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">
+          <label className="block text-sm font-medium text-muted-soft mb-3">
             {t.activityType}
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -77,8 +77,8 @@ export function ActivityToStepsCalculator({
                   onClick={() => setSelectedActivity(key)}
                   className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors border ${
                     isActive
-                      ? "bg-[#ED772F] text-white border-[#ED772F]"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 border-transparent"
+                      ? "bg-accent text-white border-accent"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover border-transparent"
                   }`}
                 >
                   <span>{act.emoji}</span>
@@ -90,7 +90,7 @@ export function ActivityToStepsCalculator({
         </div>
 
         <div className="mb-6">
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+          <label className="block text-sm font-medium text-muted-soft mb-2">
             {t.duration}
           </label>
           <div className="flex gap-2 mb-3 flex-wrap">
@@ -100,8 +100,8 @@ export function ActivityToStepsCalculator({
                 onClick={() => setDuration(preset)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   duration === preset
-                    ? "bg-[#ED772F] text-white"
-                    : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                    ? "bg-accent text-white"
+                    : "bg-surface text-muted-soft hover:bg-ghost-hover"
                 }`}
               >
                 {formatNumber(preset, locale)}
@@ -112,23 +112,23 @@ export function ActivityToStepsCalculator({
             type="number"
             value={duration}
             onChange={(e) => setDuration(Number(e.target.value))}
-            className="w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
+            className="w-full py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg"
           />
         </div>
 
         <div className="mb-6">
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+          <label className="block text-sm font-medium text-muted-soft mb-2">
             {t.intensity}
           </label>
-          <div className="flex rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700">
+          <div className="flex rounded-lg overflow-hidden border border-border">
             {INTENSITIES.map((lvl) => (
               <button
                 key={lvl}
                 onClick={() => setIntensity(lvl)}
                 className={`flex-1 py-2.5 text-sm font-medium transition-colors ${
                   intensity === lvl
-                    ? "bg-[#ED772F] text-white"
-                    : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                    ? "bg-accent text-white"
+                    : "bg-surface text-muted-soft hover:bg-ghost-hover"
                 }`}
               >
                 {t.intensities[lvl]}
@@ -140,7 +140,7 @@ export function ActivityToStepsCalculator({
         <div>
           <button
             onClick={() => setShowCalorieSection(!showCalorieSection)}
-            className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors"
+            className="flex items-center gap-2 text-sm font-medium text-muted hover:text-accent transition-colors"
           >
             <span className={`transition-transform ${showCalorieSection ? "rotate-90" : ""}`}>▶</span>
             {t.calorieToggle}
@@ -148,7 +148,7 @@ export function ActivityToStepsCalculator({
 
           {showCalorieSection && (
             <div className="mt-3">
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.bodyWeight}
               </label>
               <div className="flex gap-2">
@@ -156,11 +156,11 @@ export function ActivityToStepsCalculator({
                   type="number"
                   value={weight}
                   onChange={(e) => setWeight(Number(e.target.value))}
-                  className="flex-1 py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg"
+                  className="flex-1 py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg"
                 />
                 <button
                   onClick={handleWeightUnitToggle}
-                  className="py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors"
+                  className="py-3 px-4 rounded-lg bg-surface text-muted-soft hover:bg-ghost-hover text-sm font-medium transition-colors"
                 >
                   {weightUnit}
                 </button>
@@ -170,51 +170,51 @@ export function ActivityToStepsCalculator({
         </div>
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
-          <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6">
+          <p className="text-sm font-medium text-muted mb-2">
             {t.equivalentSteps}
           </p>
-          <p className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-1">
+          <p className="text-5xl md:text-6xl font-bold text-foreground mb-1">
             {formatNumber(result.equivalentSteps, locale)}
           </p>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-6">
+          <p className="text-sm text-muted mb-6">
             {interpolate(t.equivalentFor, {
               duration: formatNumber(duration, locale),
               activity: activityLabel,
             })}
           </p>
 
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#ED772F]/20">
+          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-accent/20">
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.walkingTime}</p>
-              <p className="text-lg font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xs text-muted mb-1">{t.walkingTime}</p>
+              <p className="text-lg font-semibold text-foreground">
                 {interpolate(t.minutes, { minutes: formatNumber(result.walkingMinutes, locale) })}
               </p>
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.distance}</p>
-              <p className="text-lg font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xs text-muted mb-1">{t.distance}</p>
+              <p className="text-lg font-semibold text-foreground">
                 {interpolate(t.distanceKm, {
                   distance: formatDecimal(result.distanceKm, locale, 1),
                 })}
               </p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">
+              <p className="text-xs text-muted">
                 {interpolate(t.distanceMi, {
                   distance: formatDecimal(distanceMiles, locale, 1),
                 })}
               </p>
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.calories}</p>
-              <p className="text-lg font-semibold text-neutral-900 dark:text-white">
+              <p className="text-xs text-muted mb-1">{t.calories}</p>
+              <p className="text-lg font-semibold text-foreground">
                 {formatNumber(result.caloriesBurned, locale)}
               </p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.kcal}</p>
+              <p className="text-xs text-muted">{t.kcal}</p>
             </div>
           </div>
 
-          <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-4">
+          <p className="text-xs text-muted mt-4">
             {t.metNote}
           </p>
         </div>

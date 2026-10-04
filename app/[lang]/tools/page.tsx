@@ -56,7 +56,7 @@ export default async function ToolsPage({ params }: LangPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -70,10 +70,10 @@ export default async function ToolsPage({ params }: LangPageProps) {
       {/* Hero Section */}
       <section className="pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t.hero.title}
           </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted max-w-2xl mx-auto">
             {t.hero.subtitle}
           </p>
         </div>

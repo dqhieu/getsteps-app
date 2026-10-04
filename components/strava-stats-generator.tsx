@@ -88,19 +88,19 @@ export function StravaStatsGenerator({
   }, []);
 
   const inputCls =
-    "w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg";
+    "w-full py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg";
 
   const toggleBtnCls =
-    "py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors";
+    "py-3 px-4 rounded-lg bg-surface text-muted-soft hover:bg-ghost-hover text-sm font-medium transition-colors";
 
   const labelCls =
-    "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2";
+    "block text-sm font-medium text-muted-soft mb-2";
 
   return (
     <div className="grid gap-6 md:grid-cols-2">
       {/* Inputs */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.workout}
         </h2>
 
@@ -143,7 +143,7 @@ export function StravaStatsGenerator({
               placeholder={t.durationPlaceholder}
               className={inputCls}
             />
-            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+            <p className="mt-2 text-xs text-muted">
               {t.paceHint}
             </p>
           </div>
@@ -151,15 +151,15 @@ export function StravaStatsGenerator({
       </div>
 
       {/* Preview */}
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50 flex flex-col">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)] flex flex-col">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.overlay}
         </h2>
 
         {/* Checkerboard reads as "transparent" — the PNG has no background of
             its own, so without it the preview looks like a white card. */}
         <div
-          className="rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden bg-neutral-800"
+          className="rounded-xl border border-border overflow-hidden bg-card"
           style={{
             backgroundImage:
               "linear-gradient(45deg, #1f1f22 25%, transparent 25%, transparent 75%, #1f1f22 75%), linear-gradient(45deg, #1f1f22 25%, transparent 25%, transparent 75%, #1f1f22 75%)",
@@ -187,12 +187,12 @@ export function StravaStatsGenerator({
         <button
           type="button"
           onClick={handleSave}
-          className="mt-6 w-full bg-[#ED772F] hover:bg-[#d4651f] text-white font-semibold py-3.5 px-4 rounded-xl transition-colors"
+          className="mt-6 w-full bg-accent hover:bg-accent/90 text-white font-semibold py-3.5 px-4 rounded-xl transition-colors"
         >
           {saved ? t.saved : t.download}
         </button>
 
-        <p className="mt-3 text-xs text-neutral-500 dark:text-neutral-400 text-center">
+        <p className="mt-3 text-xs text-muted text-center">
           {t.downloadHint}
         </p>
       </div>

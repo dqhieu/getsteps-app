@@ -84,24 +84,24 @@ export function RunningPaceCalculator({
   const tabClass = (tab: InputMode) =>
     `flex-1 py-2.5 text-sm font-medium transition-colors ${
       mode === tab
-        ? "bg-[#ED772F] text-white"
-        : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+        ? "bg-accent text-white"
+        : "bg-surface text-muted-soft hover:bg-ghost-hover"
     }`;
 
   const inputCls =
-    "w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg";
+    "w-full py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg";
 
   const toggleBtnCls =
-    "py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors";
+    "py-3 px-4 rounded-lg bg-surface text-muted-soft hover:bg-ghost-hover text-sm font-medium transition-colors";
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
           {t.title}
         </h2>
 
-        <div className="flex rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 mb-6">
+        <div className="flex rounded-lg overflow-hidden border border-border mb-6">
           <button onClick={() => setMode("pace")} className={tabClass("pace")}>{t.tabs.pace}</button>
           <button onClick={() => setMode("speed")} className={tabClass("speed")}>{t.tabs.speed}</button>
           <button onClick={() => setMode("time-distance")} className={tabClass("time-distance")}>
@@ -111,7 +111,7 @@ export function RunningPaceCalculator({
 
         {mode === "pace" && (
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.paceLabel}
             </label>
             <div className="flex gap-2">
@@ -126,7 +126,7 @@ export function RunningPaceCalculator({
                 /{paceUnit === "km" ? "km" : "mi"}
               </button>
             </div>
-            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+            <p className="mt-2 text-xs text-muted">
               {t.paceHint}
             </p>
           </div>
@@ -134,7 +134,7 @@ export function RunningPaceCalculator({
 
         {mode === "speed" && (
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-muted-soft mb-2">
               {t.speedLabel}
             </label>
             <div className="flex gap-2">
@@ -155,7 +155,7 @@ export function RunningPaceCalculator({
         {mode === "time-distance" && (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.distanceLabel}
               </label>
               <div className="flex gap-2">
@@ -175,7 +175,7 @@ export function RunningPaceCalculator({
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-muted-soft mb-2">
                 {t.finishTimeLabel}
               </label>
               <input
@@ -190,33 +190,33 @@ export function RunningPaceCalculator({
         )}
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6 mb-6">
-          <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6 mb-6">
+          <p className="text-sm font-medium text-muted mb-4">
             {t.statsTitle}
           </p>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.pacePerKm}</p>
-              <p className="text-2xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-xs text-muted mb-1">{t.pacePerKm}</p>
+              <p className="text-2xl font-bold text-foreground">
                 {invalid ? "—" : result.paceKmFormatted}
               </p>
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.pacePerMi}</p>
-              <p className="text-2xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-xs text-muted mb-1">{t.pacePerMi}</p>
+              <p className="text-2xl font-bold text-foreground">
                 {invalid ? "—" : result.paceMileFormatted}
               </p>
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.speedKmh}</p>
-              <p className="text-2xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-xs text-muted mb-1">{t.speedKmh}</p>
+              <p className="text-2xl font-bold text-foreground">
                 {invalid ? "—" : `${result.speedKmh} km/h`}
               </p>
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.speedMph}</p>
-              <p className="text-2xl font-bold text-neutral-900 dark:text-white">
+              <p className="text-xs text-muted mb-1">{t.speedMph}</p>
+              <p className="text-2xl font-bold text-foreground">
                 {invalid ? "—" : `${result.speedMph} mph`}
               </p>
             </div>
@@ -224,17 +224,17 @@ export function RunningPaceCalculator({
         </div>
 
         <div>
-          <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-3">
+          <h3 className="text-base font-semibold text-foreground mb-3">
             {t.predictionsTitle}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-neutral-200 dark:border-neutral-700">
-                  <th className="text-left py-2 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-2 text-sm font-medium text-muted">
                     {t.distanceColumn}
                   </th>
-                  <th className="text-right py-2 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                  <th className="text-right py-2 px-2 text-sm font-medium text-muted">
                     {t.finishTimeColumn}
                   </th>
                 </tr>
@@ -243,12 +243,12 @@ export function RunningPaceCalculator({
                 {result.racePredictions.map((r) => (
                   <tr
                     key={r.id}
-                    className="border-b border-neutral-100 dark:border-neutral-700/50"
+                    className="border-b border-border "
                   >
-                    <td className="py-3 px-2 font-medium text-neutral-900 dark:text-white">
+                    <td className="py-3 px-2 font-medium text-foreground">
                       {t.races[r.id]}
                     </td>
-                    <td className="py-3 px-2 text-right text-neutral-900 dark:text-white font-mono">
+                    <td className="py-3 px-2 text-right text-foreground font-mono">
                       {r.finishTime}
                     </td>
                   </tr>

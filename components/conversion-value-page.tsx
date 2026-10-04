@@ -88,7 +88,7 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
   const faqSchema = faq.length > 0 ? buildFaqPage(faq) : null;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -106,19 +106,19 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
         <div className="container mx-auto px-4 max-w-4xl">
           <nav
             aria-label={copy.breadcrumb}
-            className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 flex flex-wrap gap-x-2 gap-y-1"
+            className="text-sm text-muted mb-6 flex flex-wrap gap-x-2 gap-y-1"
           >
             {breadcrumbs.map((b, i) => (
               <span key={i} className="flex items-center gap-2">
                 {b.href ? (
                   <Link
                     href={localizePath(lang, b.href)}
-                    className="hover:text-[#ED772F] transition-colors"
+                    className="hover:text-accent transition-colors"
                   >
                     {b.label}
                   </Link>
                 ) : (
-                  <span className="text-neutral-700 dark:text-neutral-300">
+                  <span className="text-muted-soft">
                     {b.label}
                   </span>
                 )}
@@ -130,36 +130,36 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
           </nav>
 
           <header className="mb-8">
-            <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-3">
+            <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight mb-3">
               {h1}
             </h1>
             {subheading && (
-              <p className="text-lg text-neutral-600 dark:text-neutral-400">
+              <p className="text-lg text-muted">
                 {subheading}
               </p>
             )}
           </header>
 
-          <section className="rounded-3xl bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 border border-[#ED772F]/20 p-6 md:p-10 mb-8">
-            <p className="text-sm font-medium text-[#ED772F] uppercase tracking-wide mb-2">
+          <section className="rounded-3xl bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 p-6 md:p-10 mb-8">
+            <p className="text-sm font-medium text-accent uppercase tracking-wide mb-2">
               {copy.quickAnswer}
             </p>
-            <p className="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-2">
+            <p className="text-4xl md:text-6xl font-bold text-foreground mb-2">
               {primaryAnswer}
             </p>
             {secondaryAnswer && (
-              <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400">
+              <p className="text-base md:text-lg text-muted">
                 {secondaryAnswer}
               </p>
             )}
           </section>
 
           <section className="prose dark:prose-invert max-w-none mb-10">
-            <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            <p className="text-muted-soft leading-relaxed">
               {intro}
             </p>
             {realWorldEquivalent && (
-              <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              <p className="text-muted-soft leading-relaxed">
                 <strong>{copy.forContext}</strong> {realWorldEquivalent}
               </p>
             )}
@@ -167,26 +167,26 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
 
           {stepsByHeightTable && stepsByHeightTable.length > 0 && (
             <section className="mb-10">
-              <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
+              <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-2">
                 {copy.distanceByHeightTitle}
               </h2>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+              <p className="text-sm text-muted mb-4">
                 {copy.distanceByHeightBody}
               </p>
-              <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
+              <div className="overflow-x-auto rounded-[20px] bg-card shadow-[var(--shadow-border)]">
                 <table className="w-full text-sm">
-                  <thead className="bg-neutral-50 dark:bg-neutral-900/50">
+                  <thead className="bg-surface">
                     <tr>
-                      <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-left p-3 font-medium text-muted-soft">
                         {copy.heightColumn}
                       </th>
-                      <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-right p-3 font-medium text-muted-soft">
                         {copy.strideColumn}
                       </th>
-                      <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-right p-3 font-medium text-muted-soft">
                         {copy.milesColumn}
                       </th>
-                      <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-right p-3 font-medium text-muted-soft">
                         {copy.kilometersColumn}
                       </th>
                     </tr>
@@ -195,18 +195,18 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
                     {stepsByHeightTable.map((r, i) => (
                       <tr
                         key={r.height}
-                        className="border-t border-neutral-200 dark:border-neutral-800"
+                        className="border-t border-border"
                       >
-                        <td className="p-3 text-neutral-900 dark:text-white">
+                        <td className="p-3 text-foreground">
                           {copy.heights[i] ?? r.height}
                         </td>
-                        <td className="p-3 text-right text-neutral-600 dark:text-neutral-400 tabular-nums">
+                        <td className="p-3 text-right text-muted tabular-nums">
                           {interpolate(copy.cm, { value: formatFixed(r.stepLengthCm, 1, lang) })}
                         </td>
-                        <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium">
+                        <td className="p-3 text-right text-foreground tabular-nums font-medium">
                           {interpolate(copy.mi, { value: formatMiles(r.miles, lang) })}
                         </td>
-                        <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium">
+                        <td className="p-3 text-right text-foreground tabular-nums font-medium">
                           {interpolate(copy.km, { value: formatKm(r.km, lang) })}
                         </td>
                       </tr>
@@ -219,23 +219,23 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
 
           {distanceByHeightTable && distanceByHeightTable.length > 0 && (
             <section className="mb-10">
-              <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
+              <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-2">
                 {copy.stepsRequiredTitle}
               </h2>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+              <p className="text-sm text-muted mb-4">
                 {copy.stepsRequiredBody}
               </p>
-              <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
+              <div className="overflow-x-auto rounded-[20px] bg-card shadow-[var(--shadow-border)]">
                 <table className="w-full text-sm">
-                  <thead className="bg-neutral-50 dark:bg-neutral-900/50">
+                  <thead className="bg-surface">
                     <tr>
-                      <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-left p-3 font-medium text-muted-soft">
                         {copy.heightColumn}
                       </th>
-                      <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-right p-3 font-medium text-muted-soft">
                         {copy.strideColumn}
                       </th>
-                      <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-right p-3 font-medium text-muted-soft">
                         {copy.stepsColumn}
                       </th>
                     </tr>
@@ -244,15 +244,15 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
                     {distanceByHeightTable.map((r, i) => (
                       <tr
                         key={r.height}
-                        className="border-t border-neutral-200 dark:border-neutral-800"
+                        className="border-t border-border"
                       >
-                        <td className="p-3 text-neutral-900 dark:text-white">
+                        <td className="p-3 text-foreground">
                           {copy.heights[i] ?? r.height}
                         </td>
-                        <td className="p-3 text-right text-neutral-600 dark:text-neutral-400 tabular-nums">
+                        <td className="p-3 text-right text-muted tabular-nums">
                           {interpolate(copy.cm, { value: formatFixed(r.stepLengthCm, 1, lang) })}
                         </td>
-                        <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium">
+                        <td className="p-3 text-right text-foreground tabular-nums font-medium">
                           {formatSteps(r.steps, lang)}
                         </td>
                       </tr>
@@ -265,23 +265,23 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
 
           {caloriesByWeightTable && caloriesByWeightTable.length > 0 && (
             <section className="mb-10">
-              <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
+              <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-2">
                 {copy.caloriesTitle}
               </h2>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+              <p className="text-sm text-muted mb-4">
                 {copy.caloriesBody}
               </p>
-              <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
+              <div className="overflow-x-auto rounded-[20px] bg-card shadow-[var(--shadow-border)]">
                 <table className="w-full text-sm">
-                  <thead className="bg-neutral-50 dark:bg-neutral-900/50">
+                  <thead className="bg-surface">
                     <tr>
-                      <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-left p-3 font-medium text-muted-soft">
                         {copy.weightColumn}
                       </th>
                       {copy.paces.map((label) => (
                         <th
                           key={label}
-                          className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300"
+                          className="text-right p-3 font-medium text-muted-soft"
                         >
                           {label}
                         </th>
@@ -292,15 +292,15 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
                     {caloriesByWeightTable.map((r, row) => (
                       <tr
                         key={r.weight}
-                        className="border-t border-neutral-200 dark:border-neutral-800"
+                        className="border-t border-border"
                       >
-                        <td className="p-3 text-neutral-900 dark:text-white">
+                        <td className="p-3 text-foreground">
                           {copy.weights[row] ?? r.weight}
                         </td>
                         {r.calories.map((c, i) => (
                           <td
                             key={i}
-                            className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium"
+                            className="p-3 text-right text-foreground tabular-nums font-medium"
                           >
                             {interpolate(copy.cal, { value: formatNumber(c, lang) })}
                           </td>
@@ -315,23 +315,23 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
 
           {walkingTimeTable && walkingTimeTable.length > 0 && (
             <section className="mb-10">
-              <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
+              <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-2">
                 {copy.timeTitle}
               </h2>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+              <p className="text-sm text-muted mb-4">
                 {copy.timeBody}
               </p>
-              <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
+              <div className="overflow-x-auto rounded-[20px] bg-card shadow-[var(--shadow-border)]">
                 <table className="w-full text-sm">
-                  <thead className="bg-neutral-50 dark:bg-neutral-900/50">
+                  <thead className="bg-surface">
                     <tr>
-                      <th className="text-left p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-left p-3 font-medium text-muted-soft">
                         {copy.paceColumn}
                       </th>
-                      <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-right p-3 font-medium text-muted-soft">
                         {copy.speedColumn}
                       </th>
-                      <th className="text-right p-3 font-medium text-neutral-700 dark:text-neutral-300">
+                      <th className="text-right p-3 font-medium text-muted-soft">
                         {copy.timeColumn}
                       </th>
                     </tr>
@@ -340,15 +340,15 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
                     {walkingTimeTable.map((r, i) => (
                       <tr
                         key={r.pace}
-                        className="border-t border-neutral-200 dark:border-neutral-800"
+                        className="border-t border-border"
                       >
-                        <td className="p-3 text-neutral-900 dark:text-white">
+                        <td className="p-3 text-foreground">
                           {copy.paces[i] ?? r.pace}
                         </td>
-                        <td className="p-3 text-right text-neutral-600 dark:text-neutral-400 tabular-nums">
+                        <td className="p-3 text-right text-muted tabular-nums">
                           {interpolate(copy.mph, { value: speedValue(r.mph, lang) })}
                         </td>
-                        <td className="p-3 text-right text-neutral-900 dark:text-white tabular-nums font-medium">
+                        <td className="p-3 text-right text-foreground tabular-nums font-medium">
                           {formatMinutes(r.minutes, lang, copy.duration)}
                         </td>
                       </tr>
@@ -359,11 +359,11 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
             </section>
           )}
 
-          <section className="rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 p-6 md:p-10 mb-10">
-            <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
+          <section className="rounded-3xl bg-surface border border-border p-6 md:p-10 mb-10">
+            <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-2">
               {copy.ctaTitle}
             </h2>
-            <p className="text-neutral-600 dark:text-neutral-400 mb-6 max-w-2xl">
+            <p className="text-muted mb-6 max-w-2xl">
               {rich(copy.ctaBody, { actual: <em>{copy.ctaActual}</em> })}
             </p>
             <AppStoreBadge
@@ -376,7 +376,7 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
 
           {relatedLinks.length > 0 && (
             <section className="mb-10">
-              <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-4">
+              <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-4">
                 {copy.relatedTitle}
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -384,7 +384,7 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
                   <Link
                     key={l.href}
                     href={localizePath(lang, l.href)}
-                    className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 text-sm text-neutral-700 dark:text-neutral-300 hover:border-[#ED772F] hover:text-[#ED772F] transition-colors"
+                    className="p-3 rounded-xl bg-surface border border-border text-sm text-muted-soft hover:border-accent hover:text-accent transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -395,22 +395,22 @@ export function ConversionValuePage(props: ConversionValuePageProps) {
 
           {faq.length > 0 && (
             <section className="mb-10">
-              <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 dark:text-white mb-4">
+              <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-4">
                 {copy.faqTitle}
               </h2>
               <div className="space-y-3">
                 {faq.map((f) => (
                   <details
                     key={f.question}
-                    className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/30 p-4 group"
+                    className="rounded-[20px] bg-card shadow-[var(--shadow-border)] p-4 group"
                   >
-                    <summary className="cursor-pointer font-medium text-neutral-900 dark:text-white flex items-center justify-between gap-4">
+                    <summary className="cursor-pointer font-medium text-foreground flex items-center justify-between gap-4">
                       <span>{f.question}</span>
-                      <span className="text-[#ED772F] transition-transform group-open:rotate-45 text-2xl leading-none">
+                      <span className="text-accent transition-transform group-open:rotate-45 text-2xl leading-none">
                         +
                       </span>
                     </summary>
-                    <p className="mt-3 text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                    <p className="mt-3 text-muted-soft leading-relaxed">
                       {f.answer}
                     </p>
                   </details>

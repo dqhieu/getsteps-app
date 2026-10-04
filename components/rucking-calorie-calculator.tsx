@@ -15,9 +15,9 @@ type TerrainId = keyof CalculatorCopy["terrains"];
 const MPH_TO_KMH = 1.60934;
 
 const inputClass =
-  "w-full py-3 px-4 pr-16 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg";
+  "w-full py-3 px-4 pr-16 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg";
 const labelClass =
-  "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2";
+  "block text-sm font-medium text-muted-soft mb-2";
 
 export function RuckingCalorieCalculator({
   t,
@@ -87,14 +87,14 @@ export function RuckingCalorieCalculator({
 
   return (
     <div className="space-y-8">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">
+          <h2 className="text-lg font-semibold text-foreground">
             {t.yourRuck}
           </h2>
           <button
             onClick={toggleUnit}
-            className="py-2 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-sm font-medium transition-colors"
+            className="py-2 px-4 rounded-lg bg-surface text-muted-soft hover:bg-ghost-hover text-sm font-medium transition-colors"
           >
             {unit === "metric" ? t.switchImperial : t.switchMetric}
           </button>
@@ -111,7 +111,7 @@ export function RuckingCalorieCalculator({
                   onChange={(e) => setWeight(Number(e.target.value))}
                   className={inputClass}
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                   {weightLabel}
                 </span>
               </div>
@@ -126,7 +126,7 @@ export function RuckingCalorieCalculator({
                   onChange={(e) => setLoad(Number(e.target.value))}
                   className={inputClass}
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                   {weightLabel}
                 </span>
               </div>
@@ -144,7 +144,7 @@ export function RuckingCalorieCalculator({
                   onChange={(e) => setSpeed(Number(e.target.value))}
                   className={inputClass}
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                   {speedLabel}
                 </span>
               </div>
@@ -159,7 +159,7 @@ export function RuckingCalorieCalculator({
                   onChange={(e) => setDuration(Number(e.target.value))}
                   className={inputClass}
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">
                   {t.minutes}
                 </span>
               </div>
@@ -177,7 +177,7 @@ export function RuckingCalorieCalculator({
               step={1}
               value={grade}
               onChange={(e) => setGrade(Number(e.target.value))}
-              className="w-full accent-[#ED772F]"
+              className="w-full accent-accent"
             />
           </div>
 
@@ -190,15 +190,15 @@ export function RuckingCalorieCalculator({
                   onClick={() => setTerrainId(item.id)}
                   className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors text-left ${
                     terrainId === item.id
-                      ? "bg-[#ED772F] text-white"
-                      : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-soft hover:bg-ghost-hover"
                   }`}
                 >
                   {t.terrains[item.id as TerrainId].label}
                 </button>
               ))}
             </div>
-            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+            <p className="mt-2 text-xs text-muted">
               {interpolate(t.terrainFactor, {
                 description: terrainCopy.description,
                 factor: formatDecimal(terrain.factor, locale, 1),
@@ -208,20 +208,20 @@ export function RuckingCalorieCalculator({
         </div>
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <div className="bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 rounded-xl p-6">
-          <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6">
+          <h3 className="text-sm font-medium text-muted mb-4">
             {t.caloriesBurned}
           </h3>
-          <p className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
+          <p className="text-4xl md:text-5xl font-bold text-foreground">
             {formatNumber(results.calories, locale)} kcal
           </p>
           {loadKg > 0 && (
-            <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="mt-3 text-sm text-muted">
               {rich(t.packAdds, {
                 load: showLoad(loadKg),
                 extra: (
-                  <strong className="text-[#ED772F]">
+                  <strong className="text-accent">
                     {formatNumber(results.caloriesFromLoad, locale)}
                   </strong>
                 ),
@@ -262,19 +262,19 @@ export function RuckingCalorieCalculator({
           ].map((stat) => (
             <div
               key={stat.label}
-              className="bg-neutral-50 dark:bg-neutral-700/30 rounded-xl p-4"
+              className="bg-surface rounded-xl p-4"
             >
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
+              <p className="text-xs text-muted mb-1">
                 {stat.label}
               </p>
-              <p className="font-semibold text-neutral-900 dark:text-white text-sm">
+              <p className="font-semibold text-foreground text-sm">
                 {stat.value}
               </p>
             </div>
           ))}
         </div>
 
-        <p className="mt-4 text-xs text-neutral-500 dark:text-neutral-400">
+        <p className="mt-4 text-xs text-muted">
           {interpolate(t.equation, {
             watts: formatNumber(results.watts, locale),
             terrain: terrainCopy.inline,
@@ -285,15 +285,15 @@ export function RuckingCalorieCalculator({
         {resultCta}
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-        <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-1">
+      <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+        <h3 className="text-lg font-semibold text-foreground mb-1">
           {t.tableTitle}
         </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">{t.tableSubtitle}</p>
+        <p className="text-sm text-muted mb-4">{t.tableSubtitle}</p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-neutral-500 dark:text-neutral-400 border-b border-neutral-200 dark:border-neutral-700">
+              <tr className="text-left text-muted border-b border-border">
                 <th className="py-2 pr-4 font-medium">{t.colPack}</th>
                 <th className="py-2 pr-4 font-medium">{t.colCalories}</th>
                 <th className="py-2 font-medium">{t.colVsUnloaded}</th>
@@ -303,15 +303,15 @@ export function RuckingCalorieCalculator({
               {loadTable.map((row) => (
                 <tr
                   key={row.loadKg}
-                  className="border-b border-neutral-100 dark:border-neutral-700/50"
+                  className="border-b border-border "
                 >
-                  <td className="py-2 pr-4 text-neutral-900 dark:text-white">
+                  <td className="py-2 pr-4 text-foreground">
                     {showLoad(row.loadKg)}
                   </td>
-                  <td className="py-2 pr-4 text-neutral-900 dark:text-white font-medium">
+                  <td className="py-2 pr-4 text-foreground font-medium">
                     {formatNumber(row.calories, locale)}
                   </td>
-                  <td className="py-2 text-neutral-600 dark:text-neutral-400">
+                  <td className="py-2 text-muted">
                     {row.loadKg === 0
                       ? "—"
                       : interpolate(t.vsUnloaded, {

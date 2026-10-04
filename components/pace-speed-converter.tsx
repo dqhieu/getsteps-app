@@ -55,24 +55,24 @@ export function PaceSpeedConverter({
   }, [paceKm, paceMile, speedKmh, speedMph, active]);
 
   const inputCls =
-    "w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] text-base";
+    "w-full py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-base";
 
   const statCard = (label: string, value: string) => (
-    <div className="bg-neutral-50 dark:bg-neutral-900/50 rounded-xl p-4 text-center">
-      <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{label}</p>
-      <p className="text-lg font-bold text-neutral-900 dark:text-white">{value}</p>
+    <div className="bg-surface rounded-xl p-4 text-center">
+      <p className="text-xs text-muted mb-1">{label}</p>
+      <p className="text-lg font-bold text-foreground">{value}</p>
     </div>
   );
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-4">
           {t.title}
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+            <label className="block text-sm font-medium text-muted-soft mb-1">
               {t.paceKm}
             </label>
             <input
@@ -84,7 +84,7 @@ export function PaceSpeedConverter({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+            <label className="block text-sm font-medium text-muted-soft mb-1">
               {t.paceMile}
             </label>
             <input
@@ -96,7 +96,7 @@ export function PaceSpeedConverter({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+            <label className="block text-sm font-medium text-muted-soft mb-1">
               {t.speedKmh}
             </label>
             <input
@@ -109,7 +109,7 @@ export function PaceSpeedConverter({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+            <label className="block text-sm font-medium text-muted-soft mb-1">
               {t.speedMph}
             </label>
             <input
@@ -124,8 +124,8 @@ export function PaceSpeedConverter({
         </div>
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-        <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
+        <h3 className="text-base font-semibold text-foreground mb-4">
           {t.distanceTitle}
         </h3>
         <div className="grid grid-cols-2 gap-3">
@@ -134,8 +134,8 @@ export function PaceSpeedConverter({
         </div>
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-        <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
+        <h3 className="text-base font-semibold text-foreground mb-4">
           {t.raceTitle}
         </h3>
         <div className="grid grid-cols-2 gap-3">
@@ -144,37 +144,37 @@ export function PaceSpeedConverter({
         </div>
       </div>
 
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-        <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
+        <h3 className="text-base font-semibold text-foreground mb-4">
           {t.referenceTitle}
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-neutral-200 dark:border-neutral-700">
-                <th className="text-left py-2 text-neutral-600 dark:text-neutral-400 font-medium">{t.activityColumn}</th>
-                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">{t.kmhColumn}</th>
-                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">{t.minKmColumn}</th>
-                <th className="text-right py-2 text-neutral-600 dark:text-neutral-400 font-medium">{t.minMiColumn}</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted font-medium">{t.activityColumn}</th>
+                <th className="text-right py-2 text-muted font-medium">{t.kmhColumn}</th>
+                <th className="text-right py-2 text-muted font-medium">{t.minKmColumn}</th>
+                <th className="text-right py-2 text-muted font-medium">{t.minMiColumn}</th>
               </tr>
             </thead>
             <tbody>
               {PACE_REFERENCE.map((r) => (
                 <tr
                   key={r.id}
-                  className="border-b border-neutral-100 dark:border-neutral-700/50 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-700/30"
+                  className="border-b border-border  cursor-pointer hover:bg-surface "
                   onClick={() => { setActive("speedKmh"); setSpeedKmh(r.speedKmh.toString()); }}
                 >
-                  <td className="py-2.5 font-medium text-neutral-900 dark:text-white">{t.activities[r.id]}</td>
-                  <td className="py-2.5 text-right text-neutral-700 dark:text-neutral-300">{r.speedKmh}</td>
-                  <td className="py-2.5 text-right text-neutral-700 dark:text-neutral-300 font-mono">{r.paceKm}</td>
-                  <td className="py-2.5 text-right text-neutral-700 dark:text-neutral-300 font-mono">{r.paceMile}</td>
+                  <td className="py-2.5 font-medium text-foreground">{t.activities[r.id]}</td>
+                  <td className="py-2.5 text-right text-muted-soft">{r.speedKmh}</td>
+                  <td className="py-2.5 text-right text-muted-soft font-mono">{r.paceKm}</td>
+                  <td className="py-2.5 text-right text-muted-soft font-mono">{r.paceMile}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-2">{t.clickHint}</p>
+        <p className="text-xs text-muted mt-2">{t.clickHint}</p>
       </div>
     </div>
   );

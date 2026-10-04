@@ -50,16 +50,16 @@ export function MarathonRacePredictor({
     setPredictions(predictRaceTimes(distKm, totalSecs));
   };
 
-  const inputCls = "w-full py-3 px-3 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] text-center text-lg font-semibold";
+  const inputCls = "w-full py-3 px-3 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-center text-lg font-semibold";
   const btnBase = "py-2 px-3 rounded-lg text-sm font-medium transition-colors";
-  const btnActive = `${btnBase} bg-[#ED772F] text-white`;
-  const btnInactive = `${btnBase} bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-600`;
+  const btnActive = `${btnBase} bg-accent text-white`;
+  const btnInactive = `${btnBase} bg-surface text-muted hover:bg-ghost-hover`;
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50 space-y-5">
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)] space-y-5">
         <div>
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.distanceLabel}</label>
+          <label className="block text-sm font-medium text-muted-soft mb-2">{t.distanceLabel}</label>
           <div className="flex flex-wrap gap-2">
             {PRESET_DISTANCES.map((d) => {
               const isSelected = d.id === "custom" ? isCustom : (!isCustom && selectedDistanceKm === d.km);
@@ -78,7 +78,7 @@ export function MarathonRacePredictor({
 
         {isCustom && (
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.customDistanceLabel}</label>
+            <label className="block text-sm font-medium text-muted-soft mb-2">{t.customDistanceLabel}</label>
             <div className="relative max-w-[160px]">
               <input
                 type="number"
@@ -87,26 +87,26 @@ export function MarathonRacePredictor({
                 onChange={(e) => setCustomKm(Number(e.target.value))}
                 className={`${inputCls} pr-12 text-left`}
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-sm pointer-events-none">km</span>
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted text-sm pointer-events-none">km</span>
             </div>
           </div>
         )}
 
         <div>
-          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.finishTimeLabel}</label>
+          <label className="block text-sm font-medium text-muted-soft mb-2">{t.finishTimeLabel}</label>
           <div className="flex items-end gap-2">
             <div className="flex-1">
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mb-1">{t.hour}</p>
+              <p className="text-xs text-muted text-center mb-1">{t.hour}</p>
               <input type="number" value={hours} onChange={(e) => setHours(Number(e.target.value))} className={inputCls} />
             </div>
-            <span className="pb-3 text-neutral-400 font-semibold text-lg">:</span>
+            <span className="pb-3 text-muted font-semibold text-lg">:</span>
             <div className="flex-1">
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mb-1">{t.minute}</p>
+              <p className="text-xs text-muted text-center mb-1">{t.minute}</p>
               <input type="number" value={minutes} onChange={(e) => setMinutes(Number(e.target.value))} className={inputCls} />
             </div>
-            <span className="pb-3 text-neutral-400 font-semibold text-lg">:</span>
+            <span className="pb-3 text-muted font-semibold text-lg">:</span>
             <div className="flex-1">
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center mb-1">{t.second}</p>
+              <p className="text-xs text-muted text-center mb-1">{t.second}</p>
               <input type="number" value={seconds} onChange={(e) => setSeconds(Number(e.target.value))} className={inputCls} />
             </div>
           </div>
@@ -114,20 +114,20 @@ export function MarathonRacePredictor({
 
         {error && <p className="text-sm text-red-500">{error}</p>}
 
-        <button onClick={handlePredict} className="w-full bg-[#ED772F] hover:bg-[#d4651f] text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+        <button onClick={handlePredict} className="inline-flex h-12 w-full items-center justify-center rounded-[12px] bg-[image:var(--gradient-button-primary),var(--gradient-button-primary-rim)] bg-origin-border px-6 text-[15px] font-semibold text-[var(--button-primary-text)] shadow-[var(--shadow-button-primary)] [background-clip:padding-box,border-box] [text-shadow:var(--button-primary-text-shadow)] transition-[transform,box-shadow] duration-[var(--duration-1)] hover:-translate-y-px hover:bg-[image:var(--gradient-button-primary-hover),var(--gradient-button-primary-rim-hover)] hover:shadow-[var(--shadow-button-primary-hover)]">
           {t.predict}
         </button>
       </div>
 
       {predictions && (
-        <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">{t.resultsTitle}</h2>
+        <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
+          <h2 className="text-lg font-semibold text-foreground mb-4">{t.resultsTitle}</h2>
           <div className="overflow-x-auto -mx-6 px-6">
             <table className="w-full min-w-[480px] text-sm">
               <thead>
-                <tr className="border-b border-neutral-200 dark:border-neutral-700">
+                <tr className="border-b border-border">
                   {[t.distanceColumn, t.timeColumn, t.paceKmColumn, t.paceMileColumn, t.speedColumn].map((h) => (
-                    <th key={h} className="text-left py-2 px-2 text-xs font-medium text-neutral-500 dark:text-neutral-400">{h}</th>
+                    <th key={h} className="text-left py-2 px-2 text-xs font-medium text-muted">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -135,22 +135,22 @@ export function MarathonRacePredictor({
                 {predictions.map((row) => (
                   <tr
                     key={row.id}
-                    className={`border-b border-neutral-100 dark:border-neutral-700/50 ${row.isInput ? "bg-[#ED772F]/10 dark:bg-[#ED772F]/15" : ""}`}
+                    className={`border-b border-border  ${row.isInput ? "bg-chip " : ""}`}
                   >
-                    <td className="py-3 px-2 font-semibold text-neutral-900 dark:text-white">
+                    <td className="py-3 px-2 font-semibold text-foreground">
                       {t.races[row.id]}
-                      {row.isInput && <span className="ml-1 text-[10px] font-normal text-[#ED772F]">{t.you}</span>}
+                      {row.isInput && <span className="ml-1 text-[10px] font-normal text-accent">{t.you}</span>}
                     </td>
-                    <td className="py-3 px-2 font-mono text-neutral-900 dark:text-white">{row.time}</td>
-                    <td className="py-3 px-2 font-mono text-neutral-600 dark:text-neutral-300">{row.paceKm}</td>
-                    <td className="py-3 px-2 font-mono text-neutral-600 dark:text-neutral-300">{row.paceMile}</td>
-                    <td className="py-3 px-2 text-neutral-600 dark:text-neutral-300">{row.speedKmh} km/h</td>
+                    <td className="py-3 px-2 font-mono text-foreground">{row.time}</td>
+                    <td className="py-3 px-2 font-mono text-muted dark:text-muted">{row.paceKm}</td>
+                    <td className="py-3 px-2 font-mono text-muted dark:text-muted">{row.paceMile}</td>
+                    <td className="py-3 px-2 text-muted dark:text-muted">{row.speedKmh} km/h</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="mt-4 text-xs text-neutral-500 dark:text-neutral-400">
+          <p className="mt-4 text-xs text-muted">
             {t.footnote}
           </p>
         </div>

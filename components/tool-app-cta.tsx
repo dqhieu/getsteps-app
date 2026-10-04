@@ -17,19 +17,19 @@ export function ToolAppCta({
   locale?: Locale;
 }) {
   return (
-    <div className="mt-8 rounded-2xl border border-[#ED772F]/30 bg-gradient-to-br from-[#ED772F]/10 to-[#ED772F]/5 dark:from-[#ED772F]/20 dark:to-[#ED772F]/10 p-6 md:p-8">
+    <div className="mt-8 rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 to-accent/5 p-6 md:p-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
-          <h2 className="text-xl md:text-2xl font-bold text-neutral-900 dark:text-white mb-2">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
             {headline}
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 max-w-xl">
+          <p className="text-muted max-w-xl">
             {description}
           </p>
         </div>
         <div className="flex-shrink-0 flex flex-col md:items-end gap-2">
           <AppStoreBadge locale={locale} />
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+          <p className="text-sm text-muted">
             {getCommonMessages(locale).appStore.freeOnAppStore}
           </p>
         </div>
@@ -53,12 +53,12 @@ export function ToolStickyCta({
 }) {
   const t = getCommonMessages(locale).appStore;
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden flex items-center justify-between gap-3 border-t border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur px-4 py-3">
+    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden flex items-center justify-between gap-3 border-t border-border bg-card/95 /95 backdrop-blur px-4 py-3">
       <div className="min-w-0">
-        <p className="text-sm font-semibold text-neutral-900 dark:text-white truncate">
+        <p className="text-sm font-semibold text-foreground truncate">
           {label}
         </p>
-        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+        <p className="text-xs text-muted">
           {t.freeOnAppStore}
         </p>
       </div>
@@ -68,7 +68,7 @@ export function ToolStickyCta({
         rel="noopener noreferrer"
         data-fast-goal="open-app-store"
         aria-label={t.badgeAlt}
-        className="flex-shrink-0 rounded-full bg-[#ED772F] text-white text-sm font-semibold px-5 py-2.5 active:scale-95 transition-transform"
+        className="flex-shrink-0 rounded-full bg-accent text-white text-sm font-semibold px-5 py-2.5 active:scale-95 transition-transform"
       >
         {t.getSteps}
       </a>

@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @utility scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -10,28 +12,161 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --muted: #7d8187;
+  --muted-soft: rgba(10, 10, 10, 0.5);
+  --accent: #ed772f;
+  --chip: #f8e0d0;
+  --chip-text: #8a3e16;
+  --surface: #f4f5f7;
+  --card: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --ring: rgba(237, 119, 47, 0.28);
+  --ghost-hover: rgba(10, 10, 10, 0.05);
+  --button-primary-text: #ffffff;
+  --button-primary-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+  --shadow-border:
+    0px 0px 0px 1px rgba(0, 0, 0, 0.05),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.04),
+    0px 4px 16px -2px rgba(0, 0, 0, 0.06);
+  --shadow-border-hover:
+    0px 0px 0px 1px rgba(0, 0, 0, 0.07),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.08),
+    0px 4px 8px 0px rgba(0, 0, 0, 0.05),
+    0px 10px 28px -6px rgba(0, 0, 0, 0.08);
+  --gradient-button-primary: linear-gradient(180deg, #f7a15a 0%, #ed772f 100%);
+  --gradient-button-primary-hover: linear-gradient(180deg, #f8ad6c 0%, #f0833a 100%);
+  --gradient-button-primary-rim: linear-gradient(180deg, #ffe4cf 0%, #c45e1c 100%);
+  --gradient-button-primary-rim-hover: linear-gradient(180deg, #ffe8d6 0%, #d46a28 100%);
+  --gradient-button-secondary: linear-gradient(180deg, #ffffff 0%, #f4f5f7 100%);
+  --shadow-button-primary:
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 8px 20px rgba(237, 119, 47, 0.22);
+  --shadow-button-primary-hover:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 12px 28px rgba(237, 119, 47, 0.28);
+  --shadow-button-primary-focus:
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 8px 20px rgba(237, 119, 47, 0.22),
+    0 0 0 3px var(--ring);
+  --shadow-button-secondary:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.05),
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-button-secondary-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.05),
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.14),
+    0 2px 4px rgba(0, 0, 0, 0.07),
+    0 8px 18px rgba(0, 0, 0, 0.07);
+  --shadow-button-secondary-focus:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.05),
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    0 0 0 3px var(--ring);
+  --shadow-button-ghost-focus: 0 0 0 3px var(--ring);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0c0c0d;
+  --foreground: #f5f5f5;
+  --muted: #9a9ea4;
+  --muted-soft: rgba(255, 255, 255, 0.5);
+  --accent: #ed772f;
+  --chip: #3d2416;
+  --chip-text: #f6d2b4;
+  --surface: #161618;
+  --card: #1a1a1c;
+  --border: rgba(255, 255, 255, 0.1);
+  --ring: rgba(237, 119, 47, 0.4);
+  --ghost-hover: rgba(255, 255, 255, 0.06);
+  --button-primary-text: #ffffff;
+  --button-primary-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  --shadow-border:
+    0px 0px 0px 1px rgba(255, 255, 255, 0.08),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.45),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.28),
+    0px 4px 16px -2px rgba(0, 0, 0, 0.4);
+  --shadow-border-hover:
+    0px 0px 0px 1px rgba(255, 255, 255, 0.12),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.5),
+    0px 4px 8px 0px rgba(0, 0, 0, 0.32),
+    0px 10px 28px -6px rgba(0, 0, 0, 0.5);
+  --gradient-button-primary: linear-gradient(180deg, #f7a15a 0%, #ed772f 100%);
+  --gradient-button-primary-hover: linear-gradient(180deg, #f8ad6c 0%, #f0833a 100%);
+  --gradient-button-primary-rim: linear-gradient(180deg, #ffd7b0 0%, #a84e16 100%);
+  --gradient-button-primary-rim-hover: linear-gradient(180deg, #ffe0c2 0%, #c45e1c 100%);
+  --gradient-button-secondary: linear-gradient(180deg, #2c2c2e 0%, #1c1c1e 100%);
+  --shadow-button-primary:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 8px 20px rgba(237, 119, 47, 0.28);
+  --shadow-button-primary-hover:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 12px 28px rgba(237, 119, 47, 0.36);
+  --shadow-button-primary-focus:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 8px 20px rgba(237, 119, 47, 0.28),
+    0 0 0 3px var(--ring);
+  --shadow-button-secondary:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.28),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-button-secondary-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.28),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.14),
+    0 2px 4px rgba(0, 0, 0, 0.35),
+    0 8px 18px rgba(0, 0, 0, 0.32);
+  --shadow-button-secondary-focus:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.28),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    0 0 0 3px var(--ring);
+  --shadow-button-ghost-focus: 0 0 0 3px var(--ring);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-muted-soft: var(--muted-soft);
+  --color-accent: var(--accent);
+  --color-chip: var(--chip);
+  --color-chip-text: var(--chip-text);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-ghost-hover: var(--ghost-hover);
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --duration-1: 120ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--background);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 @keyframes stepboard-flip-in {

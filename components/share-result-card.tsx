@@ -37,7 +37,7 @@ export function ShareResultCard({
   }
 
   return (
-    <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-5 border border-neutral-200 dark:border-neutral-700/50 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+    <div className="rounded-[20px] bg-card p-5 shadow-[var(--shadow-border)] flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
           <span
@@ -47,18 +47,18 @@ export function ShareResultCard({
             <span>{badge.label}</span>
           </span>
           {comparison && (
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="text-sm text-muted">
               {comparison}
             </span>
           )}
         </div>
-        <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400 truncate">
+        <p className="mt-2 text-xs text-muted truncate">
           {shareText}
         </p>
       </div>
       <button
         onClick={handleShare}
-        className="flex-shrink-0 flex items-center gap-2 bg-[#ED772F] hover:bg-[#d4651f] text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors"
+        className="flex-shrink-0 flex items-center gap-2 bg-accent hover:bg-accent/90 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors"
       >
         {copied ? (
           <>

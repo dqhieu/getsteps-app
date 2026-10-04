@@ -59,14 +59,14 @@ export function AppDownloadSection({
   return (
     <section className={className}>
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-neutral-900 dark:text-white">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
           {title}
         </h2>
-        <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
+        <p className="text-muted mb-8 max-w-xl mx-auto">
           {description}
         </p>
         <AppStoreBadge locale={locale} />
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-4">
+        <p className="text-sm text-muted mt-4">
           {getCommonMessages(locale).appStore.freeOnAppStore}
         </p>
       </div>

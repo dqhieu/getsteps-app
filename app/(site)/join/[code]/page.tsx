@@ -113,13 +113,13 @@ export default async function JoinPage({
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-6 py-16">
       <div className="w-full max-w-md text-center">
-        <p className="text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+        <p className="text-sm uppercase tracking-widest text-muted">
           You've been invited to join
         </p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
           {preview.name}
         </h1>
-        <p className="mt-4 text-base text-neutral-600 dark:text-neutral-300 text-pretty">
+        <p className="mt-4 text-base text-muted dark:text-muted text-pretty">
           👥 <span className="tabular-nums">{preview.member_count}</span>{" "}
           {memberWord} · {invitedBy}
         </p>
@@ -127,22 +127,22 @@ export default async function JoinPage({
         <div className="mt-10 flex flex-col gap-3">
           <a
             href={primaryHref}
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-white font-medium transition-[background-color,transform] duration-150 hover:bg-orange-600 active:scale-[0.96]"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-accent px-6 py-3 text-white font-medium transition-[background-color,transform] duration-150 hover:opacity-90 active:scale-[0.96]"
           >
             {primaryLabel}
           </a>
           {isIOS && (
             <a
               href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-neutral-300 px-6 py-3 font-medium transition-[background-color,border-color,transform] duration-150 hover:bg-neutral-100 active:scale-[0.96] dark:border-neutral-700 dark:hover:bg-neutral-900"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-border px-6 py-3 font-medium transition-[background-color,border-color,transform] duration-150 hover:bg-surface active:scale-[0.96]  "
             >
               Get Steps on the App Store
             </a>
           )}
         </div>
 
-        <div className="mt-12 border-t border-neutral-200 dark:border-neutral-800 pt-8">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <div className="mt-12 border-t border-border pt-8">
+          <p className="text-sm text-muted">
             Or enter this code in the app:
           </p>
           <JoinCodeCopy code={code} />

@@ -38,7 +38,7 @@ const RUNNING_FITNESS_TOOLS: ToolSlug[] = [
 ];
 
 const LINK_CLASS =
-  "text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#ED772F] dark:hover:text-[#ED772F] transition-colors";
+  "text-sm text-muted hover:text-accent transition-colors";
 
 // The English footer uses shorter labels than the directory titles for these.
 const ENGLISH_TOOL_LABELS: Partial<Record<ToolSlug, string>> = {
@@ -56,7 +56,7 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
 
   const toolColumn = (title: string, slugs: ToolSlug[]) => (
     <div>
-      <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">{title}</h3>
+      <h3 className="text-sm font-semibold text-foreground mb-4">{title}</h3>
       <ul className="space-y-2">
         {slugs.map((slug) => (
           <li key={slug}>
@@ -70,7 +70,7 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
   );
 
   return (
-    <footer className="py-12 border-t border-neutral-200 dark:border-neutral-800">
+    <footer className="border-t border-border py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1fr_auto_auto_auto] gap-8 md:gap-12">
           {/* Brand column */}
@@ -81,16 +81,16 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
                 alt="Steps"
                 width={32}
                 height={32}
-                className="rounded-lg ring-1 ring-black/10 dark:ring-white/10"
+                className="rounded-lg ring-1 ring-border"
               />
-              <span className="text-lg font-semibold text-neutral-900 dark:text-white">
+              <span className="text-lg font-semibold text-foreground">
                 {SITE_CONFIG.name}
               </span>
             </div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
+            <p className="text-sm text-muted mb-3">
               {t.footer.tagline}
             </p>
-            <p className="text-sm text-neutral-500 dark:text-neutral-500">
+            <p className="text-sm text-muted">
               © {currentYear} {SITE_CONFIG.shortName} · {t.footer.builtBy}
             </p>
           </div>
@@ -100,7 +100,7 @@ export function LandingFooter({ locale = DEFAULT_LOCALE }: { locale?: Locale }) 
 
           {/* Company column */}
           <div>
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">
+            <h3 className="text-sm font-semibold text-foreground mb-4">
               {t.footer.company}
             </h3>
             <ul className="space-y-2">

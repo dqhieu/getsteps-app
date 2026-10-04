@@ -16,28 +16,28 @@ export function StepReferenceTable({ profile }: StepReferenceTableProps) {
   const tableData = useMemo(() => generateReferenceTable(profile), [profile]);
 
   return (
-    <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700/50">
-      <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+    <div className="rounded-[20px] bg-card p-6 md:p-8 shadow-[var(--shadow-border)]">
+      <h2 className="text-lg font-semibold text-foreground mb-2">
         Quick Reference Table
       </h2>
-      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+      <p className="text-sm text-muted mb-6">
         Common step goals and their equivalent distances based on your profile
       </p>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-neutral-200 dark:border-neutral-700">
-              <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+            <tr className="border-b border-border">
+              <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                 Steps
               </th>
-              <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                 Distance
               </th>
-              <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                 Calories
               </th>
-              <th className="text-left py-3 px-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <th className="text-left py-3 px-2 text-sm font-medium text-muted">
                 Time
               </th>
             </tr>
@@ -46,28 +46,28 @@ export function StepReferenceTable({ profile }: StepReferenceTableProps) {
             {tableData.map((row) => (
               <tr
                 key={row.steps}
-                className="border-b border-neutral-100 dark:border-neutral-700/50 hover:bg-neutral-50 dark:hover:bg-neutral-700/30 transition-colors"
+                className="border-b border-border  hover:bg-surface  transition-colors"
               >
                 <td className="py-3 px-2">
-                  <span className="font-semibold text-neutral-900 dark:text-white">
+                  <span className="font-semibold text-foreground">
                     {formatNumber(row.steps)}
                   </span>
                 </td>
                 <td className="py-3 px-2">
-                  <span className="text-neutral-900 dark:text-white">
+                  <span className="text-foreground">
                     {formatDistance(row.distanceKm, "km")} km
                   </span>
-                  <span className="text-neutral-500 dark:text-neutral-500 text-sm ml-1">
+                  <span className="text-muted text-sm ml-1">
                     ({formatDistance(row.distanceMiles, "miles")} mi)
                   </span>
                 </td>
                 <td className="py-3 px-2">
-                  <span className="text-neutral-900 dark:text-white">
+                  <span className="text-foreground">
                     {formatNumber(row.caloriesBurned)} kcal
                   </span>
                 </td>
                 <td className="py-3 px-2">
-                  <span className="text-neutral-900 dark:text-white">
+                  <span className="text-foreground">
                     {row.walkingTimeMinutes >= 60
                       ? `${Math.floor(row.walkingTimeMinutes / 60)}h ${row.walkingTimeMinutes % 60}m`
                       : `${row.walkingTimeMinutes} min`}

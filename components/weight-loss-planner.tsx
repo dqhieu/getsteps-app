@@ -37,7 +37,7 @@ function formatRate(kg: number, locale: Locale): string {
 }
 
 const INPUT_CLASS =
-  "w-full py-3 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent text-lg";
+  "w-full py-3 px-4 rounded-lg bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)] text-lg";
 
 export function WeightLossPlanner({
   t = en.calculator,
@@ -99,16 +99,16 @@ export function WeightLossPlanner({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-6">{t.details}</h2>
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
+        <h2 className="text-lg font-semibold text-foreground mb-6">{t.details}</h2>
 
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.gender}</label>
+            <label className="block text-sm font-medium text-muted-soft mb-2">{t.gender}</label>
             <div className="flex gap-2">
               {(["male", "female"] as Gender[]).map((g) => (
                 <button key={g} onClick={() => setGender(g)}
-                  className={`flex-1 py-2.5 rounded-xl font-medium text-sm transition-colors ${gender === g ? "bg-[#ED772F] text-white" : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"}`}>
+                  className={`flex-1 py-2.5 rounded-xl font-medium text-sm transition-colors ${gender === g ? "bg-accent text-white" : "bg-surface text-muted"}`}>
                   {g === "male" ? t.male : t.female}
                 </button>
               ))}
@@ -117,20 +117,20 @@ export function WeightLossPlanner({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.age}</label>
+              <label className="block text-sm font-medium text-muted-soft mb-2">{t.age}</label>
               <div className="relative">
                 <input type="number" value={age} onChange={(e) => setAge(Number(e.target.value))}
                   className={`${INPUT_CLASS} pr-14`} />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-xs pointer-events-none">{t.years}</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted text-xs pointer-events-none">{t.years}</span>
               </div>
             </div>
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">{t.height}</label>
+                <label className="text-sm font-medium text-muted-soft">{t.height}</label>
                 <div className="flex gap-1">
                   {(["cm", "ftin"] as const).map((u) => (
                     <button key={u} onClick={() => setHeightUnit(u)}
-                      className={`px-2 py-0.5 rounded-lg text-xs font-medium transition-colors ${heightUnit === u ? "bg-[#ED772F] text-white" : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"}`}>
+                      className={`px-2 py-0.5 rounded-lg text-xs font-medium transition-colors ${heightUnit === u ? "bg-accent text-white" : "bg-surface text-muted"}`}>
                       {u === "ftin" ? "ft/in" : u}
                     </button>
                   ))}
@@ -140,7 +140,7 @@ export function WeightLossPlanner({
                 <div className="relative">
                   <input type="number" value={Math.round(heightCm)} onChange={(e) => setHeightCm(Number(e.target.value) || 0)}
                     className={`${INPUT_CLASS} pr-10`} />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-xs pointer-events-none">cm</span>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted text-xs pointer-events-none">cm</span>
                 </div>
               ) : (
                 <div className="flex gap-2">
@@ -148,13 +148,13 @@ export function WeightLossPlanner({
                     <input type="number" value={displayFt}
                       onChange={(e) => setHeightCm(ftInToCm(Number(e.target.value) || 0, displayIn))}
                       className={`${INPUT_CLASS} pr-8`} />
-                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-xs pointer-events-none">ft</span>
+                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-muted text-xs pointer-events-none">ft</span>
                   </div>
                   <div className="relative flex-1">
                     <input type="number" value={displayIn}
                       onChange={(e) => setHeightCm(ftInToCm(displayFt, Number(e.target.value) || 0))}
                       className={`${INPUT_CLASS} pr-8`} />
-                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-xs pointer-events-none">in</span>
+                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-muted text-xs pointer-events-none">in</span>
                   </div>
                 </div>
               )}
@@ -163,11 +163,11 @@ export function WeightLossPlanner({
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">{t.weights}</label>
+              <label className="text-sm font-medium text-muted-soft">{t.weights}</label>
               <div className="flex gap-1">
                 {(["kg", "lbs"] as const).map((u) => (
                   <button key={u} onClick={() => setWeightUnit(u)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors ${weightUnit === u ? "bg-[#ED772F] text-white" : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"}`}>
+                    className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors ${weightUnit === u ? "bg-accent text-white" : "bg-surface text-muted"}`}>
                     {u}
                   </button>
                 ))}
@@ -178,45 +178,45 @@ export function WeightLossPlanner({
                 <input type="number" value={showWeight(currentKg)}
                   onChange={(e) => setCurrentKg(toKg(Number(e.target.value) || 0))}
                   className={`${INPUT_CLASS} pr-12`} />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-xs pointer-events-none">{t.now}</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted text-xs pointer-events-none">{t.now}</span>
               </div>
               <div className="relative">
                 <input type="number" value={showWeight(goalKg)}
                   onChange={(e) => setGoalKg(toKg(Number(e.target.value) || 0))}
                   className={`${INPUT_CLASS} pr-12`} />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 text-xs pointer-events-none">{t.goal}</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted text-xs pointer-events-none">{t.goal}</span>
               </div>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.activity}</label>
+            <label className="block text-sm font-medium text-muted-soft mb-2">{t.activity}</label>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {ACTIVITY_LEVELS.map((level) => (
                 <button key={level} onClick={() => setActivity(level)}
-                  className={`py-2 px-3 rounded-xl text-xs font-medium transition-colors text-center ${activity === level ? "bg-[#ED772F] text-white" : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"}`}>
+                  className={`py-2 px-3 rounded-xl text-xs font-medium transition-colors text-center ${activity === level ? "bg-accent text-white" : "bg-surface text-muted"}`}>
                   {t.activityLevels[level]}
                 </button>
               ))}
             </div>
-            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">{t.activityDescriptions[activity]}</p>
+            <p className="mt-2 text-xs text-muted">{t.activityDescriptions[activity]}</p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.rate}</label>
+            <label className="block text-sm font-medium text-muted-soft mb-2">{t.rate}</label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {RATE_OPTIONS.map((r) => (
                 <button key={r.key} onClick={() => setRateKey(r.key)}
-                  className={`py-2 px-2 rounded-xl text-xs font-medium transition-colors text-center ${rateKey === r.key ? "bg-[#ED772F] text-white" : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"}`}>
+                  className={`py-2 px-2 rounded-xl text-xs font-medium transition-colors text-center ${rateKey === r.key ? "bg-accent text-white" : "bg-surface text-muted"}`}>
                   {t.rates[r.key].label}
                 </button>
               ))}
             </div>
-            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">{t.rates[rate.key].description}</p>
+            <p className="mt-2 text-xs text-muted">{t.rates[rate.key].description}</p>
           </div>
 
           <button onClick={() => setCalculated(true)}
-            className="w-full bg-[#ED772F] hover:bg-[#d4651f] text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+            className="inline-flex h-12 w-full items-center justify-center rounded-[12px] bg-[image:var(--gradient-button-primary),var(--gradient-button-primary-rim)] bg-origin-border px-6 text-[15px] font-semibold text-[var(--button-primary-text)] shadow-[var(--shadow-button-primary)] [background-clip:padding-box,border-box] [text-shadow:var(--button-primary-text-shadow)] transition-[transform,box-shadow] duration-[var(--duration-1)] hover:-translate-y-px hover:bg-[image:var(--gradient-button-primary-hover),var(--gradient-button-primary-rim-hover)] hover:shadow-[var(--shadow-button-primary-hover)]">
             {t.calculate}
           </button>
         </div>
@@ -224,50 +224,50 @@ export function WeightLossPlanner({
 
       {calculated && (
         <>
-          <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
-            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">{t.plan}</h2>
+          <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
+            <h2 className="text-lg font-semibold text-foreground mb-4">{t.plan}</h2>
 
             {plan.isGainGoal ? (
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">{t.gainGoal}</p>
+              <p className="text-sm text-muted">{t.gainGoal}</p>
             ) : (
               <>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                  <div className="rounded-xl p-4 bg-[#ED772F]/10 dark:bg-[#ED772F]/20 border border-[#ED772F]/30 text-center">
-                    <p className="text-xs text-[#ED772F] font-medium mb-1">{t.eatPerDay}</p>
-                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">{formatNumber(plan.dailyTarget, locale)}</p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.calories}</p>
+                  <div className="rounded-xl p-4 bg-chip border border-accent/30 text-center">
+                    <p className="text-xs text-accent font-medium mb-1">{t.eatPerDay}</p>
+                    <p className="text-2xl font-bold text-foreground">{formatNumber(plan.dailyTarget, locale)}</p>
+                    <p className="text-xs text-muted">{t.calories}</p>
                   </div>
-                  <div className="rounded-xl p-4 bg-neutral-50 dark:bg-neutral-700/30 text-center">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.dailyDeficit}</p>
-                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">{formatNumber(plan.dailyDeficit, locale)}</p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.belowTdee}</p>
+                  <div className="rounded-xl p-4 bg-surface text-center">
+                    <p className="text-xs text-muted mb-1">{t.dailyDeficit}</p>
+                    <p className="text-2xl font-bold text-foreground">{formatNumber(plan.dailyDeficit, locale)}</p>
+                    <p className="text-xs text-muted">{t.belowTdee}</p>
                   </div>
-                  <div className="rounded-xl p-4 bg-neutral-50 dark:bg-neutral-700/30 text-center">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.toLose}</p>
-                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">
+                  <div className="rounded-xl p-4 bg-surface text-center">
+                    <p className="text-xs text-muted mb-1">{t.toLose}</p>
+                    <p className="text-2xl font-bold text-foreground">
                       {weightUnit === "kg"
                         ? formatMeasure(plan.weightToLoseKg, locale)
                         : formatNumber(kgToLbs(plan.weightToLoseKg), locale)}
                     </p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{weightUnit}</p>
+                    <p className="text-xs text-muted">{weightUnit}</p>
                   </div>
-                  <div className="rounded-xl p-4 bg-neutral-50 dark:bg-neutral-700/30 text-center">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">{t.timeToGoal}</p>
-                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">{formatNumber(plan.weeksToGoal, locale)}</p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.weeks}</p>
+                  <div className="rounded-xl p-4 bg-surface text-center">
+                    <p className="text-xs text-muted mb-1">{t.timeToGoal}</p>
+                    <p className="text-2xl font-bold text-foreground">{formatNumber(plan.weeksToGoal, locale)}</p>
+                    <p className="text-xs text-muted">{t.weeks}</p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mb-6 text-center">
-                  <div className="rounded-xl p-3 bg-neutral-50 dark:bg-neutral-700/30">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.yourBmr}</p>
-                    <p className="text-lg font-bold text-neutral-900 dark:text-white">
+                  <div className="rounded-xl p-3 bg-surface">
+                    <p className="text-xs text-muted">{t.yourBmr}</p>
+                    <p className="text-lg font-bold text-foreground">
                       {interpolate(t.calValue, { value: formatNumber(plan.bmr, locale) })}
                     </p>
                   </div>
-                  <div className="rounded-xl p-3 bg-neutral-50 dark:bg-neutral-700/30">
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.yourTdee}</p>
-                    <p className="text-lg font-bold text-neutral-900 dark:text-white">
+                  <div className="rounded-xl p-3 bg-surface">
+                    <p className="text-xs text-muted">{t.yourTdee}</p>
+                    <p className="text-lg font-bold text-foreground">
                       {interpolate(t.calValue, { value: formatNumber(plan.tdee, locale) })}
                     </p>
                   </div>
@@ -285,18 +285,18 @@ export function WeightLossPlanner({
 
                 {plan.milestones.length > 0 && (
                   <div>
-                    <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">{t.milestones}</p>
+                    <p className="text-sm font-medium text-muted-soft mb-3">{t.milestones}</p>
                     <div className="space-y-2">
                       {plan.milestones.map((m) => (
-                        <div key={m.weekNumber} className="flex items-center justify-between p-3 rounded-xl bg-neutral-50 dark:bg-neutral-700/30">
-                          <span className="text-sm font-medium text-neutral-900 dark:text-white">
+                        <div key={m.weekNumber} className="flex items-center justify-between p-3 rounded-xl bg-surface">
+                          <span className="text-sm font-medium text-foreground">
                             {interpolate(t.week, { week: formatNumber(m.weekNumber, locale) })}
                           </span>
                           <div className="flex items-center gap-3">
-                            <div className="w-24 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-600 overflow-hidden">
-                              <div className="h-full bg-[#ED772F]" style={{ width: `${m.percentOfGoal}%` }} />
+                            <div className="w-24 h-1.5 rounded-full bg-surface  overflow-hidden">
+                              <div className="h-full bg-accent" style={{ width: `${m.percentOfGoal}%` }} />
                             </div>
-                            <span className="text-sm font-bold text-neutral-900 dark:text-white whitespace-nowrap">
+                            <span className="text-sm font-bold text-foreground whitespace-nowrap">
                               {weightText(m.weightKg)}
                             </span>
                           </div>

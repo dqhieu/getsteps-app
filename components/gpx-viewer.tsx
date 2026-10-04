@@ -391,19 +391,19 @@ export function GpxViewer({
             border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all
             ${
               isDragging
-                ? "border-[#ED772F] bg-[#ED772F]/5"
-                : "border-neutral-300 dark:border-neutral-600 hover:border-[#ED772F] hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+                ? "border-accent bg-accent/5"
+                : "border-border  hover:border-accent hover:bg-surface "
             }
           `}
         >
           <div className="text-5xl mb-4">&#x1F5FA;&#xFE0F;</div>
-          <p className="text-lg font-medium text-neutral-900 dark:text-white mb-2">
+          <p className="text-lg font-medium text-foreground mb-2">
             {t.dropTitle}
           </p>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+          <p className="text-sm text-muted mb-4">
             {t.dropHint}
           </p>
-          <p className="text-xs text-neutral-400 dark:text-neutral-500">
+          <p className="text-xs text-muted">
             {t.dropFormats}
           </p>
           <input
@@ -429,14 +429,14 @@ export function GpxViewer({
   return (
     <div className="space-y-6">
       {/* File info bar */}
-      <div className="flex items-center justify-between bg-neutral-50 dark:bg-neutral-800/50 rounded-xl px-4 py-3">
+      <div className="flex items-center justify-between bg-surface  rounded-xl px-4 py-3">
         <div className="flex items-center gap-3 min-w-0">
           <span className="text-xl">&#x1F5FA;&#xFE0F;</span>
           <div className="min-w-0">
-            <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">
+            <p className="text-sm font-medium text-foreground truncate">
               {gpxData.name || fileName}
             </p>
-            <p className="text-xs text-neutral-500">
+            <p className="text-xs text-muted">
               {gpxData.waypoints.length > 0
                 ? interpolate(t.fileMeta, {
                     points: countText(locale, stats.totalPoints, t.points),
@@ -452,14 +452,14 @@ export function GpxViewer({
             setFileName("");
             setError("");
           }}
-          className="text-sm text-neutral-500 hover:text-[#ED772F] transition-colors px-3 py-1"
+          className="text-sm text-muted hover:text-accent transition-colors px-3 py-1"
         >
           {t.newFile}
         </button>
       </div>
 
       {/* Map */}
-      <div className="rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-700 h-[400px] md:h-[500px]">
+      <div className="rounded-2xl overflow-hidden border border-border h-[400px] md:h-[500px]">
         <MapView gpxData={gpxData} startLabel={t.start} endLabel={t.end} />
       </div>
 
@@ -477,12 +477,12 @@ export function GpxViewer({
         ].map((stat) => (
           <div
             key={stat.id}
-            className="bg-neutral-50 dark:bg-neutral-800/50 rounded-xl p-4 text-center"
+            className="bg-surface  rounded-xl p-4 text-center"
           >
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
+            <p className="text-xs text-muted mb-1">
               {stat.label}
             </p>
-            <p className="text-lg font-semibold text-neutral-900 dark:text-white">
+            <p className="text-lg font-semibold text-foreground">
               {stat.value}
             </p>
           </div>
@@ -491,8 +491,8 @@ export function GpxViewer({
 
       {/* Elevation Profile */}
       {elevationPoints.length >= 2 && (
-        <div className="bg-white dark:bg-neutral-800/50 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-4 md:p-6">
-          <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-4">
+        <div className="rounded-[20px] bg-card p-4 md:p-6 shadow-[var(--shadow-border)]">
+          <h3 className="text-sm font-medium text-foreground mb-4">
             {t.elevationProfile}
           </h3>
           <div className="h-48 md:h-56">
@@ -503,8 +503,8 @@ export function GpxViewer({
 
       {/* Waypoints */}
       {gpxData.waypoints.length > 0 && (
-        <div className="bg-white dark:bg-neutral-800/50 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-4 md:p-6">
-          <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-4">
+        <div className="rounded-[20px] bg-card p-4 md:p-6 shadow-[var(--shadow-border)]">
+          <h3 className="text-sm font-medium text-foreground mb-4">
             {interpolate(t.waypointsTitle, {
               count: locale === "en"
                 ? String(gpxData.waypoints.length)
@@ -515,17 +515,17 @@ export function GpxViewer({
             {gpxData.waypoints.map((wpt, i) => (
               <div
                 key={i}
-                className="flex items-center justify-between py-2 px-3 rounded-lg bg-neutral-50 dark:bg-neutral-700/30"
+                className="flex items-center justify-between py-2 px-3 rounded-lg bg-surface"
               >
                 <div>
-                  <p className="text-sm font-medium text-neutral-900 dark:text-white">
+                  <p className="text-sm font-medium text-foreground">
                     {wpt.name || interpolate(t.waypointFallback, { n: formatInt(i + 1, locale) })}
                   </p>
                   {wpt.desc && (
-                    <p className="text-xs text-neutral-500">{wpt.desc}</p>
+                    <p className="text-xs text-muted">{wpt.desc}</p>
                   )}
                 </div>
-                <p className="text-xs text-neutral-500 font-mono">
+                <p className="text-xs text-muted font-mono">
                   {wpt.lat.toFixed(5)}, {wpt.lon.toFixed(5)}
                   {wpt.ele !== undefined && ` | ${formatInt(wpt.ele, locale)}m`}
                 </p>

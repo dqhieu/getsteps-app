@@ -53,9 +53,9 @@ export function Vo2MaxCalculator({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50">
+      <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)]">
         <div className="mb-6">
-          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.method}</p>
+          <p className="text-sm font-medium text-muted-soft mb-2">{t.method}</p>
           <div className="flex gap-2">
             {(["heart_rate", "cooper"] as VO2Method[]).map((m) => (
               <button
@@ -64,8 +64,8 @@ export function Vo2MaxCalculator({
                 onClick={() => setMethod(m)}
                 className={`flex-1 py-2 px-3 rounded-xl text-sm font-semibold transition-colors ${
                   method === m
-                    ? "bg-[#ED772F] text-white"
-                    : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                    ? "bg-accent text-white"
+                    : "bg-surface text-muted hover:bg-ghost-hover"
                 }`}
               >
                 {m === "heart_rate" ? t.heartRateMethod : t.cooperMethod}
@@ -75,7 +75,7 @@ export function Vo2MaxCalculator({
         </div>
 
         <div className="mb-4">
-          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t.gender}</p>
+          <p className="text-sm font-medium text-muted-soft mb-2">{t.gender}</p>
           <div className="flex gap-2 max-w-xs">
             {(["male", "female"] as Gender[]).map((g) => (
               <button
@@ -84,8 +84,8 @@ export function Vo2MaxCalculator({
                 onClick={() => setGender(g)}
                 className={`flex-1 py-2 px-4 rounded-xl text-sm font-semibold transition-colors ${
                   gender === g
-                    ? "bg-[#ED772F] text-white"
-                    : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                    ? "bg-accent text-white"
+                    : "bg-surface text-muted hover:bg-ghost-hover"
                 }`}
               >
                 {g === "male" ? t.male : t.female}
@@ -97,7 +97,7 @@ export function Vo2MaxCalculator({
         {method === "heart_rate" ? (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+              <label className="block text-sm font-medium text-muted-soft mb-1">
                 {t.age}
               </label>
               <div className="relative max-w-xs">
@@ -105,15 +105,15 @@ export function Vo2MaxCalculator({
                   type="number"
                   value={age}
                   onChange={(e) => setAge(Number(e.target.value))}
-                  className="w-full py-3 px-4 pr-16 rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                  className="w-full py-3 px-4 pr-16 rounded-xl bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-neutral-500 dark:text-neutral-400 pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-muted pointer-events-none">
                   {plural(locale, age, t.years)}
                 </span>
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+              <label className="block text-sm font-medium text-muted-soft mb-1">
                 {t.restingHeartRate}
               </label>
               <div className="relative max-w-xs">
@@ -121,18 +121,18 @@ export function Vo2MaxCalculator({
                   type="number"
                   value={rhr}
                   onChange={(e) => setRhr(Number(e.target.value))}
-                  className="w-full py-3 px-4 pr-16 rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                  className="w-full py-3 px-4 pr-16 rounded-xl bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-neutral-500 dark:text-neutral-400 pointer-events-none">
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-muted pointer-events-none">
                   {t.bpm}
                 </span>
               </div>
-              <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">{t.restingHint}</p>
+              <p className="mt-1 text-xs text-muted">{t.restingHint}</p>
             </div>
           </div>
         ) : (
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
+            <label className="block text-sm font-medium text-muted-soft mb-1">
               {t.distanceLabel}
             </label>
             <div className="flex gap-2 max-w-xs">
@@ -142,7 +142,7 @@ export function Vo2MaxCalculator({
                   value={distanceKm}
                   step={0.1}
                   onChange={(e) => setDistanceKm(Number(e.target.value))}
-                  className="w-full py-3 px-4 rounded-xl bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#ED772F] focus:border-transparent"
+                  className="w-full py-3 px-4 rounded-xl bg-surface text-foreground border border-border outline-none focus:shadow-[0_0_0_3px_var(--ring)]"
                 />
               </div>
               <div className="flex gap-1">
@@ -153,8 +153,8 @@ export function Vo2MaxCalculator({
                     onClick={() => setDistanceUnit(u)}
                     className={`px-3 py-2 rounded-xl text-sm font-semibold transition-colors ${
                       distanceUnit === u
-                        ? "bg-[#ED772F] text-white"
-                        : "bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400"
+                        ? "bg-accent text-white"
+                        : "bg-surface text-muted"
                     }`}
                   >
                     {u === "km" ? t.km : t.miles}
@@ -162,28 +162,28 @@ export function Vo2MaxCalculator({
                 ))}
               </div>
             </div>
-            <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">{t.distanceHint}</p>
+            <p className="mt-1 text-xs text-muted">{t.distanceHint}</p>
           </div>
         )}
 
         <button
           type="button"
           onClick={handleCalculate}
-          className="mt-6 w-full bg-[#ED772F] hover:bg-[#d4651f] text-white font-semibold py-3 px-6 rounded-xl transition-colors"
+          className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-[12px] bg-[image:var(--gradient-button-primary),var(--gradient-button-primary-rim)] bg-origin-border px-6 text-[15px] font-semibold text-[var(--button-primary-text)] shadow-[var(--shadow-button-primary)] [background-clip:padding-box,border-box] [text-shadow:var(--button-primary-text-shadow)] transition-[transform,box-shadow] duration-[var(--duration-1)] hover:-translate-y-px hover:bg-[image:var(--gradient-button-primary-hover),var(--gradient-button-primary-rim-hover)] hover:shadow-[var(--shadow-button-primary-hover)]"
         >
           {t.calculate}
         </button>
       </div>
 
       {result && colors && category && (
-        <div className="bg-white dark:bg-neutral-800/50 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-700/50 space-y-4">
+        <div className="rounded-[20px] bg-card p-6 shadow-[var(--shadow-border)] space-y-4">
           <div className="text-center py-4">
-            <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-1">{t.yourEstimate}</p>
+            <p className="text-sm font-medium text-muted mb-1">{t.yourEstimate}</p>
             <div className="flex items-baseline justify-center gap-2">
-              <span className="text-6xl font-bold text-neutral-900 dark:text-white">
+              <span className="text-6xl font-bold text-foreground">
                 {formatDecimal(result.vo2max, locale, 1)}
               </span>
-              <span className="text-xl text-neutral-500 dark:text-neutral-400">{t.unit}</span>
+              <span className="text-xl text-muted">{t.unit}</span>
             </div>
           </div>
 
@@ -194,14 +194,14 @@ export function Vo2MaxCalculator({
             <p className={`text-sm ${colors.text}`}>{category.description}</p>
           </div>
 
-          <div className="rounded-xl p-4 bg-neutral-50 dark:bg-neutral-700/30 border border-neutral-200 dark:border-neutral-700/50">
-            <p className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-1">
+          <div className="rounded-xl p-4 bg-surface border border-border">
+            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-1">
               {t.improvementTip}
             </p>
-            <p className="text-sm text-neutral-700 dark:text-neutral-300">{category.tip}</p>
+            <p className="text-sm text-muted-soft">{category.tip}</p>
           </div>
 
-          <p className="text-xs text-neutral-400 dark:text-neutral-500 text-center pt-1">{t.disclaimer}</p>
+          <p className="text-xs text-muted text-center pt-1">{t.disclaimer}</p>
         </div>
       )}
     </div>
