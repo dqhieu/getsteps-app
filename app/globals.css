@@ -12,14 +12,6 @@
 }
 
 :root {
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-right: env(safe-area-inset-right, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-left: env(safe-area-inset-left, 0px);
-  /* Home indicator, or the measured sticky bar when that bar is on screen. */
-  --shell-pad-bottom: var(--safe-bottom);
-  /* Matches the sticky bar before it is measured: 40px control + 12px top pad + bottom pad + border. */
-  --tool-sticky-cta-height: calc(3.25rem + max(12px, var(--safe-bottom)) + 1px);
   color-scheme: light;
   --background: #fafafa;
   --foreground: #0a0a0a;
@@ -170,90 +162,11 @@
 
 html {
   background: var(--background);
-  height: auto;
-  min-height: 100dvh;
-  scroll-padding-top: calc(3.5rem + var(--safe-top));
-  scroll-padding-bottom: var(--shell-pad-bottom);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  box-sizing: border-box;
-  min-height: 100dvh;
-  /* Each edge uses its own inset. Fixed bars are viewport-positioned, so they
-     pad themselves; in-flow content is shifted by the same insets here. */
-  padding-top: var(--safe-top);
-  padding-right: var(--safe-right);
-  padding-bottom: var(--shell-pad-bottom);
-  padding-left: var(--safe-left);
-}
-
-/* Full-height shells fill the viewport that remains after the shell insets. */
-.min-h-screen {
-  min-height: calc(100dvh - var(--safe-top) - var(--shell-pad-bottom));
-}
-
-/* Page gutters already contribute 16px or 24px. Combined with the shell inset,
-   the distance from the screen edge is max(gutter, safe-*). Left and right stay
-   independent, including when a centered container is narrower than the viewport. */
-.container,
-.safe-gutter {
-  padding-left: max(0px, calc(16px - var(--safe-left)));
-  padding-right: max(0px, calc(16px - var(--safe-right)));
-}
-
-.safe-gutter-6 {
-  padding-left: max(0px, calc(24px - var(--safe-left)));
-  padding-right: max(0px, calc(24px - var(--safe-right)));
-}
-
-.site-header {
-  padding-top: var(--safe-top);
-  padding-right: var(--safe-right);
-  padding-left: var(--safe-left);
-}
-
-.tool-sticky-cta {
-  padding-top: 12px;
-  padding-right: max(16px, var(--safe-right));
-  padding-bottom: max(12px, var(--safe-bottom));
-  padding-left: max(16px, var(--safe-left));
-}
-
-/* Keeps the existing 5rem clearance, and grows when the bar (including its
-   own safe-bottom padding) is taller. Body padding already applies safe-bottom. */
-.tool-sticky-spacer {
-  height: max(0px, calc(max(5rem, var(--tool-sticky-cta-height)) - var(--safe-bottom)));
-}
-
-.edge-modal {
-  padding-top: max(16px, var(--safe-top));
-  padding-right: max(16px, var(--safe-right));
-  padding-bottom: max(16px, var(--safe-bottom));
-  padding-left: max(16px, var(--safe-left));
-}
-
-.copy-toast {
-  right: max(16px, var(--safe-right));
-  bottom: max(16px, var(--safe-bottom));
-}
-
-@media (width < 48rem) {
-  :root:has(.tool-sticky-cta) .copy-toast {
-    bottom: calc(var(--tool-sticky-cta-height) + 16px);
-  }
-}
-
-/* Open widths can put a hinge through the middle. Keep small primary controls
-   on the trailing side there; narrower panes and desktop stay centered. */
-@media (width >= 48rem) and (width < 64rem) {
-  .wide-safe-action {
-    display: flex;
-    width: 100%;
-    align-self: stretch;
-    justify-content: flex-end;
-  }
 }
 
 @keyframes stepboard-flip-in {
@@ -295,8 +208,6 @@ body {
 }
 
 .floating-qr {
-  left: max(24px, var(--safe-left));
-  bottom: max(24px, var(--safe-bottom));
   animation: floating-qr-in 600ms cubic-bezier(0.2, 0, 0, 1) 280ms both;
 }
 

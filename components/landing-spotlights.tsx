@@ -54,7 +54,7 @@ export function LandingSpotlights({ locale = DEFAULT_LOCALE }: { locale?: Locale
 
   return (
     <section className="py-16 md:py-28">
-      <div className="safe-gutter mx-auto max-w-4xl flex flex-col gap-20 md:gap-28">
+      <div className="mx-auto max-w-4xl px-4 flex flex-col gap-20 md:gap-28">
         {SPOTLIGHTS.map((item, index) => {
           const Icon = getLandingIcon(item.icon);
           const copy = t.spotlights[item.key];

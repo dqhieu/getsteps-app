@@ -125,6 +125,7 @@ export default async function BMRCalculatorPage({ params }: LangPageProps) {
       />
 
       <LandingFooter locale={locale} />
+      <div aria-hidden className="h-20 md:hidden" />
       <ToolStickyCta locale={locale} label={t.sticky} />
     </div>
   );
