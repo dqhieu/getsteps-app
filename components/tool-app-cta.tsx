@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 import { getCommonMessages } from "@/lib/i18n/messages/common";
@@ -52,26 +55,56 @@ export function ToolStickyCta({
   locale?: Locale;
 }) {
   const t = getCommonMessages(locale).appStore;
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const bar = barRef.current;
+    if (!bar || typeof ResizeObserver === "undefined") return;
+
+    const apply = () => {
+      const height = bar.getBoundingClientRect().height;
+      if (height <= 0) return;
+      document.documentElement.style.setProperty("--tool-sticky-cta-height", `${height}px`);
+    };
+
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(bar);
+    window.addEventListener("resize", apply);
+    window.addEventListener("orientationchange", apply);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", apply);
+      window.removeEventListener("orientationchange", apply);
+    };
+  }, []);
+
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden flex items-center justify-between gap-3 border-t border-border bg-card/95 /95 backdrop-blur px-4 py-3">
-      <div className="min-w-0">
-        <p className="text-sm font-semibold text-foreground truncate">
-          {label}
-        </p>
-        <p className="text-xs text-muted">
-          {t.freeOnAppStore}
-        </p>
-      </div>
-      <a
-        href={SITE_CONFIG.appStoreUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-fast-goal="open-app-store"
-        aria-label={t.badgeAlt}
-        className="flex-shrink-0 rounded-full bg-accent text-white text-sm font-semibold px-5 py-2.5 active:scale-95 transition-transform"
+    <>
+      <div aria-hidden className="tool-sticky-spacer md:hidden" />
+      <div
+        ref={barRef}
+        className="tool-sticky-cta fixed bottom-0 inset-x-0 z-50 md:hidden flex items-center justify-between gap-3 border-t border-border bg-card/95 /95 backdrop-blur"
       >
-        {t.getSteps}
-      </a>
-    </div>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold text-foreground truncate">
+            {label}
+          </p>
+          <p className="text-xs text-muted">
+            {t.freeOnAppStore}
+          </p>
+        </div>
+        <a
+          href={SITE_CONFIG.appStoreUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-fast-goal="open-app-store"
+          aria-label={t.badgeAlt}
+          className="flex-shrink-0 rounded-full bg-accent text-white text-sm font-semibold px-5 py-2.5 active:scale-95 transition-transform"
+        >
+          {t.getSteps}
+        </a>
+      </div>
+    </>
   );
 }
