@@ -7,7 +7,7 @@ export function FloatingQr({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
   const t = getCommonMessages(locale).qr;
 
   return (
-    <aside aria-label={t.ariaLabel} className="floating-qr hidden lg:block fixed bottom-6 left-6 z-40 w-64">
+    <aside aria-label={t.ariaLabel} className="floating-qr hidden lg:block fixed z-40 w-64">
       <a
         href={SITE_CONFIG.appStoreUrl}
         data-fast-goal="open-app-store"

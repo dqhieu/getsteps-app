@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function InviteNotFound() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
+    <main className="safe-gutter-6 flex min-h-screen flex-col items-center justify-center text-center">
       <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
         This invite is no longer valid.
       </h1>

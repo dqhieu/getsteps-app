@@ -111,7 +111,7 @@ export default async function JoinPage({
     : "Invited to join this Stepboard group";
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6 py-16">
+    <main className="safe-gutter-6 flex min-h-screen flex-col items-center justify-center py-16">
       <div className="w-full max-w-md text-center">
         <p className="text-sm uppercase tracking-widest text-muted">
           You've been invited to join

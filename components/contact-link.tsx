@@ -98,7 +98,7 @@ export function ContactLink({ email, className, children }: ContactLinkProps) {
         {isCopied ? "Copied!" : children}
       </a>
       {toast && (
-        <div className="fixed bottom-4 right-4 z-50 pointer-events-none">
+        <div className="copy-toast fixed z-50 pointer-events-none">
           <div
             role="status"
             aria-live="polite"

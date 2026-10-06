@@ -199,7 +199,7 @@ export function LandingStepboardTotal({
 
   return (
     <section
-      className="relative z-10 -mt-8 px-4 pb-16 md:-mt-14 md:pb-20"
+      className="safe-gutter relative z-10 -mt-8 pb-16 md:-mt-14 md:pb-20"
       aria-label={labels.sectionLabel}
     >
       <Reveal>

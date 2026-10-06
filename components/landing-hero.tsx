@@ -46,14 +46,16 @@ export function LandingHero({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
           </p>
         </Reveal>
 
-        <Reveal delay={240}>
-          <div className="mt-8 flex flex-col items-center gap-5">
-            <AppStoreBadge
-              locale={locale}
-              className="inline-block transition-transform duration-150 hover:scale-[1.04] active:scale-[0.97]"
-              width={150}
-              height={50}
-            />
+        <Reveal delay={240} className="w-full">
+          <div className="mt-8 flex w-full flex-col items-center gap-5">
+            <div className="wide-safe-action">
+              <AppStoreBadge
+                locale={locale}
+                className="inline-block transition-transform duration-150 hover:scale-[1.04] active:scale-[0.97]"
+                width={150}
+                height={50}
+              />
+            </div>
             <div className="flex items-center gap-2 text-sm text-muted">
               <span className="text-amber-500" aria-hidden>
                 ★★★★★
