@@ -40,30 +40,28 @@ export function PersonaHero({ headline, subheadline }: PersonaHeroProps) {
         </div>
 
         {/* App Store Badge */}
-        <div className="wide-safe-action">
-          <a
-            href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-transform hover:scale-105 active:scale-95 inline-block"
-            aria-label="Download on the App Store"
-          >
-            <Image
-              src="/badge_light_mode.svg"
-              alt="Download on the App Store"
-              width={120}
-              height={40}
-              className="h-12 w-auto dark:hidden"
-            />
-            <Image
-              src="/badge_dark_mode.svg"
-              alt="Download on the App Store"
-              width={120}
-              height={40}
-              className="h-12 w-auto hidden dark:block"
-            />
-          </a>
-        </div>
+        <a
+          href={SITE_CONFIG.appStoreUrl} data-fast-goal="open-app-store"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-transform hover:scale-105 active:scale-95 inline-block"
+          aria-label="Download on the App Store"
+        >
+          <Image
+            src="/badge_light_mode.svg"
+            alt="Download on the App Store"
+            width={120}
+            height={40}
+            className="h-12 w-auto dark:hidden"
+          />
+          <Image
+            src="/badge_dark_mode.svg"
+            alt="Download on the App Store"
+            width={120}
+            height={40}
+            className="h-12 w-auto hidden dark:block"
+          />
+        </a>
       </div>
     </section>
   );

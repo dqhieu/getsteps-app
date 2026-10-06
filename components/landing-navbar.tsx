@@ -22,7 +22,7 @@ export function LandingNavbar({ locale }: { locale?: Locale }) {
   const secondaryClass = locale ? `${LINK_CLASS} hidden sm:inline` : LINK_CLASS;
 
   return (
-    <nav className="site-header fixed top-0 right-0 left-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link href={localizePath(lang, "/")} className="flex min-w-0 items-center gap-2">
           <Image

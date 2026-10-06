@@ -65,9 +65,7 @@ export function AppDownloadSection({
         <p className="text-muted mb-8 max-w-xl mx-auto">
           {description}
         </p>
-        <div className="wide-safe-action">
-          <AppStoreBadge locale={locale} />
-        </div>
+        <AppStoreBadge locale={locale} />
         <p className="text-sm text-muted mt-4">
           {getCommonMessages(locale).appStore.freeOnAppStore}
         </p>
