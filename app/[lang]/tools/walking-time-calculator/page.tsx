@@ -149,6 +149,7 @@ export default async function WalkingTimeCalculatorPage({ params }: LangPageProp
 
       <LandingFooter locale={locale} />
 
+      <div aria-hidden className="h-20 md:hidden" />
       <ToolStickyCta locale={locale} label={t.stickyCta} />
     </div>
   );

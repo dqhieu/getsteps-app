@@ -24,47 +24,26 @@ export function Reveal({
       setShown(true);
       return;
     }
-
-    let revealed = false;
-    let obs: IntersectionObserver | null = null;
-
-    const reveal = () => {
-      if (revealed) return;
-      revealed = true;
+    // Reveal above-the-fold content right away: a browser's first
+    // IntersectionObserver callback can be deferred until a scroll/paint,
+    // which would otherwise leave already-visible sections (e.g. the hero)
+    // stuck hidden. The observer still handles everything below the fold.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
       setShown(true);
-      obs?.disconnect();
-      obs = null;
-    };
-
-    // Read the viewport on each check. Fold, rotate, and resize can move a
-    // section into view without a scroll event.
-    const check = () => {
-      const node = ref.current;
-      if (!node || revealed) return;
-      const rect = node.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        reveal();
-        return;
-      }
-      if (!obs) {
-        obs = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) reveal();
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
-        );
-        obs.observe(node);
-      }
-    };
-
-    check();
-    window.addEventListener("resize", check);
-    window.addEventListener("orientationchange", check);
-    return () => {
-      obs?.disconnect();
-      window.removeEventListener("resize", check);
-      window.removeEventListener("orientationchange", check);
-    };
+      return;
+    }
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   return (

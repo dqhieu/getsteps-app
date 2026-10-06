@@ -14,15 +14,13 @@ export function LandingCTA({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
             <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-balance mb-7 text-foreground">
               {t.title}
             </h2>
-            <div className="wide-safe-action mb-5">
-              <AppStoreBadge
-                locale={locale}
-                className="inline-block transition-transform duration-150 hover:scale-[1.04] active:scale-[0.97]"
-                imageClassName="h-14 w-auto"
-                width={150}
-                height={50}
-              />
-            </div>
+            <AppStoreBadge
+              locale={locale}
+              className="inline-block mb-5 transition-transform duration-150 hover:scale-[1.04] active:scale-[0.97]"
+              imageClassName="h-14 w-auto"
+              width={150}
+              height={50}
+            />
             <p className="text-sm text-muted">
               {t.footnote}
             </p>
