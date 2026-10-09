@@ -1,9 +1,11 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
-import remarkGfm from "remark-gfm";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  turbopack: {
+    root: __dirname,
+  },
   experimental: {
     // Two root layouts (localized and English-only) cannot render a shared
     // not-found. Unmatched URLs use this document instead of returning 200.
@@ -78,7 +80,8 @@ const nextConfig: NextConfig = {
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm],
+    // Turbopack needs plugins by name so the loader options stay serializable.
+    remarkPlugins: ["remark-gfm"],
   },
 });
 
