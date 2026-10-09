@@ -175,4 +175,13 @@ export const PRESS_ARTICLES = [
     author: "Nicolas",
     date: "Feb 23, 2026",
   },
+  {
+    outlet: "appgefahren.de",
+    url: "https://www.appgefahren.de/steps-neuer-schrittzaehler-mit-integrierter-social-media-und-spiele-sperre-395238.html",
+    title: "Steps: Neuer Schrittzähler mit integrierter Social Media- und Spiele-Sperre",
+    summary:
+      "A new step counter that locks social media and games with Screen Time until you hit your daily step goal.",
+    author: "Mel",
+    date: "Feb 24, 2026",
+  },
 ] as const;
