@@ -269,6 +269,41 @@ export const TOOL_RELATED_TOOLS: Record<string, RelatedLink[]> = {
 
 // Blog slug → related blog post links
 export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
+  "how-to-walk-properly": [
+    { title: "Shin Splints From Walking", href: "/blog/shin-splints-from-walking" },
+    { title: "Average Step Length", href: "/blog/average-step-length" },
+    { title: "What Is Brisk Walking?", href: "/blog/what-is-brisk-walking" },
+  ],
+  "calf-pain-when-walking": [
+    { title: "Shin Splints From Walking", href: "/blog/shin-splints-from-walking" },
+    { title: "Walking for Sciatica", href: "/blog/walking-for-sciatica" },
+    { title: "Is Walking Good for Your Heart?", href: "/blog/is-walking-good-for-your-heart" },
+  ],
+  "shin-splints-from-walking": [
+    { title: "Calf Pain When Walking", href: "/blog/calf-pain-when-walking" },
+    { title: "How to Walk Properly", href: "/blog/how-to-walk-properly" },
+    { title: "Walking Workout Plan for Beginners", href: "/blog/walking-workout-plan-beginners" },
+  ],
+  "walk-run-method": [
+    { title: "How Many Miles Is a 5K?", href: "/blog/how-many-miles-is-a-5k" },
+    { title: "Shin Splints From Walking", href: "/blog/shin-splints-from-walking" },
+    { title: "Walking vs Running for Weight Loss", href: "/blog/walking-vs-running-for-weight-loss" },
+  ],
+  "walking-in-the-rain": [
+    { title: "How to Walk Properly", href: "/blog/how-to-walk-properly" },
+    { title: "Indoor Walking Workout", href: "/blog/indoor-walking-workout" },
+    { title: "Mental Benefits of Walking", href: "/blog/mental-benefits-of-walking" },
+  ],
+  "how-long-does-it-take-to-walk-20-miles": [
+    { title: "How Long Does It Take to Walk 10 Miles?", href: "/blog/how-long-does-it-take-to-walk-10-miles" },
+    { title: "Walk Run Method", href: "/blog/walk-run-method" },
+    { title: "How Many Miles Is a Marathon?", href: "/blog/how-many-miles-is-a-marathon" },
+  ],
+  "does-walking-make-your-butt-bigger": [
+    { title: "Does Walking Tone Your Legs?", href: "/blog/does-walking-tone-your-legs" },
+    { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
+    { title: "How to Walk Properly", href: "/blog/how-to-walk-properly" },
+  ],
   "is-12000-steps-a-day-good": [
     { title: "Is 9,000 Steps a Day Good?", href: "/blog/is-9000-steps-a-day-good" },
     { title: "Is 14,000 Steps a Day Good?", href: "/blog/is-14000-steps-a-day-good" },
@@ -1551,6 +1586,34 @@ export const BLOG_RELATED_PERSONAS: Record<string, PersonaLink[]> = {
 
 // Blog slug → related tool links
 export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
+  "how-to-walk-properly": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "calf-pain-when-walking": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "shin-splints-from-walking": [
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "walk-run-method": [
+    { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
+    { title: "Race Time Predictor", href: "/tools/race-time-predictor" },
+  ],
+  "walking-in-the-rain": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-20-miles": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+  ],
+  "does-walking-make-your-butt-bigger": [
+    { title: "Treadmill Incline Calculator", href: "/tools/treadmill-incline-calculator" },
+    { title: "Macro Calculator", href: "/tools/macro-calculator" },
+  ],
   "is-12000-steps-a-day-good": [
     { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
     { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
