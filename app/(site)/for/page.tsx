@@ -6,6 +6,8 @@ import { LandingFooter } from "@/components/landing-footer";
 import { getAllPersonas } from "@/lib/personas";
 import { SITE_CONFIG } from "@/lib/constants";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Steps for Everyone - Find Your Perfect Walking Companion",
   description:

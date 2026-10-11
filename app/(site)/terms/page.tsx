@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { LandingNavbar, LandingFooter } from "@/components";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "End User License Agreement (EULA) for Steps - Daily Step Counter & Workouts",

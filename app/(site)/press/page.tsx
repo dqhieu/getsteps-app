@@ -3,6 +3,8 @@ import Link from "next/link";
 import { LandingNavbar, LandingFooter } from "@/components";
 import { SITE_CONFIG, PRESS_ARTICLES } from "@/lib/constants";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "In the Press",
   description:

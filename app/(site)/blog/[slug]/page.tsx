@@ -20,6 +20,8 @@ const SITE_KEYWORDS = [
   "walking tracker", "activity tracker",
 ];
 
+export const dynamic = "force-static";
+
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }

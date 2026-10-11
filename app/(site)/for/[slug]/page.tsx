@@ -19,6 +19,8 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamic = "force-static";
+
 export async function generateStaticParams() {
   const slugs = getAllPersonaSlugs();
   return slugs.map((slug) => ({ slug }));

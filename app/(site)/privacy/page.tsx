@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { LandingNavbar, LandingFooter } from "@/components";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Privacy Policy for Steps: Workout & Pedometer. Learn how we collect, use, and protect your data.",

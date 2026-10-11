@@ -3,6 +3,8 @@ import { LandingNavbar, LandingFooter } from "@/components";
 import { ContactLink } from "@/components/contact-link";
 import { SITE_CONFIG } from "@/lib/constants";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Widgets not updating",
   description:

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { LandingNavbar, LandingFooter } from "@/components";
 import { SITE_CONFIG } from "@/lib/constants";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "About Steps",
   description:

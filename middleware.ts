@@ -1,30 +1,10 @@
 import { NextResponse } from "next/server";
-import type { NextRequest, NextFetchEvent } from "next/server";
-import { trackAICrawlerRequest } from "@datafast/ai-crawl";
+import type { NextRequest } from "next/server";
 import { LOCALE_COOKIE, localeCookie, resolveLocalePreference } from "@/lib/i18n/preference";
 import { resolveLocaleRoute } from "@/lib/i18n/routing";
 
-export function middleware(request: NextRequest, event: NextFetchEvent) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
-  // Track AI assistants, search crawlers, and model-training bots server-side.
-  // Best-effort and non-blocking: it schedules work via event.waitUntil and we
-  // never await it, so it must not delay the response.
-  trackAICrawlerRequest(request, event, {
-    websiteId: "dfid_GHemojUg7quBdpkgDlIXS",
-  });
-
-  // Strip cookies from PostHog proxy requests to avoid HTTP 431 errors
-  // (Request Header Fields Too Large).
-  if (pathname.startsWith("/ingest")) {
-    const requestHeaders = new Headers(request.headers);
-    requestHeaders.delete("cookie");
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
-  }
 
   const preference = resolveLocalePreference({
     pathname,
@@ -64,6 +44,14 @@ export function middleware(request: NextRequest, event: NextFetchEvent) {
   return response;
 }
 
+// vinext never edge-caches a path this matcher covers, so match only what the
+// locale logic handles: the localized sections (see LOCALIZED_SECTIONS) and
+// locale-prefixed paths (see LOCALES).
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/",
+    "/tools/:path*",
+    "/conversions/:path*",
+    "/:locale(en|zh|fr|de|it|pt-BR|es|ru|ja|ko)/:path*",
+  ],
 };
