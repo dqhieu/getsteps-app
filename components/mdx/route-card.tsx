@@ -149,14 +149,20 @@ export function RouteCard({
       </p>
 
       {embedKey && (
-        <iframe
-          title={`${t.openInMaps}: ${start}`}
-          src={embedUrl(embedKey, start, destination, stops)}
-          className="mt-4 h-72 w-full border-0"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        />
+        // Directions mode always overlays an origin/destination card in the
+        // top-left with no option to hide it, so the iframe is shifted up
+        // 100px and the top is clipped. Google's logo and attribution sit at
+        // the bottom and stay visible.
+        <div className="mt-4 h-72 overflow-hidden">
+          <iframe
+            title={`${t.openInMaps}: ${start}`}
+            src={embedUrl(embedKey, start, destination, stops)}
+            className="-mt-[100px] h-[calc(100%+100px)] w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
       )}
 
       <div className="p-5">
