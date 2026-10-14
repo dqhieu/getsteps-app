@@ -182,7 +182,7 @@ export interface FaqItem {
 /** Extract FAQ Q&A pairs from markdown content (### headings under ## FAQ or ## Common Questions) */
 export function extractFaqFromContent(content: string): FaqItem[] {
   // Find FAQ section start
-  const faqHeaderPattern = /^## (?:FAQ|Common Questions|Frequently Asked Questions)\s*$/m;
+  const faqHeaderPattern = /^## (?:FAQ|Common Questions|Frequently Asked Questions|Häufige Fragen)\s*$/m;
   const headerMatch = faqHeaderPattern.exec(content);
   if (!headerMatch) return [];
 
