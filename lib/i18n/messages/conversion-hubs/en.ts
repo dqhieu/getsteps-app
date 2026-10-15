@@ -105,7 +105,7 @@ const en = {
   },
   stepsToMiles: {
     meta: {
-      title: "Steps to Miles Converter — Quick Conversion Table & Calculator",
+      title: "Steps to Miles Calculator & Converter",
       description:
         "Convert any number of steps to miles. {ten} steps ≈ {tenMiles} miles · {five} steps ≈ {fiveMiles} miles. Full conversion table from {from} to {to} steps.",
       keywords: [
@@ -116,13 +116,13 @@ const en = {
         "step to mile conversion",
         "how many miles is X steps",
       ],
-      ogTitle: "Steps to Miles Converter — Quick Conversion Table & Calculator",
+      ogTitle: "Steps to Miles Calculator & Converter",
       ogDescription:
         "Convert any number of steps to miles. {ten} steps ≈ {tenMiles} miles. Full conversion table {from} → {to} steps.",
       ogImageAlt: "Steps to Miles",
     },
     crumb: "Steps to Miles",
-    title: "Steps to miles converter",
+    title: "Steps to Miles Calculator & Converter",
     intro:
       "Convert any step count to miles. Each row below links to a detailed page with calorie burn, walking time, and a stride-length table by height.",
     formulaTitle: "The quick formula",
