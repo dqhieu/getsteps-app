@@ -42,7 +42,7 @@ image: "/blog/{slug}.jpg"
 ```
 
 **Content Structure:**
-- H1 with primary keyword
+- No `#` H1 in the body (frontmatter `title` renders as the H1)
 - Intro paragraph (keyword in first 100 words)
 - 4-6 H2 sections with keyword in 2-3 of them
 - Table comparing features/workouts
@@ -94,7 +94,7 @@ npm run build
 ## SEO Checklist
 - [ ] Keyword in title (near start)
 - [ ] Keyword in meta description
-- [ ] Keyword in H1
+- [ ] No `#` heading in the body (title is the H1)
 - [ ] Keyword in first paragraph
 - [ ] Keyword in 2-3 H2 headings
 - [ ] Internal link to App Store

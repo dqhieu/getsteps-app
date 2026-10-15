@@ -87,9 +87,9 @@ npm run build
 
 ## Content Structure
 
-```markdown
-# H1: Main Keyword Title
+Do NOT add a `# H1` line: the page renders frontmatter `title` as the H1, so a markdown `#` creates a duplicate H1.
 
+```markdown
 Intro paragraph with keyword in first 100 words.
 
 ## H2: What is [Topic]?
@@ -124,7 +124,7 @@ CTA section with app download link.
 
 - [ ] Keyword in title (preferably near start)
 - [ ] Keyword in meta description
-- [ ] Keyword in H1 (matches title)
+- [ ] No `#` heading in the body (title is the H1)
 - [ ] Keyword in first paragraph
 - [ ] Keyword in 2-3 H2 headings
 - [ ] Keyword density 2-3%

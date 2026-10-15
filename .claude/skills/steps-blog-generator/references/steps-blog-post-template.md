@@ -16,9 +16,9 @@ image: "/blog/{slug}.jpg"
 
 ## Content Structure
 
-```markdown
-# {H1 Title with Primary Keyword}
+Do NOT add a `# H1` line: the page renders frontmatter `title` as the H1, so a markdown `#` creates a duplicate H1.
 
+```markdown
 {Hook paragraph - address pain point or curiosity gap. Include keyword in first 100 words.}
 
 This guide shows you {what reader will learn/achieve}.
@@ -135,7 +135,7 @@ No complicated setup, no subscription required for {feature}.
 
 1. **Title** - Primary keyword near start
 2. **Meta description** - Primary keyword + benefit
-3. **H1** - Exact match or close variant
+3. **H1** - Rendered from frontmatter `title`; no `#` in the body
 4. **First paragraph** - Within first 100 words
 5. **H2 headings** - 2-3 headings include keyword
 6. **Body** - Natural usage, 2-3% density
