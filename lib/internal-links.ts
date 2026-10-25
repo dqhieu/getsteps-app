@@ -1447,6 +1447,41 @@ export const BLOG_RELATED_POSTS: Record<string, RelatedLink[]> = {
     { title: "Calories Burned on a Treadmill", href: "/blog/calories-burned-on-treadmill" },
     { title: "Incline Walking Benefits", href: "/blog/incline-walking-benefits" },
   ],
+  "average-running-speed": [
+    { title: "Average Jogging Speed by Age, Sex & Fitness Level", href: "/blog/average-jogging-speed" },
+    { title: "How Many Steps in a Marathon? Running vs Walking", href: "/blog/how-many-steps-in-a-marathon" },
+    { title: "Walking Heart Rate: What's Normal by Age and Pace", href: "/blog/walking-heart-rate" },
+  ],
+  "walking-heart-rate": [
+    { title: "Heart Rate Zones Explained", href: "/blog/heart-rate-zones-explained" },
+    { title: "Zone 2 Walking", href: "/blog/zone-2-walking" },
+    { title: "Does Walking Burn Fat? How Much Fat a Walk Really Burns", href: "/blog/does-walking-burn-fat" },
+  ],
+  "how-many-steps-in-a-marathon": [
+    { title: "How Many Steps in a Half Marathon? Full Breakdown", href: "/blog/how-many-steps-in-a-half-marathon" },
+    { title: "Average Running Speed by Age, Sex & Distance (Charts)", href: "/blog/average-running-speed" },
+    { title: "How Long Does It Take to Walk 15,000 Steps?", href: "/blog/how-long-does-it-take-to-walk-15000-steps" },
+  ],
+  "does-walking-burn-fat": [
+    { title: "Does Walking Reduce Belly Fat? What Research Says", href: "/blog/does-walking-reduce-belly-fat" },
+    { title: "Walking Heart Rate: What's Normal by Age and Pace", href: "/blog/walking-heart-rate" },
+    { title: "Walking 20 Minutes a Day: Benefits & Is It Enough?", href: "/blog/walking-20-minutes-a-day" },
+  ],
+  "walking-6-miles-a-day": [
+    { title: "Walking 5 Miles a Day: Benefits & Results", href: "/blog/walking-5-miles-a-day" },
+    { title: "Walking 10 Miles a Day", href: "/blog/walking-10-miles-a-day" },
+    { title: "How Long Does It Take to Walk 15,000 Steps?", href: "/blog/how-long-does-it-take-to-walk-15000-steps" },
+  ],
+  "how-long-does-it-take-to-walk-15000-steps": [
+    { title: "How Long to Walk 10,000 Steps", href: "/blog/how-long-to-walk-10000-steps" },
+    { title: "15,000 Steps a Day for Weight Loss", href: "/blog/15000-steps-a-day-weight-loss" },
+    { title: "Walking 6 Miles a Day: Steps, Calories & Results", href: "/blog/walking-6-miles-a-day" },
+  ],
+  "walking-20-minutes-a-day": [
+    { title: "Benefits of Walking 30 Minutes a Day", href: "/blog/benefits-of-walking-30-minutes-a-day" },
+    { title: "How Many Steps in 20 Minutes of Walking", href: "/blog/how-many-steps-in-20-minutes-walking" },
+    { title: "Does Walking Burn Fat? How Much Fat a Walk Really Burns", href: "/blog/does-walking-burn-fat" },
+  ],
 };
 
 // Tool slug → related persona page links (reverse of persona.relatedTools)
@@ -2506,5 +2541,33 @@ export const BLOG_RELATED_TOOLS: Record<string, RelatedLink[]> = {
   "treadmill-vs-walking-outside": [
     { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
     { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "average-running-speed": [
+    { title: "Running Pace Calculator", href: "/tools/running-pace-calculator" },
+    { title: "Pace to Speed Converter", href: "/tools/pace-to-speed-converter" },
+  ],
+  "walking-heart-rate": [
+    { title: "Heart Rate Zones Calculator", href: "/tools/heart-rate-zones-calculator" },
+    { title: "Resting Heart Rate Calculator", href: "/tools/resting-heart-rate-calculator" },
+  ],
+  "how-many-steps-in-a-marathon": [
+    { title: "Marathon Pace Predictor", href: "/tools/marathon-pace-predictor" },
+    { title: "Steps Per Mile Calculator", href: "/tools/steps-per-mile-calculator" },
+  ],
+  "does-walking-burn-fat": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Calorie Deficit Calculator", href: "/tools/calorie-deficit-calculator" },
+  ],
+  "walking-6-miles-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+  ],
+  "how-long-does-it-take-to-walk-15000-steps": [
+    { title: "Walking Time Calculator", href: "/tools/walking-time-calculator" },
+    { title: "Step Distance Calculator", href: "/tools/step-distance-calculator" },
+  ],
+  "walking-20-minutes-a-day": [
+    { title: "Walking Calories Calculator", href: "/tools/walking-calories-calculator" },
+    { title: "Daily Step Goal Calculator", href: "/tools/daily-step-goal-calculator" },
   ],
 };
