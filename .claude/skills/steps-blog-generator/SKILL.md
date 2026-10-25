@@ -80,7 +80,7 @@ image: "/blog/{slug}.jpg"
 
 ### 5. Build & Verify
 ```bash
-npm run build
+npm run build:vinext
 # Check sitemap includes new post
 # Verify OG meta tags in HTML output
 ```

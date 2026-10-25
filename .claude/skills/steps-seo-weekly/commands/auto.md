@@ -204,7 +204,7 @@ Add all 7 new posts to `lib/internal-links.ts`:
 
 ### 5e. Build and verify (once after all 7 posts)
 ```bash
-npm run build
+npm run build:vinext
 ```
 
 Only run build ONCE after all 7 posts are written, not after each individual post.

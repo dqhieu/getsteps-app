@@ -104,7 +104,7 @@ Pick photo ID based on topic from the reference table in steps-blog-generator SK
 
 #### 3d. Build and Verify
 ```bash
-npm run build
+npm run build:vinext
 ```
 
 Check that:

@@ -86,7 +86,7 @@ curl -L -o public/blog/running-tracker.jpg \
 
 ### 4. Build & Verify
 ```bash
-npm run build
+npm run build:vinext
 ```
 - Verify post appears in sitemap
 - Check OG meta tags in HTML output
