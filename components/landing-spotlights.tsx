@@ -20,10 +20,23 @@ function SpotlightMedia({
   const isVideo = src.endsWith(".mp4");
 
   if (isVideo) {
+    // H.264 has no alpha channel, so the clips ship with a baked-in white
+    // surround. A per-clip alpha mask (generated from the device outline)
+    // cuts it away so the phone sits cleanly on light and dark themes.
+    // The box matches the clips' 560x1168 frame so the mask lines up 1:1.
+    const mask = `url(${src.replace(/\.mp4$/, "-mask.png")})`;
     return (
-      <div className="relative mx-auto w-[260px] md:w-[300px] aspect-[1170/2532]">
+      <div className="relative mx-auto w-[260px] md:w-[300px] aspect-[560/1168]">
         <video
-          className="h-full w-full object-contain"
+          className="h-full w-full object-fill"
+          style={{
+            maskImage: mask,
+            WebkitMaskImage: mask,
+            maskSize: "100% 100%",
+            WebkitMaskSize: "100% 100%",
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+          }}
           src={src}
           autoPlay
           muted
